@@ -14,9 +14,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
 
 Auth::routes(['verify'=>true]);
 
 Route::get('/home', 'HomeController@index')->name('home')->middleware('verified');
+
+//Route to admin pages
+Route::get('/adm_tracking', 'HomeController@admin_tracking');
+Route::get('/adm_news', 'HomeController@admin_news');
