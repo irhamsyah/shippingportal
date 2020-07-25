@@ -19,8 +19,10 @@ Route::get('/', function () {
 
 Auth::routes(['verify'=>true]);
 
-Route::get('/home', 'HomeController@index')->name('home')->middleware('verified');
+Route::get('/home', 'HomeController@admin_index')->name('home')->middleware('verified');
 
 //Route to admin pages
 Route::get('/adm_tracking', 'HomeController@admin_tracking');
 Route::get('/adm_news', 'HomeController@admin_news');
+Route::get('/adm_news_category', 'HomeController@admin_news_category');
+Route::get('/adm_news_img', 'HomeController@admin_news_image');

@@ -9,7 +9,7 @@
       <div class="col-12">
         <div class="card">
           <div class="card-header">
-            <h3 class="card-title">List News</h3>
+            <h3 class="card-title">List News Image</h3>
           </div>
           <!-- /.card-header -->
           <div class="card-body">
@@ -25,39 +25,33 @@
               <thead>
               <tr>
                 <th>No</th>
-                <th>Title</th>
-                <th>Text</th>
                 <th>Image</th>
-                <th>Category</th>
+                <th>News</th>
                 <th>User</th>
                 <th>Action</th>
               </tr>
               </thead>
               <tbody>
-                @foreach($newss as $index => $news)
-                <tr>
-                  <td>{{ $index+1 }}</td>
-                  <td>{!! ucwords($news->title) !!}</td>
-                  <td>{!! $news->text !!}</td>
-                  <td><img src="{{ asset('/img/news/'.$news->img_title) }}" style="max-width:100px;max-height:100px;"/></td>
-                  <td>{{ $news->category_name }}</td>
-                  <td>{{ $news->user_name }}</td>
-                  <td>
-                    <a href="/deletenews" class="btn btn-block bg-gradient-danger btn-xs" style="margin-top:0; margin-left:5px;">
-                      <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                      <span>Delete</span>
-                    </a>
-                  </td>
-                </tr>
-                @endforeach
+              @foreach($news_images as $index => $news_image)
+              <tr>
+                <td>{{ $index+1 }}</td>
+                <td><img src="{{ asset('/img/news/'.$news_image->img) }}" style="max-width:100px;max-height:100px;"/></td>
+                <td>{!! $news_image->title !!}</td>
+                <td>{{ $news_image->user_name }}</td>
+                <td>
+                  <a href="/deleteimagenews" class="btn btn-block bg-gradient-danger btn-xs" style="margin-top:0; margin-left:5px;">
+                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                    <span>Delete</span>
+                  </a>
+                </td>
+              </tr>
+              @endforeach
               </tbody>
               <tfoot>
               <tr>
                 <th>No</th>
-                <th>Title</th>
-                <th>Text</th>
                 <th>Image</th>
-                <th>Category</th>
+                <th>News</th>
                 <th>User</th>
                 <th>Action</th>
               </tr>
