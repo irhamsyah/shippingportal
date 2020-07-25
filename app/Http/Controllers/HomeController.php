@@ -15,7 +15,11 @@ class HomeController extends Controller
     {
         $this->middleware('auth');
     }
-
+    //Untuk munculkan home setelah register user
+    public function index()
+    {
+        return view('home');
+    }
     /**
      * Show the application dashboard.
      *
