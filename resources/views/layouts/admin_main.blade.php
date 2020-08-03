@@ -105,6 +105,70 @@
           </li>
           <li class="nav-item has-treeview menu-open">
             <a href="#" class="nav-link">
+              <i class="nav-icon fa fa-database"></i>
+              <p>
+                Master Data
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+            <li class="nav-item" style="border-bottom:1px solid">
+              <a href="/adm_customer" class="nav-link">
+                <i class="fa fa-user nav-icon"></i>
+                <p>Customer</p>
+              </a>
+            </li>
+              <li class="nav-item">
+                <a href="/adm_agent" class="nav-link">
+                  <i class="fa fa-male nav-icon"></i>
+                  <p>Agent Daerah</p>
+                </a>
+              </li>
+              <li class="nav-item" style="border-bottom:1px solid">
+                <a href="/adm_bank_account" class="nav-link">
+                  <i class="fa fa-university nav-icon"></i>
+                  <p>Bank Account</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/adm_pelayaran" class="nav-link">
+                  <i class="fa fa-paper-plane nav-icon"></i>
+                  <p>Pelayaran</p>
+                </a>
+              </li>
+              <li class="nav-item" style="border-bottom:1px solid">
+                <a href="/adm_tarif" class="nav-link">
+                  <i class="fa fa-credit-card nav-icon"></i>
+                  <p>Tarif</p>
+                </a>
+              </li>
+              <li class="nav-item" style="border-bottom:1px solid">
+                <a href="/adm_consignee" class="nav-link">
+                  <i class="fa fa-female nav-icon"></i>
+                  <p>Consignee</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/adm_vendor_truck" class="nav-link">
+                  <i class="fa fa-users nav-icon"></i>
+                  <p>Vendor</p>
+                </a>
+              </li>
+              <li class="nav-item" style="border-bottom:1px solid">
+                <a href="/adm_trucking" class="nav-link">
+                  <i class="fa fa-truck nav-icon"></i>
+                  <p>Trucking Type</p>
+                </a>
+              </li><li class="nav-item" style="border-bottom:1px solid">
+                <a href="/adm_location" class="nav-link">
+                  <i class="fa fa-location-arrow nav-icon"></i>
+                  <p>Location</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item has-treeview menu-open">
+            <a href="#" class="nav-link">
               <i class="nav-icon fa fa-newspaper"></i>
               <p>
                 News
@@ -114,7 +178,7 @@
             <ul class="nav nav-treeview">
             <li class="nav-item">
               <a href="/adm_news" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
+                <i class="fa fa-bars nav-icon"></i>
                 <p>List News</p>
               </a>
             </li>
@@ -126,13 +190,13 @@
               </li>
               <li class="nav-item">
                 <a href="/adm_news_img" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
+                  <i class="fa fa-file nav-icon"></i>
                   <p>News Images</p>
                 </a>
               </li>
             </ul>
           </li>
-          <li class="nav-item has-treeview menu-open">
+          <!-- <li class="nav-item has-treeview menu-open">
             <a href="#" class="nav-link">
               <i class="nav-icon fa fa-shopping-bag"></i>
               <p>
@@ -143,7 +207,7 @@
             <ul class="nav nav-treeview">
               <li class="nav-item">
                 <a href="/adm_packages" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
+                  <i class="far fa-bars nav-icon"></i>
                   <p>List Packages</p>
                 </a>
               </li>
@@ -154,7 +218,7 @@
                 </a>
               </li>
             </ul>
-          </li>
+          </li> -->
           <li class="nav-item has-treeview menu-open">
             <a href="{{ route('logout') }}" class="nav-link" onclick="event.preventDefault();
                           document.getElementById('logout-form').submit();">
@@ -236,6 +300,15 @@
       "lengthChange": false,
       "searching": false,
       "ordering": true,
+      "info": true,
+      "autoWidth": false,
+      "responsive": true
+    });
+    $("#example2").DataTable({
+      "paging": true,
+      "lengthChange": false,
+      "searching": true,
+      "ordering": false,
       "info": true,
       "autoWidth": false,
       "responsive": true

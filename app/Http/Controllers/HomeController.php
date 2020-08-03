@@ -5,8 +5,17 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Users;
 use App\News;
-use App\News_category;
-use App\News_image;
+use App\NewsCategory;
+use App\NewsImage;
+use App\Agent;
+use App\BankAccount;
+use App\Consignee;
+use App\Customer;
+use App\Location;
+use App\Pelayaran;
+use App\Tarif;
+use App\TruckingType;
+use App\VendorTruck;
 
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Builder;
@@ -60,17 +69,71 @@ class HomeController extends Controller
     }
     public function admin_news_category()
     {
-      $news_categorys = News_category::select('news_category.id','news_category.name','users.name as user_name')
+      $news_categorys = NewsCategory::select('news_category.id','news_category.name','users.name as user_name')
       ->leftjoin('users','users.id','=','news_category.id_user')->get();
       //dd($news_categorys);
       return view('admin/news_category', ['news_categorys'=> $news_categorys]);
     }
     public function admin_news_image()
     {
-      $news_images = News_image::select('news_image.id as id_image','news_image.img','news_image.id_news','news.title','users.name as user_name')
+      $news_images = NewsImage::select('news_image.id as id_image','news_image.img','news_image.id_news','news.title','users.name as user_name')
       ->leftjoin('news','news.id','=','news_image.id_news')
       ->leftjoin('users','users.id','=','news_image.id_user')->get();
       //dd($news_images);
       return view('admin/news_image', ['news_images'=> $news_images]);
+    }
+    public function admin_customer()
+    {
+      $customers = Customer::select('customer.*','location.name_city','location.province_city')->leftjoin('location','location.id','=','customer.id_city')->get();
+      //dd($customers);
+      return view('admin/customer', ['customers'=> $customers]);
+    }
+    public function admin_agent()
+    {
+      $agents = Agent::select('agent.*','location.name_city','location.province_city')->leftjoin('location','location.id','=','agent.id_city')->get();
+      //dd($agents);
+      return view('admin/agent', ['agents'=> $agents]);
+    }
+    public function admin_bank_account()
+    {
+      $banks = BankAccount::select('bank_account.*','agent.code_agent','agent.name_agent')->leftjoin('agent','agent.id','=','bank_account.id_agent')->get();
+      //dd($banks);
+      return view('admin/bank_account', ['banks'=> $banks]);
+    }
+    public function admin_pelayaran()
+    {
+      $pelayarans = Pelayaran::select('pelayaran.*','location.name_city','location.province_city')->leftjoin('location','location.id','=','pelayaran.id_city')->get();
+      //dd($pelayarans);
+      return view('admin/pelayaran', ['pelayarans'=> $pelayarans]);
+    }
+    public function admin_location()
+    {
+      $locations = Location::all();
+      //dd($locations);
+      return view('admin/location', ['locations'=> $locations]);
+    }
+    public function admin_vendor_truck()
+    {
+      $vendor_trucks = VendorTruck::select('vendor_truck.*','trucking_type.name_trucking')->leftjoin('trucking_type','trucking_type.id','=','vendor_truck.id_truck_type')->get();
+      //dd($vendor_trucks);
+      return view('admin/vendor_truck', ['vendor_trucks'=> $vendor_trucks]);
+    }
+    public function admin_trucking()
+    {
+      $truckings = TruckingType::all();
+      //dd($truckings);
+      return view('admin/trucking', ['truckings'=> $truckings]);
+    }
+    public function admin_consignee()
+    {
+      $consignees = Consignee::select('consignee.*','location.name_city','location.province_city')->leftjoin('location','location.id','=','consignee.id_city')->get();;
+      //dd($consignees);
+      return view('admin/consignee', ['consignees'=> $consignees]);
+    }
+    public function admin_tarif()
+    {
+      $tarifs = Tarif::select('tarif.*','location.name_city','location.province_city','pelayaran.code_pelayaran','pelayaran.name_pelayaran')->leftjoin('location','location.id','=','tarif.id_city')->leftjoin('pelayaran','pelayaran.id','=','tarif.id_pelayaran')->get();;
+      //dd($tarifs);
+      return view('admin/tarif', ['tarifs'=> $tarifs]);
     }
 }
