@@ -283,6 +283,8 @@
 <script src="{{ asset('plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
 <!-- Tempusdominus Bootstrap 4 -->
 <script src="{{ asset('plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js') }}"></script>
+<!-- Ckeditor -->
+<script src="{{ asset('plugins/ckeditor/ckeditor.js') }}"></script>
 <!-- Summernote -->
 <script src="{{ asset('plugins/summernote/summernote-bs4.min.js') }}"></script>
 <!-- overlayScrollbars -->
@@ -294,26 +296,64 @@
 <!-- AdminLTE for demo purposes -->
 <script src="{{ asset('dist/js/demo.js') }}"></script>
 <script>
+
   $(function () {
     $("#example1").DataTable({
       "paging": true,
-      "lengthChange": false,
-      "searching": false,
+      "lengthChange": true,
+      "searching": true,
       "ordering": true,
       "info": true,
+      "responsive": true,
       "autoWidth": false,
-      "responsive": true
+      "lengthMenu": [ 25, 50, 100 ],
+      "pageLength":50
     });
     $("#example2").DataTable({
-      "paging": true,
       "lengthChange": false,
-      "searching": true,
+      "searching": false,
       "ordering": false,
-      "info": true,
       "autoWidth": false,
-      "responsive": true
+      "lengthMenu": [ 25, 50, 100 ],
+      "pageLength":50
     });
-  });
+
+    //set ckeditor
+    CKEDITOR.replace( 'inputText1' );
+    CKEDITOR.replace( 'inputTitle1' );
+    CKEDITOR.replace( 'inputText2' );
+    CKEDITOR.replace( 'inputTitle2' );
+});
+    $('#modal-edit-newscategory').on('show.bs.modal', function(e) {
+      var id = $(e.relatedTarget).data('id');
+      var category = $(e.relatedTarget).data('category');
+      $(e.currentTarget).find('input[name="inputNewsCategory"]').val(category);
+      $(e.currentTarget).find('input[name="inputIdCategory"]').val(id);
+    });
+
+    $('#modal-edit-news').on('show.bs.modal', function(e) {
+      var NewsId = $(e.relatedTarget).data('id');
+      var img_title = $(e.relatedTarget).data('img_title');
+      var text = $(e.relatedTarget).data('text');
+      var title = $(e.relatedTarget).data('title');
+      var id_category = $(e.relatedTarget).data('id_category');
+
+      CKEDITOR.instances['inputTitle1'].setData(title);
+      CKEDITOR.instances['inputText1'].setData(text);
+      $(e.currentTarget).find('select[name="inputIdCategory"]').val(id_category);
+      $(e.currentTarget).find('input[name="inputImgOld"]').val(img_title);
+      $(e.currentTarget).find('input[name="inputIdNews"]').val(NewsId);
+    });
+
+    $('#modal-edit-newsimage').on('show.bs.modal', function(e) {
+      var imageId = $(e.relatedTarget).data('id');
+      var img = $(e.relatedTarget).data('img');
+      var id_news = $(e.relatedTarget).data('id_news');
+
+      $(e.currentTarget).find('select[name="inputTitleNews"]').val(id_news);
+      $(e.currentTarget).find('input[name="inputImgOld"]').val(img);
+      $(e.currentTarget).find('input[name="inputIdNewsImg"]').val(imageId);
+    });
 </script>
 </body>
 </html>

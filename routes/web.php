@@ -25,8 +25,19 @@ Route::get('/home', 'HomeController@admin_index')->name('home')->middleware('ver
 Route::get('/adm_tracking', 'HomeController@admin_tracking');
 
 Route::get('/adm_news', 'HomeController@admin_news');
+Route::post('/adm_news', 'HomeController@admin_news_add');
+Route::put('/adm_news', 'HomeController@admin_news_edit');
+Route::delete('/adm_news', 'HomeController@admin_news_destroy');
+
 Route::get('/adm_news_category', 'HomeController@admin_news_category');
+Route::post('/adm_news_category', 'HomeController@admin_news_category_add');
+Route::put('/adm_news_category', 'HomeController@admin_news_category_edit');
+Route::delete('/adm_news_category', 'HomeController@admin_news_category_destroy');
+
 Route::get('/adm_news_img', 'HomeController@admin_news_image');
+Route::post('/adm_news_img', 'HomeController@admin_news_image_add');
+Route::put('/adm_news_img', 'HomeController@admin_news_image_edit');
+Route::delete('/adm_news_img', 'HomeController@admin_news_image_destroy');
 
 Route::get('/adm_customer', 'HomeController@admin_customer');
 Route::get('/adm_agent', 'HomeController@admin_agent');
