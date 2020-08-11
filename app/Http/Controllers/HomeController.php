@@ -60,8 +60,8 @@ class HomeController extends Controller
     }
     public function admin_news()
     {
-      $newss = News::select('news.id as news_id','news.title','news.text','news.img_title','news.id_user','news.id_category','news_category.name as category_name','users.name as user_name')
-      ->leftJoin('news_category', 'news_category.id', '=', 'news.id_category')
+      $newss = News::select('news.id as news_id','news.title','news.text','news.img_title','news.id_user','news.news_category_id','news_category.name as category_name','users.name as user_name')
+      ->leftJoin('news_category', 'news_category.id', '=', 'news.news_category_id')
       ->leftjoin('users', 'users.id', '=', 'news.id_user')
       ->orderBy('news.created_at','desc')->get();
 
@@ -88,13 +88,13 @@ class HomeController extends Controller
       $newss->title = $request->inputTitle2;
       $newss->text = $request->inputText2;
       $newss->img_title = $name;
-      $newss->id_category = $request->inputIdCategory;
+      $newss->news_category_id = $request->inputIdCategory;
       $newss->id_user = $request->inputIdUser;
       $newss->created_at = date('Y-m-d H:i:s');
       $newss->save();
 
-      $newss = News::select('news.id as news_id','news.title','news.text','news.img_title','news.id_user','news.id_category','news_category.name as category_name','users.name as user_name')
-      ->leftJoin('news_category', 'news_category.id', '=', 'news.id_category')
+      $newss = News::select('news.id as news_id','news.title','news.text','news.img_title','news.id_user','news.news_category_id','news_category.name as category_name','users.name as user_name')
+      ->leftJoin('news_category', 'news_category.id', '=', 'news.news_category_id')
       ->leftjoin('users', 'users.id', '=', 'news.id_user')
       ->orderBy('news.created_at','desc')->get();
 
@@ -128,13 +128,13 @@ class HomeController extends Controller
       $newss->title = $request->inputTitle1;
       $newss->text = $request->inputText1;
       $newss->img_title = $name;
-      $newss->id_category = $request->inputIdCategory;
+      $newss->news_category_id = $request->inputIdCategory;
       $newss->id_user = $request->inputIdUser;
       $newss->created_at = date('Y-m-d H:i:s');
       $newss->save();
 
-      $newss = News::select('news.id as news_id','news.title','news.text','news.img_title','news.id_user','news.id_category','news_category.name as category_name','users.name as user_name')
-      ->leftJoin('news_category', 'news_category.id', '=', 'news.id_category')
+      $newss = News::select('news.id as news_id','news.title','news.text','news.img_title','news.id_user','news.news_category_id','news_category.name as category_name','users.name as user_name')
+      ->leftJoin('news_category', 'news_category.id', '=', 'news.news_category_id')
       ->leftjoin('users', 'users.id', '=', 'news.id_user')
       ->orderBy('news.created_at','desc')->get();
 
@@ -148,8 +148,8 @@ class HomeController extends Controller
       $newss = News::find($request->inputIdNews);
       $newss->delete();
 
-      $newss = News::select('news.id as news_id','news.title','news.text','news.img_title','news.id_user','news.id_category','news_category.name as category_name','users.name as user_name')
-      ->leftJoin('news_category', 'news_category.id', '=', 'news.id_category')
+      $newss = News::select('news.id as news_id','news.title','news.text','news.img_title','news.id_user','news.news_category_id','news_category.name as category_name','users.name as user_name')
+      ->leftJoin('news_category', 'news_category.id', '=', 'news.news_category_id')
       ->leftjoin('users', 'users.id', '=', 'news.id_user')
       ->orderBy('news.created_at','desc')->get();
 
@@ -205,8 +205,8 @@ class HomeController extends Controller
     }
     public function admin_news_image()
     {
-      $news_images = NewsImage::select('news_image.id as id_image','news_image.img','news_image.id_news','news.title','users.name as user_name')
-      ->leftjoin('news','news.id','=','news_image.id_news')
+      $news_images = NewsImage::select('news_image.id as id_image','news_image.img','news_image.news_id','news.title','users.name as user_name')
+      ->leftjoin('news','news.id','=','news_image.news_id')
       ->leftjoin('users','users.id','=','news_image.id_user')->get();
 
       $newss = News::select('news.id as news_id','news.title')->orderby('news.title')->get();
@@ -229,13 +229,13 @@ class HomeController extends Controller
       //input new news image
       $news_images = new NewsImage;
       $news_images->img = $name;
-      $news_images->id_news = $request->inputTitleNews;
+      $news_images->news_id = $request->inputTitleNews;
       $news_images->id_user = $request->inputIdUser;
       $news_images->created_at = date('Y-m-d H:i:s');
       $news_images->save();
 
-      $news_images = NewsImage::select('news_image.id as id_image','news_image.img','news_image.id_news','news.title','users.name as user_name')
-      ->leftjoin('news','news.id','=','news_image.id_news')
+      $news_images = NewsImage::select('news_image.id as id_image','news_image.img','news_image.news_id','news.title','users.name as user_name')
+      ->leftjoin('news','news.id','=','news_image.news_id')
       ->leftjoin('users','users.id','=','news_image.id_user')->get();
 
       $newss = News::select('news.id as news_id','news.title')->orderby('news.title')->get();
@@ -264,13 +264,13 @@ class HomeController extends Controller
       //input new news image
       $news_images = NewsImage::find($request->inputIdNewsImg);;
       $news_images->img = $name;
-      $news_images->id_news = $request->inputTitleNews;
+      $news_images->news_id = $request->inputTitleNews;
       $news_images->id_user = $request->inputIdUser;
       $news_images->created_at = date('Y-m-d H:i:s');
       $news_images->save();
 
-      $news_images = NewsImage::select('news_image.id as id_image','news_image.img','news_image.id_news','news.title','users.name as user_name')
-      ->leftjoin('news','news.id','=','news_image.id_news')
+      $news_images = NewsImage::select('news_image.id as id_image','news_image.img','news_image.news_id','news.title','users.name as user_name')
+      ->leftjoin('news','news.id','=','news_image.news_id')
       ->leftjoin('users','users.id','=','news_image.id_user')->get();
 
       $newss = News::select('news.id as news_id','news.title')->orderby('news.title')->get();
@@ -283,8 +283,8 @@ class HomeController extends Controller
       $news_images = NewsImage::find($request->inputIdNewsImg);
       $news_images->delete();
 
-      $news_images = NewsImage::select('news_image.id as id_image','news_image.img','news_image.id_news','news.title','users.name as user_name')
-      ->leftjoin('news','news.id','=','news_image.id_news')
+      $news_images = NewsImage::select('news_image.id as id_image','news_image.img','news_image.news_id','news.title','users.name as user_name')
+      ->leftjoin('news','news.id','=','news_image.news_id')
       ->leftjoin('users','users.id','=','news_image.id_user')->get();
 
       $newss = News::select('news.id as news_id','news.title')->orderby('news.title')->get();

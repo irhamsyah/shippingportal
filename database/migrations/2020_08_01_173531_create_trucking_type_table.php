@@ -17,7 +17,7 @@ class CreateTruckingTypeTable extends Migration
             $table->id();
             $table->string('name_trucking',50)->unique();
             $table->timestamps();
-            $table->DateTime('deleted_at')->nullable();
+            $table->SoftDeletes();
         });
     }
 

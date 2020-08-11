@@ -32,7 +32,7 @@ class CreateConsigneeTable extends Migration
           $table->string('email_person',30);
           $table->string('fax_person',30);
           $table->timestamps();
-          $table->DateTime('deleted_at')->nullable();
+          $table->SoftDeletes();
         });
     }
 

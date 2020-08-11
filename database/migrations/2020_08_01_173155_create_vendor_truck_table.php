@@ -22,7 +22,7 @@ class CreateVendorTruckTable extends Migration
           $table->integer('payment_term');
           $table->integer('id_truck_type');
           $table->timestamps();
-          $table->DateTime('deleted_at')->nullable();
+          $table->SoftDeletes();
         });
     }
 

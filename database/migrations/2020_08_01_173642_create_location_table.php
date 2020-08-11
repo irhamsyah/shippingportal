@@ -21,7 +21,7 @@ class CreateLocationTable extends Migration
           $table->boolean('status_loading')->default(0);
           $table->boolean('status_pelayaran')->default(0);
           $table->timestamps();
-          $table->DateTime('deleted_at')->nullable();
+          $table->SoftDeletes();
         });
     }
 

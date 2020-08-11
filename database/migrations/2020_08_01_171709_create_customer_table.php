@@ -33,7 +33,7 @@ class CreateCustomerTable extends Migration
           $table->string('fax_person',30);
           $table->boolean('status')->default(0);
           $table->timestamps();
-          $table->DateTime('deleted_at')->nullable();
+          $table->SoftDeletes();
         });
     }
 

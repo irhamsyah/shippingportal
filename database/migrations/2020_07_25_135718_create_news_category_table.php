@@ -14,11 +14,11 @@ class CreateNewsCategoryTable extends Migration
     public function up()
     {
         Schema::create('news_category', function (Blueprint $table) {
-            $table->id();
+            $table->id()->unsigned();
             $table->string('name',150);
             $table->integer('id_user');
             $table->timestamps();
-            $table->DateTime('deleted_at');
+            $table->SoftDeletes();
         });
     }
 

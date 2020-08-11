@@ -22,7 +22,7 @@ class CreateBankAccountTable extends Migration
           $table->string('account_name',100);
           $table->longText('bank_address');
           $table->timestamps();
-          $table->DateTime('deleted_at')->nullable();
+          $table->SoftDeletes();
         });
     }
 

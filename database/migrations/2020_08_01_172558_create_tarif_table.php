@@ -24,7 +24,7 @@ class CreateTarifTable extends Migration
           $table->BigInteger('last_price2');
           $table->BigInteger('last_price3');
           $table->timestamps();
-          $table->DateTime('deleted_at')->nullable();
+          $table->SoftDeletes();
         });
     }
 
