@@ -45,10 +45,10 @@
                             data-id="{{ $news->news_id }}"
                             data-title="{{ $news->title }}"
                             data-text="{{ $news->text }}"
-                            data-id_category="{{ $news->id_category }}"
+                            data-id_category="{{ $news->news_category_id }}"
                             data-img_title="{{ $news->img_title }}">
                           <i class="fas fa-pencil-alt" aria-hidden="true"></i>
-                        </a>
+                        </a>{{ $news->category_id }}
                       </div>
                       <div class="col-6">
                         <form action="/adm_news" method="post" onclick="return confirm('Apakah anda yakin akan menghapus data ini?')">
@@ -110,7 +110,6 @@
                 <div class="col-6">
                   <label for="inputIdCategory">Select Category</label>
                   <select class="form-control" name="inputIdCategory">
-                    <option value="#" selected="true" disabled="disabled">--- Select Category ---</option>
                     @foreach($news_categorys as $news_category)
                     <option value="{{ $news_category->id }}">{{ $news_category->name }}</option>
                     @endforeach

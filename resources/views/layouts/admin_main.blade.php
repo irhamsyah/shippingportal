@@ -11,6 +11,9 @@
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <!-- Tempusdominus Bbootstrap 4 -->
   <link rel="stylesheet" href="{{ asset('plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css') }}">
+  <!-- Select2 -->
+  <link rel="stylesheet" href="{{ asset('plugins/select2/css/select2.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css') }}">
   <!-- iCheck -->
   <link rel="stylesheet" href="{{ asset('plugins/icheck-bootstrap/icheck-bootstrap.min.css') }}">
   <!-- JQVMap -->
@@ -264,6 +267,8 @@
 </script>
 <!-- Bootstrap 4 -->
 <script src="{{ asset('plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+<!-- Select2 -->
+<script src="{{ asset('plugins/select2/js/select2.full.min.js') }}"></script>
 <!-- ChartJS -->
 <script src="{{ asset('plugins/chart.js/Chart.min.js') }}"></script>
 <!-- Sparkline -->
@@ -317,6 +322,8 @@
       "lengthMenu": [ 25, 50, 100 ],
       "pageLength":50
     });
+    //Initialize Select2 Elements
+    $('.select2').select2()
 
     //set ckeditor
     CKEDITOR.replace( 'inputText1' );
@@ -431,6 +438,24 @@
       $(e.currentTarget).find('input[name="inputPersonEmail"]').val(phoneperson);
       $(e.currentTarget).find('input[name="inputPersonPhone"]').val(phoneperson);
       $(e.currentTarget).find('input[name="inputPersonFax"]').val(faxperson);
+    });
+
+    $('#modal-edit-bankaccount').on('show.bs.modal', function(e) {
+      var id = $(e.relatedTarget).data('id');
+      var bankname = $(e.relatedTarget).data('bankname');
+      var bankaccount = $(e.relatedTarget).data('bankaccount');
+      var branch = $(e.relatedTarget).data('branch');
+      var accountname = $(e.relatedTarget).data('accountname');
+      var bankaddress = $(e.relatedTarget).data('bankaddress');
+      var agentid = $(e.relatedTarget).data('agentid');
+
+      $(e.currentTarget).find('input[name="inputIdBankAccount"]').val(id);
+      $(e.currentTarget).find('input[name="inputBankName"]').val(bankname);
+      $(e.currentTarget).find('input[name="inputBankAccount"]').val(bankaccount);
+      $(e.currentTarget).find('input[name="inputBranch"]').val(branch);
+      $(e.currentTarget).find('input[name="inputAccountName"]').val(accountname);
+      $(e.currentTarget).find('textarea[name="inputBankAddress"]').val(bankaddress);
+      $(e.currentTarget).find('select[name="inputIdAgent"]').val(agentid);
     });
 </script>
 </body>

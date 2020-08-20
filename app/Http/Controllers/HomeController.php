@@ -436,13 +436,60 @@ class HomeController extends Controller
 
       return view('admin/agent', ['agents'=> $agents,'locations'=> $locations]);
     }
-
     public function admin_bank_account()
     {
-      $banks = BankAccount::select('bank_account.*','agent.code_agent','agent.name_agent')->leftjoin('agent','agent.id','=','bank_account.id_agent')->get();
-      //dd($banks);
-      return view('admin/bank_account', ['banks'=> $banks]);
+      $banks = BankAccount::select('bank_account.*','agent.code_agent','agent.name_agent')->leftjoin('agent','agent.id','=','bank_account.agent_id')->get();
+      $agents = Agent::select('agent.id','agent.name_agent','agent.code_agent')->get();
+
+      return view('admin/bank_account', ['banks'=> $banks,'agents'=> $agents]);
     }
+    public function admin_bank_account_add(Request $request)
+    {
+      $banks = new BankAccount;
+      $banks->bank_name = $request->inputBankName;
+      $banks->bank_account = $request->inputBankAccount;
+      $banks->branch = $request->inputBranch;
+      $banks->account_name = $request->inputAccountName;
+      $banks->bank_address = $request->inputBankAddress;
+      $banks->agent_id = $request->inputIdAgent;
+      $banks->created_at = date('Y-m-d H:i:s');
+      $banks->save();
+
+      $banks = BankAccount::select('bank_account.*','agent.code_agent','agent.name_agent')->leftjoin('agent','agent.id','=','bank_account.agent_id')->get();
+      $agents = Agent::select('agent.id','agent.name_agent','agent.code_agent')->get();
+
+      return view('admin/bank_account', ['banks'=> $banks,'agents'=> $agents]);
+    }
+    public function admin_bank_account_edit(Request $request)
+    {
+      //update Bank Account
+      $banks = BankAccount::find($request->inputIdBankAccount);
+      $banks->bank_name = $request->inputBankName;
+      $banks->bank_account = $request->inputBankAccount;
+      $banks->branch = $request->inputBranch;
+      $banks->account_name = $request->inputAccountName;
+      $banks->bank_address = $request->inputBankAddress;
+      $banks->agent_id = $request->inputIdAgent;
+      $banks->created_at = date('Y-m-d H:i:s');
+      $banks->save();
+
+      $banks = BankAccount::select('bank_account.*','agent.code_agent','agent.name_agent')->leftjoin('agent','agent.id','=','bank_account.agent_id')->get();
+      $agents = Agent::select('agent.id','agent.name_agent','agent.code_agent')->get();
+
+      return view('admin/bank_account', ['banks'=> $banks,'agents'=> $agents]);
+    }
+    //Direct to Proses DeleteBankAccount
+    public function admin_bank_account_destroy(Request $request)
+    {
+      $banks = BankAccount::find($request->inputIdBankAccount);
+      $banks->delete();
+
+      $banks = BankAccount::select('bank_account.*','agent.code_agent','agent.name_agent')->leftjoin('agent','agent.id','=','bank_account.agent_id')->get();
+      $agents = Agent::select('agent.id','agent.name_agent','agent.code_agent')->get();
+
+      return view('admin/bank_account', ['banks'=> $banks,'agents'=> $agents]);
+    }
+
     public function admin_pelayaran()
     {
       $pelayarans = Pelayaran::select('pelayaran.*','location.name_city','location.province_city')->leftjoin('location','location.id','=','pelayaran.id_city')->get();

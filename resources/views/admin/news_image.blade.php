@@ -42,7 +42,7 @@
                           data-toggle="modal" data-target="#modal-edit-newsimage"
                           data-id="{{ $news_image->id_image }}"
                           data-img="{{ $news_image->img }}"
-                          data-id_news="{{ $news_image->id_news }}">
+                          data-id_news="{{ $news_image->news_id }}">
                         <i class="fas fa-pencil-alt" aria-hidden="true"></i>
                       </a>
                     </div>
@@ -136,7 +136,6 @@
             <div class="form-group">
               <label for="inputTitleNews">Select Title News</label>
               <select class="form-control" name="inputTitleNews">
-                <option value="#" selected="true" disabled="disabled">--- Select Title News ---</option>
                 @foreach($newss as $news)
                 <option value="{{ $news->news_id }}">{!! $news->title !!}</option>
                 @endforeach

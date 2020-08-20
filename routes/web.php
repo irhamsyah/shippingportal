@@ -50,6 +50,11 @@ Route::put('/adm_agent', 'HomeController@admin_agent_edit');
 Route::delete('/adm_agent', 'HomeController@admin_agent_destroy');
 
 Route::get('/adm_bank_account', 'HomeController@admin_bank_account');
+Route::post('/adm_bank_account', 'HomeController@admin_bank_account_add');
+Route::put('/adm_bank_account', 'HomeController@admin_bank_account_edit');
+Route::delete('/adm_bank_account', 'HomeController@admin_bank_account_destroy');
+
+
 Route::get('/adm_pelayaran', 'HomeController@admin_pelayaran');
 Route::get('/adm_location', 'HomeController@admin_location');
 Route::get('/adm_tarif', 'HomeController@admin_tarif');
