@@ -40,7 +40,15 @@ Route::put('/adm_news_img', 'HomeController@admin_news_image_edit');
 Route::delete('/adm_news_img', 'HomeController@admin_news_image_destroy');
 
 Route::get('/adm_customer', 'HomeController@admin_customer');
+Route::post('/adm_customer', 'HomeController@admin_customer_add');
+Route::put('/adm_customer', 'HomeController@admin_customer_edit');
+Route::delete('/adm_customer', 'HomeController@admin_customer_destroy');
+
 Route::get('/adm_agent', 'HomeController@admin_agent');
+Route::post('/adm_agent', 'HomeController@admin_agent_add');
+Route::put('/adm_agent', 'HomeController@admin_agent_edit');
+Route::delete('/adm_agent', 'HomeController@admin_agent_destroy');
+
 Route::get('/adm_bank_account', 'HomeController@admin_bank_account');
 Route::get('/adm_pelayaran', 'HomeController@admin_pelayaran');
 Route::get('/adm_location', 'HomeController@admin_location');

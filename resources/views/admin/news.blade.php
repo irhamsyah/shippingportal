@@ -14,13 +14,12 @@
           <!-- /.card-header -->
           <div class="card-body">
             <div class="row" style="margin-bottom:10px;">
-              <div class="col-1">
+              <div class="col-lg-1 col-sm-2">
                 <button type="button" class="btn btn-block btn-outline-primary" data-toggle="modal" data-target="#modal-add-news">New</button>
               </div>
             </div>
             <table id="example1" class="table table-bordered table-hover">
               <thead>
-              <tr>
                 <th>No</th>
                 <th>Title</th>
                 <th>Text</th>
@@ -28,7 +27,6 @@
                 <th>Category</th>
                 <th>User</th>
                 <th>Action</th>
-              </tr>
               </thead>
               <tbody>
                 @foreach($newss as $index => $news)

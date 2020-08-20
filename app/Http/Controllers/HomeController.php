@@ -295,14 +295,148 @@ class HomeController extends Controller
     {
       $customers = Customer::select('customer.*','location.name_city','location.province_city')->leftjoin('location','location.id','=','customer.id_city')->get();
       //dd($customers);
-      return view('admin/customer', ['customers'=> $customers]);
+      $locations = Location::select('location.id as loc_id','location.code_city','location.name_city','location.province_city')->orderby('location.name_city')->get();
+
+      return view('admin/customer', ['customers'=> $customers,'locations'=> $locations]);
+    }
+    public function admin_customer_add(Request $request)
+    {
+      $customers = new Customer;
+      $customers->code_customer = $request->inputCostumerCode;
+      $customers->name_customer = $request->inputCostumerName;
+      $customers->address_invoice = $request->inputAddressInvoice;
+      $customers->address = $request->inputAddress;
+      $customers->id_city = $request->inputIdCity;
+      $customers->postal = $request->inputPostal;
+      $customers->telp = $request->inputTelp;
+      $customers->fax = $request->inputFax;
+      $customers->npwp = $request->inputNPWP;
+      $customers->pkp_no = $request->inputPkp;
+      $customers->desc_customer = $request->inputCustomerDesc;
+      $customers->payment_term = $request->inputTOP;
+      $customers->name_person = $request->inputPersonName;
+      $customers->phone_person = $request->inputPersonEmail;
+      $customers->email_person = $request->inputPersonPhone;
+      $customers->fax_person = $request->inputPersonFax;
+      $customers->created_at = date('Y-m-d H:i:s');
+      $customers->save();
+
+      $customers = Customer::select('customer.*','location.name_city','location.province_city')->leftjoin('location','location.id','=','customer.id_city')->get();
+      $locations = Location::select('location.id as loc_id','location.code_city','location.name_city','location.province_city')->orderby('location.name_city')->get();
+
+      return view('admin/customer', ['customers'=> $customers,'locations'=> $locations]);
+    }
+    public function admin_customer_edit(Request $request)
+    {
+      //update Customer
+      $customers = Customer::find($request->inputIdCustomer);
+      $customers->code_customer = $request->inputCostumerCode;
+      $customers->name_customer = $request->inputCostumerName;
+      $customers->address_invoice = $request->inputAddressInvoice;
+      $customers->address = $request->inputAddress;
+      $customers->id_city = $request->inputIdCity;
+      $customers->postal = $request->inputPostal;
+      $customers->telp = $request->inputTelp;
+      $customers->fax = $request->inputFax;
+      $customers->npwp = $request->inputNPWP;
+      $customers->pkp_no = $request->inputPkp;
+      $customers->desc_customer = $request->inputCustomerDesc;
+      $customers->payment_term = $request->inputTOP;
+      $customers->name_person = $request->inputPersonName;
+      $customers->phone_person = $request->inputPersonEmail;
+      $customers->email_person = $request->inputPersonPhone;
+      $customers->fax_person = $request->inputPersonFax;
+      $customers->updated_at = date('Y-m-d H:i:s');
+      $customers->save();
+
+      $customers = Customer::select('customer.*','location.name_city','location.province_city')->leftjoin('location','location.id','=','customer.id_city')->get();
+      $locations = Location::select('location.id as loc_id','location.code_city','location.name_city','location.province_city')->orderby('location.name_city')->get();
+
+      return view('admin/customer', ['customers'=> $customers,'locations'=> $locations]);
+    }
+    //Direct to Proses DeleteCustomer
+    public function admin_customer_destroy(Request $request)
+    {
+      $customers = Customer::find($request->inputIdCustomer);
+      $customers->delete();
+
+      $customers = Customer::select('customer.*','location.name_city','location.province_city')->leftjoin('location','location.id','=','customer.id_city')->get();
+      $locations = Location::select('location.id as loc_id','location.code_city','location.name_city','location.province_city')->orderby('location.name_city')->get();
+
+      return view('admin/customer', ['customers'=> $customers,'locations'=> $locations]);
     }
     public function admin_agent()
     {
       $agents = Agent::select('agent.*','location.name_city','location.province_city')->leftjoin('location','location.id','=','agent.id_city')->get();
-      //dd($agents);
-      return view('admin/agent', ['agents'=> $agents]);
+      $locations = Location::select('location.id as loc_id','location.code_city','location.name_city','location.province_city')->orderby('location.name_city')->get();
+
+      return view('admin/agent', ['agents'=> $agents,'locations'=> $locations]);
     }
+    public function admin_agent_add(Request $request)
+    {
+      $agents = new Agent;
+      $agents->code_agent = $request->inputAgentCode;
+      $agents->name_agent = $request->inputAgentName;
+      $agents->address = $request->inputAddress;
+      $agents->id_city = $request->inputIdCity;
+      $agents->postal = $request->inputPostal;
+      $agents->telp = $request->inputTelp;
+      $agents->fax = $request->inputFax;
+      $agents->npwp = $request->inputNPWP;
+      $agents->pkp_no = $request->inputPkp;
+      $agents->desc_agent = $request->inputAgentDesc;
+      $agents->payment_term = $request->inputTOP;
+      $agents->name_person = $request->inputPersonName;
+      $agents->phone_person = $request->inputPersonEmail;
+      $agents->email_person = $request->inputPersonPhone;
+      $agents->fax_person = $request->inputPersonFax;
+      $agents->created_at = date('Y-m-d H:i:s');
+      $agents->save();
+
+      $agents = Agent::select('agent.*','location.name_city','location.province_city')->leftjoin('location','location.id','=','agent.id_city')->get();
+      $locations = Location::select('location.id as loc_id','location.code_city','location.name_city','location.province_city')->orderby('location.name_city')->get();
+
+      return view('admin/agent', ['agents'=> $agents,'locations'=> $locations]);
+    }
+    public function admin_agent_edit(Request $request)
+    {
+      //update Agent
+      $agents = Agent::find($request->inputIdAgent);
+      $agents->code_agent = $request->inputAgentCode;
+      $agents->name_agent = $request->inputAgentName;
+      $agents->address = $request->inputAddress;
+      $agents->id_city = $request->inputIdCity;
+      $agents->postal = $request->inputPostal;
+      $agents->telp = $request->inputTelp;
+      $agents->fax = $request->inputFax;
+      $agents->npwp = $request->inputNPWP;
+      $agents->pkp_no = $request->inputPkp;
+      $agents->desc_agent = $request->inputAgentDesc;
+      $agents->payment_term = $request->inputTOP;
+      $agents->name_person = $request->inputPersonName;
+      $agents->phone_person = $request->inputPersonEmail;
+      $agents->email_person = $request->inputPersonPhone;
+      $agents->fax_person = $request->inputPersonFax;
+      $agents->updated_at = date('Y-m-d H:i:s');
+      $agents->save();
+
+      $agents = Agent::select('agent.*','location.name_city','location.province_city')->leftjoin('location','location.id','=','agent.id_city')->get();
+      $locations = Location::select('location.id as loc_id','location.code_city','location.name_city','location.province_city')->orderby('location.name_city')->get();
+
+      return view('admin/agent', ['agents'=> $agents,'locations'=> $locations]);
+    }
+    //Direct to Proses DeleteAgent
+    public function admin_agent_destroy(Request $request)
+    {
+      $agents = Agent::find($request->inputIdAgent);
+      $agents->delete();
+
+      $agents = Agent::select('agent.*','location.name_city','location.province_city')->leftjoin('location','location.id','=','agent.id_city')->get();
+      $locations = Location::select('location.id as loc_id','location.code_city','location.name_city','location.province_city')->orderby('location.name_city')->get();
+
+      return view('admin/agent', ['agents'=> $agents,'locations'=> $locations]);
+    }
+
     public function admin_bank_account()
     {
       $banks = BankAccount::select('bank_account.*','agent.code_agent','agent.name_agent')->leftjoin('agent','agent.id','=','bank_account.id_agent')->get();

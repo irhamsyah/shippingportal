@@ -91,7 +91,7 @@
     <!-- Sidebar -->
     <div class="sidebar">
       <!-- Sidebar Menu -->
-      <nav class="mt-2">
+      <nav class="mt-2" style="font-size:13px;">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
@@ -353,6 +353,84 @@
       $(e.currentTarget).find('select[name="inputTitleNews"]').val(id_news);
       $(e.currentTarget).find('input[name="inputImgOld"]').val(img);
       $(e.currentTarget).find('input[name="inputIdNewsImg"]').val(imageId);
+    });
+
+    $('#modal-edit-customer').on('show.bs.modal', function(e) {
+      var id = $(e.relatedTarget).data('id');
+      var codecust = $(e.relatedTarget).data('codecust');
+      var namecust = $(e.relatedTarget).data('namecust');
+      var addressinv = $(e.relatedTarget).data('addressinv');
+      var address = $(e.relatedTarget).data('address');
+      var namecust = $(e.relatedTarget).data('namecust');
+      var idcity = $(e.relatedTarget).data('idcity');
+      var postal = $(e.relatedTarget).data('postal');
+      var telp = $(e.relatedTarget).data('telp');
+      var fax = $(e.relatedTarget).data('fax');
+      var npwp = $(e.relatedTarget).data('npwp');
+      var pkpno = $(e.relatedTarget).data('pkpno');
+      var desccustomer = $(e.relatedTarget).data('desccustomer');
+      var payment = $(e.relatedTarget).data('payment');
+      var nameperson = $(e.relatedTarget).data('nameperson');
+      var phoneperson = $(e.relatedTarget).data('phoneperson');
+      var emailperson = $(e.relatedTarget).data('emailperson');
+      var faxperson = $(e.relatedTarget).data('faxperson');
+
+      $(e.currentTarget).find('input[name="inputIdCustomer"]').val(id);
+      $(e.currentTarget).find('input[name="inputCostumerCode"]').val(codecust);
+      $(e.currentTarget).find('input[name="inputCostumerName"]').val(namecust);
+      $(e.currentTarget).find('textarea[name="inputAddressInvoice"]').val(addressinv);
+      $(e.currentTarget).find('textarea[name="inputAddress"]').val(address);
+      $(e.currentTarget).find('select[name="inputIdCity"]').val(idcity);
+      $(e.currentTarget).find('input[name="inputPostal"]').val(postal);
+      $(e.currentTarget).find('input[name="inputTelp"]').val(telp);
+      $(e.currentTarget).find('input[name="inputFax"]').val(fax);
+      $(e.currentTarget).find('input[name="inputNPWP"]').val(npwp);
+      $(e.currentTarget).find('input[name="inputPkp"]').val(pkpno);
+      $(e.currentTarget).find('textarea[name="inputCustomerDesc"]').val(desccustomer);
+      $(e.currentTarget).find('input[name="inputTOP"]').val(payment);
+      $(e.currentTarget).find('input[name="inputPersonName"]').val(nameperson);
+      $(e.currentTarget).find('input[name="inputPersonEmail"]').val(phoneperson);
+      $(e.currentTarget).find('input[name="inputPersonPhone"]').val(phoneperson);
+      $(e.currentTarget).find('input[name="inputPersonFax"]').val(faxperson);
+    });
+
+    $('#modal-edit-agent').on('show.bs.modal', function(e) {
+      var id = $(e.relatedTarget).data('id');
+      var codeagent = $(e.relatedTarget).data('codeagent');
+      var nameagent = $(e.relatedTarget).data('nameagent');
+      var addressinv = $(e.relatedTarget).data('addressinv');
+      var address = $(e.relatedTarget).data('address');
+      var namecust = $(e.relatedTarget).data('namecust');
+      var idcity = $(e.relatedTarget).data('idcity');
+      var postal = $(e.relatedTarget).data('postal');
+      var telp = $(e.relatedTarget).data('telp');
+      var fax = $(e.relatedTarget).data('fax');
+      var npwp = $(e.relatedTarget).data('npwp');
+      var pkpno = $(e.relatedTarget).data('pkpno');
+      var descagent = $(e.relatedTarget).data('descagent');
+      var payment = $(e.relatedTarget).data('payment');
+      var nameperson = $(e.relatedTarget).data('nameperson');
+      var phoneperson = $(e.relatedTarget).data('phoneperson');
+      var emailperson = $(e.relatedTarget).data('emailperson');
+      var faxperson = $(e.relatedTarget).data('faxperson');
+
+      $(e.currentTarget).find('input[name="inputIdAgent"]').val(id);
+      $(e.currentTarget).find('input[name="inputAgentCode"]').val(codeagent);
+      $(e.currentTarget).find('input[name="inputAgentName"]').val(nameagent);
+      $(e.currentTarget).find('textarea[name="inputAddressInvoice"]').val(addressinv);
+      $(e.currentTarget).find('textarea[name="inputAddress"]').val(address);
+      $(e.currentTarget).find('select[name="inputIdCity"]').val(idcity);
+      $(e.currentTarget).find('input[name="inputPostal"]').val(postal);
+      $(e.currentTarget).find('input[name="inputTelp"]').val(telp);
+      $(e.currentTarget).find('input[name="inputFax"]').val(fax);
+      $(e.currentTarget).find('input[name="inputNPWP"]').val(npwp);
+      $(e.currentTarget).find('input[name="inputPkp"]').val(pkpno);
+      $(e.currentTarget).find('textarea[name="inputAgentDesc"]').val(descagent);
+      $(e.currentTarget).find('input[name="inputTOP"]').val(payment);
+      $(e.currentTarget).find('input[name="inputPersonName"]').val(nameperson);
+      $(e.currentTarget).find('input[name="inputPersonEmail"]').val(phoneperson);
+      $(e.currentTarget).find('input[name="inputPersonPhone"]').val(phoneperson);
+      $(e.currentTarget).find('input[name="inputPersonFax"]').val(faxperson);
     });
 </script>
 </body>

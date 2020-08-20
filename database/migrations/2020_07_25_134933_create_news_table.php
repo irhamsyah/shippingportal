@@ -19,7 +19,6 @@ class CreateNewsTable extends Migration
             $table->longText('title');
             $table->longText('text');
             $table->string('img_title',250);
-            $table->integer('news_category_id')->unsigned();
             $table->integer('id_user');
             $table->timestamps();
             $table->SoftDeletes();
@@ -27,9 +26,8 @@ class CreateNewsTable extends Migration
 
         Schema::table('news', function($table)
         {
-            $table->foreign('news_category_id')
-                  ->references('id')
-                  ->on('news_category');
+          $table->unsignedBigInteger('news_category_id');
+          $table->foreign('news_category_id')->references('id')->on('news_category');
         });
     }
 

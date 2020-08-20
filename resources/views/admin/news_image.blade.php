@@ -14,7 +14,7 @@
           <!-- /.card-header -->
           <div class="card-body">
             <div class="row" style="margin-bottom:10px;">
-              <div class="col-1">
+              <div class="col-lg-1 col-sm-2">
                 <button type="button" class="btn btn-block btn-outline-primary"  data-toggle="modal" data-target="#modal-add-newsimage">New</button>
               </div>
             </div>
