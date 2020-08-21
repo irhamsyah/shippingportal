@@ -54,10 +54,18 @@ Route::post('/adm_bank_account', 'HomeController@admin_bank_account_add');
 Route::put('/adm_bank_account', 'HomeController@admin_bank_account_edit');
 Route::delete('/adm_bank_account', 'HomeController@admin_bank_account_destroy');
 
-
 Route::get('/adm_pelayaran', 'HomeController@admin_pelayaran');
-Route::get('/adm_location', 'HomeController@admin_location');
+Route::post('/adm_pelayaran', 'HomeController@admin_pelayaran_add');
+Route::put('/adm_pelayaran', 'HomeController@admin_pelayaran_edit');
+Route::delete('/adm_pelayaran', 'HomeController@admin_pelayaran_destroy');
+
 Route::get('/adm_tarif', 'HomeController@admin_tarif');
+Route::post('/adm_tarif', 'HomeController@admin_tarif_add');
+Route::put('/adm_tarif', 'HomeController@admin_tarif_edit');
+Route::delete('/adm_tarif', 'HomeController@admin_tarif_destroy');
+
+
+Route::get('/adm_location', 'HomeController@admin_location');
 Route::get('/adm_consignee', 'HomeController@admin_consignee');
 Route::get('/adm_vendor_truck', 'HomeController@admin_vendor_truck');
 Route::get('/adm_trucking', 'HomeController@admin_trucking');

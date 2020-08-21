@@ -14,7 +14,7 @@ class CreatePelayaranTable extends Migration
     public function up()
     {
         Schema::create('pelayaran', function (Blueprint $table) {
-            $table->id();
+            $table->id()->unsigned();
             $table->string('code_pelayaran',10);
             $table->string('name_pelayaran',50);
             $table->string('alias',50);
