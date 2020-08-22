@@ -64,8 +64,22 @@ Route::post('/adm_tarif', 'HomeController@admin_tarif_add');
 Route::put('/adm_tarif', 'HomeController@admin_tarif_edit');
 Route::delete('/adm_tarif', 'HomeController@admin_tarif_destroy');
 
+Route::get('/adm_consignee', 'HomeController@admin_consignee');
+Route::post('/adm_consignee', 'HomeController@admin_consignee_add');
+Route::put('/adm_consignee', 'HomeController@admin_consignee_edit');
+Route::delete('/adm_consignee', 'HomeController@admin_consignee_destroy');
+
+Route::get('/adm_trucking', 'HomeController@admin_trucking');
+Route::post('/adm_trucking', 'HomeController@admin_trucking_add');
+Route::put('/adm_trucking', 'HomeController@admin_trucking_edit');
+Route::delete('/adm_trucking', 'HomeController@admin_trucking_destroy');
+
+Route::get('/adm_vendor_truck', 'HomeController@admin_vendor_truck');
+Route::post('/adm_vendor_truck', 'HomeController@admin_vendor_truck_add');
+Route::put('/adm_vendor_truck', 'HomeController@admin_vendor_truck_edit');
+Route::delete('/adm_vendor_truck', 'HomeController@admin_vendor_truck_destroy');
 
 Route::get('/adm_location', 'HomeController@admin_location');
-Route::get('/adm_consignee', 'HomeController@admin_consignee');
-Route::get('/adm_vendor_truck', 'HomeController@admin_vendor_truck');
-Route::get('/adm_trucking', 'HomeController@admin_trucking');
+Route::post('/adm_location', 'HomeController@admin_location_add');
+Route::put('/adm_location', 'HomeController@admin_location_edit');
+Route::delete('/adm_location', 'HomeController@admin_location_destroy');

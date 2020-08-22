@@ -530,6 +530,87 @@
       $(e.currentTarget).find('input[name="inputLastPrice2_old"]').val(lastprice2);
       $(e.currentTarget).find('input[name="inputPrice_old"]').val(price);
     });
+
+    $('#modal-edit-consignee').on('show.bs.modal', function(e) {
+      var id = $(e.relatedTarget).data('id');
+      var codecons = $(e.relatedTarget).data('codecons');
+      var namecons = $(e.relatedTarget).data('namecons');
+      var addressinv = $(e.relatedTarget).data('addressinv');
+      var address = $(e.relatedTarget).data('address');
+      var namecust = $(e.relatedTarget).data('namecust');
+      var idcity = $(e.relatedTarget).data('idcity');
+      var postal = $(e.relatedTarget).data('postal');
+      var telp = $(e.relatedTarget).data('telp');
+      var fax = $(e.relatedTarget).data('fax');
+      var npwp = $(e.relatedTarget).data('npwp');
+      var pkpno = $(e.relatedTarget).data('pkpno');
+      var desccons = $(e.relatedTarget).data('desccons');
+      var payment = $(e.relatedTarget).data('payment');
+      var nameperson = $(e.relatedTarget).data('nameperson');
+      var phoneperson = $(e.relatedTarget).data('phoneperson');
+      var emailperson = $(e.relatedTarget).data('emailperson');
+      var faxperson = $(e.relatedTarget).data('faxperson');
+
+      $(e.currentTarget).find('input[name="inputIdConsignee"]').val(id);
+      $(e.currentTarget).find('input[name="inputConsigneeCode"]').val(codecons);
+      $(e.currentTarget).find('input[name="inputConsigneeName"]').val(namecons);
+      $(e.currentTarget).find('textarea[name="inputAddressInvoice"]').val(addressinv);
+      $(e.currentTarget).find('textarea[name="inputAddress"]').val(address);
+      $(e.currentTarget).find('select[name="inputIdCity"]').val(idcity);
+      $(e.currentTarget).find('input[name="inputPostal"]').val(postal);
+      $(e.currentTarget).find('input[name="inputTelp"]').val(telp);
+      $(e.currentTarget).find('input[name="inputFax"]').val(fax);
+      $(e.currentTarget).find('input[name="inputNPWP"]').val(npwp);
+      $(e.currentTarget).find('input[name="inputPkp"]').val(pkpno);
+      $(e.currentTarget).find('textarea[name="inputConsigneeDesc"]').val(desccons);
+      $(e.currentTarget).find('input[name="inputTOP"]').val(payment);
+      $(e.currentTarget).find('input[name="inputPersonName"]').val(nameperson);
+      $(e.currentTarget).find('input[name="inputPersonEmail"]').val(phoneperson);
+      $(e.currentTarget).find('input[name="inputPersonPhone"]').val(phoneperson);
+      $(e.currentTarget).find('input[name="inputPersonFax"]').val(faxperson);
+    });
+
+    $('#modal-edit-trucking').on('show.bs.modal', function(e) {
+      var id = $(e.relatedTarget).data('id');
+      var nametrucking = $(e.relatedTarget).data('nametrucking');
+
+      $(e.currentTarget).find('input[name="inputIdTrucking"]').val(id);
+      $(e.currentTarget).find('input[name="inputTruckingName"]').val(nametrucking);
+    });
+
+    $('#modal-edit-vendor').on('show.bs.modal', function(e) {
+      var id = $(e.relatedTarget).data('id');
+      var codevendor = $(e.relatedTarget).data('codevendor');
+      var namevendor = $(e.relatedTarget).data('namevendor');
+      var address = $(e.relatedTarget).data('address');
+      var telp = $(e.relatedTarget).data('telp');
+      var payment = $(e.relatedTarget).data('payment');
+      var truckingtypeid = $(e.relatedTarget).data('truckingtypeid');
+
+      $(e.currentTarget).find('input[name="inputIdVendorTruck"]').val(id);
+      $(e.currentTarget).find('input[name="inputVendorCode"]').val(codevendor);
+      $(e.currentTarget).find('input[name="inputVendorName"]').val(namevendor);
+      $(e.currentTarget).find('textarea[name="inputAddress"]').val(address);
+      $(e.currentTarget).find('input[name="inputTelp"]').val(telp);
+      $(e.currentTarget).find('input[name="inputTOP"]').val(payment);
+      $(e.currentTarget).find('select[name="inputIdTruckingType"]').val(truckingtypeid);
+    });
+
+    $('#modal-edit-location').on('show.bs.modal', function(e) {
+      var id = $(e.relatedTarget).data('id');
+      var codecity = $(e.relatedTarget).data('codecity');
+      var namecity = $(e.relatedTarget).data('namecity');
+      var provincecity = $(e.relatedTarget).data('provincecity');
+      var statusloading = $(e.relatedTarget).data('statusloading');
+      var statuspelayaran = $(e.relatedTarget).data('statuspelayaran');
+
+      $(e.currentTarget).find('input[name="inputIdLocation"]').val(id);
+      $(e.currentTarget).find('input[name="inputCityCode"]').val(codecity);
+      $(e.currentTarget).find('input[name="inputCityName"]').val(namecity);
+      $(e.currentTarget).find('input[name="inputProvince"]').val(provincecity);
+      $(e.currentTarget).find('select[name="inputStatusLoading"]').val(statusloading);
+      $(e.currentTarget).find('select[name="inputStatusPelayaran"]').val(statuspelayaran);
+    });
 </script>
 </body>
 </html>

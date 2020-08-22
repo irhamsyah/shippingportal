@@ -626,31 +626,212 @@ class HomeController extends Controller
 
       return view('admin/tarif', ['tarifs'=> $tarifs, 'pelayarans'=> $pelayarans, 'locations'=> $locations]);
     }
-
-
-
-    public function admin_location()
+    public function admin_consignee()
     {
-      $locations = Location::all();
-      //dd($locations);
-      return view('admin/location', ['locations'=> $locations]);
+      $consignees = Consignee::select('consignee.*','location.name_city','location.province_city')->leftjoin('location','location.id','=','consignee.id_city')->get();;
+      $locations = Location::select('location.id as loc_id','location.code_city','location.name_city','location.province_city')->orderby('location.name_city')->get();
+
+      return view('admin/consignee', ['consignees'=> $consignees,'locations'=> $locations]);
     }
-    public function admin_vendor_truck()
+    public function admin_consignee_add(Request $request)
     {
-      $vendor_trucks = VendorTruck::select('vendor_truck.*','trucking_type.name_trucking')->leftjoin('trucking_type','trucking_type.id','=','vendor_truck.id_truck_type')->get();
-      //dd($vendor_trucks);
-      return view('admin/vendor_truck', ['vendor_trucks'=> $vendor_trucks]);
+      $consignees = new Consignee;
+      $consignees->code_consignee = $request->inputConsigneeCode;
+      $consignees->name_consignee = $request->inputConsigneeName;
+      $consignees->address_invoice = $request->inputAddressInvoice;
+      $consignees->address = $request->inputAddress;
+      $consignees->id_city = $request->inputIdCity;
+      $consignees->postal = $request->inputPostal;
+      $consignees->telp = $request->inputTelp;
+      $consignees->fax = $request->inputFax;
+      $consignees->npwp = $request->inputNPWP;
+      $consignees->pkp_no = $request->inputPkp;
+      $consignees->desc_consignee = $request->inputConsigneeDesc;
+      $consignees->payment_term = $request->inputTOP;
+      $consignees->name_person = $request->inputPersonName;
+      $consignees->phone_person = $request->inputPersonEmail;
+      $consignees->email_person = $request->inputPersonPhone;
+      $consignees->fax_person = $request->inputPersonFax;
+      $consignees->created_at = date('Y-m-d H:i:s');
+      $consignees->save();
+
+      $consignees = Consignee::select('consignee.*','location.name_city','location.province_city')->leftjoin('location','location.id','=','consignee.id_city')->get();;
+      $locations = Location::select('location.id as loc_id','location.code_city','location.name_city','location.province_city')->orderby('location.name_city')->get();
+
+      return view('admin/consignee', ['consignees'=> $consignees,'locations'=> $locations]);
+    }
+    public function admin_consignee_edit(Request $request)
+    {
+      //update Consignee
+      $consignees = Consignee::find($request->inputIdConsignee);
+      $consignees->code_consignee = $request->inputConsigneeCode;
+      $consignees->name_consignee = $request->inputConsigneeName;
+      $consignees->address_invoice = $request->inputAddressInvoice;
+      $consignees->address = $request->inputAddress;
+      $consignees->id_city = $request->inputIdCity;
+      $consignees->postal = $request->inputPostal;
+      $consignees->telp = $request->inputTelp;
+      $consignees->fax = $request->inputFax;
+      $consignees->npwp = $request->inputNPWP;
+      $consignees->pkp_no = $request->inputPkp;
+      $consignees->desc_consignee = $request->inputConsigneeDesc;
+      $consignees->payment_term = $request->inputTOP;
+      $consignees->name_person = $request->inputPersonName;
+      $consignees->phone_person = $request->inputPersonEmail;
+      $consignees->email_person = $request->inputPersonPhone;
+      $consignees->fax_person = $request->inputPersonFax;
+      $consignees->created_at = date('Y-m-d H:i:s');
+      $consignees->save();
+
+      $consignees = Consignee::select('consignee.*','location.name_city','location.province_city')->leftjoin('location','location.id','=','consignee.id_city')->get();;
+      $locations = Location::select('location.id as loc_id','location.code_city','location.name_city','location.province_city')->orderby('location.name_city')->get();
+
+      return view('admin/consignee', ['consignees'=> $consignees,'locations'=> $locations]);
+    }
+    //Direct to Proses DeleteConsignee
+    public function admin_consignee_destroy(Request $request)
+    {
+      $consignees = Consignee::find($request->inputIdConsignee);
+      $consignees->delete();
+
+      $consignees = Consignee::select('consignee.*','location.name_city','location.province_city')->leftjoin('location','location.id','=','consignee.id_city')->get();;
+      $locations = Location::select('location.id as loc_id','location.code_city','location.name_city','location.province_city')->orderby('location.name_city')->get();
+
+      return view('admin/consignee', ['consignees'=> $consignees,'locations'=> $locations]);
     }
     public function admin_trucking()
     {
       $truckings = TruckingType::all();
-      //dd($truckings);
       return view('admin/trucking', ['truckings'=> $truckings]);
     }
-    public function admin_consignee()
+    public function admin_trucking_add(Request $request)
     {
-      $consignees = Consignee::select('consignee.*','location.name_city','location.province_city')->leftjoin('location','location.id','=','consignee.id_city')->get();;
-      //dd($consignees);
-      return view('admin/consignee', ['consignees'=> $consignees]);
+      $truckings = new TruckingType;
+      $truckings->name_trucking = $request->inputTruckingName;
+      $truckings->created_at = date('Y-m-d H:i:s');
+      $truckings->save();
+
+      $truckings = TruckingType::all();
+      return view('admin/trucking', ['truckings'=> $truckings]);
+    }
+    public function admin_trucking_edit(Request $request)
+    {
+      //update Trucking
+      $truckings = TruckingType::find($request->inputIdTrucking);
+      $truckings->name_trucking = $request->inputTruckingName;
+      $truckings->created_at = date('Y-m-d H:i:s');
+      $truckings->save();
+
+      $truckings = TruckingType::all();
+      return view('admin/trucking', ['truckings'=> $truckings]);
+    }
+    //Direct to Proses DeleteTrucking
+    public function admin_trucking_destroy(Request $request)
+    {
+      $truckings = TruckingType::find($request->inputIdTrucking);
+      $truckings->delete();
+
+      $truckings = TruckingType::all();
+      return view('admin/trucking', ['truckings'=> $truckings]);
+    }
+    public function admin_vendor_truck()
+    {
+      $vendor_trucks = VendorTruck::select('vendor_truck.*','trucking_type.name_trucking')->leftjoin('trucking_type','trucking_type.id','=','vendor_truck.trucking_type_id')->get();
+      $truckings = TruckingType::select('trucking_type.id as trucking_id','trucking_type.name_trucking')->orderby('trucking_type.name_trucking')->get();
+
+      return view('admin/vendor_truck', ['vendor_trucks'=> $vendor_trucks,'truckings'=> $truckings]);
+    }
+    public function admin_vendor_truck_add(Request $request)
+    {
+      $vendor_trucks = new VendorTruck;
+      $vendor_trucks->code_vendor = $request->inputVendorCode;
+      $vendor_trucks->name_vendor = $request->inputVendorName;
+      $vendor_trucks->address = $request->inputAddress;
+      $vendor_trucks->telp = $request->inputTelp;
+      $vendor_trucks->payment_term = $request->inputTOP;
+      $vendor_trucks->trucking_type_id = $request->inputIdTruckingType;
+      $vendor_trucks->created_at = date('Y-m-d H:i:s');
+      $vendor_trucks->save();
+
+      $vendor_trucks = VendorTruck::select('vendor_truck.*','trucking_type.name_trucking')->leftjoin('trucking_type','trucking_type.id','=','vendor_truck.trucking_type_id')->get();
+      $truckings = TruckingType::select('trucking_type.id as trucking_id','trucking_type.name_trucking')->orderby('trucking_type.name_trucking')->get();
+
+      return view('admin/vendor_truck', ['vendor_trucks'=> $vendor_trucks,'truckings'=> $truckings]);
+    }
+    public function admin_vendor_truck_edit(Request $request)
+    {
+      //update VendorTruck
+      $vendor_trucks = VendorTruck::find($request->inputIdVendorTruck);
+      $vendor_trucks->code_vendor = $request->inputVendorCode;
+      $vendor_trucks->name_vendor = $request->inputVendorName;
+      $vendor_trucks->address = $request->inputAddress;
+      $vendor_trucks->telp = $request->inputTelp;
+      $vendor_trucks->payment_term = $request->inputTOP;
+      $vendor_trucks->trucking_type_id = $request->inputIdTruckingType;
+      $vendor_trucks->created_at = date('Y-m-d H:i:s');
+      $vendor_trucks->save();
+
+      $vendor_trucks = VendorTruck::select('vendor_truck.*','trucking_type.name_trucking')->leftjoin('trucking_type','trucking_type.id','=','vendor_truck.trucking_type_id')->get();
+      $truckings = TruckingType::select('trucking_type.id as trucking_id','trucking_type.name_trucking')->orderby('trucking_type.name_trucking')->get();
+
+      return view('admin/vendor_truck', ['vendor_trucks'=> $vendor_trucks,'truckings'=> $truckings]);
+    }
+    //Direct to Proses Delete VendorTruck
+    public function admin_vendor_truck_destroy(Request $request)
+    {
+      $vendor_trucks = VendorTruck::find($request->inputIdVendorTruck);
+      $vendor_trucks->delete();
+
+      $vendor_trucks = VendorTruck::select('vendor_truck.*','trucking_type.name_trucking')->leftjoin('trucking_type','trucking_type.id','=','vendor_truck.trucking_type_id')->get();
+      $truckings = TruckingType::select('trucking_type.id as trucking_id','trucking_type.name_trucking')->orderby('trucking_type.name_trucking')->get();
+
+      return view('admin/vendor_truck', ['vendor_trucks'=> $vendor_trucks,'truckings'=> $truckings]);
+    }
+    public function admin_location()
+    {
+      $locations = Location::all();
+
+      return view('admin/location', ['locations'=> $locations]);
+    }
+    public function admin_location_add(Request $request)
+    {
+      $locations = new Location;
+      $locations->code_city = $request->inputCityCode;
+      $locations->name_city = $request->inputCityName;
+      $locations->province_city = $request->inputProvince;
+      $locations->status_loading = $request->inputStatusLoading;
+      $locations->status_pelayaran = $request->inputStatusPelayaran;
+      $locations->created_at = date('Y-m-d H:i:s');
+      $locations->save();
+
+      $locations = Location::all();
+
+      return view('admin/location', ['locations'=> $locations]);
+    }
+    public function admin_location_edit(Request $request)
+    {
+      //update location
+      $locations = Location::find($request->inputIdLocation);
+      $locations->code_city = $request->inputCityCode;
+      $locations->name_city = $request->inputCityName;
+      $locations->province_city = $request->inputProvince;
+      $locations->status_loading = $request->inputStatusLoading;
+      $locations->status_pelayaran = $request->inputStatusPelayaran;
+      $locations->created_at = date('Y-m-d H:i:s');
+      $locations->save();
+
+      $locations = Location::all();
+
+      return view('admin/location', ['locations'=> $locations]);
+    }
+    //Direct to Proses Delete location
+    public function admin_location_destroy(Request $request)
+    {
+      $locations = Location::find($request->inputIdLocation);
+      $locations->delete();
+
+      $locations = Location::all();
+
+      return view('admin/location', ['locations'=> $locations]);
     }
 }
