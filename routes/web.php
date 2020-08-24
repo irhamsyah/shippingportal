@@ -12,11 +12,18 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+//Frontend Page
 Route::get('/', function () {
     return view('home');
 });
+Route::get('/tracking.html', function () {
+    return view('page_tracking');
+});
 
+Route::get('/news.html', 'FrontendController@news_view');
+Route::get('/news_detail.html/{id}', 'FrontendController@news_detail_view');
+
+//Admin Page
 Auth::routes(['verify'=>true]);
 
 Route::get('/home', 'HomeController@admin_index')->name('home')->middleware('verified');

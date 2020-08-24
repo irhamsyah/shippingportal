@@ -4,8 +4,6 @@
 
 <section class="mbr-section form3 cid-s4Vir2tRb1 mbr-parallax-background" id="form3-15">
 
-
-
   <div class="mbr-overlay" style="opacity: 0.8; background-color: rgb(239, 239, 239);">
   </div>
 
@@ -41,10 +39,6 @@
 </section>
 
 <section class="engine"><a href="https://mobirise.info/j">website templates</a></section><section class="timeline1 cid-s4Vjj0y4kE" id="timeline1-16">
-
-
-
-
 
   <div class="container align-center">
       <h2 class="mbr-section-title pb-3 mbr-fonts-style display-2">
@@ -152,43 +146,4 @@
   </div>
 </section>
 
-<section class="menu cid-s4m48Yx6UN" once="menu" id="menu2-y">
-
-
-
-  <nav class="navbar navbar-expand beta-menu navbar-dropdown align-items-center navbar-fixed-top navbar-toggleable-sm">
-      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <div class="hamburger">
-              <span></span>
-              <span></span>
-              <span></span>
-              <span></span>
-          </div>
-      </button>
-      <div class="menu-logo">
-          <div class="navbar-brand">
-              <span class="navbar-logo">
-                  <a href="index.html">
-                      <img src="assets/images/logo-coba-150x108.png" alt="Mobirise" title="" style="height: 4rem;">
-                  </a>
-              </span>
-              <span class="navbar-caption-wrap"><a class="navbar-caption text-black display-5" href="index.html">
-                      PT. XXXXX</a></span>
-          </div>
-      </div>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav nav-dropdown" data-app-modern-menu="true"><li class="nav-item">
-                   <a class="nav-link link text-black display-4" href="index.html#content4-7"><span class="mbrib-extension mbr-iconfont mbr-iconfont-btn"></span>
-                      Tentang Kami</a>
-              </li><li class="nav-item">
-                  <a class="nav-link link text-black display-4" href="index.html#features1-c"><span class="mbrib-delivery mbr-iconfont mbr-iconfont-btn"></span>
-                      Layanan</a>
-              </li>
-              <li class="nav-item">  <a class="nav-link link text-black display-4" href="page1.html"><span class="mbrib-search mbr-iconfont mbr-iconfont-btn"></span>Lacak Kargo</a></li></ul>
-          <div class="navbar-buttons mbr-section-btn"><a class="btn btn-sm btn-primary display-4" href="https://wa.me/6281333110886"><span class="socicon socicon-whatsapp mbr-iconfont mbr-iconfont-btn"></span>
-
-                  Live Chat</a></div>
-      </div>
-  </nav>
-</section>
 @endsection

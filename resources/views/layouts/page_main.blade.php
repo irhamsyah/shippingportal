@@ -28,7 +28,47 @@
 
 </head>
 <body>
-  
+  <section class="menu cid-s4m48Yx6UN" once="menu" id="menu2-y">
+    <nav class="navbar navbar-expand beta-menu navbar-dropdown align-items-center navbar-fixed-top navbar-toggleable-sm">
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </button>
+        <div class="menu-logo">
+            <div class="navbar-brand">
+                <span class="navbar-logo">
+                    <a href="/">
+                        <img src="assets/images/logo-coba-150x108.png" alt="Mobirise" title="" style="height: 4rem;">
+                    </a>
+                </span>
+                <span class="navbar-caption-wrap"><a class="navbar-caption text-black display-5" href="index.html">
+                        PT. XXXXX</a></span>
+            </div>
+        </div>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav nav-dropdown" data-app-modern-menu="true">
+              <li class="nav-item">
+                <a class="nav-link link text-black display-4" href="/#content4-7"><span class="mbrib-extension mbr-iconfont mbr-iconfont-btn"></span>Tentang Kami</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link link text-black display-4" href="/#features1-c"><span class="mbrib-delivery mbr-iconfont mbr-iconfont-btn"></span>Layanan</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link link text-black display-4" href="/tracking.html"><span class="mbrib-search mbr-iconfont mbr-iconfont-btn"></span>Lacak Kargo</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link link text-black display-4" href="/news.html"><span class="mbri-paper-plane mbr-iconfont mbr-iconfont-btn"></span>Berita</a>
+              </li>
+            </ul>
+            <div class="navbar-buttons mbr-section-btn"><a class="btn btn-sm btn-primary display-4" href="https://wa.me/6281333110886"><span class="socicon socicon-whatsapp mbr-iconfont mbr-iconfont-btn"></span>Live Chat</a></div>
+        </div>
+    </nav>
+  </section>
+
   @yield('content')
 
 <section once="footers" class="cid-s4mg6Rh7O6" id="footer7-z">
@@ -37,11 +77,6 @@
         <div class="media-container-row align-center mbr-white">
             <div class="row row-links">
                 <ul class="foot-menu">
-
-
-
-
-
                 <li class="foot-menu-item mbr-fonts-style display-7">
                         About us
                     </li><li class="foot-menu-item mbr-fonts-style display-7">
@@ -50,11 +85,6 @@
             </div>
             <div class="row social-row">
                 <div class="social-list align-right pb-2">
-
-
-
-
-
 
                 <div class="soc-item">
 

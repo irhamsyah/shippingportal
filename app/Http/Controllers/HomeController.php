@@ -50,6 +50,18 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
+     public function news_detail_view(Request $request)
+     {
+       //get id news from url
+       $newss = News::select('news.id as news_id','news.title','news.text','news.img_title','news.id_user','news.news_category_id','news_category.name as category_name','users.name as user_name')
+       ->leftJoin('news_category', 'news_category.id', '=', 'news.news_category_id')
+       ->leftjoin('users', 'users.id', '=', 'news.id_user')
+       ->where('id','=',$request->route('id'))
+       ->orderBy('news.created_at','desc')->get();
+
+       return view('news_detail.html', ['newss'=> $newss]);
+     }
+
     public function admin_index()
     {
         return view('admin/tracking');

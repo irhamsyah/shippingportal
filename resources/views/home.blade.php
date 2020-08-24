@@ -44,7 +44,7 @@
         <div class="menu-logo">
             <div class="navbar-brand">
                 <span class="navbar-logo">
-                    <a href="index.html">
+                    <a href="/">
                         <img src="{{'assets/images/logo-coba-150x108.png'}}" alt="Mobirise" title="" style="height: 4rem;">
                     </a>
                 </span>
@@ -53,17 +53,21 @@
             </div>
         </div>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav nav-dropdown" data-app-modern-menu="true"><li class="nav-item">
-                     <a class="nav-link link text-black display-4" href="index.html#content4-7"><span class="mbrib-extension mbr-iconfont mbr-iconfont-btn"></span>
-                        Tentang Kami</a>
-                </li><li class="nav-item">
-                    <a class="nav-link link text-black display-4" href="index.html#features1-c"><span class="mbrib-delivery mbr-iconfont mbr-iconfont-btn"></span>
-                        Layanan</a>
-                </li>
-                <li class="nav-item">  <a class="nav-link link text-black display-4" href="page1.html"><span class="mbrib-search mbr-iconfont mbr-iconfont-btn"></span>Lacak Kargo</a></li></ul>
-            <div class="navbar-buttons mbr-section-btn"><a class="btn btn-sm btn-primary display-4" href="https://wa.me/6281333110886"><span class="socicon socicon-whatsapp mbr-iconfont mbr-iconfont-btn"></span>
-
-                    Live Chat</a></div>
+            <ul class="navbar-nav nav-dropdown" data-app-modern-menu="true">
+              <li class="nav-item">
+                <a class="nav-link link text-black display-4" href="/#content4-7"><span class="mbrib-extension mbr-iconfont mbr-iconfont-btn"></span>Tentang Kami</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link link text-black display-4" href="/#features1-c"><span class="mbrib-delivery mbr-iconfont mbr-iconfont-btn"></span>Layanan</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link link text-black display-4" href="/tracking.html"><span class="mbrib-search mbr-iconfont mbr-iconfont-btn"></span>Lacak Kargo</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link link text-black display-4" href="/news.html"><span class="mbri-paper-plane mbr-iconfont mbr-iconfont-btn"></span>Berita</a>
+              </li>
+            </ul>
+            <div class="navbar-buttons mbr-section-btn"><a class="btn btn-sm btn-primary display-4" href="https://wa.me/6281333110886"><span class="socicon socicon-whatsapp mbr-iconfont mbr-iconfont-btn"></span>Live Chat</a></div>
         </div>
     </nav>
 </section>
@@ -231,10 +235,6 @@
         <div class="carousel slide" role="listbox" data-pause="true" data-keyboard="false" data-ride="carousel" data-interval="3000">
             <div class="carousel-inner" data-visible="6">
 
-
-
-
-
             <div class="carousel-item ">
                     <div class="media-container-row">
                         <div class="col-md-12">
@@ -300,8 +300,6 @@
 
 <section class="mbr-section content4 cid-s4mrj5J0VS" id="content4-m">
 
-
-
     <div class="container">
         <div class="media-container-row">
             <div class="title col-12 col-md-8">
@@ -324,7 +322,7 @@
                         <img src="assets/images/background9.jpg">
                         <div class="img-caption">
                             <p class="mbr-fonts-style align-left mbr-white display-5">
-                                <a href="page2.html">RI Genjot Ekspor 20% di tahun 2020</a></p>
+                                <a href="news_detail.html/1">RI Genjot Ekspor 20% di tahun 2020</a></p>
                         </div>
                     </div>
 
@@ -335,7 +333,7 @@
                         <img src="assets/images/background2.jpg">
                         <div class="img-caption">
                             <p class="mbr-fonts-style align-left mbr-white display-5">
-                                <a href="page2.html">Pertumbuhan bisnis Forwarding kian pesat</a></p>
+                                <a href="news_detail.html/2">Pertumbuhan bisnis Forwarding kian pesat</a></p>
                         </div>
                     </div>
                 </div>
@@ -350,9 +348,9 @@
         <div class="media-container-row">
             <div class="mbr-text counter-container col-12 col-md-8 mbr-fonts-style display-7">
                 <ol>
-                    <li><strong>&nbsp;DERMAGA 2 SIAP DI BUKA KEMBALI</strong>&nbsp;- no special actions required, all sites you make with Mobirise are mobile-friendly. You don't have to create a special mobile version of your site, it will adapt automagically. <a href="page2.html">Selengkapnya&gt;&gt;&gt;</a></li>
-                    <li><strong>PT. XXXXX BERENCANA BUKA KEMBALI 4 CABANG BARU</strong>&nbsp;- cut down the development time with drag-and-drop website builder. Drop the blocks into the page, edit content inline and publish - no technical skills required. <a href="page2.html">Lihat Selengkapnya&gt;&gt;&gt;</a></li>
-                    <li><strong>MENTERI KELAUTAN TARGETKAN AGUSTUS PEMBANGUNAN TERMINAL PETIKEMAS SELESAI</strong> - choose from the large selection of latest pre-made blocks - full-screen intro, bootstrap carousel, content slider, responsive image gallery with lightbox, parallax scrolling, video backgrounds, hamburger menu, sticky header and more. <a href="page2.html">Lihat Selengkapnya&gt;&gt;&gt;</a></li>
+                    <li><strong>&nbsp;DERMAGA 2 SIAP DI BUKA KEMBALI</strong>&nbsp;- no special actions required, all sites you make with Mobirise are mobile-friendly. You don't have to create a special mobile version of your site, it will adapt automagically. <a href="news_detail.html/3">Selengkapnya&gt;&gt;&gt;</a></li>
+                    <li><strong>PT. XXXXX BERENCANA BUKA KEMBALI 4 CABANG BARU</strong>&nbsp;- cut down the development time with drag-and-drop website builder. Drop the blocks into the page, edit content inline and publish - no technical skills required. <a href="news_detail.html/4">Lihat Selengkapnya&gt;&gt;&gt;</a></li>
+                    <li><strong>MENTERI KELAUTAN TARGETKAN AGUSTUS PEMBANGUNAN TERMINAL PETIKEMAS SELESAI</strong> - choose from the large selection of latest pre-made blocks - full-screen intro, bootstrap carousel, content slider, responsive image gallery with lightbox, parallax scrolling, video backgrounds, hamburger menu, sticky header and more. <a href="news_detail.html/5">Lihat Selengkapnya&gt;&gt;&gt;</a></li>
                 </ol>
             </div>
         </div>
