@@ -20,8 +20,10 @@ Route::get('/tracking.html', function () {
     return view('page_tracking');
 });
 
-Route::get('/news.html', 'FrontendController@news_view');
-Route::get('/news_detail.html/{id}', 'FrontendController@news_detail_view');
+Route::get('/service.html', 'FrontendController@service');
+Route::get('/contact.html', 'FrontendController@contact');
+Route::get('/news.html', 'FrontendController@news');
+Route::get('/news_detail.html/{id}', 'FrontendController@news_detail');
 
 //Admin Page
 Auth::routes(['verify'=>true]);

@@ -2,23 +2,22 @@
 
 @section('content')
 
-<section class="services2 cid-s4VrqTpZSQ" id="services2-1a">
+<section class="services2 cid-s9mwecmIlZ" id="services2">
   <!--Container-->
   <div class="container">
-    @foreach($newss3 as $index => $news)
-      <div class="col-md-12">
+    @foreach($newss2 as $index => $news)
+      <div class="col-md-12" style="margin-bottom:30px;">
           <div class="media-container-row">
               <div class="mbr-figure" style="width: 50%;">
                   <img src="img/news/{{ $news->img_title }}" alt="img_news">
               </div>
               <div class="align-left aside-content">
-                  <h2 class="mbr-title pt-2 mbr-fonts-style display-2">{{ $news->title }}</h2>
+                  <h2 class="mbr-title pt-2 mbr-fonts-style display-2">{!! $news->title !!}</h2>
                   <div class="mbr-section-text">
-                      <p class="mbr-text text1 pt-2 mbr-light mbr-fonts-style display-7">{!! $news->text !!}</p>
-
+                      <p class="mbr-text text1 pt-2 mbr-light mbr-fonts-style display-7">{!! substr($news->text,0,250) !!}</p>
                   </div>
                   <!--Btn-->
-                  <div class="mbr-section-btn pt-3 align-left"><a href="news_detail.html/{{ $news->id }}" class="btn btn-warning-outline display-4">
+                  <div class="mbr-section-btn pt-3 align-left"><a href="news_detail.html/{{ $news->news_id }}" class="btn btn-warning-outline display-4">
                           Selengkapnya</a></div>
               </div>
           </div>
@@ -26,12 +25,10 @@
       @endforeach
   </div>
 </section>
-
+<!---
 <section class="services1 cid-s4VrmuYwz9" id="services1-19">
-    <!--Container-->
     <div class="container">
         <div class="row justify-content-center">
-            <!--Titles-->
             <div class="title pb-5 col-12">
                 <h2 class="align-left pb-3 mbr-fonts-style display-1">Berita Corporate</h2>
 
@@ -60,10 +57,8 @@
 </section>
 
 <section class="services6 cid-s4Vrww86q1" id="services6-1b">
-    <!--Container-->
     <div class="container">
         <div class="row">
-            <!--Titles-->
             <div class="title col-12">
                 <h2 class="align-left mbr-fonts-style m-0 display-1">Kilas berita maritim</h2>
             </div>
@@ -73,7 +68,6 @@
                     <div class="card-box">
                         <div class="row">
                             <div class="col-12 col-md-2">
-                                <!--Image-->
                                 <div class="mbr-figure">
                                     <img src="img/news/{{ $news->img_title }}" alt="Img_news">
                                 </div>
@@ -101,6 +95,6 @@
         </div>
     </div>
 </section>
-
+-->
 
 @endsection
