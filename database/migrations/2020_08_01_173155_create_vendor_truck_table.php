@@ -20,7 +20,7 @@ class CreateVendorTruckTable extends Migration
           $table->longText('address');
           $table->string('telp',20);
           $table->integer('payment_term');
-          $table->integer('id_truck_type');
+          $table->integer('trucking_type_id');
           $table->timestamps();
           $table->SoftDeletes();
         });

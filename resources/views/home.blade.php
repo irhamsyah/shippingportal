@@ -6,11 +6,11 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="generator" content="Mobirise v4.12.4, mobirise.com">
   <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
-  <link rel="shortcut icon" href="{{ 'assets/images/logo-coba-150x108.png' }}" type="image/x-icon">
+  <link rel="shortcut icon" href="{{ 'assets/images/bs2-102x107.png' }}" type="image/x-icon">
   <meta name="description" content="">
 
 
-  <title>Home</title>
+  <title>BAHTERA SETIA</title>
   <link rel="stylesheet" href="{{'assets/web/assets/mobirise-icons/mobirise-icons.css'}}">
   <link rel="stylesheet" href="{{'assets/web/assets/mobirise-icons-bold/mobirise-icons-bold.css'}}">
   <link rel="stylesheet" href="{{'assets/bootstrap/css/bootstrap.min.css'}}">
@@ -29,9 +29,6 @@
 </head>
 <body>
   <section class="menu cid-s4m48Yx6UN" once="menu" id="menu2-3">
-
-
-
     <nav class="navbar navbar-expand beta-menu navbar-dropdown align-items-center navbar-fixed-top navbar-toggleable-sm">
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <div class="hamburger">
@@ -44,156 +41,254 @@
         <div class="menu-logo">
             <div class="navbar-brand">
                 <span class="navbar-logo">
-                    <a href="index.html">
-                        <img src="{{'assets/images/logo-coba-150x108.png'}}" alt="Mobirise" title="" style="height: 4rem;">
+                    <a href="/">
+                        <img src="{{'assets/images/bs2-102x107.png'}}" alt="Mobirise" title="" style="height: 3.8rem;">
                     </a>
                 </span>
-                <span class="navbar-caption-wrap"><a class="navbar-caption text-black display-5" href="index.html">
-                        PT. XXXXX</a></span>
+                <span class="navbar-caption-wrap"><a class="navbar-caption text-black display-5" href="/">
+                        BAHTERA SETIA</a></span>
             </div>
         </div>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav nav-dropdown" data-app-modern-menu="true"><li class="nav-item">
-                     <a class="nav-link link text-black display-4" href="index.html#content4-7"><span class="mbrib-extension mbr-iconfont mbr-iconfont-btn"></span>
-                        Tentang Kami</a>
-                </li><li class="nav-item">
-                    <a class="nav-link link text-black display-4" href="index.html#features1-c"><span class="mbrib-delivery mbr-iconfont mbr-iconfont-btn"></span>
-                        Layanan</a>
-                </li>
-                <li class="nav-item">  <a class="nav-link link text-black display-4" href="page1.html"><span class="mbrib-search mbr-iconfont mbr-iconfont-btn"></span>Lacak Kargo</a></li></ul>
-            <div class="navbar-buttons mbr-section-btn"><a class="btn btn-sm btn-primary display-4" href="https://wa.me/6281333110886"><span class="socicon socicon-whatsapp mbr-iconfont mbr-iconfont-btn"></span>
-
-                    Live Chat</a></div>
+            <ul class="navbar-nav nav-dropdown" data-app-modern-menu="true">
+              <li class="nav-item">
+                <a class="nav-link link text-black display-4" href="/#header7-1u"><span class="mbrib-extension mbr-iconfont mbr-iconfont-btn"></span>Tentang BAHTERA SETIA</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link link text-black display-4" href="/service.html"><span class="mbrib-delivery mbr-iconfont mbr-iconfont-btn"></span>Layanan</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link link text-black display-4" href="/tracking.html"><span class="mbrib-search mbr-iconfont mbr-iconfont-btn"></span>Lacak Kargo</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link link text-black display-4" href="/news.html"><span class="mbri-paper-plane mbr-iconfont mbr-iconfont-btn"></span>Berita</a>
+              </li>
+            </ul>
+            <div class="navbar-buttons mbr-section-btn"><a class="btn btn-sm btn-primary display-4" href="https://wa.me/6281333110886"><span class="socicon socicon-whatsapp mbr-iconfont mbr-iconfont-btn"></span>Live Chat</a></div>
         </div>
     </nav>
 </section>
 
-<section class="engine"><a href="https://mobirise.info/c">web builder</a></section>
 <section class="carousel slide cid-s4m4lPuCAG" data-interval="false" id="slider1-5">
 
-
-
-    <div class="full-screen"><div class="mbr-slider slide carousel" data-keyboard="false" data-ride="carousel" data-interval="3000" data-pause="true"><ol class="carousel-indicators"><li data-app-prevent-settings="" data-target="#slider1-5" data-slide-to="0"></li><li data-app-prevent-settings="" data-target="#slider1-5" data-slide-to="1"></li><li data-app-prevent-settings="" data-target="#slider1-5" class=" active" data-slide-to="2"></li><li data-app-prevent-settings="" data-target="#slider1-5" data-slide-to="3"></li><li data-app-prevent-settings="" data-target="#slider1-5" data-slide-to="4"></li><li data-app-prevent-settings="" data-target="#slider1-5" data-slide-to="5"></li></ol><div class="carousel-inner" role="listbox"><div class="carousel-item slider-fullscreen-image" data-bg-video-slide="false" style="background-image: url(assets/images/deretan-kapal-kargo-terbesar-di-dunia-1378x775.jpg);"><div class="container container-slide"><div class="image_wrapper"><img src="assets/images/deretan-kapal-kargo-terbesar-di-dunia-1378x775.jpg" alt="" title=""><div class="carousel-caption justify-content-center"><div class="col-10 align-right"></div></div></div></div></div><div class="carousel-item slider-fullscreen-image" data-bg-video-slide="false" style="background-image: url(assets/images/gettyimages-157113429-58c243bc5f9b58af5c07f2f2-2000x1341.jpg);"><div class="container container-slide"><div class="image_wrapper"><img src="assets/images/gettyimages-157113429-58c243bc5f9b58af5c07f2f2-2000x1341.jpg" alt="" title=""><div class="carousel-caption justify-content-center"><div class="col-10 align-right"></div></div></div></div></div><div class="carousel-item slider-fullscreen-image active" data-bg-video-slide="false" style="background-image: url(assets/images/gettyimages-535667221-5903aeac3df78c5456637610-2000x1336.jpg);"><div class="container container-slide"><div class="image_wrapper"><img src="assets/images/gettyimages-535667221-5903aeac3df78c5456637610-2000x1336.jpg" alt="" title=""><div class="carousel-caption justify-content-center"><div class="col-10 align-right"></div></div></div></div></div><div class="carousel-item slider-fullscreen-image" data-bg-video-slide="false" style="background-image: url(assets/images/pelabuhan-1280x853.jpg);"><div class="container container-slide"><div class="image_wrapper"><img src="assets/images/pelabuhan-1280x853.jpg" alt="" title=""><div class="carousel-caption justify-content-center"><div class="col-10 align-right"></div></div></div></div></div><div class="carousel-item slider-fullscreen-image" data-bg-video-slide="false" style="background-image: url(assets/images/pel-tanjung-priok-1-1600x1063.jpg);"><div class="container container-slide"><div class="image_wrapper"><img src="assets/images/pel-tanjung-priok-1-1600x1063.jpg" alt="" title=""><div class="carousel-caption justify-content-center"><div class="col-10 align-right"></div></div></div></div></div><div class="carousel-item slider-fullscreen-image" data-bg-video-slide="false" style="background-image: url(assets/images/tanjung-perak-surabaya-1072x712.jpg);"><div class="container container-slide"><div class="image_wrapper"><img src="assets/images/tanjung-perak-surabaya-1072x712.jpg" alt="" title=""><div class="carousel-caption justify-content-center"><div class="col-10 align-right"></div></div></div></div></div></div><a data-app-prevent-settings="" class="carousel-control carousel-control-prev" role="button" data-slide="prev" href="#slider1-5"><span aria-hidden="true" class="mbri-left mbr-iconfont"></span><span class="sr-only">Previous</span></a><a data-app-prevent-settings="" class="carousel-control carousel-control-next" role="button" data-slide="next" href="#slider1-5"><span aria-hidden="true" class="mbri-right mbr-iconfont"></span><span class="sr-only">Next</span></a></div></div>
+    <div class="full-screen"><div class="mbr-slider slide carousel" data-keyboard="false" data-ride="carousel" data-interval="3000" data-pause="true"><ol class="carousel-indicators"><li data-app-prevent-settings="" data-target="#slider1-5" data-slide-to="0"></li><li data-app-prevent-settings="" data-target="#slider1-5" class=" active" data-slide-to="1"></li><li data-app-prevent-settings="" data-target="#slider1-5" data-slide-to="2"></li><li data-app-prevent-settings="" data-target="#slider1-5" data-slide-to="3"></li><li data-app-prevent-settings="" data-target="#slider1-5" data-slide-to="4"></li><li data-app-prevent-settings="" data-target="#slider1-5" data-slide-to="5"></li><li data-app-prevent-settings="" data-target="#slider1-5" data-slide-to="6"></li><li data-app-prevent-settings="" data-target="#slider1-5" data-slide-to="7"></li></ol><div class="carousel-inner" role="listbox"><div class="carousel-item slider-fullscreen-image" data-bg-video-slide="false" style="background-image: url(assets/images/whatsapp-image-2020-08-06-at-17.25.47-1280x725.jpg);"><div class="container container-slide"><div class="image_wrapper"><img src="assets/images/whatsapp-image-2020-08-06-at-17.25.47-1280x725.jpg" alt="" title=""><div class="carousel-caption justify-content-center"><div class="col-10 align-right"></div></div></div></div></div><div class="carousel-item slider-fullscreen-image active" data-bg-video-slide="false" style="background-image: url(assets/images/whatsapp-image-2020-08-06-at-17.25.46-1-1173x782.jpg);"><div class="container container-slide"><div class="image_wrapper"><img src="assets/images/whatsapp-image-2020-08-06-at-17.25.46-1-1173x782.jpg" alt="" title=""><div class="carousel-caption justify-content-center"><div class="col-10 align-center"></div></div></div></div></div><div class="carousel-item slider-fullscreen-image" data-bg-video-slide="false" style="background-image: url(assets/images/whatsapp-image-2020-08-06-at-17.25.45-1-1072x790.jpg);"><div class="container container-slide"><div class="image_wrapper"><img src="assets/images/whatsapp-image-2020-08-06-at-17.25.45-1-1072x790.jpg" alt="" title=""><div class="carousel-caption justify-content-center"><div class="col-10 align-right"></div></div></div></div></div><div class="carousel-item slider-fullscreen-image" data-bg-video-slide="false" style="background-image: url(assets/images/whatsapp-image-2020-08-06-at-17.25.47-1-1044x783.jpg);"><div class="container container-slide"><div class="image_wrapper"><img src="assets/images/whatsapp-image-2020-08-06-at-17.25.47-1-1044x783.jpg" alt="" title=""><div class="carousel-caption justify-content-center"><div class="col-10 align-right"></div></div></div></div></div><div class="carousel-item slider-fullscreen-image" data-bg-video-slide="false" style="background-image: url(assets/images/whatsapp-image-2020-08-06-at-17.25.44-1-1111x790.jpg);"><div class="container container-slide"><div class="image_wrapper"><img src="assets/images/whatsapp-image-2020-08-06-at-17.25.44-1-1111x790.jpg" alt="" title=""><div class="carousel-caption justify-content-center"><div class="col-10 align-right"></div></div></div></div></div><div class="carousel-item slider-fullscreen-image" data-bg-video-slide="false" style="background-image: url(assets/images/whatsapp-image-2020-08-06-at-17.25.44-1280x665.jpg);"><div class="container container-slide"><div class="image_wrapper"><img src="assets/images/whatsapp-image-2020-08-06-at-17.25.44-1280x665.jpg" alt="" title=""><div class="carousel-caption justify-content-center"><div class="col-10 align-right"></div></div></div></div></div><div class="carousel-item slider-fullscreen-image" data-bg-video-slide="false" style="background-image: url(assets/images/whatsapp-image-2020-08-06-at-17.25.43-1-1077x807.jpg);"><div class="container container-slide"><div class="image_wrapper"><img src="assets/images/whatsapp-image-2020-08-06-at-17.25.43-1-1077x807.jpg" alt="" title=""><div class="carousel-caption justify-content-center"><div class="col-10 align-right"></div></div></div></div></div><div class="carousel-item slider-fullscreen-image" data-bg-video-slide="false" style="background-image: url(assets/images/whatsapp-image-2020-08-06-at-17.25.43-1280x635.jpg);"><div class="container container-slide"><div class="image_wrapper"><img src="assets/images/whatsapp-image-2020-08-06-at-17.25.43-1280x635.jpg" alt="" title=""><div class="carousel-caption justify-content-center"><div class="col-10 align-right"></div></div></div></div></div></div><a data-app-prevent-settings="" class="carousel-control carousel-control-prev" role="button" data-slide="prev" href="#slider1-5"><span aria-hidden="true" class="mbri-left mbr-iconfont"></span><span class="sr-only">Previous</span></a><a data-app-prevent-settings="" class="carousel-control carousel-control-next" role="button" data-slide="next" href="#slider1-5"><span aria-hidden="true" class="mbri-right mbr-iconfont"></span><span class="sr-only">Next</span></a></div></div>
 
 </section>
 
-<section class="mbr-section content4 cid-s4m5eCnSVE" id="content4-7">
-
-
-
-    <div class="container">
+<section class="header7 cid-s9lWkXbnx3" id="header7-1u">
+<div class="container">
         <div class="media-container-row">
-            <div class="title col-12 col-md-8">
-                <h2 class="align-center pb-3 mbr-fonts-style display-2">
-                    KAMI ADALAH PT. XXXXX</h2>
-                <h3 class="mbr-section-subtitle align-center mbr-light mbr-fonts-style display-5">PT. XXXXX selalu bekerja keras untuk memenuhi segala tugas, wewenang dan tanggung jawab untuk mengelola 43 pelabuhan umum di tujuh wilayah provinsi Indonesia.</h3>
+
+            <div class="media-content align-right">
+                <h1 class="mbr-section-title mbr-white pb-3 mbr-fonts-style display-1">
+                    Siapa kami</h1>
+                <div class="mbr-section-text mbr-white pb-3">
+                    <p class="mbr-text mbr-fonts-style display-5">
+                        PT. Bahtera Setia merupakan perusahaan yang bergerak di bidang jasa muat dan bongkar di pelabuhan Gresik untuk menunjang kegiatan perusahaan Pelayaran Nasional</p>
+                </div>
 
             </div>
+
+            <div class="mbr-figure" style="width: 100%;"><iframe class="mbr-embedded-video" src="https://www.youtube.com/embed/HWhXsteYLfw?rel=0&amp;amp;showinfo=0&amp;autoplay=1&amp;loop=0" width="1280" height="720" frameborder="0" allowfullscreen></iframe></div>
+
         </div>
     </div>
 </section>
 
-<section class="features1 cid-s4md231sGt" id="features1-c">
+<section class="features2 cid-s9lXoGMl5l" id="features2-1v">
+    <div class="container">
+        <div class="media-container-row">
+            <div class="card p-3 col-12 col-md-6 col-lg-4">
+                <div class="card-wrapper">
+                    <div class="card-img">
+                        <img src="assets/images/bongkar-muat-pelabuhan-gresik-turun-m-85744-300x200.jpg" alt="Mobirise" title="">
+                    </div>
+                    <div class="card-box">
+                        <h4 class="card-title pb-3 mbr-fonts-style display-7">Bongkar Muat Pelabuhan Gresik Turun</h4>
+                        <p class="mbr-text mbr-fonts-style display-7">
+                            Arus bongkar muat di Pelabuhan Gresik mengalami penurunan selama Semester I/2018. Akibatnya.&nbsp;<a href="news_detail.html/3">Selengkapnya...</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card p-3 col-12 col-md-6 col-lg-4">
+                <div class="card-wrapper">
+                    <div class="card-img">
+                        <img src="assets/images/41429-pelabuhan-gresik-jawa-timur-492x276.jpg" alt="Mobirise" title="">
+                    </div>
+                    <div class="card-box ">
+                        <h4 class="card-title pb-3 mbr-fonts-style display-7">Mulai 26 April, Pelabuhan Gresik Tutup Pelayanan Angkutan Orang</h4>
+                        <p class="mbr-text mbr-fonts-style display-7">
+                            Kantor Kesyahbandaran dan Otoritas Pelabuhan (KSOP) Kelas II Gresik akhirnya menutup semua. <a href="news_detail.html/2">Selengkapnya...</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card p-3 col-12 col-md-6 col-lg-4">
+                <div class="card-wrapper">
+                    <div class="card-img">
+                        <img src="assets/images/1642194903-492x328.jpg" alt="Mobirise" title="">
+                    </div>
+                    <div class="card-box">
+                        <h4 class="card-title pb-3 mbr-fonts-style display-7">Polisi Amankan 3 Pencuri Truk Trailer, 2 Pelaku Ditembak
+</h4>
+                        <p class="mbr-text mbr-fonts-style display-7">Sindikat pencuri kendaraan panjang atau biasa dikenal dengan sebutan truk trailer di wilayah Gresik.&nbsp;<a href="news_detail.html/1">Selengkapnya...</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</section>
+
+<section class="mbr-section article content9 cid-s9lXT37Lf2" id="content9-1x">
+    <div class="container">
+        <div class="inner-container" style="width: 100%;">
+            <hr class="line" style="width: 25%;">
+            <div class="section-text align-center mbr-fonts-style display-5">
+                    View All News</div>
+            <hr class="line" style="width: 25%;">
+        </div>
+        </div>
+</section>
+
+<section class="features15 cid-s9lXIX2lfZ" id="features15-1w">
 
 
 
 
     <div class="container">
-        <div class="media-container-row">
+        <h2 class="mbr-section-title pb-3 align-center mbr-fonts-style display-2">Mengapa BAHTERA SETIA adalah pilihan yang TEPAT bagi Anda?</h2>
+        <h3 class="mbr-section-subtitle display-5 align-center mbr-fonts-style">
+            Kepuasan anda adalah tanggungjawab kami.
+        </h3>
 
-            <div class="card p-3 col-12 col-md-6 col-lg-3">
-                <div class="card-img pb-3">
-                    <span class="mbr-iconfont mbri-map-pin"></span>
-                </div>
-                <div class="card-box">
-                    <h4 class="card-title py-3 mbr-fonts-style display-5">
-                        Kantor Cabang</h4>
-                    <p class="mbr-text mbr-fonts-style display-7">
-                        Kami telah memiliki 3 kantor cabang yang tersebar di kota Surabaya, Makassar, Bandung</p>
-                </div>
-            </div>
+        <div class="media-container-row container pt-5 mt-2">
 
-            <div class="card p-3 col-12 col-md-6 col-lg-3">
-                <div class="card-img pb-3">
-                    <span class="mbr-iconfont mbri-globe"></span>
-                </div>
-                <div class="card-box">
-                    <h4 class="card-title py-3 mbr-fonts-style display-5">
-                        Jangkauan</h4>
-                    <p class="mbr-text mbr-fonts-style display-7">
-                        Melayani lebih dari 40 Provinsi di seluruh Indonesia dan 3 Benua</p>
+            <div class="col-12 col-md-6 mb-4 col-lg-3">
+                <div class="card flip-card p-5 align-center">
+                    <div class="card-front card_cont">
+                        <img src="assets/images/8-512x600.jpg" alt="Mobirise" title="">
+                    </div>
+                    <div class="card_back card_cont">
+                        <h4 class="card-title display-5 py-2 mbr-fonts-style">HARGA YANG KOMPETITIF</h4>
+                        <p class="mbr-text mbr-fonts-style display-7">
+                            BAHTERA SETIA menawarkan harga yang kompetitif dengan layanan jasa yang beragam.</p>
+                    </div>
                 </div>
             </div>
 
-            <div class="card p-3 col-12 col-md-6 col-lg-3">
-                <div class="card-img pb-3">
-                    <span class="mbri-responsive mbr-iconfont"></span>
-                </div>
-                <div class="card-box">
-                    <h4 class="card-title py-3 mbr-fonts-style display-5">
-                        Grup</h4>
-                    <p class="mbr-text mbr-fonts-style display-7">
-                        Kami memiliki 3 afiliansi yang dapat ber sinergi untuk bersama-sama mewujudkan jasa forwarding yang bermutu</p>
-                </div>
-            </div>
+            <div class="col-12 col-md-6 mb-4 col-lg-3">
 
-            <div class="card p-3 col-12 col-md-6 col-lg-3">
-                <div class="card-img pb-3">
-                    <span class="mbr-iconfont mbri-delivery"></span>
-                </div>
-                <div class="card-box">
-                    <h4 class="card-title py-3 mbr-fonts-style display-5">
-                        Layanan Pengiriman</h4>
-                    <p class="mbr-text mbr-fonts-style display-7">
-                       Layanan pengiriman sesuai kebutuhan, lengkap dan cepat, semua yang anda butuhkan, kami siap</p>
+                <div class="card flip-card p-5 align-center">
+                    <div class="card-front card_cont">
+                        <img src="assets/images/7-900x1055.jpg" alt="Mobirise" title="">
+                    </div>
+                    <div class="card_back card_cont">
+                        <h4 class="card-title py-2 mbr-fonts-style display-5">
+                            REAL TIME TRACKING&nbsp;</h4>
+                        <p class="mbr-text mbr-fonts-style display-7">
+                            BAHTERA SETIA memberikan kemudahan dalam melakukan monitoring pengiriman cargo setiap saat kapanpun dan dimanapun.</p>
+                    </div>
                 </div>
             </div>
 
-        </div>
+            <div class="col-12 col-md-6 mb-4 col-lg-3">
+                <div class="card flip-card p-5 align-center">
+                    <div class="card-front card_cont">
+                        <img src="assets/images/3-900x1055.jpg" alt="Mobirise" title="">
+                    </div>
+                    <div class="card_back card_cont">
+                        <h4 class="card-title py-2 mbr-fonts-style display-5">
+                            SERVICE EXELENT</h4>
+                        <p class="mbr-text mbr-fonts-style display-7">
+                            BAHTERA SETIA selalu ingin melayani anda kapanpun anda butuhkan.
+                        </p>
+                    </div>
+                </div>
+            </div>
 
-    </div>
-
-</section>
-
-<section class="mbr-section article content1 cid-s4VCbrblSI" id="content2-1m">
-
-
-
-    <div class="container">
-        <div class="media-container-row">
-            <div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
-                <blockquote><strong><a href="page3.html">Selengkapnya &gt;&gt;&gt;</a></strong></blockquote>
+            <div class="col-12 col-md-6 mb-4 col-lg-3">
+                <div class="card flip-card p-5 align-center">
+                    <div class="card-front card_cont">
+                        <img src="assets/images/4-900x1055.jpg" alt="Mobirise" title="">
+                    </div>
+                    <div class="card_back card_cont">
+                        <h4 class="card-title py-2 mbr-fonts-style display-5">
+                            KEPASITAN JADWAL &amp; JARINGAN LUAS</h4>
+                        <p class="mbr-text mbr-fonts-style display-7">BAHTERA SETIA memiliki banyak cabang dan pilihan rute yang bervariasi.</p>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-</section>
+</div></section>
 
 <section class="carousel slide testimonials-slider cid-s4moDU74iK" data-interval="false" id="testimonials-slider1-k">
-
-
-
-
-
     <div class="container text-center">
-
-
-        <div class="carousel slide" role="listbox" data-pause="true" data-keyboard="false" data-ride="false" data-interval="false">
+        <div class="carousel slide" role="listbox" data-pause="true" data-keyboard="false" data-ride="carousel" data-interval="5000">
             <div class="carousel-inner">
-
-
             <div class="carousel-item">
                     <div class="user col-md-8">
                         <div class="user_image">
                             <img src="assets/images/bp5ae2s20181119-81050-400x300.jpeg" alt="" title="">
                         </div>
                         <div class="user_text pb-3">
-                            <p class="mbr-fonts-style display-7">PT. XXXXX telah menghubungkan wilayah barat dan timur Indonesia untuk mendukung pemerataan ekonomi dan pembangunan Indonesia. Beragam inovasi dan peningkatan pelayanan dilakukan PT. XXXXX demi menekan biaya logistik nasional dan Internasional.
+                            <p class="mbr-fonts-style display-7">Kami telah bekerjasama dengan PT. BAHTERA SETIA selama kurang lebih 24 tahun, dan saya salut dengan pelayanan yang diberikan oleh PT. BAHTERA SETIA karena kesigapannya merespon. juga memiliki banyak rute dan yang terpenting saya bisa memonitor pengiriman saya kapanpun dan dimanapun jadi lebih tenang. Semoga kedepan PT. BAHTERA SETIA semakin maju
                             </p>
                         </div>
                         <div class="user_name mbr-bold pb-2 mbr-fonts-style display-7">
                             Fahmi Akbar Pasetya</div>
                         <div class="user_desk mbr-light mbr-fonts-style display-7">
-                            Direktur Utama</div>
+                            Direktur Utama PNM</div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="user col-md-8">
+                        <div class="user_image">
+                            <img src="assets/images/bp5ae2s20181119-81050-400x300.jpeg" alt="" title="">
+                        </div>
+                        <div class="user_text pb-3">
+                            <p class="mbr-fonts-style display-7">Kami telah bekerjasama dengan PT. BAHTERA SETIA selama kurang lebih 24 tahun, dan saya salut dengan pelayanan yang diberikan oleh PT. BAHTERA SETIA karena kesigapannya merespon. juga memiliki banyak rute dan yang terpenting saya bisa memonitor pengiriman saya kapanpun dan dimanapun jadi lebih tenang. Semoga kedepan PT. BAHTERA SETIA semakin maju
+                            </p>
+                        </div>
+                        <div class="user_name mbr-bold pb-2 mbr-fonts-style display-7">
+                            Fahmi Akbar Pasetya</div>
+                        <div class="user_desk mbr-light mbr-fonts-style display-7">
+                            Direktur Utama PNM</div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="user col-md-8">
+                        <div class="user_image">
+                            <img src="assets/images/bp5ae2s20181119-81050-400x300.jpeg" alt="" title="">
+                        </div>
+                        <div class="user_text pb-3">
+                            <p class="mbr-fonts-style display-7">Kami telah bekerjasama dengan PT. BAHTERA SETIA selama kurang lebih 24 tahun, dan saya salut dengan pelayanan yang diberikan oleh PT. BAHTERA SETIA karena kesigapannya merespon. juga memiliki banyak rute dan yang terpenting saya bisa memonitor pengiriman saya kapanpun dan dimanapun jadi lebih tenang. Semoga kedepan PT. BAHTERA SETIA semakin maju
+                            </p>
+                        </div>
+                        <div class="user_name mbr-bold pb-2 mbr-fonts-style display-7">
+                            Fahmi Akbar Pasetya</div>
+                        <div class="user_desk mbr-light mbr-fonts-style display-7">
+                            Direktur Utama PNM</div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="user col-md-8">
+                        <div class="user_image">
+                            <img src="assets/images/bp5ae2s20181119-81050-400x300.jpeg" alt="" title="">
+                        </div>
+                        <div class="user_text pb-3">
+                            <p class="mbr-fonts-style display-7">Kami telah bekerjasama dengan PT. BAHTERA SETIA selama kurang lebih 24 tahun, dan saya salut dengan pelayanan yang diberikan oleh PT. BAHTERA SETIA karena kesigapannya merespon. juga memiliki banyak rute dan yang terpenting saya bisa memonitor pengiriman saya kapanpun dan dimanapun jadi lebih tenang. Semoga kedepan PT. BAHTERA SETIA semakin maju
+                            </p>
+                        </div>
+                        <div class="user_name mbr-bold pb-2 mbr-fonts-style display-7">
+                            Fahmi Akbar Pasetya</div>
+                        <div class="user_desk mbr-light mbr-fonts-style display-7">
+                            Direktur Utama PNM</div>
                     </div>
                 </div></div>
 
@@ -215,14 +310,14 @@
 <section class="clients cid-s4m6BDZgye mbr-parallax-background" data-interval="false" id="clients-9">
 
 
-    <div class="mbr-overlay" style="opacity: 0.9; background-color: rgb(255, 255, 255);">
+    <div class="mbr-overlay" style="opacity: 0.7; background-color: rgb(255, 255, 255);">
     </div>
         <div class="container mb-5">
             <div class="media-container-row">
                 <div class="col-12 align-center">
                     <h2 class="mbr-section-title pb-3 mbr-fonts-style display-2">
                         Klien Kami</h2>
-                    <h3 class="mbr-section-subtitle mbr-light mbr-fonts-style display-5">Kami memiliki lebih dari 100 klien perusahaan</h3>
+                    <h3 class="mbr-section-subtitle mbr-light mbr-fonts-style display-5">Kami memiliki lebih dari 20 klien perusahaan</h3>
                 </div>
             </div>
         </div>
@@ -230,16 +325,11 @@
     <div class="container">
         <div class="carousel slide" role="listbox" data-pause="true" data-keyboard="false" data-ride="carousel" data-interval="3000">
             <div class="carousel-inner" data-visible="6">
-
-
-
-
-
             <div class="carousel-item ">
                     <div class="media-container-row">
                         <div class="col-md-12">
                             <div class="wrap-img ">
-                                <img src="assets/images/ulamm-color-501x155.png" class="img-responsive clients-img" alt="" title="">
+                                <img src="assets/images/1200px-cmyk-logo-01-pngs-1200x1108.png" class="img-responsive clients-img" alt="" title="">
                             </div>
                         </div>
                     </div>
@@ -255,7 +345,7 @@
                     <div class="media-container-row">
                         <div class="col-md-12">
                             <div class="wrap-img ">
-                                <img src="assets/images/mekaar-color-240x77.png" class="img-responsive clients-img" alt="" title="">
+                                <img src="assets/images/pp-1600x989.png" class="img-responsive clients-img" alt="" title="">
                             </div>
                         </div>
                     </div>
@@ -263,7 +353,7 @@
                     <div class="media-container-row">
                         <div class="col-md-12">
                             <div class="wrap-img ">
-                                <img src="assets/images/micro-madani-institute-pt-1559270378-2018x468.png" class="img-responsive clients-img" alt="" title="">
+                                <img src="assets/images/logo-wika-1929x1563.png" class="img-responsive clients-img" alt="" title="">
                             </div>
                         </div>
                     </div>
@@ -271,7 +361,7 @@
                     <div class="media-container-row">
                         <div class="col-md-12">
                             <div class="wrap-img ">
-                                <img src="assets/images/logo-bumn-cdb796b25a8f3dc1af66799689fdf8672b720672aa499c03fced67c1db5673be-656x198.png" class="img-responsive clients-img" alt="" title="">
+                                <img src="assets/images/jaya-beton-ok-1772x591.png" class="img-responsive clients-img" alt="" title="">
                             </div>
                         </div>
                     </div>
@@ -279,7 +369,7 @@
                     <div class="media-container-row">
                         <div class="col-md-12">
                             <div class="wrap-img ">
-                                <img src="assets/images/5dde17b432a94-20191127132908-1-400x140.png" class="img-responsive clients-img" alt="" title="">
+                                <img src="assets/images/adhimix-logo-0c600d7c5e0d84881b2d1ebed01de2a83e7742bf6a6c1e9078d806264c9c1e5c-1501x777.png" class="img-responsive clients-img" alt="" title="">
                             </div>
                         </div>
                     </div>
@@ -298,80 +388,14 @@
     </div>
 </section>
 
-<section class="mbr-section content4 cid-s4mrj5J0VS" id="content4-m">
-
-
-
-    <div class="container">
-        <div class="media-container-row">
-            <div class="title col-12 col-md-8">
-                <h2 class="align-center pb-3 mbr-fonts-style display-2">
-                    Berita</h2>
-                <h3 class="mbr-section-subtitle align-center mbr-light mbr-fonts-style display-5">Kilas berita dalam negeri &amp; maritim</h3>
-
-            </div>
-        </div>
-    </div>
-</section>
-
-<section class="cid-s4mrp0DLC3" id="content15-u">
-
-    <div class="container">
-            <div class="media-container-row" style="width: 66%;">
-                <div class="img-item item1" style="width: 62%;">
-                    <div class="img-cont">
-                        <div class="mbr-overlay" style="opacity: 0.5; background-color: rgb(35, 35, 35);"></div>
-                        <img src="assets/images/background9.jpg">
-                        <div class="img-caption">
-                            <p class="mbr-fonts-style align-left mbr-white display-5">
-                                <a href="page2.html">RI Genjot Ekspor 20% di tahun 2020</a></p>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="img-item">
-                    <div class="img-cont">
-                        <div class="mbr-overlay" style="opacity: 0.5; background-color: rgb(35, 35, 35);"></div>
-                        <img src="assets/images/background2.jpg">
-                        <div class="img-caption">
-                            <p class="mbr-fonts-style align-left mbr-white display-5">
-                                <a href="page2.html">Pertumbuhan bisnis Forwarding kian pesat</a></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-    </div>
-</section>
-
-<section class="mbr-section article content11 cid-s4mrltHNBy" id="content11-n">
-
-
-    <div class="container">
-        <div class="media-container-row">
-            <div class="mbr-text counter-container col-12 col-md-8 mbr-fonts-style display-7">
-                <ol>
-                    <li><strong>&nbsp;DERMAGA 2 SIAP DI BUKA KEMBALI</strong>&nbsp;- no special actions required, all sites you make with Mobirise are mobile-friendly. You don't have to create a special mobile version of your site, it will adapt automagically. <a href="page2.html">Selengkapnya&gt;&gt;&gt;</a></li>
-                    <li><strong>PT. XXXXX BERENCANA BUKA KEMBALI 4 CABANG BARU</strong>&nbsp;- cut down the development time with drag-and-drop website builder. Drop the blocks into the page, edit content inline and publish - no technical skills required. <a href="page2.html">Lihat Selengkapnya&gt;&gt;&gt;</a></li>
-                    <li><strong>MENTERI KELAUTAN TARGETKAN AGUSTUS PEMBANGUNAN TERMINAL PETIKEMAS SELESAI</strong> - choose from the large selection of latest pre-made blocks - full-screen intro, bootstrap carousel, content slider, responsive image gallery with lightbox, parallax scrolling, video backgrounds, hamburger menu, sticky header and more. <a href="page2.html">Lihat Selengkapnya&gt;&gt;&gt;</a></li>
-                </ol>
-            </div>
-        </div>
-    </div>
-</section>
-
 <section class="cid-s4mgVxxJsb" id="footer2-h">
-
-
-
-
-
     <div class="container">
         <div class="media-container-row content mbr-white">
             <div class="col-12 col-md-3 mbr-fonts-style display-7">
                 <p class="mbr-text">
                     <strong>Address</strong>
                     <br>
-                    <br>Jl. Margorejo Indah XX Blok D 327, Sidosermo, Wonocolo, Surabaya. 60239.<br>
+                    <br>Jl. Yos Sudarso Blok II/10, Pulopancikan, Kebungson, Kec. Gresik, Kabupaten Gresik, Jawa Timur 61114<br>
                     <br>
                     <br><strong>Contacts</strong>
                     <br>
@@ -389,7 +413,7 @@
                 </p>
             </div>
             <div class="col-12 col-md-6">
-                <div class="google-map"><iframe frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCy9r70T3NYf3PhvVflTo0_zdif2_IoIYs&amp;q=place_id:ChIJc9ImVgX71y0RYJNsPtvMbtc" allowfullscreen=""></iframe></div>
+                <div class="google-map"><iframe frameborder="0" style="border:0" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15834.979148510152!2d112.6596961!3d-7.1554781!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x912eabca7968720d!2sPT.%20Bahtera%20Setia%20Gresik!5e0!3m2!1sid!2sid!4v1598980865702!5m2!1sid!2sid" allowfullscreen=""></iframe></div>
             </div>
         </div>
 
@@ -397,20 +421,10 @@
 </section>
 
 <section once="footers" class="cid-s4mg6Rh7O6" id="footer7-g">
-
-
-
-
-
     <div class="container">
         <div class="media-container-row align-center mbr-white">
             <div class="row row-links">
                 <ul class="foot-menu">
-
-
-
-
-
                 <li class="foot-menu-item mbr-fonts-style display-7">
                         About us
                     </li><li class="foot-menu-item mbr-fonts-style display-7">
@@ -419,12 +433,6 @@
             </div>
             <div class="row social-row">
                 <div class="social-list align-right pb-2">
-
-
-
-
-
-
                 <div class="soc-item">
 
                             <span class="mbr-iconfont mbr-iconfont-social socicon-twitter socicon"></span>
@@ -435,7 +443,7 @@
 
                     </div><div class="soc-item">
 
-                            <span class="mbr-iconfont mbr-iconfont-social socicon-youtube socicon"></span>
+                            <a href="https://www.youtube.com/watch?v=LGjgD_AC-yE" target="_blank"><span class="mbr-iconfont mbr-iconfont-social socicon-youtube socicon"></span></a>
 
                     </div><div class="soc-item">
 
@@ -445,8 +453,7 @@
             </div>
             <div class="row row-copirayt">
                 <p class="mbr-text mb-0 mbr-fonts-style mbr-white align-center display-7">
-                  <strong>Copyright &copy; 2020 <a href="#">Shipping Portal</a>.</strong>
-                  All rights reserved.
+                    © Copyright 2020 PT. BAHTERA SETIA - All Rights Reserved
                 </p>
             </div>
         </div>
@@ -466,6 +473,7 @@
   <script src="{{'assets/vimeoplayer/jquery.mb.vimeo_player.js'}}"></script>
   <script src="{{'assets/dropdown/js/nav-dropdown.js'}}"></script>
   <script src="{{'assets/dropdown/js/navbar-dropdown.js'}}"></script>
+  <script src="{{'assets/mbr-flip-card/mbr-flip-card.js'}}"></script>
   <script src="{{'assets/bootstrapcarouselswipe/bootstrap-carousel-swipe.js'}}"></script>
   <script src="{{'assets/mbr-testimonials-slider/mbr-testimonials-slider.js'}}"></script>
   <script src="{{'assets/mbr-clients-slider/mbr-clients-slider.js'}}"></script>

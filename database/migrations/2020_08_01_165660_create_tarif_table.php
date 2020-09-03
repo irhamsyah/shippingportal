@@ -15,7 +15,6 @@ class CreateTarifTable extends Migration
     {
         Schema::create('tarif', function (Blueprint $table) {
           $table->id();
-          $table->integer('id_pelayaran');
           $table->integer('id_city');
           $table->BigInteger('price');
           $table->dateTime('date');
@@ -25,6 +24,12 @@ class CreateTarifTable extends Migration
           $table->BigInteger('last_price3');
           $table->timestamps();
           $table->SoftDeletes();
+        });
+
+        Schema::table('tarif', function($table)
+        {
+          $table->unsignedBigInteger('pelayaran_id');
+          $table->foreign('pelayaran_id')->references('id')->on('pelayaran');
         });
     }
 

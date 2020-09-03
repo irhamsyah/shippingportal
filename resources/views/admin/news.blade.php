@@ -14,13 +14,12 @@
           <!-- /.card-header -->
           <div class="card-body">
             <div class="row" style="margin-bottom:10px;">
-              <div class="col-1">
+              <div class="col-lg-1 col-sm-2">
                 <button type="button" class="btn btn-block btn-outline-primary" data-toggle="modal" data-target="#modal-add-news">New</button>
               </div>
             </div>
             <table id="example1" class="table table-bordered table-hover">
               <thead>
-              <tr>
                 <th>No</th>
                 <th>Title</th>
                 <th>Text</th>
@@ -28,7 +27,6 @@
                 <th>Category</th>
                 <th>User</th>
                 <th>Action</th>
-              </tr>
               </thead>
               <tbody>
                 @foreach($newss as $index => $news)
@@ -47,10 +45,10 @@
                             data-id="{{ $news->news_id }}"
                             data-title="{{ $news->title }}"
                             data-text="{{ $news->text }}"
-                            data-id_category="{{ $news->id_category }}"
+                            data-id_category="{{ $news->news_category_id }}"
                             data-img_title="{{ $news->img_title }}">
                           <i class="fas fa-pencil-alt" aria-hidden="true"></i>
-                        </a>
+                        </a>{{ $news->category_id }}
                       </div>
                       <div class="col-6">
                         <form action="/adm_news" method="post" onclick="return confirm('Apakah anda yakin akan menghapus data ini?')">
@@ -112,7 +110,6 @@
                 <div class="col-6">
                   <label for="inputIdCategory">Select Category</label>
                   <select class="form-control" name="inputIdCategory">
-                    <option value="#" selected="true" disabled="disabled">--- Select Category ---</option>
                     @foreach($news_categorys as $news_category)
                     <option value="{{ $news_category->id }}">{{ $news_category->name }}</option>
                     @endforeach

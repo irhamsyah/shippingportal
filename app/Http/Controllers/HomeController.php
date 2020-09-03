@@ -50,6 +50,18 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
+     public function news_detail_view(Request $request)
+     {
+       //get id news from url
+       $newss = News::select('news.id as news_id','news.title','news.text','news.img_title','news.id_user','news.news_category_id','news_category.name as category_name','users.name as user_name')
+       ->leftJoin('news_category', 'news_category.id', '=', 'news.news_category_id')
+       ->leftjoin('users', 'users.id', '=', 'news.id_user')
+       ->where('id','=',$request->route('id'))
+       ->orderBy('news.created_at','desc')->get();
+
+       return view('news_detail.html', ['newss'=> $newss]);
+     }
+
     public function admin_index()
     {
         return view('admin/tracking');
@@ -295,54 +307,543 @@ class HomeController extends Controller
     {
       $customers = Customer::select('customer.*','location.name_city','location.province_city')->leftjoin('location','location.id','=','customer.id_city')->get();
       //dd($customers);
-      return view('admin/customer', ['customers'=> $customers]);
+      $locations = Location::select('location.id as loc_id','location.code_city','location.name_city','location.province_city')->orderby('location.name_city')->get();
+
+      return view('admin/customer', ['customers'=> $customers,'locations'=> $locations]);
+    }
+    public function admin_customer_add(Request $request)
+    {
+      $customers = new Customer;
+      $customers->code_customer = $request->inputCostumerCode;
+      $customers->name_customer = $request->inputCostumerName;
+      $customers->address_invoice = $request->inputAddressInvoice;
+      $customers->address = $request->inputAddress;
+      $customers->id_city = $request->inputIdCity;
+      $customers->postal = $request->inputPostal;
+      $customers->telp = $request->inputTelp;
+      $customers->fax = $request->inputFax;
+      $customers->npwp = $request->inputNPWP;
+      $customers->pkp_no = $request->inputPkp;
+      $customers->desc_customer = $request->inputCustomerDesc;
+      $customers->payment_term = $request->inputTOP;
+      $customers->name_person = $request->inputPersonName;
+      $customers->phone_person = $request->inputPersonEmail;
+      $customers->email_person = $request->inputPersonPhone;
+      $customers->fax_person = $request->inputPersonFax;
+      $customers->created_at = date('Y-m-d H:i:s');
+      $customers->save();
+
+      $customers = Customer::select('customer.*','location.name_city','location.province_city')->leftjoin('location','location.id','=','customer.id_city')->get();
+      $locations = Location::select('location.id as loc_id','location.code_city','location.name_city','location.province_city')->orderby('location.name_city')->get();
+
+      return view('admin/customer', ['customers'=> $customers,'locations'=> $locations]);
+    }
+    public function admin_customer_edit(Request $request)
+    {
+      //update Customer
+      $customers = Customer::find($request->inputIdCustomer);
+      $customers->code_customer = $request->inputCostumerCode;
+      $customers->name_customer = $request->inputCostumerName;
+      $customers->address_invoice = $request->inputAddressInvoice;
+      $customers->address = $request->inputAddress;
+      $customers->id_city = $request->inputIdCity;
+      $customers->postal = $request->inputPostal;
+      $customers->telp = $request->inputTelp;
+      $customers->fax = $request->inputFax;
+      $customers->npwp = $request->inputNPWP;
+      $customers->pkp_no = $request->inputPkp;
+      $customers->desc_customer = $request->inputCustomerDesc;
+      $customers->payment_term = $request->inputTOP;
+      $customers->name_person = $request->inputPersonName;
+      $customers->phone_person = $request->inputPersonEmail;
+      $customers->email_person = $request->inputPersonPhone;
+      $customers->fax_person = $request->inputPersonFax;
+      $customers->updated_at = date('Y-m-d H:i:s');
+      $customers->save();
+
+      $customers = Customer::select('customer.*','location.name_city','location.province_city')->leftjoin('location','location.id','=','customer.id_city')->get();
+      $locations = Location::select('location.id as loc_id','location.code_city','location.name_city','location.province_city')->orderby('location.name_city')->get();
+
+      return view('admin/customer', ['customers'=> $customers,'locations'=> $locations]);
+    }
+    //Direct to Proses DeleteCustomer
+    public function admin_customer_destroy(Request $request)
+    {
+      $customers = Customer::find($request->inputIdCustomer);
+      $customers->delete();
+
+      $customers = Customer::select('customer.*','location.name_city','location.province_city')->leftjoin('location','location.id','=','customer.id_city')->get();
+      $locations = Location::select('location.id as loc_id','location.code_city','location.name_city','location.province_city')->orderby('location.name_city')->get();
+
+      return view('admin/customer', ['customers'=> $customers,'locations'=> $locations]);
     }
     public function admin_agent()
     {
       $agents = Agent::select('agent.*','location.name_city','location.province_city')->leftjoin('location','location.id','=','agent.id_city')->get();
-      //dd($agents);
-      return view('admin/agent', ['agents'=> $agents]);
+      $locations = Location::select('location.id as loc_id','location.code_city','location.name_city','location.province_city')->orderby('location.name_city')->get();
+
+      return view('admin/agent', ['agents'=> $agents,'locations'=> $locations]);
+    }
+    public function admin_agent_add(Request $request)
+    {
+      $agents = new Agent;
+      $agents->code_agent = $request->inputAgentCode;
+      $agents->name_agent = $request->inputAgentName;
+      $agents->address = $request->inputAddress;
+      $agents->id_city = $request->inputIdCity;
+      $agents->postal = $request->inputPostal;
+      $agents->telp = $request->inputTelp;
+      $agents->fax = $request->inputFax;
+      $agents->npwp = $request->inputNPWP;
+      $agents->pkp_no = $request->inputPkp;
+      $agents->desc_agent = $request->inputAgentDesc;
+      $agents->payment_term = $request->inputTOP;
+      $agents->name_person = $request->inputPersonName;
+      $agents->phone_person = $request->inputPersonEmail;
+      $agents->email_person = $request->inputPersonPhone;
+      $agents->fax_person = $request->inputPersonFax;
+      $agents->created_at = date('Y-m-d H:i:s');
+      $agents->save();
+
+      $agents = Agent::select('agent.*','location.name_city','location.province_city')->leftjoin('location','location.id','=','agent.id_city')->get();
+      $locations = Location::select('location.id as loc_id','location.code_city','location.name_city','location.province_city')->orderby('location.name_city')->get();
+
+      return view('admin/agent', ['agents'=> $agents,'locations'=> $locations]);
+    }
+    public function admin_agent_edit(Request $request)
+    {
+      //update Agent
+      $agents = Agent::find($request->inputIdAgent);
+      $agents->code_agent = $request->inputAgentCode;
+      $agents->name_agent = $request->inputAgentName;
+      $agents->address = $request->inputAddress;
+      $agents->id_city = $request->inputIdCity;
+      $agents->postal = $request->inputPostal;
+      $agents->telp = $request->inputTelp;
+      $agents->fax = $request->inputFax;
+      $agents->npwp = $request->inputNPWP;
+      $agents->pkp_no = $request->inputPkp;
+      $agents->desc_agent = $request->inputAgentDesc;
+      $agents->payment_term = $request->inputTOP;
+      $agents->name_person = $request->inputPersonName;
+      $agents->phone_person = $request->inputPersonEmail;
+      $agents->email_person = $request->inputPersonPhone;
+      $agents->fax_person = $request->inputPersonFax;
+      $agents->updated_at = date('Y-m-d H:i:s');
+      $agents->save();
+
+      $agents = Agent::select('agent.*','location.name_city','location.province_city')->leftjoin('location','location.id','=','agent.id_city')->get();
+      $locations = Location::select('location.id as loc_id','location.code_city','location.name_city','location.province_city')->orderby('location.name_city')->get();
+
+      return view('admin/agent', ['agents'=> $agents,'locations'=> $locations]);
+    }
+    //Direct to Proses DeleteAgent
+    public function admin_agent_destroy(Request $request)
+    {
+      $agents = Agent::find($request->inputIdAgent);
+      $agents->delete();
+
+      $agents = Agent::select('agent.*','location.name_city','location.province_city')->leftjoin('location','location.id','=','agent.id_city')->get();
+      $locations = Location::select('location.id as loc_id','location.code_city','location.name_city','location.province_city')->orderby('location.name_city')->get();
+
+      return view('admin/agent', ['agents'=> $agents,'locations'=> $locations]);
     }
     public function admin_bank_account()
     {
-      $banks = BankAccount::select('bank_account.*','agent.code_agent','agent.name_agent')->leftjoin('agent','agent.id','=','bank_account.id_agent')->get();
-      //dd($banks);
-      return view('admin/bank_account', ['banks'=> $banks]);
+      $banks = BankAccount::select('bank_account.*','agent.code_agent','agent.name_agent')->leftjoin('agent','agent.id','=','bank_account.agent_id')->get();
+      $agents = Agent::select('agent.id','agent.name_agent','agent.code_agent')->get();
+
+      return view('admin/bank_account', ['banks'=> $banks,'agents'=> $agents]);
+    }
+    public function admin_bank_account_add(Request $request)
+    {
+      $banks = new BankAccount;
+      $banks->bank_name = $request->inputBankName;
+      $banks->bank_account = $request->inputBankAccount;
+      $banks->branch = $request->inputBranch;
+      $banks->account_name = $request->inputAccountName;
+      $banks->bank_address = $request->inputBankAddress;
+      $banks->agent_id = $request->inputIdAgent;
+      $banks->created_at = date('Y-m-d H:i:s');
+      $banks->save();
+
+      $banks = BankAccount::select('bank_account.*','agent.code_agent','agent.name_agent')->leftjoin('agent','agent.id','=','bank_account.agent_id')->get();
+      $agents = Agent::select('agent.id','agent.name_agent','agent.code_agent')->get();
+
+      return view('admin/bank_account', ['banks'=> $banks,'agents'=> $agents]);
+    }
+    public function admin_bank_account_edit(Request $request)
+    {
+      //update Bank Account
+      $banks = BankAccount::find($request->inputIdBankAccount);
+      $banks->bank_name = $request->inputBankName;
+      $banks->bank_account = $request->inputBankAccount;
+      $banks->branch = $request->inputBranch;
+      $banks->account_name = $request->inputAccountName;
+      $banks->bank_address = $request->inputBankAddress;
+      $banks->agent_id = $request->inputIdAgent;
+      $banks->created_at = date('Y-m-d H:i:s');
+      $banks->save();
+
+      $banks = BankAccount::select('bank_account.*','agent.code_agent','agent.name_agent')->leftjoin('agent','agent.id','=','bank_account.agent_id')->get();
+      $agents = Agent::select('agent.id','agent.name_agent','agent.code_agent')->get();
+
+      return view('admin/bank_account', ['banks'=> $banks,'agents'=> $agents]);
+    }
+    //Direct to Proses DeleteBankAccount
+    public function admin_bank_account_destroy(Request $request)
+    {
+      $banks = BankAccount::find($request->inputIdBankAccount);
+      $banks->delete();
+
+      $banks = BankAccount::select('bank_account.*','agent.code_agent','agent.name_agent')->leftjoin('agent','agent.id','=','bank_account.agent_id')->get();
+      $agents = Agent::select('agent.id','agent.name_agent','agent.code_agent')->get();
+
+      return view('admin/bank_account', ['banks'=> $banks,'agents'=> $agents]);
     }
     public function admin_pelayaran()
     {
       $pelayarans = Pelayaran::select('pelayaran.*','location.name_city','location.province_city')->leftjoin('location','location.id','=','pelayaran.id_city')->get();
-      //dd($pelayarans);
-      return view('admin/pelayaran', ['pelayarans'=> $pelayarans]);
+      $locations = Location::select('location.id as loc_id','location.code_city','location.name_city','location.province_city')->orderby('location.name_city')->get();
+
+      return view('admin/pelayaran', ['pelayarans'=> $pelayarans,'locations'=> $locations]);
     }
-    public function admin_location()
+    public function admin_pelayaran_add(Request $request)
     {
-      $locations = Location::all();
-      //dd($locations);
-      return view('admin/location', ['locations'=> $locations]);
+      $pelayarans = new Pelayaran;
+      $pelayarans->code_pelayaran = $request->inputPelayaranCode;
+      $pelayarans->name_pelayaran = $request->inputPelayaranName;
+      $pelayarans->alias = $request->inputAlias;
+      $pelayarans->address = $request->inputAddress;
+      $pelayarans->id_city = $request->inputIdCity;
+      $pelayarans->postal = $request->inputPostal;
+      $pelayarans->telp = $request->inputTelp;
+      $pelayarans->fax = $request->inputFax;
+      $pelayarans->npwp = $request->inputNPWP;
+      $pelayarans->pkp_no = $request->inputPkp;
+      $pelayarans->desc_pelayaran = $request->inputPelayaranDesc;
+      $pelayarans->payment_term = $request->inputTOP;
+      $pelayarans->name_person = $request->inputPersonName;
+      $pelayarans->phone_person = $request->inputPersonEmail;
+      $pelayarans->email_person = $request->inputPersonPhone;
+      $pelayarans->fax_person = $request->inputPersonFax;
+      $pelayarans->created_at = date('Y-m-d H:i:s');
+      $pelayarans->save();
+
+      $pelayarans = Pelayaran::select('pelayaran.*','location.name_city','location.province_city')->leftjoin('location','location.id','=','pelayaran.id_city')->get();
+      $locations = Location::select('location.id as loc_id','location.code_city','location.name_city','location.province_city')->orderby('location.name_city')->get();
+
+      return view('admin/pelayaran', ['pelayarans'=> $pelayarans,'locations'=> $locations]);
     }
-    public function admin_vendor_truck()
+    public function admin_pelayaran_edit(Request $request)
     {
-      $vendor_trucks = VendorTruck::select('vendor_truck.*','trucking_type.name_trucking')->leftjoin('trucking_type','trucking_type.id','=','vendor_truck.id_truck_type')->get();
-      //dd($vendor_trucks);
-      return view('admin/vendor_truck', ['vendor_trucks'=> $vendor_trucks]);
+      //update Pelayaran
+      $pelayarans = Pelayaran::find($request->inputIdPelayaran);
+      $pelayarans->code_pelayaran = $request->inputPelayaranCode;
+      $pelayarans->name_pelayaran = $request->inputPelayaranName;
+      $pelayarans->alias = $request->inputAlias;
+      $pelayarans->address = $request->inputAddress;
+      $pelayarans->id_city = $request->inputIdCity;
+      $pelayarans->postal = $request->inputPostal;
+      $pelayarans->telp = $request->inputTelp;
+      $pelayarans->fax = $request->inputFax;
+      $pelayarans->npwp = $request->inputNPWP;
+      $pelayarans->pkp_no = $request->inputPkp;
+      $pelayarans->desc_pelayaran = $request->inputPelayaranDesc;
+      $pelayarans->payment_term = $request->inputTOP;
+      $pelayarans->name_person = $request->inputPersonName;
+      $pelayarans->phone_person = $request->inputPersonEmail;
+      $pelayarans->email_person = $request->inputPersonPhone;
+      $pelayarans->fax_person = $request->inputPersonFax;
+      $pelayarans->updated_at = date('Y-m-d H:i:s');
+      $pelayarans->save();
+
+      $pelayarans = Pelayaran::select('pelayaran.*','location.name_city','location.province_city')->leftjoin('location','location.id','=','pelayaran.id_city')->get();
+      $locations = Location::select('location.id as loc_id','location.code_city','location.name_city','location.province_city')->orderby('location.name_city')->get();
+
+      return view('admin/pelayaran', ['pelayarans'=> $pelayarans,'locations'=> $locations]);
     }
-    public function admin_trucking()
+    //Direct to Proses DeletePelayaran
+    public function admin_pelayaran_destroy(Request $request)
     {
-      $truckings = TruckingType::all();
-      //dd($truckings);
-      return view('admin/trucking', ['truckings'=> $truckings]);
+      $pelayarans = Pelayaran::find($request->inputIdPelayaran);
+      $pelayarans->delete();
+
+      $pelayarans = Pelayaran::select('pelayaran.*','location.name_city','location.province_city')->leftjoin('location','location.id','=','pelayaran.id_city')->get();
+      $locations = Location::select('location.id as loc_id','location.code_city','location.name_city','location.province_city')->orderby('location.name_city')->get();
+
+      return view('admin/pelayaran', ['pelayarans'=> $pelayarans,'locations'=> $locations]);
+    }
+    public function admin_tarif()
+    {
+      $tarifs = Tarif::select('tarif.*','location.name_city','location.province_city','pelayaran.code_pelayaran','pelayaran.name_pelayaran')->leftjoin('location','location.id','=','tarif.id_city')->leftjoin('pelayaran','pelayaran.id','=','tarif.pelayaran_id')->get();
+      $locations = Location::select('location.id as loc_id','location.code_city','location.name_city','location.province_city')->orderby('location.name_city')->get();
+      $pelayarans = Pelayaran::select('pelayaran.id as pel_id','pelayaran.code_pelayaran','pelayaran.name_pelayaran')->orderby('pelayaran.code_pelayaran')->get();
+
+      return view('admin/tarif', ['tarifs'=> $tarifs, 'pelayarans'=> $pelayarans, 'locations'=> $locations]);
+    }
+    public function admin_tarif_add(Request $request)
+    {
+      $tarifs = new Tarif;
+      $tarifs->pelayaran_id = $request->inputIdPelayaran;
+      $tarifs->id_city = $request->inputIdCity;
+      $tarifs->price = $request->inputPrice;
+      $tarifs->date = $request->inputDate1;
+      $tarifs->pic_pelayaran = $request->inputPIC;
+      $tarifs->last_price1 = $request->inputLastPrice1;
+      $tarifs->last_price2 = $request->inputLastPrice2;
+      $tarifs->last_price3 = $request->inputLastPrice3;
+      $tarifs->created_at = date('Y-m-d H:i:s');
+      $tarifs->save();
+
+      $tarifs = Tarif::select('tarif.*','location.name_city','location.province_city','pelayaran.code_pelayaran','pelayaran.name_pelayaran')->leftjoin('location','location.id','=','tarif.id_city')->leftjoin('pelayaran','pelayaran.id','=','tarif.pelayaran_id')->get();
+      $locations = Location::select('location.id as loc_id','location.code_city','location.name_city','location.province_city')->orderby('location.name_city')->get();
+      $pelayarans = Pelayaran::select('pelayaran.id as pel_id','pelayaran.code_pelayaran','pelayaran.name_pelayaran')->orderby('pelayaran.code_pelayaran')->get();
+
+      return view('admin/tarif', ['tarifs'=> $tarifs, 'pelayarans'=> $pelayarans, 'locations'=> $locations]);
+    }
+    public function admin_tarif_edit(Request $request)
+    {
+      //update Tarif
+      $tarifs = Tarif::find($request->inputIdTarif);
+      $tarifs->pelayaran_id = $request->inputIdPelayaran;
+      $tarifs->id_city = $request->inputIdCity;
+      $tarifs->price = $request->inputPrice;
+      $tarifs->date = $request->inputDate2;
+      $tarifs->pic_pelayaran = $request->inputPIC;
+      //check price previous
+      if ($request->inputPrice != $request->inputPrice_old){
+        $tarifs->last_price1 = $request->inputPrice_old;
+        $tarifs->last_price2 = $request->inputLastPrice1_old;
+        $tarifs->last_price3 = $request->inputLastPrice2_old;
+      }
+      $tarifs->created_at = date('Y-m-d H:i:s');
+      $tarifs->save();
+
+      $tarifs = Tarif::select('tarif.*','location.name_city','location.province_city','pelayaran.code_pelayaran','pelayaran.name_pelayaran')->leftjoin('location','location.id','=','tarif.id_city')->leftjoin('pelayaran','pelayaran.id','=','tarif.pelayaran_id')->get();
+      $locations = Location::select('location.id as loc_id','location.code_city','location.name_city','location.province_city')->orderby('location.name_city')->get();
+      $pelayarans = Pelayaran::select('pelayaran.id as pel_id','pelayaran.code_pelayaran','pelayaran.name_pelayaran')->orderby('pelayaran.code_pelayaran')->get();
+
+      return view('admin/tarif', ['tarifs'=> $tarifs, 'pelayarans'=> $pelayarans, 'locations'=> $locations]);
+    }
+    //Direct to Proses DeleteTarif
+    public function admin_tarif_destroy(Request $request)
+    {
+      $tarifs = Tarif::find($request->inputIdTarif);
+      $tarifs->delete();
+
+      $tarifs = Tarif::select('tarif.*','location.name_city','location.province_city','pelayaran.code_pelayaran','pelayaran.name_pelayaran')->leftjoin('location','location.id','=','tarif.id_city')->leftjoin('pelayaran','pelayaran.id','=','tarif.pelayaran_id')->get();
+      $locations = Location::select('location.id as loc_id','location.code_city','location.name_city','location.province_city')->orderby('location.name_city')->get();
+      $pelayarans = Pelayaran::select('pelayaran.id as pel_id','pelayaran.code_pelayaran','pelayaran.name_pelayaran')->orderby('pelayaran.code_pelayaran')->get();
+
+      return view('admin/tarif', ['tarifs'=> $tarifs, 'pelayarans'=> $pelayarans, 'locations'=> $locations]);
     }
     public function admin_consignee()
     {
       $consignees = Consignee::select('consignee.*','location.name_city','location.province_city')->leftjoin('location','location.id','=','consignee.id_city')->get();;
-      //dd($consignees);
-      return view('admin/consignee', ['consignees'=> $consignees]);
+      $locations = Location::select('location.id as loc_id','location.code_city','location.name_city','location.province_city')->orderby('location.name_city')->get();
+
+      return view('admin/consignee', ['consignees'=> $consignees,'locations'=> $locations]);
     }
-    public function admin_tarif()
+    public function admin_consignee_add(Request $request)
     {
-      $tarifs = Tarif::select('tarif.*','location.name_city','location.province_city','pelayaran.code_pelayaran','pelayaran.name_pelayaran')->leftjoin('location','location.id','=','tarif.id_city')->leftjoin('pelayaran','pelayaran.id','=','tarif.id_pelayaran')->get();;
-      //dd($tarifs);
-      return view('admin/tarif', ['tarifs'=> $tarifs]);
+      $consignees = new Consignee;
+      $consignees->code_consignee = $request->inputConsigneeCode;
+      $consignees->name_consignee = $request->inputConsigneeName;
+      $consignees->address_invoice = $request->inputAddressInvoice;
+      $consignees->address = $request->inputAddress;
+      $consignees->id_city = $request->inputIdCity;
+      $consignees->postal = $request->inputPostal;
+      $consignees->telp = $request->inputTelp;
+      $consignees->fax = $request->inputFax;
+      $consignees->npwp = $request->inputNPWP;
+      $consignees->pkp_no = $request->inputPkp;
+      $consignees->desc_consignee = $request->inputConsigneeDesc;
+      $consignees->payment_term = $request->inputTOP;
+      $consignees->name_person = $request->inputPersonName;
+      $consignees->phone_person = $request->inputPersonEmail;
+      $consignees->email_person = $request->inputPersonPhone;
+      $consignees->fax_person = $request->inputPersonFax;
+      $consignees->created_at = date('Y-m-d H:i:s');
+      $consignees->save();
+
+      $consignees = Consignee::select('consignee.*','location.name_city','location.province_city')->leftjoin('location','location.id','=','consignee.id_city')->get();;
+      $locations = Location::select('location.id as loc_id','location.code_city','location.name_city','location.province_city')->orderby('location.name_city')->get();
+
+      return view('admin/consignee', ['consignees'=> $consignees,'locations'=> $locations]);
+    }
+    public function admin_consignee_edit(Request $request)
+    {
+      //update Consignee
+      $consignees = Consignee::find($request->inputIdConsignee);
+      $consignees->code_consignee = $request->inputConsigneeCode;
+      $consignees->name_consignee = $request->inputConsigneeName;
+      $consignees->address_invoice = $request->inputAddressInvoice;
+      $consignees->address = $request->inputAddress;
+      $consignees->id_city = $request->inputIdCity;
+      $consignees->postal = $request->inputPostal;
+      $consignees->telp = $request->inputTelp;
+      $consignees->fax = $request->inputFax;
+      $consignees->npwp = $request->inputNPWP;
+      $consignees->pkp_no = $request->inputPkp;
+      $consignees->desc_consignee = $request->inputConsigneeDesc;
+      $consignees->payment_term = $request->inputTOP;
+      $consignees->name_person = $request->inputPersonName;
+      $consignees->phone_person = $request->inputPersonEmail;
+      $consignees->email_person = $request->inputPersonPhone;
+      $consignees->fax_person = $request->inputPersonFax;
+      $consignees->created_at = date('Y-m-d H:i:s');
+      $consignees->save();
+
+      $consignees = Consignee::select('consignee.*','location.name_city','location.province_city')->leftjoin('location','location.id','=','consignee.id_city')->get();;
+      $locations = Location::select('location.id as loc_id','location.code_city','location.name_city','location.province_city')->orderby('location.name_city')->get();
+
+      return view('admin/consignee', ['consignees'=> $consignees,'locations'=> $locations]);
+    }
+    //Direct to Proses DeleteConsignee
+    public function admin_consignee_destroy(Request $request)
+    {
+      $consignees = Consignee::find($request->inputIdConsignee);
+      $consignees->delete();
+
+      $consignees = Consignee::select('consignee.*','location.name_city','location.province_city')->leftjoin('location','location.id','=','consignee.id_city')->get();;
+      $locations = Location::select('location.id as loc_id','location.code_city','location.name_city','location.province_city')->orderby('location.name_city')->get();
+
+      return view('admin/consignee', ['consignees'=> $consignees,'locations'=> $locations]);
+    }
+    public function admin_trucking()
+    {
+      $truckings = TruckingType::all();
+      return view('admin/trucking', ['truckings'=> $truckings]);
+    }
+    public function admin_trucking_add(Request $request)
+    {
+      $truckings = new TruckingType;
+      $truckings->name_trucking = $request->inputTruckingName;
+      $truckings->created_at = date('Y-m-d H:i:s');
+      $truckings->save();
+
+      $truckings = TruckingType::all();
+      return view('admin/trucking', ['truckings'=> $truckings]);
+    }
+    public function admin_trucking_edit(Request $request)
+    {
+      //update Trucking
+      $truckings = TruckingType::find($request->inputIdTrucking);
+      $truckings->name_trucking = $request->inputTruckingName;
+      $truckings->created_at = date('Y-m-d H:i:s');
+      $truckings->save();
+
+      $truckings = TruckingType::all();
+      return view('admin/trucking', ['truckings'=> $truckings]);
+    }
+    //Direct to Proses DeleteTrucking
+    public function admin_trucking_destroy(Request $request)
+    {
+      $truckings = TruckingType::find($request->inputIdTrucking);
+      $truckings->delete();
+
+      $truckings = TruckingType::all();
+      return view('admin/trucking', ['truckings'=> $truckings]);
+    }
+    public function admin_vendor_truck()
+    {
+      $vendor_trucks = VendorTruck::select('vendor_truck.*','trucking_type.name_trucking')->leftjoin('trucking_type','trucking_type.id','=','vendor_truck.trucking_type_id')->get();
+      $truckings = TruckingType::select('trucking_type.id as trucking_id','trucking_type.name_trucking')->orderby('trucking_type.name_trucking')->get();
+
+      return view('admin/vendor_truck', ['vendor_trucks'=> $vendor_trucks,'truckings'=> $truckings]);
+    }
+    public function admin_vendor_truck_add(Request $request)
+    {
+      $vendor_trucks = new VendorTruck;
+      $vendor_trucks->code_vendor = $request->inputVendorCode;
+      $vendor_trucks->name_vendor = $request->inputVendorName;
+      $vendor_trucks->address = $request->inputAddress;
+      $vendor_trucks->telp = $request->inputTelp;
+      $vendor_trucks->payment_term = $request->inputTOP;
+      $vendor_trucks->trucking_type_id = $request->inputIdTruckingType;
+      $vendor_trucks->created_at = date('Y-m-d H:i:s');
+      $vendor_trucks->save();
+
+      $vendor_trucks = VendorTruck::select('vendor_truck.*','trucking_type.name_trucking')->leftjoin('trucking_type','trucking_type.id','=','vendor_truck.trucking_type_id')->get();
+      $truckings = TruckingType::select('trucking_type.id as trucking_id','trucking_type.name_trucking')->orderby('trucking_type.name_trucking')->get();
+
+      return view('admin/vendor_truck', ['vendor_trucks'=> $vendor_trucks,'truckings'=> $truckings]);
+    }
+    public function admin_vendor_truck_edit(Request $request)
+    {
+      //update VendorTruck
+      $vendor_trucks = VendorTruck::find($request->inputIdVendorTruck);
+      $vendor_trucks->code_vendor = $request->inputVendorCode;
+      $vendor_trucks->name_vendor = $request->inputVendorName;
+      $vendor_trucks->address = $request->inputAddress;
+      $vendor_trucks->telp = $request->inputTelp;
+      $vendor_trucks->payment_term = $request->inputTOP;
+      $vendor_trucks->trucking_type_id = $request->inputIdTruckingType;
+      $vendor_trucks->created_at = date('Y-m-d H:i:s');
+      $vendor_trucks->save();
+
+      $vendor_trucks = VendorTruck::select('vendor_truck.*','trucking_type.name_trucking')->leftjoin('trucking_type','trucking_type.id','=','vendor_truck.trucking_type_id')->get();
+      $truckings = TruckingType::select('trucking_type.id as trucking_id','trucking_type.name_trucking')->orderby('trucking_type.name_trucking')->get();
+
+      return view('admin/vendor_truck', ['vendor_trucks'=> $vendor_trucks,'truckings'=> $truckings]);
+    }
+    //Direct to Proses Delete VendorTruck
+    public function admin_vendor_truck_destroy(Request $request)
+    {
+      $vendor_trucks = VendorTruck::find($request->inputIdVendorTruck);
+      $vendor_trucks->delete();
+
+      $vendor_trucks = VendorTruck::select('vendor_truck.*','trucking_type.name_trucking')->leftjoin('trucking_type','trucking_type.id','=','vendor_truck.trucking_type_id')->get();
+      $truckings = TruckingType::select('trucking_type.id as trucking_id','trucking_type.name_trucking')->orderby('trucking_type.name_trucking')->get();
+
+      return view('admin/vendor_truck', ['vendor_trucks'=> $vendor_trucks,'truckings'=> $truckings]);
+    }
+    public function admin_location()
+    {
+      $locations = Location::all();
+
+      return view('admin/location', ['locations'=> $locations]);
+    }
+    public function admin_location_add(Request $request)
+    {
+      $locations = new Location;
+      $locations->code_city = $request->inputCityCode;
+      $locations->name_city = $request->inputCityName;
+      $locations->province_city = $request->inputProvince;
+      $locations->status_loading = $request->inputStatusLoading;
+      $locations->status_pelayaran = $request->inputStatusPelayaran;
+      $locations->created_at = date('Y-m-d H:i:s');
+      $locations->save();
+
+      $locations = Location::all();
+
+      return view('admin/location', ['locations'=> $locations]);
+    }
+    public function admin_location_edit(Request $request)
+    {
+      //update location
+      $locations = Location::find($request->inputIdLocation);
+      $locations->code_city = $request->inputCityCode;
+      $locations->name_city = $request->inputCityName;
+      $locations->province_city = $request->inputProvince;
+      $locations->status_loading = $request->inputStatusLoading;
+      $locations->status_pelayaran = $request->inputStatusPelayaran;
+      $locations->created_at = date('Y-m-d H:i:s');
+      $locations->save();
+
+      $locations = Location::all();
+
+      return view('admin/location', ['locations'=> $locations]);
+    }
+    //Direct to Proses Delete location
+    public function admin_location_destroy(Request $request)
+    {
+      $locations = Location::find($request->inputIdLocation);
+      $locations->delete();
+
+      $locations = Location::all();
+
+      return view('admin/location', ['locations'=> $locations]);
     }
 }

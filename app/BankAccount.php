@@ -12,4 +12,9 @@ class BankAccount extends Model
   protected $dates = ['deleted_at'];
 
   Public $timestamps = true; //created_at dan update_at digunakan
+
+  //relation with Agent table
+  public function Agent() {
+    return $this->belongsTo('App\Agent');
+  }
 }

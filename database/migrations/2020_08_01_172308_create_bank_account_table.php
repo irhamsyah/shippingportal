@@ -14,8 +14,7 @@ class CreateBankAccountTable extends Migration
     public function up()
     {
         Schema::create('bank_account', function (Blueprint $table) {
-          $table->id();
-          $table->integer('id_agent');
+          $table->id()->unsigned();
           $table->string('bank_name',50);
           $table->string('bank_account',50);
           $table->string('branch',50);
@@ -23,6 +22,12 @@ class CreateBankAccountTable extends Migration
           $table->longText('bank_address');
           $table->timestamps();
           $table->SoftDeletes();
+        });
+
+        Schema::table('bank_account', function($table)
+        {
+          $table->unsignedBigInteger('agent_id');
+          $table->foreign('agent_id')->references('id')->on('agent');
         });
     }
 
