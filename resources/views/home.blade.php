@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html  >
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
   <!-- Site made with Mobirise Website Builder v4.12.4, https://mobirise.com -->
   <meta charset="UTF-8">
@@ -52,7 +52,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav nav-dropdown" data-app-modern-menu="true">
               <li class="nav-item">
-                <a class="nav-link link text-black display-4" href="/#header7-1u"><span class="mbrib-extension mbr-iconfont mbr-iconfont-btn"></span>Tentang BAHTERA SETIA</a>
+                <a class="nav-link link text-black display-4" href="/#header7-1u"><span class="mbrib-extension mbr-iconfont mbr-iconfont-btn"></span>Tentang</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link link text-black display-4" href="/service.html"><span class="mbrib-delivery mbr-iconfont mbr-iconfont-btn"></span>Layanan</a>
@@ -62,6 +62,12 @@
               </li>
               <li class="nav-item">
                 <a class="nav-link link text-black display-4" href="/news.html"><span class="mbri-paper-plane mbr-iconfont mbr-iconfont-btn"></span>Berita</a>
+              </li>
+              <li class="nav-item">
+                <div class="nav-link link display-4" style="display: inline-flex;">
+                  <a class="{{ app()->getLocale() == 'en' ? 'active' : '' }}" href="{{ route('localization.switch', 'en') }}">EN</a>
+                  <a class="{{ app()->getLocale() == 'id' ? 'active' : '' }}" href="{{ route('localization.switch', 'id') }}">ID</a>
+                </div>
               </li>
             </ul>
             <div class="navbar-buttons mbr-section-btn"><a class="btn btn-sm btn-primary display-4" href="https://wa.me/6281333110886"><span class="socicon socicon-whatsapp mbr-iconfont mbr-iconfont-btn"></span>Live Chat</a></div>
@@ -81,10 +87,10 @@
 
             <div class="media-content align-right">
                 <h1 class="mbr-section-title mbr-white pb-3 mbr-fonts-style display-1">
-                    Siapa kami</h1>
+                    {{ __('home.about_title') }}</h1>
                 <div class="mbr-section-text mbr-white pb-3">
                     <p class="mbr-text mbr-fonts-style display-5">
-                        PT. Bahtera Setia merupakan perusahaan yang bergerak di bidang jasa muat dan bongkar di pelabuhan Gresik untuk menunjang kegiatan perusahaan Pelayaran Nasional</p>
+                      {{ __('home.about_desc') }}</p>
                 </div>
 
             </div>
@@ -162,9 +168,9 @@
 
 
     <div class="container">
-        <h2 class="mbr-section-title pb-3 align-center mbr-fonts-style display-2">Mengapa BAHTERA SETIA adalah pilihan yang TEPAT bagi Anda?</h2>
+        <h2 class="mbr-section-title pb-3 align-center mbr-fonts-style display-2">{{ __('home.service_title') }}</h2>
         <h3 class="mbr-section-subtitle display-5 align-center mbr-fonts-style">
-            Kepuasan anda adalah tanggungjawab kami.
+            {{ __('home.service_slogan') }}
         </h3>
 
         <div class="media-container-row container pt-5 mt-2">
@@ -175,9 +181,9 @@
                         <img src="assets/images/8-512x600.jpg" alt="Mobirise" title="">
                     </div>
                     <div class="card_back card_cont">
-                        <h4 class="card-title display-5 py-2 mbr-fonts-style">HARGA YANG KOMPETITIF</h4>
+                        <h4 class="card-title display-5 py-2 mbr-fonts-style">{{ __('home.service_detail_title1') }}</h4>
                         <p class="mbr-text mbr-fonts-style display-7">
-                            BAHTERA SETIA menawarkan harga yang kompetitif dengan layanan jasa yang beragam.</p>
+                            {{ __('home.service_detail_desc1') }}</p>
                     </div>
                 </div>
             </div>
@@ -190,9 +196,9 @@
                     </div>
                     <div class="card_back card_cont">
                         <h4 class="card-title py-2 mbr-fonts-style display-5">
-                            REAL TIME TRACKING&nbsp;</h4>
+                            {{ __('home.service_detail_title2') }}</h4>
                         <p class="mbr-text mbr-fonts-style display-7">
-                            BAHTERA SETIA memberikan kemudahan dalam melakukan monitoring pengiriman cargo setiap saat kapanpun dan dimanapun.</p>
+                            {{ __('home.service_detail_desc2') }}</p>
                     </div>
                 </div>
             </div>
@@ -204,9 +210,9 @@
                     </div>
                     <div class="card_back card_cont">
                         <h4 class="card-title py-2 mbr-fonts-style display-5">
-                            SERVICE EXELENT</h4>
+                            {{ __('home.service_detail_title3') }}</h4>
                         <p class="mbr-text mbr-fonts-style display-7">
-                            BAHTERA SETIA selalu ingin melayani anda kapanpun anda butuhkan.
+                            {{ __('home.service_detail_desc3') }}
                         </p>
                     </div>
                 </div>
@@ -219,8 +225,9 @@
                     </div>
                     <div class="card_back card_cont">
                         <h4 class="card-title py-2 mbr-fonts-style display-5">
-                            KEPASITAN JADWAL &amp; JARINGAN LUAS</h4>
-                        <p class="mbr-text mbr-fonts-style display-7">BAHTERA SETIA memiliki banyak cabang dan pilihan rute yang bervariasi.</p>
+                            {{ __('home.service_detail_title4') }}</h4>
+                        <p class="mbr-text mbr-fonts-style display-7">
+                          {{ __('home.service_detail_desc4') }}</p>
                     </div>
                 </div>
             </div>
@@ -316,8 +323,8 @@
             <div class="media-container-row">
                 <div class="col-12 align-center">
                     <h2 class="mbr-section-title pb-3 mbr-fonts-style display-2">
-                        Klien Kami</h2>
-                    <h3 class="mbr-section-subtitle mbr-light mbr-fonts-style display-5">Kami memiliki lebih dari 20 klien perusahaan</h3>
+                        {{ __('home.klien_title') }}</h2>
+                    <h3 class="mbr-section-subtitle mbr-light mbr-fonts-style display-5">{{ __('home.klien_info') }}</h3>
                 </div>
             </div>
         </div>
@@ -481,6 +488,7 @@
   <script src="{{'assets/tether/tether.min.j'}}s"></script>
   <script src="{{'assets/theme/js/script.js'}}"></script>
   <script src="{{'assets/slidervideo/script.js'}}"></script>
+
 
 
 </body>

@@ -16,10 +16,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('home');
 });
+Route::get('lang/{language}', 'LocalizationController@switch')->name('localization.switch');
 Route::get('/tracking.html', function () {
     return view('page_tracking');
 });
-
 Route::get('/service.html', 'FrontendController@service');
 Route::get('/contact.html', 'FrontendController@contact');
 Route::get('/news.html', 'FrontendController@news');
