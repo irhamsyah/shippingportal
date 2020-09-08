@@ -13,17 +13,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 //Frontend Page
-Route::get('/', function () {
-    return view('home');
-});
-Route::get('lang/{language}', 'LocalizationController@switch')->name('localization.switch');
-Route::get('/tracking.html', function () {
-    return view('page_tracking');
-});
+Route::get('/', 'FrontendController@index');
+Route::get('/tracking.html', 'FrontendController@tracking');
 Route::get('/service.html', 'FrontendController@service');
 Route::get('/contact.html', 'FrontendController@contact');
 Route::get('/news.html', 'FrontendController@news');
 Route::get('/news_detail.html/{id}', 'FrontendController@news_detail');
+
+//set multilingual Frontend Page
+Route::get('lang/{language}', 'LocalizationController@switch')->name('localization.switch');
 
 //Admin Page
 Auth::routes(['verify'=>true]);

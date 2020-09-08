@@ -76,8 +76,37 @@
 </section>
 
 <section class="carousel slide cid-s4m4lPuCAG" data-interval="false" id="slider1-5">
-
-    <div class="full-screen"><div class="mbr-slider slide carousel" data-keyboard="false" data-ride="carousel" data-interval="3000" data-pause="true"><ol class="carousel-indicators"><li data-app-prevent-settings="" data-target="#slider1-5" data-slide-to="0"></li><li data-app-prevent-settings="" data-target="#slider1-5" class=" active" data-slide-to="1"></li><li data-app-prevent-settings="" data-target="#slider1-5" data-slide-to="2"></li><li data-app-prevent-settings="" data-target="#slider1-5" data-slide-to="3"></li><li data-app-prevent-settings="" data-target="#slider1-5" data-slide-to="4"></li><li data-app-prevent-settings="" data-target="#slider1-5" data-slide-to="5"></li><li data-app-prevent-settings="" data-target="#slider1-5" data-slide-to="6"></li><li data-app-prevent-settings="" data-target="#slider1-5" data-slide-to="7"></li></ol><div class="carousel-inner" role="listbox"><div class="carousel-item slider-fullscreen-image" data-bg-video-slide="false" style="background-image: url(assets/images/whatsapp-image-2020-08-06-at-17.25.47-1280x725.jpg);"><div class="container container-slide"><div class="image_wrapper"><img src="assets/images/whatsapp-image-2020-08-06-at-17.25.47-1280x725.jpg" alt="" title=""><div class="carousel-caption justify-content-center"><div class="col-10 align-right"></div></div></div></div></div><div class="carousel-item slider-fullscreen-image active" data-bg-video-slide="false" style="background-image: url(assets/images/whatsapp-image-2020-08-06-at-17.25.46-1-1173x782.jpg);"><div class="container container-slide"><div class="image_wrapper"><img src="assets/images/whatsapp-image-2020-08-06-at-17.25.46-1-1173x782.jpg" alt="" title=""><div class="carousel-caption justify-content-center"><div class="col-10 align-center"></div></div></div></div></div><div class="carousel-item slider-fullscreen-image" data-bg-video-slide="false" style="background-image: url(assets/images/whatsapp-image-2020-08-06-at-17.25.45-1-1072x790.jpg);"><div class="container container-slide"><div class="image_wrapper"><img src="assets/images/whatsapp-image-2020-08-06-at-17.25.45-1-1072x790.jpg" alt="" title=""><div class="carousel-caption justify-content-center"><div class="col-10 align-right"></div></div></div></div></div><div class="carousel-item slider-fullscreen-image" data-bg-video-slide="false" style="background-image: url(assets/images/whatsapp-image-2020-08-06-at-17.25.47-1-1044x783.jpg);"><div class="container container-slide"><div class="image_wrapper"><img src="assets/images/whatsapp-image-2020-08-06-at-17.25.47-1-1044x783.jpg" alt="" title=""><div class="carousel-caption justify-content-center"><div class="col-10 align-right"></div></div></div></div></div><div class="carousel-item slider-fullscreen-image" data-bg-video-slide="false" style="background-image: url(assets/images/whatsapp-image-2020-08-06-at-17.25.44-1-1111x790.jpg);"><div class="container container-slide"><div class="image_wrapper"><img src="assets/images/whatsapp-image-2020-08-06-at-17.25.44-1-1111x790.jpg" alt="" title=""><div class="carousel-caption justify-content-center"><div class="col-10 align-right"></div></div></div></div></div><div class="carousel-item slider-fullscreen-image" data-bg-video-slide="false" style="background-image: url(assets/images/whatsapp-image-2020-08-06-at-17.25.44-1280x665.jpg);"><div class="container container-slide"><div class="image_wrapper"><img src="assets/images/whatsapp-image-2020-08-06-at-17.25.44-1280x665.jpg" alt="" title=""><div class="carousel-caption justify-content-center"><div class="col-10 align-right"></div></div></div></div></div><div class="carousel-item slider-fullscreen-image" data-bg-video-slide="false" style="background-image: url(assets/images/whatsapp-image-2020-08-06-at-17.25.43-1-1077x807.jpg);"><div class="container container-slide"><div class="image_wrapper"><img src="assets/images/whatsapp-image-2020-08-06-at-17.25.43-1-1077x807.jpg" alt="" title=""><div class="carousel-caption justify-content-center"><div class="col-10 align-right"></div></div></div></div></div><div class="carousel-item slider-fullscreen-image" data-bg-video-slide="false" style="background-image: url(assets/images/whatsapp-image-2020-08-06-at-17.25.43-1280x635.jpg);"><div class="container container-slide"><div class="image_wrapper"><img src="assets/images/whatsapp-image-2020-08-06-at-17.25.43-1280x635.jpg" alt="" title=""><div class="carousel-caption justify-content-center"><div class="col-10 align-right"></div></div></div></div></div></div><a data-app-prevent-settings="" class="carousel-control carousel-control-prev" role="button" data-slide="prev" href="#slider1-5"><span aria-hidden="true" class="mbri-left mbr-iconfont"></span><span class="sr-only">Previous</span></a><a data-app-prevent-settings="" class="carousel-control carousel-control-next" role="button" data-slide="next" href="#slider1-5"><span aria-hidden="true" class="mbri-right mbr-iconfont"></span><span class="sr-only">Next</span></a></div></div>
+    <div class="full-screen">
+      <div class="mbr-slider slide carousel" data-keyboard="false" data-ride="carousel" data-interval="3000" data-pause="true">
+        <div class="carousel-inner" role="listbox">
+          @foreach($sliders as $index => $slider)
+          <div class="carousel-item slider-fullscreen-image @if($slider->id == 1) {{ 'active' }} @endif" data-bg-video-slide="false" style="background-image: url({{ asset('img/slider/'.$slider->img_title) }});">
+            <div class="container container-slide">
+              <div class="image_wrapper">
+                <img src="{{ asset('img/slider/'.$slider->img_title) }}" alt="" title="">
+                <div class="carousel-caption justify-content-center">
+                  <div class="col-10 align-right"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          @endforeach
+        </div>
+        <ol class="carousel-indicators">
+          @for ($i = 0; $i <= $index; $i++)
+              <li data-app-prevent-settings="" data-target="#slider1-5" data-slide-to="{{ $i }}"></li>
+          @endfor
+        </ol>
+        <a data-app-prevent-settings="" class="carousel-control carousel-control-prev" role="button" data-slide="prev" href="#slider1-5">
+          <span aria-hidden="true" class="mbri-left mbr-iconfont"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a data-app-prevent-settings="" class="carousel-control carousel-control-next" role="button" data-slide="next" href="#slider1-5">
+          <span aria-hidden="true" class="mbri-right mbr-iconfont"></span>
+          <span class="sr-only">Next</span>
+        </a>
+      </div>
+    </div>
 
 </section>
 
@@ -104,48 +133,22 @@
 <section class="features2 cid-s9lXoGMl5l" id="features2-1v">
     <div class="container">
         <div class="media-container-row">
+          @foreach($newss as $index => $news)
             <div class="card p-3 col-12 col-md-6 col-lg-4">
                 <div class="card-wrapper">
                     <div class="card-img">
-                        <img src="assets/images/bongkar-muat-pelabuhan-gresik-turun-m-85744-300x200.jpg" alt="Mobirise" title="">
+                        <img src="{{ asset('img/news/'.$news->img_title) }}" alt="Mobirise" title="">
                     </div>
                     <div class="card-box">
-                        <h4 class="card-title pb-3 mbr-fonts-style display-7">Bongkar Muat Pelabuhan Gresik Turun</h4>
+                        <h4 class="card-title pb-3 mbr-fonts-style display-7">{!! $news->title !!}</h4>
                         <p class="mbr-text mbr-fonts-style display-7">
-                            Arus bongkar muat di Pelabuhan Gresik mengalami penurunan selama Semester I/2018. Akibatnya.&nbsp;<a href="news_detail.html/3">Selengkapnya...</a>
+                            {!! substr($news->text,0,250) !!}
+                            <a href="news_detail.html/{{ $news->news_id }}"><br>Selengkapnya...</a>
                         </p>
                     </div>
                 </div>
             </div>
-
-            <div class="card p-3 col-12 col-md-6 col-lg-4">
-                <div class="card-wrapper">
-                    <div class="card-img">
-                        <img src="assets/images/41429-pelabuhan-gresik-jawa-timur-492x276.jpg" alt="Mobirise" title="">
-                    </div>
-                    <div class="card-box ">
-                        <h4 class="card-title pb-3 mbr-fonts-style display-7">Mulai 26 April, Pelabuhan Gresik Tutup Pelayanan Angkutan Orang</h4>
-                        <p class="mbr-text mbr-fonts-style display-7">
-                            Kantor Kesyahbandaran dan Otoritas Pelabuhan (KSOP) Kelas II Gresik akhirnya menutup semua. <a href="news_detail.html/2">Selengkapnya...</a>
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="card p-3 col-12 col-md-6 col-lg-4">
-                <div class="card-wrapper">
-                    <div class="card-img">
-                        <img src="assets/images/1642194903-492x328.jpg" alt="Mobirise" title="">
-                    </div>
-                    <div class="card-box">
-                        <h4 class="card-title pb-3 mbr-fonts-style display-7">Polisi Amankan 3 Pencuri Truk Trailer, 2 Pelaku Ditembak
-</h4>
-                        <p class="mbr-text mbr-fonts-style display-7">Sindikat pencuri kendaraan panjang atau biasa dikenal dengan sebutan truk trailer di wilayah Gresik.&nbsp;<a href="news_detail.html/1">Selengkapnya...</a>
-                        </p>
-                    </div>
-                </div>
-            </div>
-
+            @endforeach
 
         </div>
     </div>
@@ -156,7 +159,8 @@
         <div class="inner-container" style="width: 100%;">
             <hr class="line" style="width: 25%;">
             <div class="section-text align-center mbr-fonts-style display-5">
-                    View All News</div>
+              <a href="news.html">View All News</a>
+            </div>
             <hr class="line" style="width: 25%;">
         </div>
         </div>
@@ -238,66 +242,23 @@
     <div class="container text-center">
         <div class="carousel slide" role="listbox" data-pause="true" data-keyboard="false" data-ride="carousel" data-interval="5000">
             <div class="carousel-inner">
-            <div class="carousel-item">
-                    <div class="user col-md-8">
-                        <div class="user_image">
-                            <img src="assets/images/bp5ae2s20181119-81050-400x300.jpeg" alt="" title="">
-                        </div>
-                        <div class="user_text pb-3">
-                            <p class="mbr-fonts-style display-7">Kami telah bekerjasama dengan PT. BAHTERA SETIA selama kurang lebih 24 tahun, dan saya salut dengan pelayanan yang diberikan oleh PT. BAHTERA SETIA karena kesigapannya merespon. juga memiliki banyak rute dan yang terpenting saya bisa memonitor pengiriman saya kapanpun dan dimanapun jadi lebih tenang. Semoga kedepan PT. BAHTERA SETIA semakin maju
-                            </p>
-                        </div>
-                        <div class="user_name mbr-bold pb-2 mbr-fonts-style display-7">
-                            Fahmi Akbar Pasetya</div>
-                        <div class="user_desk mbr-light mbr-fonts-style display-7">
-                            Direktur Utama PNM</div>
-                    </div>
+              @foreach($testimonis as $index => $testimoni)
+              <div class="carousel-item">
+                <div class="user col-md-8">
+                  <div class="user_image">
+                      <img src="{{ asset('img/testimoni/'.$testimoni->img_testimoni) }}" alt="" title="">
+                  </div>
+                  <div class="user_text pb-3">
+                      <p class="mbr-fonts-style display-7">{{ $testimoni->testimoni }}</p>
+                  </div>
+                  <div class="user_name mbr-bold pb-2 mbr-fonts-style display-7">
+                      {{ $testimoni->name }}</div>
+                  <div class="user_desk mbr-light mbr-fonts-style display-7">
+                      {{ $testimoni->position }}</div>
+                  </div>
                 </div>
-                <div class="carousel-item">
-                    <div class="user col-md-8">
-                        <div class="user_image">
-                            <img src="assets/images/bp5ae2s20181119-81050-400x300.jpeg" alt="" title="">
-                        </div>
-                        <div class="user_text pb-3">
-                            <p class="mbr-fonts-style display-7">Kami telah bekerjasama dengan PT. BAHTERA SETIA selama kurang lebih 24 tahun, dan saya salut dengan pelayanan yang diberikan oleh PT. BAHTERA SETIA karena kesigapannya merespon. juga memiliki banyak rute dan yang terpenting saya bisa memonitor pengiriman saya kapanpun dan dimanapun jadi lebih tenang. Semoga kedepan PT. BAHTERA SETIA semakin maju
-                            </p>
-                        </div>
-                        <div class="user_name mbr-bold pb-2 mbr-fonts-style display-7">
-                            Fahmi Akbar Pasetya</div>
-                        <div class="user_desk mbr-light mbr-fonts-style display-7">
-                            Direktur Utama PNM</div>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <div class="user col-md-8">
-                        <div class="user_image">
-                            <img src="assets/images/bp5ae2s20181119-81050-400x300.jpeg" alt="" title="">
-                        </div>
-                        <div class="user_text pb-3">
-                            <p class="mbr-fonts-style display-7">Kami telah bekerjasama dengan PT. BAHTERA SETIA selama kurang lebih 24 tahun, dan saya salut dengan pelayanan yang diberikan oleh PT. BAHTERA SETIA karena kesigapannya merespon. juga memiliki banyak rute dan yang terpenting saya bisa memonitor pengiriman saya kapanpun dan dimanapun jadi lebih tenang. Semoga kedepan PT. BAHTERA SETIA semakin maju
-                            </p>
-                        </div>
-                        <div class="user_name mbr-bold pb-2 mbr-fonts-style display-7">
-                            Fahmi Akbar Pasetya</div>
-                        <div class="user_desk mbr-light mbr-fonts-style display-7">
-                            Direktur Utama PNM</div>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <div class="user col-md-8">
-                        <div class="user_image">
-                            <img src="assets/images/bp5ae2s20181119-81050-400x300.jpeg" alt="" title="">
-                        </div>
-                        <div class="user_text pb-3">
-                            <p class="mbr-fonts-style display-7">Kami telah bekerjasama dengan PT. BAHTERA SETIA selama kurang lebih 24 tahun, dan saya salut dengan pelayanan yang diberikan oleh PT. BAHTERA SETIA karena kesigapannya merespon. juga memiliki banyak rute dan yang terpenting saya bisa memonitor pengiriman saya kapanpun dan dimanapun jadi lebih tenang. Semoga kedepan PT. BAHTERA SETIA semakin maju
-                            </p>
-                        </div>
-                        <div class="user_name mbr-bold pb-2 mbr-fonts-style display-7">
-                            Fahmi Akbar Pasetya</div>
-                        <div class="user_desk mbr-light mbr-fonts-style display-7">
-                            Direktur Utama PNM</div>
-                    </div>
-                </div></div>
+                @endforeach
+              </div>
 
             <div class="carousel-controls">
                 <a class="carousel-control-prev" role="button" data-slide="prev">
