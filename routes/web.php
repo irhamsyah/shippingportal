@@ -90,3 +90,13 @@ Route::get('/adm_location', 'HomeController@admin_location');
 Route::post('/adm_location', 'HomeController@admin_location_add');
 Route::put('/adm_location', 'HomeController@admin_location_edit');
 Route::delete('/adm_location', 'HomeController@admin_location_destroy');
+
+Route::get('/adm_slider', 'HomeController@admin_slider');
+Route::post('/adm_slider', 'HomeController@admin_slider_add');
+Route::put('/adm_slider', 'HomeController@admin_slider_edit');
+Route::delete('/adm_slider', 'HomeController@admin_slider_destroy');
+
+Route::get('/adm_testimoni', 'HomeController@admin_testimoni');
+Route::post('/adm_testimoni', 'HomeController@admin_testimoni_add');
+Route::put('/adm_testimoni', 'HomeController@admin_testimoni_edit');
+Route::delete('/adm_testimoni', 'HomeController@admin_testimoni_destroy');

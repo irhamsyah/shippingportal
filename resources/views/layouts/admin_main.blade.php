@@ -2,7 +2,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Shipping Portal</title>
+  <title>BAHTERA SETIA</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Font Awesome -->
@@ -44,7 +44,7 @@
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="#" class="nav-link">Shipping Portal</a>
+        <a href="#" class="nav-link">Bahtera Setia Group</a>
       </li>
     </ul>
 
@@ -63,7 +63,7 @@
               <img src="{{ asset('dist/img/user2-160x160.jpg') }}" alt="User Avatar" class="img-size-50 mr-3 img-circle">
               <div class="media-body">
                 <h3 class="dropdown-item-title">
-                  {{ 'Andy Bastian' }}
+                  {{ Auth::user()->name }}
                 </h3>
                 <p class="text-sm">{{ 'Call me whenever you can...' }}</p>
                 <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> {{ '4 Hours Ago' }}</p>
@@ -72,7 +72,7 @@
             <!-- Message End -->
           </a>
           <div class="dropdown-divider"></div>
-            <a href="/reset" class="dropdown-item dropdown-footer">Change Password</a>
+            <a href="/password/reset" class="dropdown-item dropdown-footer">Change Password</a>
           <div class="dropdown-divider"></div>
             <a href="{{ route('logout') }}" class="dropdown-item dropdown-footer" onclick="event.preventDefault();
             document.getElementById('logout-form').submit();">Logout</a>
@@ -87,7 +87,7 @@
     <a href="/" class="brand-link">
       <img src="{{ asset('img/logo-coba-white-150x108.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
            style="opacity: .8">
-      <span class="brand-text font-weight-light">Shipping Portal</span>
+      <span class="brand-text font-weight-light">Bahtera Setia</span>
     </a>
 
 
@@ -99,7 +99,7 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item has-treeview menu-open">
-            <a href="/adm_tracking" class="nav-link active">
+            <a href="/adm_tracking" class="nav-link">
               <i class="nav-icon fa fa-ship"></i>
               <p>
                 List Tracking
@@ -199,6 +199,29 @@
               </li>
             </ul>
           </li>
+          <li class="nav-item has-treeview menu-open">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fa fa-cog"></i>
+              <p>
+                Frontend Customize
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="/adm_slider" class="nav-link">
+                <i class="fa fa-image nav-icon"></i>
+                <p>Slider Home</p>
+              </a>
+            </li>
+              <li class="nav-item">
+                <a href="/adm_testimoni" class="nav-link">
+                  <i class="far fa-comment nav-icon"></i>
+                  <p>Testimoni</p>
+                </a>
+              </li>
+            </ul>
+          </li>
           <!-- <li class="nav-item has-treeview menu-open">
             <a href="#" class="nav-link">
               <i class="nav-icon fa fa-shopping-bag"></i>
@@ -242,7 +265,7 @@
   @yield('content')
 
   <footer class="main-footer">
-    <strong>Copyright &copy; 2020 <a href="#">Shipping Portal</a>.</strong>
+    <strong>Copyright &copy; 2020 <a href="#">Bahtera Setia Group</a>.</strong>
     All rights reserved.
     <div class="float-right d-none d-sm-inline-block">
       <b>Version</b> 1.0.0
@@ -258,7 +281,7 @@
 <!-- ./wrapper -->
 
 <!-- jQuery -->
-<script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>
+<script src="{{ asset('plugins/jQuery/jquery.min.js') }}"></script>
 <!-- jQuery UI 1.11.4 -->
 <script src="{{ asset('plugins/jquery-ui/jquery-ui.min.js') }}"></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
@@ -611,6 +634,29 @@
       $(e.currentTarget).find('select[name="inputStatusLoading"]').val(statusloading);
       $(e.currentTarget).find('select[name="inputStatusPelayaran"]').val(statuspelayaran);
     });
+
+    $('#modal-edit-slider').on('show.bs.modal', function(e) {
+      var SliderId = $(e.relatedTarget).data('id');
+      var img_title = $(e.relatedTarget).data('img_title');
+
+      $(e.currentTarget).find('input[name="inputImgOld"]').val(img_title);
+      $(e.currentTarget).find('input[name="inputIdSlider"]').val(SliderId);
+    });
+
+    $('#modal-edit-testimoni').on('show.bs.modal', function(e) {
+      var TestimoniId = $(e.relatedTarget).data('id');
+      var img_testimoni = $(e.relatedTarget).data('img_testimoni');
+      var name = $(e.relatedTarget).data('name');
+      var position = $(e.relatedTarget).data('position');
+      var testimoni = $(e.relatedTarget).data('testimoni');
+
+      CKEDITOR.instances['inputText1'].setData(testimoni);
+      $(e.currentTarget).find('input[name="inputName"]').val(name);
+      $(e.currentTarget).find('input[name="inputPosition"]').val(position);
+      $(e.currentTarget).find('input[name="inputImgOld"]').val(img_testimoni);
+      $(e.currentTarget).find('input[name="inputIdTestimoni"]').val(TestimoniId);
+    });
+
 </script>
 </body>
 </html>

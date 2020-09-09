@@ -249,7 +249,7 @@
                       <img src="{{ asset('img/testimoni/'.$testimoni->img_testimoni) }}" alt="" title="">
                   </div>
                   <div class="user_text pb-3">
-                      <p class="mbr-fonts-style display-7">{{ $testimoni->testimoni }}</p>
+                      <p class="mbr-fonts-style display-7">{!! $testimoni->testimoni !!}</p>
                   </div>
                   <div class="user_name mbr-bold pb-2 mbr-fonts-style display-7">
                       {{ $testimoni->name }}</div>

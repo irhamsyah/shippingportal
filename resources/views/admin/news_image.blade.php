@@ -52,6 +52,7 @@
                             <i class="fas fa-trash" aria-hidden="true" style="color:#000;"></i>
                          </button>
                          <input type="hidden" name="inputIdNewsImg" value="{{ $news_image->id_image }}" class="form-control">
+                         <input type="hidden" name="inputImgOld" value="{{ $news_image->img }}" class="form-control">
                          <input type="hidden" name="_method" value="DELETE"/>
                          @csrf
                       </form>
