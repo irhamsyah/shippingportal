@@ -16,6 +16,8 @@ use App\Pelayaran;
 use App\Tarif;
 use App\TruckingType;
 use App\VendorTruck;
+use App\Testimoni;
+use App\Slider;
 
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Builder;
@@ -31,6 +33,19 @@ use PDF;
 
 class FrontendController extends Controller
 {
+  public function index(){
+    $testimonis = Testimoni::all();
+
+    $sliders = Slider::all();
+
+    $newss = News::select('news.id as news_id','news.title','news.text','news.img_title','news.id_user','news.news_category_id','news_category.name as category_name','users.name as user_name')
+    ->leftJoin('news_category', 'news_category.id', '=', 'news.news_category_id')
+    ->leftjoin('users', 'users.id', '=', 'news.id_user')
+    ->orderBy('news.id','desc')->limit(3)->get();
+
+    return view('home', ['sliders'=> $sliders,'testimonis'=> $testimonis,'newss'=> $newss]);
+  }
+  public function tracking(){ return view('page_tracking'); }
   public function service(){ return view('page_service'); }
   public function contact(){ return view('page_contact'); }
 

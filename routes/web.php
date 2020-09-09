@@ -13,17 +13,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 //Frontend Page
-Route::get('/', function () {
-    return view('home');
-});
-Route::get('/tracking.html', function () {
-    return view('page_tracking');
-});
-
+Route::get('/', 'FrontendController@index');
+Route::get('/tracking.html', 'FrontendController@tracking');
 Route::get('/service.html', 'FrontendController@service');
 Route::get('/contact.html', 'FrontendController@contact');
 Route::get('/news.html', 'FrontendController@news');
 Route::get('/news_detail.html/{id}', 'FrontendController@news_detail');
+
+//set multilingual Frontend Page
+Route::get('lang/{language}', 'LocalizationController@switch')->name('localization.switch');
 
 //Admin Page
 Auth::routes(['verify'=>true]);
@@ -92,3 +90,13 @@ Route::get('/adm_location', 'HomeController@admin_location');
 Route::post('/adm_location', 'HomeController@admin_location_add');
 Route::put('/adm_location', 'HomeController@admin_location_edit');
 Route::delete('/adm_location', 'HomeController@admin_location_destroy');
+
+Route::get('/adm_slider', 'HomeController@admin_slider');
+Route::post('/adm_slider', 'HomeController@admin_slider_add');
+Route::put('/adm_slider', 'HomeController@admin_slider_edit');
+Route::delete('/adm_slider', 'HomeController@admin_slider_destroy');
+
+Route::get('/adm_testimoni', 'HomeController@admin_testimoni');
+Route::post('/adm_testimoni', 'HomeController@admin_testimoni_add');
+Route::put('/adm_testimoni', 'HomeController@admin_testimoni_edit');
+Route::delete('/adm_testimoni', 'HomeController@admin_testimoni_destroy');

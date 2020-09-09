@@ -48,7 +48,7 @@
                             data-id_category="{{ $news->news_category_id }}"
                             data-img_title="{{ $news->img_title }}">
                           <i class="fas fa-pencil-alt" aria-hidden="true"></i>
-                        </a>{{ $news->category_id }}
+                        </a>
                       </div>
                       <div class="col-6">
                         <form action="/adm_news" method="post" onclick="return confirm('Apakah anda yakin akan menghapus data ini?')">
@@ -56,6 +56,7 @@
                               <i class="fas fa-trash" aria-hidden="true" style="color:#000;"></i>
                            </button>
                            <input type="hidden" name="inputIdNews" value="{{ $news->news_id }}" class="form-control">
+                           <input type="hidden" name="inputImgOld" value="{{ $news->img_title }}" class="form-control">
                            <input type="hidden" name="_method" value="DELETE"/>
                            @csrf
                         </form>
