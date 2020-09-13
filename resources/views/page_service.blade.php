@@ -12,7 +12,7 @@
                 <div class="card-wrapper ">
                     <div class="card-img">
                         <div class="mbr-overlay"></div>
-                        <div class="mbr-section-btn text-center"><a href="/contact.html" class="btn btn-primary display-4">PESAN SEKARANG</a></div>
+                        <div class="mbr-section-btn text-center"><a href="/contact" class="btn btn-primary display-4">PESAN SEKARANG</a></div>
                         <img src="assets/images/background1.jpg" alt="Mobirise">
                     </div>
                     <div class="card-box">
@@ -27,7 +27,7 @@
                 <div class="card-wrapper">
                     <div class="card-img">
                         <div class="mbr-overlay"></div>
-                        <div class="mbr-section-btn text-center"><a href="/contact.html" class="btn btn-primary display-4">PESAN SEKARANG</a></div>
+                        <div class="mbr-section-btn text-center"><a href="/contact" class="btn btn-primary display-4">PESAN SEKARANG</a></div>
                         <img src="assets/images/background2.jpg" alt="Mobirise">
                     </div>
                     <div class="card-box">
@@ -49,7 +49,7 @@
               <div class="card-wrapper ">
                   <div class="card-img">
                       <div class="mbr-overlay"></div>
-                      <div class="mbr-section-btn text-center"><a href="/contact.html" class="btn btn-primary display-4">PESAN SEKARANG</a></div>
+                      <div class="mbr-section-btn text-center"><a href="/contact" class="btn btn-primary display-4">PESAN SEKARANG</a></div>
                       <img src="assets/images/background1.jpg" alt="Mobirise">
                   </div>
                   <div class="card-box">
@@ -62,7 +62,7 @@
               <div class="card-wrapper">
                   <div class="card-img">
                       <div class="mbr-overlay"></div>
-                      <div class="mbr-section-btn text-center"><a href="/contact.html" class="btn btn-primary display-4">PESAN SEKARANG</a></div>
+                      <div class="mbr-section-btn text-center"><a href="/contact" class="btn btn-primary display-4">PESAN SEKARANG</a></div>
                       <img src="assets/images/background2.jpg" alt="Mobirise">
                   </div>
                   <div class="card-box">
@@ -84,7 +84,7 @@
               <div class="card-wrapper ">
                   <div class="card-img">
                       <div class="mbr-overlay"></div>
-                      <div class="mbr-section-btn text-center"><a href="/contact.html" class="btn btn-primary display-4">PESAN SEKARANG</a></div>
+                      <div class="mbr-section-btn text-center"><a href="/contact" class="btn btn-primary display-4">PESAN SEKARANG</a></div>
                       <img src="assets/images/background1.jpg" alt="Mobirise">
                   </div>
                   <div class="card-box">
@@ -98,7 +98,7 @@
               <div class="card-wrapper">
                   <div class="card-img">
                       <div class="mbr-overlay"></div>
-                      <div class="mbr-section-btn text-center"><a href="/contact.html" class="btn btn-primary display-4">PESAN SEKARANG</a></div>
+                      <div class="mbr-section-btn text-center"><a href="/contact" class="btn btn-primary display-4">PESAN SEKARANG</a></div>
                       <img src="assets/images/background2.jpg" alt="Mobirise">
                   </div>
                   <div class="card-box">

@@ -55,13 +55,13 @@
                 <a class="nav-link link text-black display-4" href="/#header7-1u"><span class="mbrib-extension mbr-iconfont mbr-iconfont-btn"></span>Tentang BAHTERA SETIA</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link link text-black display-4" href="/service.html"><span class="mbrib-delivery mbr-iconfont mbr-iconfont-btn"></span>Layanan</a>
+                <a class="nav-link link text-black display-4" href="/service"><span class="mbrib-delivery mbr-iconfont mbr-iconfont-btn"></span>Layanan</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link link text-black display-4" href="/tracking.html"><span class="mbrib-search mbr-iconfont mbr-iconfont-btn"></span>Lacak Kargo</a>
+                <a class="nav-link link text-black display-4" href="/tracking"><span class="mbrib-search mbr-iconfont mbr-iconfont-btn"></span>Lacak Kargo</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link link text-black display-4" href="/news.html"><span class="mbri-paper-plane mbr-iconfont mbr-iconfont-btn"></span>Berita</a>
+                <a class="nav-link link text-black display-4" href="/news"><span class="mbri-paper-plane mbr-iconfont mbr-iconfont-btn"></span>Berita</a>
               </li>
             </ul>
             <div class="navbar-buttons mbr-section-btn"><a class="btn btn-sm btn-primary display-4" href="https://wa.me/6281333110886"><span class="socicon socicon-whatsapp mbr-iconfont mbr-iconfont-btn"></span>Live Chat</a></div>

@@ -4,7 +4,7 @@
 <section class="services2 cid-s9mwWFLG0H" id="services2">
   <!--Container-->
   <div class="container">
-    @foreach($newss1 as $index => $news)
+    @foreach($newss as $index => $news)
       <div class="col-md-12">
           <div class="media-container-row">
               <div class="mbr-figure">

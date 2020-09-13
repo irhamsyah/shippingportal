@@ -55,13 +55,13 @@
                 <a class="nav-link link text-black display-4" href="/#header7-1u"><span class="mbrib-extension mbr-iconfont mbr-iconfont-btn"></span>Tentang</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link link text-black display-4" href="/service.html"><span class="mbrib-delivery mbr-iconfont mbr-iconfont-btn"></span>Layanan</a>
+                <a class="nav-link link text-black display-4" href="/service"><span class="mbrib-delivery mbr-iconfont mbr-iconfont-btn"></span>Layanan</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link link text-black display-4" href="/tracking.html"><span class="mbrib-search mbr-iconfont mbr-iconfont-btn"></span>Lacak Kargo</a>
+                <a class="nav-link link text-black display-4" href="/tracking"><span class="mbrib-search mbr-iconfont mbr-iconfont-btn"></span>Lacak Kargo</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link link text-black display-4" href="/news.html"><span class="mbri-paper-plane mbr-iconfont mbr-iconfont-btn"></span>Berita</a>
+                <a class="nav-link link text-black display-4" href="/news"><span class="mbri-paper-plane mbr-iconfont mbr-iconfont-btn"></span>Berita</a>
               </li>
               <li class="nav-item">
                 <div class="nav-link link display-4" style="display: inline-flex;">
@@ -143,7 +143,7 @@
                         <h4 class="card-title pb-3 mbr-fonts-style display-7">{!! $news->title !!}</h4>
                         <p class="mbr-text mbr-fonts-style display-7">
                             {!! substr($news->text,0,250) !!}
-                            <a href="news_detail.html/{{ $news->news_id }}"><br>Selengkapnya...</a>
+                            <a href="news_detail/{{ $news->news_id }}"><br>Selengkapnya...</a>
                         </p>
                     </div>
                 </div>

@@ -17,7 +17,7 @@
                       <p class="mbr-text text1 pt-2 mbr-light mbr-fonts-style display-7">{!! substr($news->text,0,250) !!}</p>
                   </div>
                   <!--Btn-->
-                  <div class="mbr-section-btn pt-3 align-left"><a href="news_detail.html/{{ $news->news_id }}" class="btn btn-warning-outline display-4">
+                  <div class="mbr-section-btn pt-3 align-left"><a href="news_detail/{{ $news->news_id }}" class="btn btn-warning-outline display-4">
                           Selengkapnya</a></div>
               </div>
           </div>
