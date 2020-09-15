@@ -79,6 +79,9 @@
     <div class="full-screen">
       <div class="mbr-slider slide carousel" data-keyboard="false" data-ride="carousel" data-interval="3000" data-pause="true">
         <div class="carousel-inner" role="listbox">
+            <?php 
+                $index=0;
+            ?>
           @foreach($sliders as $index => $slider)
           <div class="carousel-item slider-fullscreen-image @if($slider->id == 1) {{ 'active' }} @endif" data-bg-video-slide="false" style="background-image: url({{ asset('img/slider/'.$slider->img_title) }});">
             <div class="container container-slide">
@@ -93,7 +96,7 @@
           @endforeach
         </div>
         <ol class="carousel-indicators">
-          @for ($i = 0; $i <= $index; $i++)
+          @for ($i = 0; $i<=$index; $i++)
               <li data-app-prevent-settings="" data-target="#slider1-5" data-slide-to="{{ $i }}"></li>
           @endfor
         </ol>
