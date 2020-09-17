@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Users;
 use App\Testimoni;
 use App\Slider;
+use App\Service;
 
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Builder;
@@ -202,9 +203,91 @@ class HomeController extends Controller
       //delete file image from directory
       unlink($_SERVER['DOCUMENT_ROOT'].'/img/testimoni/'.$request->inputImgOld);
 
-      //get data Testimoni
+      //get data Service
       $testimonis = Testimoni::all();
 
       return view('admin/testimoni', ['testimonis'=> $testimonis]);
+    }
+    //Direct to Service page
+    public function admin_service()
+    {
+      //get data Service
+      $services = Service::all();
+
+      return view('admin/service', ['services'=> $services]);
+    }
+    public function admin_service_add(Request $request)
+    {
+      //cek validasi image
+        $this->validate($request, [
+          'inputImage' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+      ]);
+      //upload image to directory
+      if ($request->hasFile('inputImage')) {
+          $image = $request->file('inputImage');
+          $name = time().'.'.$image->getClientOriginalExtension();
+          $destinationPath = public_path('/img/service');
+          $image->move($destinationPath, $name);
+      }
+      //input new service
+      $services = new Service;
+      $services->title = $request->inputTitle;
+      $services->detail = $request->inputTitle1;
+      $services->img_title = $name;
+      $services->id_user = $request->inputIdUser;
+      $services->created_at = date('Y-m-d H:i:s');
+      $services->save();
+
+      //get data Service
+      $services = Service::all();
+
+      return view('admin/service', ['services'=> $services]);
+    }
+    public function admin_service_edit(Request $request)
+    {
+      if ($request->inputImage!="" OR $request->inputImage!=NULL){
+        //cek validasi image
+        $this->validate($request, [
+            'inputImage' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+        //upload image to directory
+        if ($request->hasFile('inputImage')) {
+            $image = $request->file('inputImage');
+            $name = time().'.'.$image->getClientOriginalExtension();
+            $destinationPath = public_path('/img/service');
+            $image->move($destinationPath, $name);
+            //delete file image from directory
+            unlink($_SERVER['DOCUMENT_ROOT'].'/img/service/'.$request->inputImgOld);
+        }
+      }else {
+        $name = $request->inputImgOld;
+      }
+      //update Testimoni
+      $services = Service::find($request->inputIdService);
+      $services->title = $request->inputTitle;
+      $services->detail = $request->inputText1;
+      $services->img_title = $name;
+      $services->id_user = $request->inputIdUser;
+      $services->created_at = date('Y-m-d H:i:s');
+      $services->save();
+
+      //get data Service
+      $services = Service::all();
+
+      return view('admin/service', ['services'=> $services]);
+    }
+    //Direct to Proses Delete service
+    public function admin_service_destroy(Request $request)
+    {
+      $services = Service::find($request->inputIdService);
+      $services->delete();
+
+      //delete file image from directory
+      unlink($_SERVER['DOCUMENT_ROOT'].'/img/service/'.$request->inputImgOld);
+
+      //get data Service
+      $services = Service::all();
+
+      return view('admin/service', ['services'=> $services]);
     }
 }

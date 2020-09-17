@@ -101,3 +101,8 @@ Route::get('/adm_testimoni', 'HomeController@admin_testimoni');
 Route::post('/adm_testimoni', 'HomeController@admin_testimoni_add');
 Route::put('/adm_testimoni', 'HomeController@admin_testimoni_edit');
 Route::delete('/adm_testimoni', 'HomeController@admin_testimoni_destroy');
+
+Route::get('/adm_service', 'HomeController@admin_service');
+Route::post('/adm_service', 'HomeController@admin_service_add');
+Route::put('/adm_service', 'HomeController@admin_service_edit');
+Route::delete('/adm_service', 'HomeController@admin_service_destroy');

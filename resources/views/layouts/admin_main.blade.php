@@ -98,7 +98,7 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-          <li class="nav-item has-treeview menu-open">
+          <li class="nav-item has-treeview menu-close">
             <a href="/adm_tracking" class="nav-link">
               <i class="nav-icon fa fa-ship"></i>
               <p>
@@ -106,7 +106,7 @@
               </p>
             </a>
           </li>
-          <li class="nav-item has-treeview menu-open">
+          <li class="nav-item has-treeview menu-close">
             <a href="#" class="nav-link">
               <i class="nav-icon fa fa-database"></i>
               <p>
@@ -170,7 +170,7 @@
               </li>
             </ul>
           </li>
-          <li class="nav-item has-treeview menu-open">
+          <li class="nav-item has-treeview menu-close">
             <a href="#" class="nav-link">
               <i class="nav-icon fa fa-newspaper"></i>
               <p>
@@ -199,7 +199,7 @@
               </li>
             </ul>
           </li>
-          <li class="nav-item has-treeview menu-open">
+          <li class="nav-item has-treeview menu-close">
             <a href="#" class="nav-link">
               <i class="nav-icon fa fa-cog"></i>
               <p>
@@ -208,16 +208,22 @@
               </p>
             </a>
             <ul class="nav nav-treeview">
-            <li class="nav-item">
-              <a href="/adm_slider" class="nav-link">
-                <i class="fa fa-image nav-icon"></i>
-                <p>Slider Home</p>
-              </a>
-            </li>
+              <li class="nav-item">
+                <a href="/adm_slider" class="nav-link">
+                  <i class="fa fa-image nav-icon"></i>
+                  <p>Slider Home</p>
+                </a>
+              </li>
               <li class="nav-item">
                 <a href="/adm_testimoni" class="nav-link">
                   <i class="far fa-comment nav-icon"></i>
                   <p>Testimoni</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/adm_service" class="nav-link">
+                  <i class="fa fa-cog nav-icon"></i>
+                  <p>Service</p>
                 </a>
               </li>
             </ul>
@@ -655,6 +661,18 @@
       $(e.currentTarget).find('input[name="inputPosition"]').val(position);
       $(e.currentTarget).find('input[name="inputImgOld"]').val(img_testimoni);
       $(e.currentTarget).find('input[name="inputIdTestimoni"]').val(TestimoniId);
+    });
+
+    $('#modal-edit-service').on('show.bs.modal', function(e) {
+      var ServiceId = $(e.relatedTarget).data('id');
+      var img_title = $(e.relatedTarget).data('img_title');
+      var title = $(e.relatedTarget).data('title');
+      var detail = $(e.relatedTarget).data('detail');
+
+      CKEDITOR.instances['inputText1'].setData(detail);
+      $(e.currentTarget).find('input[name="inputTitle"]').val(title);
+      $(e.currentTarget).find('input[name="inputImgOld"]').val(img_title);
+      $(e.currentTarget).find('input[name="inputIdService"]').val(ServiceId);
     });
 
 </script>

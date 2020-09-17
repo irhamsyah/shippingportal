@@ -18,6 +18,7 @@ use App\TruckingType;
 use App\VendorTruck;
 use App\Testimoni;
 use App\Slider;
+use App\Service;
 
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Builder;
@@ -45,9 +46,13 @@ class FrontendController extends Controller
 
     return view('home', ['sliders'=> $sliders,'testimonis'=> $testimonis,'newss'=> $newss]);
   }
-  public function tracking(){ return view('page_tracking'); }
-  public function service(){ return view('page_service'); }
+  public function service(){
+    $services = Service::all();
+
+    return view('page_service', ['services'=> $services]);
+  }
   public function contact(){ return view('page_contact'); }
+  public function tracking(){ return view('page_tracking'); }
 
   public function news()
   {
