@@ -23,4 +23,9 @@ return [
     'service_detail_desc4' => 'BAHTERA SETIA has many branches and various route options.',
     'klien_title' => 'Our Client',
     'klien_info' => 'We have more than 20 corporate clients',
+    'menu_tentang' => 'About',
+    'menu_layanan' => 'Service',
+    'menu_lacak' => 'Track & Trace',
+    'menu_berita' => 'News',
+    'selengkapnya' => 'Continues...',
 ];

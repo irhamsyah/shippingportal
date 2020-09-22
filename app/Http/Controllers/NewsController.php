@@ -55,7 +55,7 @@ class NewsController extends Controller
 
     public function admin_news()
     {
-      $newss = News::select('news.id as news_id','news.title','news.text','news.img_title','news.id_user','news.news_category_id','news_category.name as category_name','users.name as user_name')
+      $newss = News::select('news.id as news_id','news.title','news.text','news.img_title','news.location','news.id_user','news.news_category_id','news_category.name as category_name','users.name as user_name')
       ->leftJoin('news_category', 'news_category.id', '=', 'news.news_category_id')
       ->leftjoin('users', 'users.id', '=', 'news.id_user')
       ->orderBy('news.created_at','desc')->get();
@@ -84,11 +84,12 @@ class NewsController extends Controller
       $newss->text = $request->inputText2;
       $newss->img_title = $name;
       $newss->news_category_id = $request->inputIdCategory;
+      $newss->location = $request->inputLanguage;
       $newss->id_user = $request->inputIdUser;
       $newss->created_at = date('Y-m-d H:i:s');
       $newss->save();
 
-      $newss = News::select('news.id as news_id','news.title','news.text','news.img_title','news.id_user','news.news_category_id','news_category.name as category_name','users.name as user_name')
+      $newss = News::select('news.id as news_id','news.title','news.text','news.img_title','news.location','news.id_user','news.news_category_id','news_category.name as category_name','users.name as user_name')
       ->leftJoin('news_category', 'news_category.id', '=', 'news.news_category_id')
       ->leftjoin('users', 'users.id', '=', 'news.id_user')
       ->orderBy('news.created_at','desc')->get();
@@ -124,11 +125,12 @@ class NewsController extends Controller
       $newss->text = $request->inputText1;
       $newss->img_title = $name;
       $newss->news_category_id = $request->inputIdCategory;
+      $newss->location = $request->inputLanguage;
       $newss->id_user = $request->inputIdUser;
       $newss->created_at = date('Y-m-d H:i:s');
       $newss->save();
 
-      $newss = News::select('news.id as news_id','news.title','news.text','news.img_title','news.id_user','news.news_category_id','news_category.name as category_name','users.name as user_name')
+      $newss = News::select('news.id as news_id','news.title','news.text','news.img_title','news.location','news.id_user','news.news_category_id','news_category.name as category_name','users.name as user_name')
       ->leftJoin('news_category', 'news_category.id', '=', 'news.news_category_id')
       ->leftjoin('users', 'users.id', '=', 'news.id_user')
       ->orderBy('news.created_at','desc')->get();
@@ -146,7 +148,7 @@ class NewsController extends Controller
       //delete file image from directory
       unlink($_SERVER['DOCUMENT_ROOT'].'/img/news/'.$request->inputImgOld);
 
-      $newss = News::select('news.id as news_id','news.title','news.text','news.img_title','news.id_user','news.news_category_id','news_category.name as category_name','users.name as user_name')
+      $newss = News::select('news.id as news_id','news.title','news.text','news.img_title','news.location','news.id_user','news.news_category_id','news_category.name as category_name','users.name as user_name')
       ->leftJoin('news_category', 'news_category.id', '=', 'news.news_category_id')
       ->leftjoin('users', 'users.id', '=', 'news.id_user')
       ->orderBy('news.created_at','desc')->get();

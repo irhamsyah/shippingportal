@@ -23,6 +23,11 @@ return [
     'service_detail_desc4' => 'BAHTERA SETIA memiliki banyak cabang dan pilihan rute yang bervariasi.',
     'klien_title' => 'Klien Kami',
     'klien_info' => 'Kami memiliki lebih dari 20 klien perusahaan',
+    'menu_tentang' => 'Tentang',
+    'menu_layanan' => 'Layanan',
+    'menu_lacak' => 'Lacak Kargo',
+    'menu_berita' => 'Berita',
+    'selengkapnya' => 'Selengkapnya...',
 
 
 ];

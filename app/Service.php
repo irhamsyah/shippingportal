@@ -10,7 +10,7 @@ class Service extends Model
 {
   protected $table ='service';
   protected $fillable = [
-      'title', 'detail', 'img_title', 'id_user', 'created_at', 'updated_at', 'deleted_at'
+      'title', 'detail_id', 'detail_en', 'img_title', 'id_user', 'created_at', 'updated_at', 'deleted_at'
   ];
   protected $dates = ['deleted_at'];
   protected $softCascade = ['Service'];

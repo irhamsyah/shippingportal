@@ -17,7 +17,7 @@
         <div class="row justify-content-center">
             <div class="media-container-column col-lg-8" data-form-type="formoid">
                 <!---Formbuilder Form--->
-                <form action="/contact.html" method="POST" class="mbr-form form-with-styler" data-form-title="Mobirise Form"><input type="hidden" name="email" data-form-email="true" value="DPqZRTuZN7AsJo+awwTjdlILuegF+2KwyO3tud5du//BK3/IpJMpvGPAApP5MSGSIZoVi6dvOmb5NwPthqeD0b3DzGfcvBu2PnGLHEuKvgvxmvcNxXK/ON0gVQAkUxP8">
+                <form action="/contact" method="POST" class="mbr-form form-with-styler" data-form-title="Mobirise Form"><input type="hidden" name="email" data-form-email="true" value="DPqZRTuZN7AsJo+awwTjdlILuegF+2KwyO3tud5du//BK3/IpJMpvGPAApP5MSGSIZoVi6dvOmb5NwPthqeD0b3DzGfcvBu2PnGLHEuKvgvxmvcNxXK/ON0gVQAkUxP8">
                     <div class="row">
                         <div hidden="hidden" data-form-alert="" class="alert alert-success col-12">Terimakasih, Form Pesanan anda segera kami proses</div>
                         <div hidden="hidden" data-form-alert-danger="" class="alert alert-danger col-12">

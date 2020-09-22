@@ -22,7 +22,8 @@
               <thead>
                 <th>No</th>
                 <th>Title</th>
-                <th>Detail</th>
+                <th>Detail ID</th>
+                <th>Detail EN</th>
                 <th>Image</th>
                 <th>Action</th>
               </thead>
@@ -31,7 +32,8 @@
                 <tr>
                   <td>{{ $index+1 }}</td>
                   <td>{{ $service->title }}</td>
-                  <td>{!! $service->detail !!}</td>
+                  <td>{!! $service->detail_id !!}</td>
+                  <td>{!! $service->detail_en !!}</td>
                   <td><img src="{{ asset('/img/service/'.$service->img_title) }}" style="max-height:100px;"/></td>
                   <td>
                     <div class="row">
@@ -40,7 +42,8 @@
                             data-toggle="modal" data-target="#modal-edit-service"
                             data-id="{{ $service->id }}"
                             data-title="{{ $service->title }}"
-                            data-detail="{{ $service->detail }}"
+                            data-detailid="{{ $service->detail_id }}"
+                            data-detailen="{{ $service->detail_en }}"
                             data-img_title="{{ $service->img_title }}">
                           <i class="fas fa-pencil-alt" aria-hidden="true"></i>
                         </a>
@@ -65,7 +68,8 @@
               <tr>
                 <th>No</th>
                 <th>Title</th>
-                <th>Detail</th>
+                <th>Detail ID</th>
+                <th>Detail EN</th>
                 <th>Image</th>
                 <th>Action</th>
               </tr>
@@ -107,8 +111,12 @@
               </div>
             </div>
             <div class="form-group">
-              <label for="inputText1">Detail</label>
+              <label for="inputText1">Detail ID</label>
               <textarea id="inputText1" name="inputText1"></textarea>
+            </div>
+            <div class="form-group">
+              <label for="inputTitle1">Detail EN</label>
+              <textarea id="inputTitle1" name="inputTitle1"></textarea>
             </div>
             <div class="form-group">
               <input type="hidden" name="inputImgOld" class="form-control">
@@ -155,8 +163,12 @@
               </div>
             </div>
             <div class="form-group">
-              <label for="inputTitle1">Detail</label>
-              <textarea id="inputTitle1" name="inputTitle1"></textarea>
+              <label for="inputText2">Detail ID</label>
+              <textarea id="inputText2" name="inputText2"></textarea>
+            </div>
+            <div class="form-group">
+              <label for="inputTitle2">Detail EN</label>
+              <textarea id="inputTitle2" name="inputTitle2"></textarea>
             </div>
             <div class="form-group">
               <input type="hidden" name="inputIdUser" value="{{ Auth::user()->id }}" class="form-control">

@@ -39,12 +39,19 @@ class FrontendController extends Controller
 
     $sliders = Slider::all();
 
-    $newss = News::select('news.id as news_id','news.title','news.text','news.img_title','news.id_user','news.news_category_id','news_category.name as category_name','users.name as user_name')
+    $newss_id = News::select('news.id as news_id','news.title','news.text','news.img_title','news.id_user','news.news_category_id','news_category.name as category_name','users.name as user_name')
     ->leftJoin('news_category', 'news_category.id', '=', 'news.news_category_id')
     ->leftjoin('users', 'users.id', '=', 'news.id_user')
+    ->where('location','id')
     ->orderBy('news.id','desc')->limit(3)->get();
 
-    return view('home', ['sliders'=> $sliders,'testimonis'=> $testimonis,'newss'=> $newss]);
+    $newss_en = News::select('news.id as news_id','news.title','news.text','news.img_title','news.id_user','news.news_category_id','news_category.name as category_name','users.name as user_name')
+    ->leftJoin('news_category', 'news_category.id', '=', 'news.news_category_id')
+    ->leftjoin('users', 'users.id', '=', 'news.id_user')
+    ->where('location','en')
+    ->orderBy('news.id','desc')->limit(3)->get();
+
+    return view('home', ['sliders'=> $sliders,'testimonis'=> $testimonis,'newss_id'=> $newss_id,'newss_en'=> $newss_en]);
   }
   public function service(){
     $services = Service::all();
@@ -67,12 +74,19 @@ class FrontendController extends Controller
    ->leftjoin('users', 'users.id', '=', 'news.id_user')
    ->orderBy('news.id','desc')->limit(1)->get();
 
-   $newss1 = News::select('news.id as news_id','news.title','news.text','news.img_title','news.id_user','news.news_category_id','news_category.name as category_name','users.name as user_name')
+   $newss_en = News::select('news.id as news_id','news.title','news.text','news.img_title','news.id_user','news.news_category_id','news_category.name as category_name','users.name as user_name')
    ->leftJoin('news_category', 'news_category.id', '=', 'news.news_category_id')
    ->leftjoin('users', 'users.id', '=', 'news.id_user')
+   ->where('location','en')
+   ->orderBy('news.id','desc')->get();
+
+   $newss_id = News::select('news.id as news_id','news.title','news.text','news.img_title','news.id_user','news.news_category_id','news_category.name as category_name','users.name as user_name')
+   ->leftJoin('news_category', 'news_category.id', '=', 'news.news_category_id')
+   ->leftjoin('users', 'users.id', '=', 'news.id_user')
+   ->where('location','id')
    ->orderBy('news.id','desc')->get();
    //dd($newss);
-   return view('page_news', ['newss3'=> $newss3,'newss1'=> $newss1,'newss2'=> $newss2]);
+   return view('page_news', ['newss3'=> $newss3,'newss2'=> $newss2,'newss_en'=> $newss_en,'newss_id'=> $newss_id]);
   }
 
   public function news_detail(Request $request)

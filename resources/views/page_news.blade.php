@@ -5,7 +5,13 @@
 <section class="services2 cid-s9mwecmIlZ" id="services2">
   <!--Container-->
   <div class="container">
-    @foreach($newss2 as $index => $news)
+    <?php
+      $loc=app()->getLocale();
+      //check locatization
+      if($loc=='en'){$newss=$newss_en;}else{$newss=$newss_id;}
+    ?>
+
+    @foreach($newss as $index => $news)
       <div class="col-md-12" style="margin-bottom:30px;">
           <div class="media-container-row">
               <div class="mbr-figure" style="width: 50%;">
@@ -18,7 +24,7 @@
                   </div>
                   <!--Btn-->
                   <div class="mbr-section-btn pt-3 align-left"><a href="news_detail/{{ $news->news_id }}" class="btn btn-warning-outline display-4">
-                          Selengkapnya</a></div>
+                          {{ __('home.selengkapnya') }}</a></div>
               </div>
           </div>
       </div>
@@ -62,7 +68,7 @@
             <div class="title col-12">
                 <h2 class="align-left mbr-fonts-style m-0 display-1">Kilas berita maritim</h2>
             </div>
-            @foreach($newss1 as $index => $news)
+            @foreach($newss_id as $index => $news)
             <div class="card col-12 pb-5">
                 <div class="card-wrapper media-container-row media-container-row">
                     <div class="card-box">

@@ -232,7 +232,8 @@ class HomeController extends Controller
       //input new service
       $services = new Service;
       $services->title = $request->inputTitle;
-      $services->detail = $request->inputTitle1;
+      $services->detail_id = $request->inputText2;
+      $services->detail_en = $request->inputTitle2;
       $services->img_title = $name;
       $services->id_user = $request->inputIdUser;
       $services->created_at = date('Y-m-d H:i:s');
@@ -265,7 +266,8 @@ class HomeController extends Controller
       //update Testimoni
       $services = Service::find($request->inputIdService);
       $services->title = $request->inputTitle;
-      $services->detail = $request->inputText1;
+      $services->detail_id = $request->inputText1;
+      $services->detail_en = $request->inputTitle1;
       $services->img_title = $name;
       $services->id_user = $request->inputIdUser;
       $services->created_at = date('Y-m-d H:i:s');

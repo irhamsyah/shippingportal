@@ -52,16 +52,16 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav nav-dropdown" data-app-modern-menu="true">
               <li class="nav-item">
-                <a class="nav-link link text-black display-4" href="/#header7-1u"><span class="mbrib-extension mbr-iconfont mbr-iconfont-btn"></span>Tentang</a>
+                <a class="nav-link link text-black display-4" href="/#header7-1u"><span class="mbrib-extension mbr-iconfont mbr-iconfont-btn"></span>{{ __('home.menu_tentang') }}</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link link text-black display-4" href="/service"><span class="mbrib-delivery mbr-iconfont mbr-iconfont-btn"></span>Layanan</a>
+                <a class="nav-link link text-black display-4" href="/service"><span class="mbrib-delivery mbr-iconfont mbr-iconfont-btn"></span>{{ __('home.menu_layanan') }}</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link link text-black display-4" href="/tracking"><span class="mbrib-search mbr-iconfont mbr-iconfont-btn"></span>Lacak Kargo</a>
+                <a class="nav-link link text-black display-4" href="/tracking"><span class="mbrib-search mbr-iconfont mbr-iconfont-btn"></span>{{ __('home.menu_lacak') }}</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link link text-black display-4" href="/news"><span class="mbri-paper-plane mbr-iconfont mbr-iconfont-btn"></span>Berita</a>
+                <a class="nav-link link text-black display-4" href="/news"><span class="mbri-paper-plane mbr-iconfont mbr-iconfont-btn"></span>{{ __('home.menu_berita') }}</a>
               </li>
               <li class="nav-item">
                 <div class="nav-link link display-4" style="display: inline-flex;">
@@ -79,7 +79,7 @@
     <div class="full-screen">
       <div class="mbr-slider slide carousel" data-keyboard="false" data-ride="carousel" data-interval="3000" data-pause="true">
         <div class="carousel-inner" role="listbox">
-            <?php 
+            <?php
                 $index=0;
             ?>
           @foreach($sliders as $index => $slider)
@@ -136,6 +136,12 @@
 <section class="features2 cid-s9lXoGMl5l" id="features2-1v">
     <div class="container">
         <div class="media-container-row">
+          <?php
+            $loc=app()->getLocale();
+            //check locatization
+            if($loc=='en'){$newss=$newss_en;}else{$newss=$newss_id;}
+          ?>
+
           @foreach($newss as $index => $news)
             <div class="card p-3 col-12 col-md-6 col-lg-4">
                 <div class="card-wrapper">
@@ -146,15 +152,15 @@
                         <h4 class="card-title pb-3 mbr-fonts-style display-7">{!! $news->title !!}</h4>
                         <p class="mbr-text mbr-fonts-style display-7">
                             {!! substr($news->text,0,250) !!}
-                            <a href="news_detail/{{ $news->news_id }}"><br>Selengkapnya...</a>
+                            <a href="news_detail/{{ $news->news_id }}"><br>{{ __('home.selengkapnya') }}</a>
                         </p>
                     </div>
                 </div>
             </div>
             @endforeach
-
         </div>
     </div>
+
 </section>
 
 <section class="mbr-section article content9 cid-s9lXT37Lf2" id="content9-1x">
@@ -162,7 +168,7 @@
         <div class="inner-container" style="width: 100%;">
             <hr class="line" style="width: 25%;">
             <div class="section-text align-center mbr-fonts-style display-5">
-              <a href="news.html">View All News</a>
+              <a href="news">View All News</a>
             </div>
             <hr class="line" style="width: 25%;">
         </div>
@@ -170,9 +176,6 @@
 </section>
 
 <section class="features15 cid-s9lXIX2lfZ" id="features15-1w">
-
-
-
 
     <div class="container">
         <h2 class="mbr-section-title pb-3 align-center mbr-fonts-style display-2">{{ __('home.service_title') }}</h2>

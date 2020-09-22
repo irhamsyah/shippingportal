@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Controller;
+
 use Illuminate\Http\Request;
 
 class LocalizationController extends Controller
@@ -20,5 +22,5 @@ class LocalizationController extends Controller
 
       // Arahkan ke halaman sebelumnya.
       return redirect()->back();
-  }
+    }
 }

@@ -25,6 +25,7 @@
                 <th>Text</th>
                 <th>Image</th>
                 <th>Category</th>
+                <th>Language</th>
                 <th>User</th>
                 <th>Action</th>
               </thead>
@@ -36,6 +37,7 @@
                   <td>{!! $news->text !!}</td>
                   <td><img src="{{ asset('/img/news/'.$news->img_title) }}" style="max-width:100px;max-height:100px;"/></td>
                   <td>{{ $news->category_name }}</td>
+                  <td>{{ $news->location }}</td>
                   <td>{{ $news->user_name }}</td>
                   <td>
                     <div class="row">
@@ -46,6 +48,7 @@
                             data-title="{{ $news->title }}"
                             data-text="{{ $news->text }}"
                             data-id_category="{{ $news->news_category_id }}"
+                            data-location="{{ $news->location }}"
                             data-img_title="{{ $news->img_title }}">
                           <i class="fas fa-pencil-alt" aria-hidden="true"></i>
                         </a>
@@ -73,6 +76,7 @@
                 <th>Text</th>
                 <th>Image</th>
                 <th>Category</th>
+                <th>Language</th>
                 <th>User</th>
                 <th>Action</th>
               </tr>
@@ -108,7 +112,7 @@
             </div>
             <div class="form-group">
               <div class="row">
-                <div class="col-6">
+                <div class="col-4">
                   <label for="inputIdCategory">Select Category</label>
                   <select class="form-control" name="inputIdCategory">
                     @foreach($news_categorys as $news_category)
@@ -116,12 +120,19 @@
                     @endforeach
                   </select>
                 </div>
-                <div class="col-6">
+                <div class="col-4">
                 <label for="inputImage">Upload Image</label>
                   <div class="custom-file">
                     <input type="file" class="custom-file-input" name="inputImage" id="inputImage">
                     <label class="custom-file-label" for="inputImage">Choose Image</label>
                   </div>
+                </div>
+                <div class="col-4">
+                  <label for="inputLanguage">Select Language</label>
+                  <select class="form-control" name="inputLanguage">
+                    <option value="id">Indonesia</option>
+                    <option value="en">Inggris</option>
+                  </select>
                 </div>
               </div>
             </div>
@@ -164,7 +175,7 @@
             </div>
             <div class="form-group">
               <div class="row">
-                <div class="col-6">
+                <div class="col-4">
                   <label for="inputIdCategory">Select Category</label>
                   <select class="form-control" name="inputIdCategory">
                     <option value="#" selected="true" disabled="disabled">--- Select Category ---</option>
@@ -173,7 +184,14 @@
                     @endforeach
                   </select>
                 </div>
-                <div class="col-6">
+                <div class="col-4">
+                  <label for="inputLanguage">Select Language</label>
+                  <select class="form-control" name="inputLanguage">
+                    <option value="id">Indonesia</option>
+                    <option value="en">Inggris</option>
+                  </select>
+                </div>
+                <div class="col-4">
                   <label for="inputImage">Upload Image</label>
                   <div class="custom-file">
                     <input type="file" class="custom-file-input" name="inputImage" id="inputImage">

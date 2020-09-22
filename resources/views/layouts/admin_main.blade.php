@@ -382,10 +382,12 @@
       var text = $(e.relatedTarget).data('text');
       var title = $(e.relatedTarget).data('title');
       var id_category = $(e.relatedTarget).data('id_category');
+      var location = $(e.relatedTarget).data('location');
 
       CKEDITOR.instances['inputTitle1'].setData(title);
       CKEDITOR.instances['inputText1'].setData(text);
       $(e.currentTarget).find('select[name="inputIdCategory"]').val(id_category);
+      $(e.currentTarget).find('select[name="inputLanguage"]').val(location);
       $(e.currentTarget).find('input[name="inputImgOld"]').val(img_title);
       $(e.currentTarget).find('input[name="inputIdNews"]').val(NewsId);
     });
@@ -667,9 +669,11 @@
       var ServiceId = $(e.relatedTarget).data('id');
       var img_title = $(e.relatedTarget).data('img_title');
       var title = $(e.relatedTarget).data('title');
-      var detail = $(e.relatedTarget).data('detail');
+      var detailid = $(e.relatedTarget).data('detailid');
+      var detailen = $(e.relatedTarget).data('detailen');
 
-      CKEDITOR.instances['inputText1'].setData(detail);
+      CKEDITOR.instances['inputText1'].setData(detailid);
+      CKEDITOR.instances['inputTitle1'].setData(detailen);
       $(e.currentTarget).find('input[name="inputTitle"]').val(title);
       $(e.currentTarget).find('input[name="inputImgOld"]').val(img_title);
       $(e.currentTarget).find('input[name="inputIdService"]').val(ServiceId);
