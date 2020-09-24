@@ -41,7 +41,7 @@
                 <tr>
                   <td>{{ $index+1 }}</td>
                   <td>{{ strtoupper($customer->code_customer) }}</td>
-                  <td>{{ strtoupper($customer->name_customer) }}</td>
+                  <td>{{ strtoupper($customer->name_customer.', '.$customer->entity_name) }}</td>
                   <td>{{ $customer->name_city.' - '.$customer->province_city }}</td>
                   <td>{{ $customer->telp }}</td>
                   <td>{{ $status }}</td>
@@ -63,6 +63,11 @@
                             data-pkpno="{{ $customer->pkp_no }}"
                             data-desccustomer="{{ $customer->desc_customer }}"
                             data-payment="{{ $customer->payment_term }}"
+                            data-username="{{ $customer->username }}"
+                            data-password="{{ $customer->password }}"
+                            data-entity="{{ $customer->entity_id }}"
+                            data-entityname="{{ $customer->entity_name }}"
+                            data-status="{{ $customer->status }}"
                             data-nameperson="{{ $customer->name_person }}"
                             data-phoneperson="{{ $customer->phone_person }}"
                             data-emailperson="{{ $customer->email_person }}"
@@ -120,13 +125,42 @@
             <h4 class="bg-gray-dark color-palette"><center>Customer Detail</center></h4>
             <div class="form-group">
               <div class="row">
-                <div class="col-lg-6 col-sm-12">
+                <div class="col-lg-4 col-sm-12">
+                  <label for="inputUsername">Username</label>
+                  <input type="text" name="inputUsername" class="form-control">
+                </div>
+                <div class="col-lg-4 col-sm-12">
+                  <label for="inputPassword">Password</label>
+                  <input type="password" name="inputPassword" class="form-control">
+                </div>
+                <div class="col-lg-4 col-sm-12">
+                  <label for="inputConfPassword">Confirm Password</label>
+                  <input type="password" name="inputConfPassword" class="form-control">
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="row">
+                <div class="col-lg-3 col-sm-12">
                   <label for="inputCostumerCode">Costumer Code</label>
                   <input type="text" name="inputCostumerCode" class="form-control">
                 </div>
-                <div class="col-lg-6 col-sm-12">
-                  <label for="inputCostumerName">Costumer Name</label>
-                  <input type="text" name="inputCostumerName" class="form-control">
+                <div class="col-lg-3 col-sm-12">
+                  <label for="inputEntity">Entity</label>
+                  <select class="form-control" name="inputEntity" id="inputEntity_edit">
+                    <option value="#" selected="true" disabled="disabled">--- Select Entity ---</option>
+                    @foreach($entitys as $entity)
+                    <option value="{{ $entity->id }}">{{ $entity->entity_name }}</option>
+                    @endforeach
+                  </select>
+                </div>
+                <div class="col-lg-3 col-sm-12">
+                  <label for="inputCostumerName">Company Name</label>
+                  <input type="text" name="inputCostumerName" id="inputCostumerName_edit" class="form-control">
+                </div>
+                <div class="col-lg-3 col-sm-12">
+                  <label for="inputAccountName">Account Name</label>
+                  <input type="text" name="inputAccountName" id="inputAccountName_edit" class="form-control" disabled>
                 </div>
               </div>
             </div>
@@ -181,13 +215,20 @@
             </div>
             <div class="form-group">
               <div class="row">
-                <div class="col-lg-8 col-sm-12">
+                <div class="col-lg-6 col-sm-12">
                   <label for="inputCustomerDesc">Customer Description</label>
                   <textarea class="form-control" id="inputCustomerDesc" rows="3" name="inputCustomerDesc"></textarea>
                 </div>
-                <div class="col-lg-4 col-sm-12">
+                <div class="col-lg-3 col-sm-12">
                   <label for="inputTOP">Payment Term (TOP)</label>
                   <input type="text" name="inputTOP" class="form-control">
+                </div>
+                <div class="col-lg-3 col-sm-12">
+                  <label for="inputStatus">Status</label>
+                  <select class="form-control" name="inputStatus">
+                    <option value="0">Inactive</option>
+                    <option value="1">Active</option>
+                  </select>
                 </div>
               </div>
             </div>
@@ -242,13 +283,42 @@
             <h4 class="bg-gray-dark color-palette"><center>Customer Detail</center></h4>
             <div class="form-group">
               <div class="row">
-                <div class="col-lg-6 col-sm-12">
+                <div class="col-lg-4 col-sm-12">
+                  <label for="inputUsername">Username</label>
+                  <input type="text" name="inputUsername" class="form-control">
+                </div>
+                <div class="col-lg-4 col-sm-12">
+                  <label for="inputPassword">Password</label>
+                  <input type="password" name="inputPassword" class="form-control">
+                </div>
+                <div class="col-lg-4 col-sm-12">
+                  <label for="inputConfPassword">Confirm Password</label>
+                  <input type="password" name="inputConfPassword" class="form-control">
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="row">
+                <div class="col-lg-3 col-sm-12">
                   <label for="inputCostumerCode">Costumer Code</label>
                   <input type="text" name="inputCostumerCode" class="form-control">
                 </div>
-                <div class="col-lg-6 col-sm-12">
-                  <label for="inputCostumerName">Costumer Name</label>
-                  <input type="text" name="inputCostumerName" class="form-control">
+                <div class="col-lg-3 col-sm-12">
+                  <label for="inputEntity">Entity</label>
+                  <select class="form-control" name="inputEntity" id="inputEntity_add">
+                    <option value="#" selected="true" disabled="disabled">--- Select Entity ---</option>
+                    @foreach($entitys as $entity)
+                    <option value="{{ $entity->id }}">{{ $entity->entity_name }}</option>
+                    @endforeach
+                  </select>
+                </div>
+                <div class="col-lg-3 col-sm-12">
+                  <label for="inputCostumerName">Company Name</label>
+                  <input type="text" name="inputCostumerName" id="inputCostumerName_add" class="form-control">
+                </div>
+                <div class="col-lg-3 col-sm-12">
+                  <label for="inputAccountName">Account Name</label>
+                  <input type="text" name="inputAccountName" id="inputAccountName_add" class="form-control" disabled>
                 </div>
               </div>
             </div>

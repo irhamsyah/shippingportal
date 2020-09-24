@@ -139,6 +139,23 @@
 <script src="{{'assets/theme/js/script.js'}}"></script>
 <script src="{{'assets/slidervideo/script.js'}}"></script>
 
+<script>
+  $(function () {
+    $('#entity-form1-27').on('change', function() {
+      var valueCompany = $("#company-form1-27").val();
+      var valueEntity = $("#entity-form1-27 option:selected").text();
+      if(valueEntity=='PERORANGAN'){valueEntity='';}else{valueEntity=', '+valueEntity;}
+      $("#account-form1-27").val(valueCompany+valueEntity);
+
+    });
+    $('#company-form1-27').on('change', function() {
+      var valueCompany = $("#company-form1-27").val();
+      var valueEntity = $("#entity-form1-27 option:selected").text();
+      if(valueEntity=='PERORANGAN'){valueEntity='';}else{valueEntity=', '+valueEntity;}
+      $("#account-form1-27").val(valueCompany+valueEntity);
+    });
+  });
+</script>
 
 </body>
 </html>

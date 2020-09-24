@@ -6,7 +6,7 @@
         <div class="row justify-content-center">
             <div class="title col-12 col-lg-8">
                 <h2 class="mbr-section-title align-center pb-3 mbr-fonts-style display-2">
-                    REGISTER
+                    TRANSAKSI
                 </h2>
                 <h3 class="mbr-section-subtitle align-center mbr-light pb-3 mbr-fonts-style display-5"></h3>
             </div>
@@ -47,9 +47,7 @@
                           <label for="entity-form1-27" class="form-control-label mbr-fonts-style display-7">Entity</label>
                           <select class="form-control display-7" id="entity-form1-27" name="entity" data-form-field="entity" required="required">
                             <option value="#" selected="true" disabled="disabled">--- Select Entity ---</option>
-                            @foreach($entitys as $entity)
-                            <option value="{{ $entity->id }}">{{ $entity->entity_name }}</option>
-                            @endforeach
+
                           </select>
                         </div>
                         <div class="col-md-4  form-group" data-for="company">
@@ -72,9 +70,7 @@
                           <label for="city-form1-27" class="form-control-label mbr-fonts-style display-7">City</label>
                           <select class="form-control display-7" id="city-form1-27" name="city" data-form-field="city" required="required">
                             <option value="#" selected="true" disabled="disabled">--- Select City ---</option>
-                            @foreach($locations as $location)
-                            <option value="{{ $location->id }}">{{ $location->code_city }} - {{ $location->name_city }}</option>
-                            @endforeach
+                            
                           </select>
                         </div>
                         <div class="col-md-6  form-group" data-for="email">

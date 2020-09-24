@@ -20,7 +20,9 @@
             <div class="card-wrapper ">
                 <div class="card-img">
                     <div class="mbr-overlay"></div>
-                    <div class="mbr-section-btn text-center"><a href="/contact" class="btn btn-primary display-4">{{ __('service.pesan') }}</a></div>
+                    <div class="mbr-section-btn text-center">
+                      <button type="button" class="btn btn-primary btn-form display-4" data-toggle="modal" data-target="#modal-add-customer">{{ __('service.pesan') }}</button>
+                    </div>
                     <img src="{{ asset('img/service/'.$service->img_title) }}" alt="Mobirise">
                 </div>
                 <div class="card-box">
@@ -41,4 +43,39 @@
     </div>
 </section>
 
+<div class="modal fade" id="modal-add-customer">
+  <div class="modal-dialog modal-md">
+    <form action="/trans_new_login" method="POST">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Login</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <div class="row">
+              <div class="col-md-12  form-group" data-for="email">
+                  <label for="username-form1-27" class="form-control-label mbr-fonts-style display-7">Username</label>
+                  <input type="text" name="username" data-form-field="Username" required="required" class="form-control display-7" id="username-form1-27">
+              </div>
+              <div data-for="password" class="col-md-12  form-group">
+                  <label for="password-form1-27" class="form-control-label mbr-fonts-style display-7">Password</label>
+                  <input type="password" name="password" data-form-field="Password" class="form-control display-7" id="password-form1-27">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer justify-content-between">
+          <button type="submit" class="btn btn-primary btn-form display-4">Login</button>
+          <a href="/contact" class="btn btn-primary btn-form display-4">Sign Up</a>
+        </div>
+      </div>
+      <!-- /.modal-content -->
+    @csrf
+  </form>
+  </div>
+  <!-- /.modal-dialog -->
+</div>
 @endsection

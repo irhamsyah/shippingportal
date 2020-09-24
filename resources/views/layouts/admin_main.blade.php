@@ -368,7 +368,34 @@
     CKEDITOR.replace( 'inputTitle1' );
     CKEDITOR.replace( 'inputText2' );
     CKEDITOR.replace( 'inputTitle2' );
-});
+  });
+    //Generate Account Name from Company & Entity
+    $('#inputEntity_edit').on('change', function() {
+      var valueCompany = $("#inputCostumerName_edit").val();
+      var valueEntity = $("#inputEntity_edit option:selected").text();
+      if(valueEntity=='PERORANGAN'){valueEntity='';}else{valueEntity=', '+valueEntity;}
+      $("#inputAccountName_edit").val(valueCompany+valueEntity);
+    });
+    $('#inputCostumerName_edit').on('change', function() {
+      var valueCompany = $("#inputCostumerName_edit").val();
+      var valueEntity = $("#inputEntity_edit option:selected").text();
+      if(valueEntity=='PERORANGAN'){valueEntity='';}else{valueEntity=', '+valueEntity;}
+      $("#inputAccountName_edit").val(valueCompany+valueEntity);
+    });
+    $('#inputEntity_add').on('change', function() {
+      var valueCompany = $("#inputCostumerName_add").val();
+      var valueEntity = $("#inputEntity_add option:selected").text();
+      if(valueEntity=='PERORANGAN'){valueEntity='';}else{valueEntity=', '+valueEntity;}
+      $("#inputAccountName_add").val(valueCompany+valueEntity);
+    });
+    $('#inputCostumerName_add').on('change', function() {
+      var valueCompany = $("#inputCostumerName_add").val();
+      var valueEntity = $("#inputEntity_add option:selected").text();
+      if(valueEntity=='PERORANGAN'){valueEntity='';}else{valueEntity=', '+valueEntity;}
+      $("#inputAccountName_add").val(valueCompany+valueEntity);
+    });
+
+    //Set data to Modals
     $('#modal-edit-newscategory').on('show.bs.modal', function(e) {
       var id = $(e.relatedTarget).data('id');
       var category = $(e.relatedTarget).data('category');
@@ -421,6 +448,11 @@
       var phoneperson = $(e.relatedTarget).data('phoneperson');
       var emailperson = $(e.relatedTarget).data('emailperson');
       var faxperson = $(e.relatedTarget).data('faxperson');
+      var username = $(e.relatedTarget).data('username');
+      var password = $(e.relatedTarget).data('password');
+      var entity = $(e.relatedTarget).data('entity');
+      var entityname = $(e.relatedTarget).data('entityname');
+      var status = $(e.relatedTarget).data('status');
 
       $(e.currentTarget).find('input[name="inputIdCustomer"]').val(id);
       $(e.currentTarget).find('input[name="inputCostumerCode"]').val(codecust);
@@ -439,6 +471,12 @@
       $(e.currentTarget).find('input[name="inputPersonEmail"]').val(phoneperson);
       $(e.currentTarget).find('input[name="inputPersonPhone"]').val(phoneperson);
       $(e.currentTarget).find('input[name="inputPersonFax"]').val(faxperson);
+      $(e.currentTarget).find('input[name="inputUsername"]').val(username);
+      $(e.currentTarget).find('input[name="inputPassword"]').val(password);
+      $(e.currentTarget).find('input[name="inputConfPassword"]').val(password);
+      $(e.currentTarget).find('select[name="inputEntity"]').val(entity);
+      $(e.currentTarget).find('input[name="inputAccountName"]').val(namecust+','+entityname);
+      $(e.currentTarget).find('select[name="inputStatus"]').val(status);
     });
 
     $('#modal-edit-agent').on('show.bs.modal', function(e) {

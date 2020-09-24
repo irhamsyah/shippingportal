@@ -18,6 +18,8 @@ Route::get('/', 'FrontendController@index');
 Route::get('/tracking', 'FrontendController@tracking');
 Route::get('/service', 'FrontendController@service');
 Route::get('/contact', 'FrontendController@contact');
+Route::post('/contact', 'FrontendController@contact_add');
+Route::post('/trans_new_login', 'FrontendController@trans_new_login');
 Route::get('/news', 'FrontendController@news');
 Route::get('/news_detail/{id}', 'FrontendController@news_detail');
 
