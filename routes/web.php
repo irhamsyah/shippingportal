@@ -16,10 +16,12 @@ use Illuminate\Support\Facades\Route;
 //Frontend Page
 Route::get('/', 'FrontendController@index');
 Route::get('/tracking', 'FrontendController@tracking');
+Route::post('/tracking', 'FrontendController@trackingpost');
 Route::get('/service', 'FrontendController@service');
 Route::get('/contact', 'FrontendController@contact');
 Route::post('/contact', 'FrontendController@contact_add');
-Route::post('/trans_new_login', 'FrontendController@trans_new_login');
+Route::post('/trans_new', 'FrontendController@trans_new');
+Route::put('/trans_new', 'FrontendController@trans_new_add');
 Route::get('/news', 'FrontendController@news');
 Route::get('/news_detail/{id}', 'FrontendController@news_detail');
 

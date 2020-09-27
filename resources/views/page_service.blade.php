@@ -45,7 +45,7 @@
 
 <div class="modal fade" id="modal-add-customer">
   <div class="modal-dialog modal-md">
-    <form action="/trans_new_login" method="POST">
+    <form action="/trans_new" method="POST">
       <div class="modal-content">
         <div class="modal-header">
           <h4 class="modal-title">Login</h4>

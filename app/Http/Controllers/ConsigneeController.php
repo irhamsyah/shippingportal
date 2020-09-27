@@ -42,7 +42,7 @@ class ConsigneeController extends Controller
      */
     public function admin_consignee()
     {
-      $consignees = Consignee::select('consignee.*','location.name_city','location.province_city')->leftjoin('location','location.id','=','consignee.id_city')->get();;
+      $consignees = Consignee::select('consignee.*','location.name_city','location.province_city')->leftjoin('location','location.id','=','consignee.id_city')->get();
       $locations = Location::select('location.id as loc_id','location.code_city','location.name_city','location.province_city')->orderby('location.name_city')->get();
 
       return view('admin/consignee', ['consignees'=> $consignees,'locations'=> $locations]);

@@ -141,12 +141,12 @@
 
 <script>
   $(function () {
+    //Contact Page --> Register Customer New
     $('#entity-form1-27').on('change', function() {
       var valueCompany = $("#company-form1-27").val();
       var valueEntity = $("#entity-form1-27 option:selected").text();
       if(valueEntity=='PERORANGAN'){valueEntity='';}else{valueEntity=', '+valueEntity;}
       $("#account-form1-27").val(valueCompany+valueEntity);
-
     });
     $('#company-form1-27').on('change', function() {
       var valueCompany = $("#company-form1-27").val();
@@ -154,6 +154,19 @@
       if(valueEntity=='PERORANGAN'){valueEntity='';}else{valueEntity=', '+valueEntity;}
       $("#account-form1-27").val(valueCompany+valueEntity);
     });
+  });
+
+  $(document).ready(function(){
+    //Transaction Page Form Order --> Detail Transaction
+  	$('#add_detail').click(function(event){
+  		var tambahdetail = $('#detailTrans');
+      var detailform = $('#detailtrans_hide').html();
+  		event.preventDefault();
+  		$(detailform).appendTo(tambahdetail);
+  	});
+  	$('body').on('click','#del_detail',function(){
+  		$(this).parents('.dragArea').remove();
+  	});
   });
 </script>
 
