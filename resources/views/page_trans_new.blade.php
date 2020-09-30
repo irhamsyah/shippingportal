@@ -182,6 +182,7 @@
                                 <th>Agent</th>
                                 <th>Vessel</th>
                                 <th>Truck</th>
+                                <th>Resi No</th>
                                 <th>Status</th>
                               </tr>
                               </thead>
@@ -201,6 +202,7 @@
                                   <td>{{ $transaction->code_agent.' - '.$transaction->name_agent }}</td>
                                   <td>{{ $transaction->name_pelayaran.' - '.$transaction->alias }}</td>
                                   <td>{{ $transaction->code_vendor.' - '.$transaction->name_vendor }}</td>
+                                  <td>{{ $transaction->resi_no}}</td>
                                   <td>{{ $status }}</td>
                                 </tr>
                                 @endforeach

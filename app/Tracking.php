@@ -9,6 +9,7 @@ class Tracking extends Model
 {
   protected $table ='tracking';
   protected $guarded = ['id'];
+  protected $dates = ['date'];
 
   Public $timestamps = true; //created_at dan update_at digunakan
 }

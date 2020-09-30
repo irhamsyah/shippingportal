@@ -53,7 +53,7 @@
           <span class="iconBackground"></span>
           <div class="col-xs-12 col-md-6 align-right">
             <div class="timeline-text-content">
-              <h4 class="mbr-timeline-title pb-3 mbr-fonts-style display-7">{{ $tracking->created_at->format('d M Y H:i:s') }}</h4>
+              <h4 class="mbr-timeline-title pb-3 mbr-fonts-style display-7">{!! $tracking->date->format('d M Y H:i:s') !!}</h4>
               <p class="mbr-timeline-text mbr-fonts-style display-7"><a href="http://maps.google.com/maps?q={{ $tracking->latitude.','.$tracking->longitude }}" target="_blank">{{ '['.$tracking->latitude.','.$tracking->longitude.']' }}</a></p>
            </div>
           </div>

@@ -99,12 +99,25 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item has-treeview menu-close">
-            <a href="/adm_tracking" class="nav-link">
-              <i class="nav-icon fa fa-ship"></i>
-              <p>
-                List Tracking
-              </p>
+            <a href="#" class="nav-link">
+              <i class="nav-icon fa fa-share"></i>
+              <p>Transaction</p>
+              <i class="right fas fa-angle-left"></i>
             </a>
+            <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="/adm_transaction" class="nav-link">
+                <i class="fa fa-bars nav-icon"></i>
+                <p>List Transaction</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="/adm_tracking" class="nav-link">
+                <i class="fa fa-ship nav-icon"></i>
+                <p>Tracking</p>
+              </a>
+            </li>
+            </ul>
           </li>
           <li class="nav-item has-treeview menu-close">
             <a href="#" class="nav-link">
@@ -355,12 +368,19 @@
     //Initialize Select2 Elements
     $('.select2').select2()
 
-    //Date range picker
+    //Date picker
     $('#inputDate1').datetimepicker({
         format: 'Y-MM-DD'
     });
     $('#inputDate2').datetimepicker({
         format: 'Y-MM-DD'
+    });
+    //Date picker tgl-jam
+    $('#inputDate3').datetimepicker({
+        format: 'Y-MM-DD hh:mm:ss'
+    });
+    $('#inputDate4').datetimepicker({
+        format: 'Y-MM-DD hh:mm:ss'
     });
 
     //set ckeditor
@@ -715,6 +735,53 @@
       $(e.currentTarget).find('input[name="inputTitle"]').val(title);
       $(e.currentTarget).find('input[name="inputImgOld"]').val(img_title);
       $(e.currentTarget).find('input[name="inputIdService"]').val(ServiceId);
+    });
+
+    $('#modal-edit-tracking').on('show.bs.modal', function(e) {
+      var Id = $(e.relatedTarget).data('id');
+      var longitude = $(e.relatedTarget).data('longitude');
+      var latitude = $(e.relatedTarget).data('latitude');
+      var description = $(e.relatedTarget).data('description');
+      var date = $(e.relatedTarget).data('date');
+      var customer_id = $(e.relatedTarget).data('customer_id');
+      var name_customer = $(e.relatedTarget).data('name_customer');
+      var trans_no = $(e.relatedTarget).data('trans_no');
+      var transaction_id = $(e.relatedTarget).data('transaction_id');
+
+      $(e.currentTarget).find('input[name="inputTransactionNo"]').val(trans_no);
+      $(e.currentTarget).find('input[name="inputCustomerName"]').val(name_customer);
+      $(e.currentTarget).find('input[name="inputDate3"]').val(date);
+      $(e.currentTarget).find('input[name="inputLatitude"]').val(latitude);
+      $(e.currentTarget).find('input[name="inputLongitude"]').val(longitude);
+      $(e.currentTarget).find('textarea[name="inputDesc"]').text(description);
+      $(e.currentTarget).find('input[name="inputIdTracking"]').val(Id);
+      $(e.currentTarget).find('input[name="inputIdTransaction"]').val(transaction_id);
+    });
+
+    $('#modal-edit-transaction').on('show.bs.modal', function(e) {
+      var Id = $(e.relatedTarget).data('id');
+      var trans_no = $(e.relatedTarget).data('trans_no');
+      var name_customer = $(e.relatedTarget).data('name_customer');
+      var shipping_no = $(e.relatedTarget).data('shipping_no');
+      var loading_date = $(e.relatedTarget).data('loading_date');
+      var agent_id = $(e.relatedTarget).data('agent_id');
+      var vendor_id = $(e.relatedTarget).data('vendor_id');
+      var pelayaran_id = $(e.relatedTarget).data('pelayaran_id');
+      var location_id = $(e.relatedTarget).data('location_id');
+      var resi_no = $(e.relatedTarget).data('resi_no');
+      var status = $(e.relatedTarget).data('status');
+
+      $(e.currentTarget).find('input[name="inputTransactionNo"]').val(trans_no);
+      $(e.currentTarget).find('input[name="inputCustomerName"]').val(name_customer);
+      $(e.currentTarget).find('input[name="inputDate3"]').val(loading_date);
+      $(e.currentTarget).find('input[name="inputShipping"]').val(shipping_no);
+      $(e.currentTarget).find('select[name="inputToCity"]').val(location_id);
+      $(e.currentTarget).find('input[name="inputResi"]').val(resi_no);
+      $(e.currentTarget).find('select[name="inputAgent"]').val(agent_id);
+      $(e.currentTarget).find('select[name="inputVendor"]').val(vendor_id);
+      $(e.currentTarget).find('select[name="inputPelayaran"]').val(pelayaran_id);
+      $(e.currentTarget).find('select[name="inputStatus"]').val(status);
+      $(e.currentTarget).find('input[name="inputIdTransaction"]').val(Id);
     });
 
 </script>

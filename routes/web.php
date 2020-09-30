@@ -35,6 +35,14 @@ Route::get('/home', 'HomeController@admin_index')->name('home')->middleware('ver
 
 //Route to admin pages
 Route::get('/adm_tracking', 'TrackingController@admin_tracking');
+Route::post('/adm_tracking', 'TrackingController@admin_tracking_add');
+Route::put('/adm_tracking', 'TrackingController@admin_tracking_edit');
+Route::delete('/adm_tracking', 'TrackingController@admin_tracking_destroy');
+
+Route::get('/adm_transaction', 'TransactionController@admin_transaction');
+Route::post('/adm_transaction', 'TransactionController@admin_transaction_add');
+Route::put('/adm_transaction', 'TransactionController@admin_transaction_edit');
+Route::delete('/adm_transaction', 'TransactionController@admin_transaction_destroy');
 
 Route::get('/adm_news', 'NewsController@admin_news');
 Route::post('/adm_news', 'NewsController@admin_news_add');

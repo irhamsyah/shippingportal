@@ -19,6 +19,7 @@ class CreateTrackingTable extends Migration
             $table->string('longitude',25);
             $table->string('latitude',25);
             $table->longText('description');
+            $table->dateTime('date');
             $table->timestamps();
         });
     }
