@@ -10,7 +10,7 @@ class News extends Model
 {
   protected $table ='news';
   protected $fillable = [
-      'title', 'text', 'img_title', 'id_category', 'id_user', 'created_at', 'updated_at', 'deleted_at'
+      'title', 'text', 'img_title', 'id_category', 'location', 'id_user', 'created_at', 'updated_at', 'deleted_at'
   ];
   protected $dates = ['deleted_at'];
   protected $softCascade = ['News'];

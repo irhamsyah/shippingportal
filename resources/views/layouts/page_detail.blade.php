@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html  >
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
   <!-- Site made with Mobirise Website Builder v4.12.4, https://mobirise.com -->
   <meta charset="UTF-8">
@@ -52,16 +52,22 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav nav-dropdown" data-app-modern-menu="true">
               <li class="nav-item">
-                <a class="nav-link link text-black display-4" href="/#header7-1u"><span class="mbrib-extension mbr-iconfont mbr-iconfont-btn"></span>Tentang BAHTERA SETIA</a>
+                <a class="nav-link link text-black display-4" href="/#header7-1u"><span class="mbrib-extension mbr-iconfont mbr-iconfont-btn"></span>{{ __('home.menu_tentang') }}</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link link text-black display-4" href="/service.html"><span class="mbrib-delivery mbr-iconfont mbr-iconfont-btn"></span>Layanan</a>
+                <a class="nav-link link text-black display-4" href="/service"><span class="mbrib-delivery mbr-iconfont mbr-iconfont-btn"></span>{{ __('home.menu_layanan') }}</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link link text-black display-4" href="/tracking.html"><span class="mbrib-search mbr-iconfont mbr-iconfont-btn"></span>Lacak Kargo</a>
+                <a class="nav-link link text-black display-4" href="/tracking"><span class="mbrib-search mbr-iconfont mbr-iconfont-btn"></span>{{ __('home.menu_lacak') }}</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link link text-black display-4" href="/news.html"><span class="mbri-paper-plane mbr-iconfont mbr-iconfont-btn"></span>Berita</a>
+                <a class="nav-link link text-black display-4" href="/news"><span class="mbri-paper-plane mbr-iconfont mbr-iconfont-btn"></span>{{ __('home.menu_berita') }}</a>
+              </li>
+              <li class="nav-item">
+                <div class="nav-link link display-4" style="display: inline-flex;">
+                  <a class="{{ app()->getLocale() == 'en' ? 'active' : '' }}" href="{{ route('localization.switch', 'en') }}">EN</a>
+                  <a class="{{ app()->getLocale() == 'id' ? 'active' : '' }}" href="{{ route('localization.switch', 'id') }}">ID</a>
+                </div>
               </li>
             </ul>
             <div class="navbar-buttons mbr-section-btn"><a class="btn btn-sm btn-primary display-4" href="https://wa.me/6281333110886"><span class="socicon socicon-whatsapp mbr-iconfont mbr-iconfont-btn"></span>Live Chat</a></div>

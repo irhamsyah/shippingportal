@@ -2,7 +2,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Shipping Portal</title>
+  <title>BAHTERA SETIA</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Font Awesome -->
@@ -44,7 +44,7 @@
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="#" class="nav-link">Shipping Portal</a>
+        <a href="#" class="nav-link">Bahtera Setia Group</a>
       </li>
     </ul>
 
@@ -63,7 +63,7 @@
               <img src="{{ asset('dist/img/user2-160x160.jpg') }}" alt="User Avatar" class="img-size-50 mr-3 img-circle">
               <div class="media-body">
                 <h3 class="dropdown-item-title">
-                  {{ 'Andy Bastian' }}
+                  {{ Auth::user()->name }}
                 </h3>
                 <p class="text-sm">{{ 'Call me whenever you can...' }}</p>
                 <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> {{ '4 Hours Ago' }}</p>
@@ -72,7 +72,7 @@
             <!-- Message End -->
           </a>
           <div class="dropdown-divider"></div>
-            <a href="/reset" class="dropdown-item dropdown-footer">Change Password</a>
+            <a href="/password/reset" class="dropdown-item dropdown-footer">Change Password</a>
           <div class="dropdown-divider"></div>
             <a href="{{ route('logout') }}" class="dropdown-item dropdown-footer" onclick="event.preventDefault();
             document.getElementById('logout-form').submit();">Logout</a>
@@ -87,7 +87,7 @@
     <a href="/" class="brand-link">
       <img src="{{ asset('img/logo-coba-white-150x108.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
            style="opacity: .8">
-      <span class="brand-text font-weight-light">Shipping Portal</span>
+      <span class="brand-text font-weight-light">Bahtera Setia</span>
     </a>
 
 
@@ -98,15 +98,28 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-          <li class="nav-item has-treeview menu-open">
-            <a href="/adm_tracking" class="nav-link active">
-              <i class="nav-icon fa fa-ship"></i>
-              <p>
-                List Tracking
-              </p>
+          <li class="nav-item has-treeview menu-close">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fa fa-share"></i>
+              <p>Transaction</p>
+              <i class="right fas fa-angle-left"></i>
             </a>
+            <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="/adm_transaction" class="nav-link">
+                <i class="fa fa-bars nav-icon"></i>
+                <p>List Transaction</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="/adm_tracking" class="nav-link">
+                <i class="fa fa-ship nav-icon"></i>
+                <p>Tracking</p>
+              </a>
+            </li>
+            </ul>
           </li>
-          <li class="nav-item has-treeview menu-open">
+          <li class="nav-item has-treeview menu-close">
             <a href="#" class="nav-link">
               <i class="nav-icon fa fa-database"></i>
               <p>
@@ -170,7 +183,7 @@
               </li>
             </ul>
           </li>
-          <li class="nav-item has-treeview menu-open">
+          <li class="nav-item has-treeview menu-close">
             <a href="#" class="nav-link">
               <i class="nav-icon fa fa-newspaper"></i>
               <p>
@@ -195,6 +208,35 @@
                 <a href="/adm_news_img" class="nav-link">
                   <i class="fa fa-file nav-icon"></i>
                   <p>News Images</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item has-treeview menu-close">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fa fa-cog"></i>
+              <p>
+                Frontend Customize
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="/adm_slider" class="nav-link">
+                  <i class="fa fa-image nav-icon"></i>
+                  <p>Slider Home</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/adm_testimoni" class="nav-link">
+                  <i class="far fa-comment nav-icon"></i>
+                  <p>Testimoni</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/adm_service" class="nav-link">
+                  <i class="fa fa-cog nav-icon"></i>
+                  <p>Service</p>
                 </a>
               </li>
             </ul>
@@ -242,7 +284,7 @@
   @yield('content')
 
   <footer class="main-footer">
-    <strong>Copyright &copy; 2020 <a href="#">Shipping Portal</a>.</strong>
+    <strong>Copyright &copy; 2020 <a href="#">Bahtera Setia Group</a>.</strong>
     All rights reserved.
     <div class="float-right d-none d-sm-inline-block">
       <b>Version</b> 1.0.0
@@ -258,7 +300,7 @@
 <!-- ./wrapper -->
 
 <!-- jQuery -->
-<script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>
+<script src="{{ asset('plugins/jQuery/jquery.min.js') }}"></script>
 <!-- jQuery UI 1.11.4 -->
 <script src="{{ asset('plugins/jquery-ui/jquery-ui.min.js') }}"></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
@@ -326,12 +368,19 @@
     //Initialize Select2 Elements
     $('.select2').select2()
 
-    //Date range picker
+    //Date picker
     $('#inputDate1').datetimepicker({
         format: 'Y-MM-DD'
     });
     $('#inputDate2').datetimepicker({
         format: 'Y-MM-DD'
+    });
+    //Date picker tgl-jam
+    $('#inputDate3').datetimepicker({
+        format: 'Y-MM-DD hh:mm:ss'
+    });
+    $('#inputDate4').datetimepicker({
+        format: 'Y-MM-DD hh:mm:ss'
     });
 
     //set ckeditor
@@ -339,7 +388,34 @@
     CKEDITOR.replace( 'inputTitle1' );
     CKEDITOR.replace( 'inputText2' );
     CKEDITOR.replace( 'inputTitle2' );
-});
+  });
+    //Generate Account Name from Company & Entity
+    $('#inputEntity_edit').on('change', function() {
+      var valueCompany = $("#inputCostumerName_edit").val();
+      var valueEntity = $("#inputEntity_edit option:selected").text();
+      if(valueEntity=='PERORANGAN'){valueEntity='';}else{valueEntity=', '+valueEntity;}
+      $("#inputAccountName_edit").val(valueCompany+valueEntity);
+    });
+    $('#inputCostumerName_edit').on('change', function() {
+      var valueCompany = $("#inputCostumerName_edit").val();
+      var valueEntity = $("#inputEntity_edit option:selected").text();
+      if(valueEntity=='PERORANGAN'){valueEntity='';}else{valueEntity=', '+valueEntity;}
+      $("#inputAccountName_edit").val(valueCompany+valueEntity);
+    });
+    $('#inputEntity_add').on('change', function() {
+      var valueCompany = $("#inputCostumerName_add").val();
+      var valueEntity = $("#inputEntity_add option:selected").text();
+      if(valueEntity=='PERORANGAN'){valueEntity='';}else{valueEntity=', '+valueEntity;}
+      $("#inputAccountName_add").val(valueCompany+valueEntity);
+    });
+    $('#inputCostumerName_add').on('change', function() {
+      var valueCompany = $("#inputCostumerName_add").val();
+      var valueEntity = $("#inputEntity_add option:selected").text();
+      if(valueEntity=='PERORANGAN'){valueEntity='';}else{valueEntity=', '+valueEntity;}
+      $("#inputAccountName_add").val(valueCompany+valueEntity);
+    });
+
+    //Set data to Modals
     $('#modal-edit-newscategory').on('show.bs.modal', function(e) {
       var id = $(e.relatedTarget).data('id');
       var category = $(e.relatedTarget).data('category');
@@ -353,10 +429,12 @@
       var text = $(e.relatedTarget).data('text');
       var title = $(e.relatedTarget).data('title');
       var id_category = $(e.relatedTarget).data('id_category');
+      var location = $(e.relatedTarget).data('location');
 
       CKEDITOR.instances['inputTitle1'].setData(title);
       CKEDITOR.instances['inputText1'].setData(text);
       $(e.currentTarget).find('select[name="inputIdCategory"]').val(id_category);
+      $(e.currentTarget).find('select[name="inputLanguage"]').val(location);
       $(e.currentTarget).find('input[name="inputImgOld"]').val(img_title);
       $(e.currentTarget).find('input[name="inputIdNews"]').val(NewsId);
     });
@@ -390,6 +468,11 @@
       var phoneperson = $(e.relatedTarget).data('phoneperson');
       var emailperson = $(e.relatedTarget).data('emailperson');
       var faxperson = $(e.relatedTarget).data('faxperson');
+      var username = $(e.relatedTarget).data('username');
+      var password = $(e.relatedTarget).data('password');
+      var entity = $(e.relatedTarget).data('entity');
+      var entityname = $(e.relatedTarget).data('entityname');
+      var status = $(e.relatedTarget).data('status');
 
       $(e.currentTarget).find('input[name="inputIdCustomer"]').val(id);
       $(e.currentTarget).find('input[name="inputCostumerCode"]').val(codecust);
@@ -408,6 +491,12 @@
       $(e.currentTarget).find('input[name="inputPersonEmail"]').val(phoneperson);
       $(e.currentTarget).find('input[name="inputPersonPhone"]').val(phoneperson);
       $(e.currentTarget).find('input[name="inputPersonFax"]').val(faxperson);
+      $(e.currentTarget).find('input[name="inputUsername"]').val(username);
+      $(e.currentTarget).find('input[name="inputPassword"]').val(password);
+      $(e.currentTarget).find('input[name="inputConfPassword"]').val(password);
+      $(e.currentTarget).find('select[name="inputEntity"]').val(entity);
+      $(e.currentTarget).find('input[name="inputAccountName"]').val(namecust+','+entityname);
+      $(e.currentTarget).find('select[name="inputStatus"]').val(status);
     });
 
     $('#modal-edit-agent').on('show.bs.modal', function(e) {
@@ -611,6 +700,90 @@
       $(e.currentTarget).find('select[name="inputStatusLoading"]').val(statusloading);
       $(e.currentTarget).find('select[name="inputStatusPelayaran"]').val(statuspelayaran);
     });
+
+    $('#modal-edit-slider').on('show.bs.modal', function(e) {
+      var SliderId = $(e.relatedTarget).data('id');
+      var img_title = $(e.relatedTarget).data('img_title');
+
+      $(e.currentTarget).find('input[name="inputImgOld"]').val(img_title);
+      $(e.currentTarget).find('input[name="inputIdSlider"]').val(SliderId);
+    });
+
+    $('#modal-edit-testimoni').on('show.bs.modal', function(e) {
+      var TestimoniId = $(e.relatedTarget).data('id');
+      var img_testimoni = $(e.relatedTarget).data('img_testimoni');
+      var name = $(e.relatedTarget).data('name');
+      var position = $(e.relatedTarget).data('position');
+      var testimoni = $(e.relatedTarget).data('testimoni');
+
+      CKEDITOR.instances['inputText1'].setData(testimoni);
+      $(e.currentTarget).find('input[name="inputName"]').val(name);
+      $(e.currentTarget).find('input[name="inputPosition"]').val(position);
+      $(e.currentTarget).find('input[name="inputImgOld"]').val(img_testimoni);
+      $(e.currentTarget).find('input[name="inputIdTestimoni"]').val(TestimoniId);
+    });
+
+    $('#modal-edit-service').on('show.bs.modal', function(e) {
+      var ServiceId = $(e.relatedTarget).data('id');
+      var img_title = $(e.relatedTarget).data('img_title');
+      var title = $(e.relatedTarget).data('title');
+      var detailid = $(e.relatedTarget).data('detailid');
+      var detailen = $(e.relatedTarget).data('detailen');
+
+      CKEDITOR.instances['inputText1'].setData(detailid);
+      CKEDITOR.instances['inputTitle1'].setData(detailen);
+      $(e.currentTarget).find('input[name="inputTitle"]').val(title);
+      $(e.currentTarget).find('input[name="inputImgOld"]').val(img_title);
+      $(e.currentTarget).find('input[name="inputIdService"]').val(ServiceId);
+    });
+
+    $('#modal-edit-tracking').on('show.bs.modal', function(e) {
+      var Id = $(e.relatedTarget).data('id');
+      var longitude = $(e.relatedTarget).data('longitude');
+      var latitude = $(e.relatedTarget).data('latitude');
+      var description = $(e.relatedTarget).data('description');
+      var date = $(e.relatedTarget).data('date');
+      var customer_id = $(e.relatedTarget).data('customer_id');
+      var name_customer = $(e.relatedTarget).data('name_customer');
+      var trans_no = $(e.relatedTarget).data('trans_no');
+      var transaction_id = $(e.relatedTarget).data('transaction_id');
+
+      $(e.currentTarget).find('input[name="inputTransactionNo"]').val(trans_no);
+      $(e.currentTarget).find('input[name="inputCustomerName"]').val(name_customer);
+      $(e.currentTarget).find('input[name="inputDate3"]').val(date);
+      $(e.currentTarget).find('input[name="inputLatitude"]').val(latitude);
+      $(e.currentTarget).find('input[name="inputLongitude"]').val(longitude);
+      $(e.currentTarget).find('textarea[name="inputDesc"]').text(description);
+      $(e.currentTarget).find('input[name="inputIdTracking"]').val(Id);
+      $(e.currentTarget).find('input[name="inputIdTransaction"]').val(transaction_id);
+    });
+
+    $('#modal-edit-transaction').on('show.bs.modal', function(e) {
+      var Id = $(e.relatedTarget).data('id');
+      var trans_no = $(e.relatedTarget).data('trans_no');
+      var name_customer = $(e.relatedTarget).data('name_customer');
+      var shipping_no = $(e.relatedTarget).data('shipping_no');
+      var loading_date = $(e.relatedTarget).data('loading_date');
+      var agent_id = $(e.relatedTarget).data('agent_id');
+      var vendor_id = $(e.relatedTarget).data('vendor_id');
+      var pelayaran_id = $(e.relatedTarget).data('pelayaran_id');
+      var location_id = $(e.relatedTarget).data('location_id');
+      var resi_no = $(e.relatedTarget).data('resi_no');
+      var status = $(e.relatedTarget).data('status');
+
+      $(e.currentTarget).find('input[name="inputTransactionNo"]').val(trans_no);
+      $(e.currentTarget).find('input[name="inputCustomerName"]').val(name_customer);
+      $(e.currentTarget).find('input[name="inputDate3"]').val(loading_date);
+      $(e.currentTarget).find('input[name="inputShipping"]').val(shipping_no);
+      $(e.currentTarget).find('select[name="inputToCity"]').val(location_id);
+      $(e.currentTarget).find('input[name="inputResi"]').val(resi_no);
+      $(e.currentTarget).find('select[name="inputAgent"]').val(agent_id);
+      $(e.currentTarget).find('select[name="inputVendor"]').val(vendor_id);
+      $(e.currentTarget).find('select[name="inputPelayaran"]').val(pelayaran_id);
+      $(e.currentTarget).find('select[name="inputStatus"]').val(status);
+      $(e.currentTarget).find('input[name="inputIdTransaction"]').val(Id);
+    });
+
 </script>
 </body>
 </html>

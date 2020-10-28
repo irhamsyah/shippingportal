@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html  >
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
   <!-- Site made with Mobirise Website Builder v4.12.4, https://mobirise.com -->
   <meta charset="UTF-8">
@@ -52,17 +52,27 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav nav-dropdown" data-app-modern-menu="true">
               <li class="nav-item">
-                <a class="nav-link link text-black display-4" href="/#header7-1u"><span class="mbrib-extension mbr-iconfont mbr-iconfont-btn"></span>Tentang BAHTERA SETIA</a>
+                <a class="nav-link link text-black display-4" href="/#header7-1u"><span class="mbrib-extension mbr-iconfont mbr-iconfont-btn"></span>{{ __('home.menu_tentang') }}</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link link text-black display-4" href="/service.html"><span class="mbrib-delivery mbr-iconfont mbr-iconfont-btn"></span>Layanan</a>
+                <a class="nav-link link text-black display-4" href="/service"><span class="mbrib-delivery mbr-iconfont mbr-iconfont-btn"></span>{{ __('home.menu_layanan') }}</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link link text-black display-4" href="/tracking.html"><span class="mbrib-search mbr-iconfont mbr-iconfont-btn"></span>Lacak Kargo</a>
+                <a class="nav-link link text-black display-4" href="/tracking"><span class="mbrib-search mbr-iconfont mbr-iconfont-btn"></span>{{ __('home.menu_lacak') }}</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link link text-black display-4" href="/news.html"><span class="mbri-paper-plane mbr-iconfont mbr-iconfont-btn"></span>Berita</a>
+                <a class="nav-link link text-black display-4" href="/news"><span class="mbri-paper-plane mbr-iconfont mbr-iconfont-btn"></span>{{ __('home.menu_berita') }}</a>
               </li>
+
+              <?php //check apakah merupakan trans_new page untuk menghilangkan fungsi localization
+              if(Request::segment(1)!='trans_new'){?>
+              <li class="nav-item">
+                <div class="nav-link link display-4" style="display: inline-flex;">
+                  <a class="{{ app()->getLocale() == 'en' ? 'active' : '' }}" href="{{ route('localization.switch', 'en') }}">EN</a>
+                  <a class="{{ app()->getLocale() == 'id' ? 'active' : '' }}" href="{{ route('localization.switch', 'id') }}">ID</a>
+                </div>
+              </li>
+            <?php }?>
             </ul>
             <div class="navbar-buttons mbr-section-btn"><a class="btn btn-sm btn-primary display-4" href="https://wa.me/6281333110886"><span class="socicon socicon-whatsapp mbr-iconfont mbr-iconfont-btn"></span>Live Chat</a></div>
         </div>
@@ -133,6 +143,36 @@
 <script src="{{'assets/theme/js/script.js'}}"></script>
 <script src="{{'assets/slidervideo/script.js'}}"></script>
 
+<script>
+  $(function () {
+    //Contact Page --> Register Customer New
+    $('#entity-form1-27').on('change', function() {
+      var valueCompany = $("#company-form1-27").val();
+      var valueEntity = $("#entity-form1-27 option:selected").text();
+      if(valueEntity=='PERORANGAN'){valueEntity='';}else{valueEntity=', '+valueEntity;}
+      $("#account-form1-27").val(valueCompany+valueEntity);
+    });
+    $('#company-form1-27').on('change', function() {
+      var valueCompany = $("#company-form1-27").val();
+      var valueEntity = $("#entity-form1-27 option:selected").text();
+      if(valueEntity=='PERORANGAN'){valueEntity='';}else{valueEntity=', '+valueEntity;}
+      $("#account-form1-27").val(valueCompany+valueEntity);
+    });
+  });
+
+  $(document).ready(function(){
+    //Transaction Page Form Order --> Detail Transaction
+  	$('#add_detail').click(function(event){
+  		var tambahdetail = $('#detailTrans');
+      var detailform = $('#detailtrans_hide').html();
+  		event.preventDefault();
+  		$(detailform).appendTo(tambahdetail);
+  	});
+  	$('body').on('click','#del_detail',function(){
+  		$(this).parents('.dragArea').remove();
+  	});
+  });
+</script>
 
 </body>
 </html>
