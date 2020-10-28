@@ -77,39 +77,39 @@
                               </div>
                             </div>
                             <div class="dragArea row">
-                                <div class="col-md-3  form-group">
+                              <div class="col-md-2  form-group">
+                                  <?php
+                                  //Get last Trans No
+                                  $lasttransno=$transactionnos->trans_no;
+                                  //check tahun sama
+                                  $thn=substr($lasttransno, 2, 4);
+                                  if($thn==date('Y')){
+                                    $pecah=substr($lasttransno, 8, 4);
+                                  }else{
+                                    $pecah=0;
+                                  }
+                                  //generate No Transaction
+                                  $transnonew = "TR".date('Ym').sprintf("%04s", $pecah+1);
+                                  ?>
+                                  <label class="form-control-label mbr-fonts-style display-7">Trans No</label>
+                                  <input type="text" name="transno" required="required" readonly value="{{ $transnonew }}" class="form-control display-7" id="transno">
+                              </div>
+                                <div class="col-md-2  form-group">
                                     <?php
-                                    //Get last Trans No
-                                    $lasttransno=$transactionnos->trans_no;
-                                    //check tahun sama
-                                    $thn=substr($lasttransno, 2, 4);
-                                    if($thn==date('Y')){
-                                      $pecah=substr($lasttransno, 8, 4);
-                                    }else{
-                                      $pecah=0;
-                                    }
-                                    //generate No Transaction
-                                    $transnonew = "TR".date('Ym').sprintf("%04s", $pecah+1);
+                                    $resi_no = date('ym').str_pad(mt_rand(1,99999999),8,'0',STR_PAD_LEFT);
                                     ?>
-                                    <label class="form-control-label mbr-fonts-style display-7">Trans No</label>
-                                    <input type="text" name="transno" required="required" readonly value="{{ $transnonew }}" class="form-control display-7" id="transno">
+                                    <label class="form-control-label mbr-fonts-style display-7">Resi No</label>
+                                    <input type="text" name="resino" required="required" readonly value="{{ $resi_no }}" class="form-control display-7" id="resino">
                                 </div>
                                 <div class="col-md-3  form-group">
                                     <label class="form-control-label mbr-fonts-style display-7">From</label>
-                                    <select class="form-control display-7" id="from" name="from">
-                                      <option value="#" selected="true" disabled="disabled">{{ $customers->name_city.' - '.$customers->province_city }}</option>
-                                    </select>
+                                    <input type="text" name="from" required="required" value="" class="form-control display-7" id="from">
                                 </div>
                                 <div class="col-md-3  form-group">
                                     <label class="form-control-label mbr-fonts-style display-7">To</label>
-                                    <select class="form-control display-7" id="to" name="to">
-                                      <option value="#" selected="true" disabled="disabled">-- Select City --</option>
-                                      @foreach($locations as $location)
-                                      <option value="{{ $location->loc_id }}">{{ $location->name_city.' - '.$location->province_city }}</option>
-                                      @endforeach
-                                    </select>
+                                    <input type="text" name="to" required="required" value="" class="form-control display-7" id="to">
                                 </div>
-                                <div class="col-md-3  form-group">
+                                <div class="col-md-2  form-group">
                                     <label class="form-control-label mbr-fonts-style display-7">Departing Date</label>
                                     <input type="date" name="departingdate" class="form-control display-7" id="departingdate">
                                 </div>
@@ -118,44 +118,27 @@
                             <button type="button" id="add_detail" class="btn btn-form" style="background:green; color: #FFF; padding:0.5rem;">Add</button>
                             <div id="detailTrans">
                               <div class="dragArea row">
-                                  <div class="col-md-4  form-group">
-                                    <label class="form-control-label mbr-fonts-style display-7">Consignee</label>
-                                    <select class="form-control display-7" id="consignee" name="consignee[]" required="required">
-                                      <option value="#" selected="true" disabled="disabled">--- Select Consignee ---</option>
-                                      @foreach($consignees as $consignee)
-                                      <option value="{{ $consignee->id  }}">{{ $consignee->code_consignee.' - '.$consignee->name_consignee }}</option>
-                                      @endforeach
-                                    </select>
+                                  <div class="col-md-3  form-group">
+                                    <label class="form-control-label mbr-fonts-style display-7">Consignee / Penerima</label>
+                                    <input type="text" name="consignee[]" required="required" value="" class="form-control display-7" id="consignee">
                                   </div>
-                                  <div class="col-md-4  form-group">
-                                      <label class="form-control-label mbr-fonts-style display-7">Comodity</label>
+                                  <div class="col-md-3  form-group">
+                                      <label class="form-control-label mbr-fonts-style display-7">Comodity / Barang</label>
                                       <input type="text" id="comodity" name="comodity[]" class="form-control display-7">
                                   </div>
-                                  <div class="col-md-4  form-group">
-                                      <label class="form-control-label mbr-fonts-style display-7">Package Unit</label>
-                                      <input type="text" id="package" name="package[]" class="form-control display-7">
-                                  </div>
                                   <div class="col-md-2  form-group">
-                                      <label class="form-control-label mbr-fonts-style display-7">Weight (Kg)</label>
+                                      <label class="form-control-label mbr-fonts-style display-7">Weight</label>
                                       <input type="text" id="weight" name="weight[]" class="form-control display-7">
                                   </div>
-                                  <div class="col-md-2  form-group">
-                                      <label class="form-control-label mbr-fonts-style display-7">Cargo Quantity</label>
-                                      <input type="text" id="quantity" name="quantity[]" class="form-control display-7">
+                                  <div class="col-md-3  form-group">
+                                      <label class="form-control-label mbr-fonts-style display-7">Unit Weight</label>
+                                      <select class="form-control display-7" id="unitweight" name="unitweight[]" required="required">
+                                        <option value="#" selected="true" disabled="disabled">--- Select Unit Weight ---</option>
+                                        <option value="kg">Kilogram (Kg)</option>
+                                        <option value="ton">Tonase (Ton)</option>
+                                        <option value="kubik">Kubik</option>
+                                      </select>
                                   </div>
-                                  <div class="col-md-2  form-group">
-                                      <label class="form-control-label mbr-fonts-style display-7">Lenght (M)</label>
-                                      <input type="text" id="lenght" name="lenght[]" class="lenght form-control display-7">
-                                  </div>
-                                  <div class="col-md-2  form-group">
-                                      <label class="form-control-label mbr-fonts-style display-7">Width (M)</label>
-                                      <input type="text" id="width" name="width[]" class="width form-control display-7">
-                                  </div>
-                                  <div class="col-md-2  form-group">
-                                      <label class="form-control-label mbr-fonts-style display-7">Height (M)</label>
-                                      <input type="text" id="height" name="height[]" class="height form-control display-7">
-                                  </div>
-                                  <div class="col-md-1  form-group"></div>
                                   <div class="col-md-1  form-group">
                                       <label class="form-control-label mbr-fonts-style display-7">Action</label>
                                       <button type="button" id="del_detail" class="btn btn-form" style="background:red; color: #FFF; padding:0.5rem;">Del</button>
@@ -177,12 +160,11 @@
                               <tr>
                                 <th>No</th>
                                 <th>Trans No</th>
-                                <th>Shipping No</th>
-                                <th>Loading Date</th>
-                                <th>Agent</th>
-                                <th>Vessel</th>
-                                <th>Truck</th>
                                 <th>Resi No</th>
+                                <th>Loading Date</th>
+                                <th>From</th>
+                                <th>To</th>
+                                <th>Vessel</th>
                                 <th>Status</th>
                               </tr>
                               </thead>
@@ -197,12 +179,11 @@
                                 <tr>
                                   <td>{{ $index+1 }}</td>
                                   <td>{{ strtoupper($transaction->trans_no) }}</td>
-                                  <td>{{ strtoupper($transaction->shipping_no)}}</td>
-                                  <td>{{ $transaction->loading_date}}</td>
-                                  <td>{{ $transaction->code_agent.' - '.$transaction->name_agent }}</td>
-                                  <td>{{ $transaction->name_pelayaran.' - '.$transaction->alias }}</td>
-                                  <td>{{ $transaction->code_vendor.' - '.$transaction->name_vendor }}</td>
                                   <td>{{ $transaction->resi_no}}</td>
+                                  <td>{{ $transaction->loading_date->format('d/m/Y')}}</td>
+                                  <td>{{ $transaction->location_from }}</td>
+                                  <td>{{ $transaction->location_to }}</td>
+                                  <td>{{ $transaction->name_pelayaran.' - '.$transaction->alias }}</td>
                                   <td>{{ $status }}</td>
                                 </tr>
                                 @endforeach
@@ -222,49 +203,32 @@
 
 <div id="detailtrans_hide" style="display:none;">
   <div class="dragArea row">
-      <div class="col-md-4  form-group">
-        <label class="form-control-label mbr-fonts-style display-7">Consignee</label>
-        <select class="form-control display-7" id="consignee" name="consignee[]" required="required">
-          <option value="#" selected="true" disabled="disabled">--- Select Consignee ---</option>
-          @foreach($consignees as $consignee)
-          <option value="{{ $consignee->id  }}">{{ $consignee->code_consignee.' - '.$consignee->name_consignee }}</option>
-          @endforeach
+    <div class="col-md-3  form-group">
+      <label class="form-control-label mbr-fonts-style display-7">Consignee / Penerima</label>
+      <input type="text" name="consignee[]" required="required" value="" class="form-control display-7" id="consignee">
+    </div>
+    <div class="col-md-3  form-group">
+        <label class="form-control-label mbr-fonts-style display-7">Comodity / Barang</label>
+        <input type="text" id="comodity" name="comodity[]" class="form-control display-7">
+    </div>
+    <div class="col-md-2  form-group">
+        <label class="form-control-label mbr-fonts-style display-7">Weight</label>
+        <input type="text" id="weight" name="weight[]" class="form-control display-7">
+    </div>
+    <div class="col-md-3  form-group">
+        <label class="form-control-label mbr-fonts-style display-7">Unit Weight</label>
+        <select class="form-control display-7" id="unitweight" name="unitweight[]" required="required">
+          <option value="#" selected="true" disabled="disabled">--- Select Unit Weight ---</option>
+          <option value="kg">Kilogram (Kg)</option>
+          <option value="ton">Tonase (Ton)</option>
+          <option value="kubik">Kubik</option>
         </select>
-      </div>
-      <div class="col-md-4  form-group">
-          <label class="form-control-label mbr-fonts-style display-7">Comodity</label>
-          <input type="text" id="comodity" name="comodity[]" class="form-control display-7">
-      </div>
-      <div class="col-md-4  form-group">
-          <label class="form-control-label mbr-fonts-style display-7">Package Unit</label>
-          <input type="text" id="package" name="package[]" class="form-control display-7">
-      </div>
-      <div class="col-md-2  form-group">
-          <label class="form-control-label mbr-fonts-style display-7">Weight (Kg)</label>
-          <input type="text" id="weight" name="weight[]" class="form-control display-7">
-      </div>
-      <div class="col-md-2  form-group">
-          <label class="form-control-label mbr-fonts-style display-7">Cargo Quantity</label>
-          <input type="text" id="quantity" name="quantity[]" class="form-control display-7">
-      </div>
-      <div class="col-md-2  form-group">
-          <label class="form-control-label mbr-fonts-style display-7">Lenght (M)</label>
-          <input type="text" id="lenght" name="lenght[]" class="lenght form-control display-7">
-      </div>
-      <div class="col-md-2  form-group">
-          <label class="form-control-label mbr-fonts-style display-7">Width (M)</label>
-          <input type="text" id="width" name="width[]" class="width form-control display-7">
-      </div>
-      <div class="col-md-2  form-group">
-          <label class="form-control-label mbr-fonts-style display-7">Height (M)</label>
-          <input type="text" id="height" name="height[]" class="height form-control display-7">
-      </div>
-      <div class="col-md-1  form-group"></div>
-      <div class="col-md-1  form-group">
-          <label class="form-control-label mbr-fonts-style display-7">Action</label>
-          <button type="button" id="del_detail" class="btn btn-form" style="background:red; color: #FFF; padding:0.5rem;">Del</button>
-      </div>
+    </div>
+    <div class="col-md-1  form-group">
+        <label class="form-control-label mbr-fonts-style display-7">Action</label>
+        <button type="button" id="del_detail" class="btn btn-form" style="background:red; color: #FFF; padding:0.5rem;">Del</button>
     </div>
   </div>
+</div>
 
 @endsection

@@ -369,18 +369,19 @@
                 <p class="mbr-text">
                     <strong>Address</strong>
                     <br>
-                    <br>Jl. Yos Sudarso Blok II/10, Pulopancikan, Kebungson, Kec. Gresik, Kabupaten Gresik, Jawa Timur 61114<br>
+                    <br>Jl. Yos Sudarso II/10 Gresik 61114 - Jawa Timur - Indonesia
                     <br>
                     <br><strong>Contacts</strong>
                     <br>
-                    <br>Email: support@ptxxxxx.com
-                    <br>Phone: +62 1234567 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;<br>Fax: +62 31 9876543</p>
+                    <br>Email: <br>bahtera.setia@yahoo.co.id <br> ptbahtera.setia@gmail.com
+                    <br>Phone: <br>031 - 3985549, 3984451, 3970419
+                  </p>
             </div>
             <div class="col-12 col-md-3 mbr-fonts-style display-7">
                 <p class="mbr-text">
-                    <strong>Links</strong>
+                    <strong>Website</strong>
                     <br>
-                    <br>Gallery<br>Catalog<br><br>
+                    <br>www.bahterasetiagroup.com<br><br>
                     <br><strong>Feedback</strong>
                     <br>
                     <br>Please send us your ideas, bug reports, suggestions! Any feedback would be appreciated.
@@ -399,11 +400,19 @@
         <div class="media-container-row align-center mbr-white">
             <div class="row row-links">
                 <ul class="foot-menu">
-                <li class="foot-menu-item mbr-fonts-style display-7">
-                        About us
-                    </li><li class="foot-menu-item mbr-fonts-style display-7">
-                        Services
-                    </li><li class="foot-menu-item mbr-fonts-style display-7">Tracking</li></ul>
+                  <li class="foot-menu-item mbr-fonts-style display-7">
+                    <a class="nav-link link text-white display-4" href="/#header7-1u">{{ __('home.menu_tentang') }}</a>
+                  </li>
+                  <li class="foot-menu-item mbr-fonts-style display-7">
+                    <a class="nav-link link text-white display-4" href="/service">{{ __('home.menu_layanan') }}</a>
+                  </li>
+                  <li class="foot-menu-item mbr-fonts-style display-7">
+                    <a class="nav-link link text-white display-4" href="/tracking">{{ __('home.menu_lacak') }}</a>
+                  </li>
+                  <li class="foot-menu-item mbr-fonts-style display-7">
+                    <a class="nav-link link text-white display-4" href="/news">{{ __('home.menu_berita') }}</a>
+                  </li>
+                </ul>
             </div>
             <div class="row social-row">
                 <div class="social-list align-right pb-2">

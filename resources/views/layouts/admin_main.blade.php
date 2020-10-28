@@ -134,6 +134,7 @@
                 <p>Customer</p>
               </a>
             </li>
+            <!--
               <li class="nav-item">
                 <a href="/adm_agent" class="nav-link">
                   <i class="fa fa-male nav-icon"></i>
@@ -146,6 +147,7 @@
                   <p>Bank Account</p>
                 </a>
               </li>
+            -->
               <li class="nav-item">
                 <a href="/adm_pelayaran" class="nav-link">
                   <i class="fa fa-paper-plane nav-icon"></i>
@@ -158,6 +160,7 @@
                   <p>Tarif</p>
                 </a>
               </li>
+              <!--
               <li class="nav-item" style="border-bottom:1px solid">
                 <a href="/adm_consignee" class="nav-link">
                   <i class="fa fa-female nav-icon"></i>
@@ -181,6 +184,7 @@
                   <p>Location</p>
                 </a>
               </li>
+            -->
             </ul>
           </li>
           <li class="nav-item has-treeview menu-close">
@@ -762,25 +766,21 @@
       var Id = $(e.relatedTarget).data('id');
       var trans_no = $(e.relatedTarget).data('trans_no');
       var name_customer = $(e.relatedTarget).data('name_customer');
-      var shipping_no = $(e.relatedTarget).data('shipping_no');
       var loading_date = $(e.relatedTarget).data('loading_date');
-      var agent_id = $(e.relatedTarget).data('agent_id');
-      var vendor_id = $(e.relatedTarget).data('vendor_id');
       var pelayaran_id = $(e.relatedTarget).data('pelayaran_id');
-      var location_id = $(e.relatedTarget).data('location_id');
+      var location_from = $(e.relatedTarget).data('location_from');
+      var location_to = $(e.relatedTarget).data('location_to');
       var resi_no = $(e.relatedTarget).data('resi_no');
       var status = $(e.relatedTarget).data('status');
 
       $(e.currentTarget).find('input[name="inputTransactionNo"]').val(trans_no);
       $(e.currentTarget).find('input[name="inputCustomerName"]').val(name_customer);
       $(e.currentTarget).find('input[name="inputDate3"]').val(loading_date);
-      $(e.currentTarget).find('input[name="inputShipping"]').val(shipping_no);
-      $(e.currentTarget).find('select[name="inputToCity"]').val(location_id);
       $(e.currentTarget).find('input[name="inputResi"]').val(resi_no);
-      $(e.currentTarget).find('select[name="inputAgent"]').val(agent_id);
-      $(e.currentTarget).find('select[name="inputVendor"]').val(vendor_id);
       $(e.currentTarget).find('select[name="inputPelayaran"]').val(pelayaran_id);
       $(e.currentTarget).find('select[name="inputStatus"]').val(status);
+      $(e.currentTarget).find('input[name="inputFromCity"]').val(location_from);
+      $(e.currentTarget).find('input[name="inputToCity"]').val(location_to);
       $(e.currentTarget).find('input[name="inputIdTransaction"]').val(Id);
     });
 

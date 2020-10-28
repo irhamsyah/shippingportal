@@ -23,6 +23,7 @@
   <link rel="stylesheet" href="{{'assets/theme/css/style.css'}}">
   <link rel="preload" as="style" href="{{'assets/mobirise/css/mbr-additional.css'}}">
   <link rel="stylesheet" href="{{'assets/mobirise/css/mbr-additional.css'}}" type="text/css">
+  <link rel="stylesheet" href="{{'css/bast.css'}}">
 
 
 
@@ -86,11 +87,19 @@
           <div class="media-container-row align-center mbr-white">
               <div class="row row-links">
                   <ul class="foot-menu">
-                  <li class="foot-menu-item mbr-fonts-style display-7">
-                          About us
-                      </li><li class="foot-menu-item mbr-fonts-style display-7">
-                          Services
-                      </li><li class="foot-menu-item mbr-fonts-style display-7">Tracking</li></ul>
+                    <li class="foot-menu-item mbr-fonts-style display-7">
+                      <a class="nav-link link text-white display-4" href="/#header7-1u">{{ __('home.menu_tentang') }}</a>
+                    </li>
+                    <li class="foot-menu-item mbr-fonts-style display-7">
+                      <a class="nav-link link text-white display-4" href="/service">{{ __('home.menu_layanan') }}</a>
+                    </li>
+                    <li class="foot-menu-item mbr-fonts-style display-7">
+                      <a class="nav-link link text-white display-4" href="/tracking">{{ __('home.menu_lacak') }}</a>
+                    </li>
+                    <li class="foot-menu-item mbr-fonts-style display-7">
+                      <a class="nav-link link text-white display-4" href="/news">{{ __('home.menu_berita') }}</a>
+                    </li>
+                  </ul>
               </div>
               <div class="row social-row">
                   <div class="social-list align-right pb-2">

@@ -188,8 +188,8 @@ class FrontendController extends Controller
 
     //check validasi data customer
     if(!is_null($customers)){
-      $locations = Location::select('location.id as loc_id','location.code_city','location.name_city','location.province_city')->orderby('location.name_city')->get();
-      $consignees = Consignee::select('consignee.*','location.name_city','location.province_city')->leftjoin('location','location.id','=','consignee.id_city')->get();
+      //$locations = Location::select('location.id as loc_id','location.code_city','location.name_city','location.province_city')->orderby('location.name_city')->get();
+      //$consignees = Consignee::select('consignee.*','location.name_city','location.province_city')->leftjoin('location','location.id','=','consignee.id_city')->get();
       $transactions = Transaction::select('transaction.*','customer.code_customer','customer.name_customer','agent.code_agent','agent.name_agent','vendor_truck.code_vendor','vendor_truck.name_vendor',
       'location.code_city','location.name_city','location.province_city','pelayaran.code_pelayaran','pelayaran.name_pelayaran','pelayaran.alias')
       ->leftjoin('location','location.id','=','transaction.location_id')
@@ -197,13 +197,14 @@ class FrontendController extends Controller
       ->leftjoin('agent','agent.id','=','transaction.agent_id')
       ->leftjoin('vendor_truck','vendor_truck.id','=','transaction.vendor_truck_id')
       ->leftjoin('pelayaran','pelayaran.id','=','transaction.pelayaran_id')
-      ->where('transaction.customer_id',$customers->id)->get();
+      ->where('transaction.customer_id',$customers->id)->orderby('id','DESC')->get();
       $transactionnos = Transaction::select('id','trans_no')->orderby('id','DESC')->first();
-      //dd($customers->id);
-      return view('page_trans_new', ['customers'=> $customers, 'locations'=> $locations, 'consignees'=> $consignees, 'transactions'=> $transactions, 'transactionnos'=> $transactionnos]);
+
+      return view('page_trans_new', ['customers'=> $customers, 'transactions'=> $transactions, 'transactionnos'=> $transactionnos]);
     }else{
-      $services = Service::all();
-      return view('page_service', ['services'=> $services]);
+      //$services = Service::all();
+      return redirect()->back()->with('failed','Error Login, Please try again!');
+      //return view('page_service', ['services'=> $services]);
     }
   }
   public function trans_new_add(Request $request)
@@ -220,14 +221,15 @@ class FrontendController extends Controller
     }
     //generate code Transaction
     $transnonew = "TR".date('Ym').sprintf("%04s", $pecah+1);
-    $resi_no = mt_rand().'00';
+    $resi_no = date('ym').str_pad(mt_rand(1,99999999),8,'0',STR_PAD_LEFT);
 
     $transactions = new Transaction;
     $transactions->trans_no = $transnonew;
     $transactions->customer_id = $request->customerid;
     $transactions->loading_date = $request->departingdate;
-    $transactions->location_id = $request->to;
-    $transactions->resi_no = $resi_no;
+    $transactions->location_from = $request->from;
+    $transactions->location_to = $request->to;
+    $transactions->resi_no = $request->resino;
     $transactions->save();
     if($transactions){
       //Get Transaction id
@@ -236,27 +238,30 @@ class FrontendController extends Controller
       $consignees = $request->input('consignee');
       $comoditys = $request->input('comodity');
       $weights = $request->input('weight');
-      $quantitys  = $request->input('quantity');
-      $packages  = $request->input('package');
-      $lenghts  = $request->input('lenght');
-      $widths  = $request->input('width');
-      $heights  = $request->input('height');
+      $unitweights = $request->input('unitweight');
+      // $quantitys  = $request->input('quantity');
+      // $packages  = $request->input('package');
+      // $lenghts  = $request->input('lenght');
+      // $widths  = $request->input('width');
+      // $heights  = $request->input('height');
 
       foreach($consignees as $key => $consignee) {
         //generate Volume (m3)
-        $volume = $lenghts[$key]*$widths[$key]*$heights[$key];
+        //$volume = $lenghts[$key]*$widths[$key]*$heights[$key];
+
         //Save data to table trans Detail
         $transactiondetails = new TransactionDetail;
         $transactiondetails->transaction_id = $transaction_id->id;
-        $transactiondetails->consignee_id = $consignee;
+        $transactiondetails->consignee = $consignee;
         $transactiondetails->comodity = isset($comoditys[$key]) ? $comoditys[$key] : '';
         $transactiondetails->weight = isset($weights[$key]) ? $weights[$key] : '';
-        $transactiondetails->quantity = isset($quantitys[$key]) ? $quantitys[$key] : '';;
-        $transactiondetails->package_unit = isset($packages[$key]) ? $packages[$key] : '';;
-        $transactiondetails->length = isset($lenghts[$key]) ? $lenghts[$key] : '';;
-        $transactiondetails->width = isset($widths[$key]) ? $widths[$key] : '';;
-        $transactiondetails->height = isset($heights[$key]) ? $heights[$key] : '';;
-        $transactiondetails->volume = $volume;
+        $transactiondetails->unit_weight = isset($unitweights[$key]) ? $unitweights[$key] : '';
+        // $transactiondetails->quantity = isset($quantitys[$key]) ? $quantitys[$key] : '';
+        // $transactiondetails->package_unit = isset($packages[$key]) ? $packages[$key] : '';
+        // $transactiondetails->length = isset($lenghts[$key]) ? $lenghts[$key] : '';
+        // $transactiondetails->width = isset($widths[$key]) ? $widths[$key] : '';
+        // $transactiondetails->height = isset($heights[$key]) ? $heights[$key] : '';
+        // $transactiondetails->volume = $volume;
         $transactiondetails->save();
       }
     }
@@ -266,8 +271,8 @@ class FrontendController extends Controller
     ->leftjoin('entity','entity.id','=','customer.entity_id')
     ->where('customer.id','=',$request->customerid)
     ->first();
-    $locations = Location::select('location.id as loc_id','location.code_city','location.name_city','location.province_city')->orderby('location.name_city')->get();
-    $consignees = Consignee::select('consignee.*','location.name_city','location.province_city')->leftjoin('location','location.id','=','consignee.id_city')->get();
+    //$locations = Location::select('location.id as loc_id','location.code_city','location.name_city','location.province_city')->orderby('location.name_city')->get();
+    //$consignees = Consignee::select('consignee.*','location.name_city','location.province_city')->leftjoin('location','location.id','=','consignee.id_city')->get();
     $transactions = Transaction::select('transaction.*','customer.code_customer','customer.name_customer','agent.code_agent','agent.name_agent','vendor_truck.code_vendor','vendor_truck.name_vendor',
     'location.code_city','location.name_city','location.province_city','pelayaran.code_pelayaran','pelayaran.name_pelayaran','pelayaran.alias')
     ->leftjoin('location','location.id','=','transaction.location_id')
@@ -275,9 +280,9 @@ class FrontendController extends Controller
     ->leftjoin('agent','agent.id','=','transaction.agent_id')
     ->leftjoin('vendor_truck','vendor_truck.id','=','transaction.vendor_truck_id')
     ->leftjoin('pelayaran','pelayaran.id','=','transaction.pelayaran_id')
-    ->where('transaction.customer_id',$request->customerid)->get();
+    ->where('transaction.customer_id',$request->customerid)->orderby('id','DESC')->get();
     $transactionnos = Transaction::select('id','trans_no')->orderby('id','DESC')->first();
     //dd($customers->id);
-    return view('page_trans_new', ['customers'=> $customers, 'locations'=> $locations, 'consignees'=> $consignees, 'transactions'=> $transactions, 'transactionnos'=> $transactionnos]);
+    return view('page_trans_new', ['customers'=> $customers, 'transactions'=> $transactions, 'transactionnos'=> $transactionnos]);
   }
 }

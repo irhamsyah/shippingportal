@@ -1,7 +1,19 @@
 @extends('layouts.page_main')
 
 @section('content')
-<section class="features18 popup-btn-cards cid-s9mp3oMIIm" id="features18-1z">
+<section class="features18 popup-btn-cards popUpBgBast hideMeBast" id="features18-1z">
+    <div class="container">
+      @if (\Session::has('failed'))
+        <div class="alert alert-failed">
+          <ul>
+            <li class="popUpFailBast">{!! \Session::get('failed') !!}</li>
+          </ul>
+        </div>
+      @endif
+    </div>
+</section>
+
+<section class="features18 popup-btn-cards cid-s9mp3oMIIm" id="features18-2z">
     <div class="container">
       <h2 class="mbr-section-title pb-3 align-center mbr-fonts-style display-2">
           {{ __('service.service_title') }}</h2>
@@ -12,7 +24,7 @@
 <?php
   $index=0;
 ?>
-<section class="features18 popup-btn-cards cid-s9mp3oMIIm" id="features18-1z">
+<section class="features18 popup-btn-cards cid-s9mp3oMIIm" id="features18-3z">
     <div class="container">
       <div class="row">
         @foreach($services as $index => $service)
