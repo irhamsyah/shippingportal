@@ -25,7 +25,7 @@
                   </div>
                   <div class="col-md-5 form-group">
                       <label class="form-control-label mbr-fonts-style display-7">Location</label>
-                      <input type="text" value="{{ $customers->name_city.', '.$customers->province_city }}" class="form-control display-7" disabled="disabled">
+                      <input type="text" value="{{ $customers->city.', '.$customers->province }}" class="form-control display-7" disabled="disabled">
                   </div>
                   <div class="col-md-8 form-group">
                       <label class="form-control-label mbr-fonts-style display-7">Address</label>

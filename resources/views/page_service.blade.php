@@ -3,13 +3,11 @@
 @section('content')
 <section class="features18 popup-btn-cards popUpBgBast hideMeBast" id="features18-1z">
     <div class="container">
-      @if (\Session::has('failed'))
-        <div class="alert alert-failed">
-          <ul>
-            <li class="popUpFailBast">{!! \Session::get('failed') !!}</li>
-          </ul>
-        </div>
-      @endif
+      <div class="flash-message">
+        @if (\Session::has('failed'))
+            <p class="alert alert-failed popUpFailBast">{!! \Session::get('failed') !!} <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a></p>
+        @endif
+      </div>
     </div>
 </section>
 

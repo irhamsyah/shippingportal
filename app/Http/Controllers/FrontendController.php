@@ -66,53 +66,53 @@ class FrontendController extends Controller
 
   public function contact(){
     $entitys = Entity::all();
-    $locations = Location::all();
+    //$locations = Location::all();
 
-    return view('page_contact', ['entitys'=> $entitys, 'locations'=> $locations]);
+    return view('page_contact', ['entitys'=> $entitys]);
   }
-
-  public function contact_add(Request $request)
-  {
-    if($request->password==$request->passwordconf)
-    {
-      //enkripsi md5 password
-      $password=md5($request->password);
-      //Get last code customer
-      $lastcodecustomer=Customer::select('code_customer')
-      ->orderBy('id','desc')->limit(1)->get();
-      //generate code customer
-      $pecah=substr($lastcodecustomer, 20, 4);
-      $codecustomer = "R" . sprintf("%04s", $pecah+1);
-
-      $customers = new Customer;
-      $customers->code_customer = $codecustomer;
-      $customers->name_customer = $request->company;
-      $customers->address_invoice = $request->npwpaddress;
-      $customers->address = $request->address;
-      $customers->id_city = $request->city;
-      $customers->postal = $request->postal;
-      $customers->telp = $request->phone;
-      $customers->fax = $request->fax;
-      $customers->npwp = $request->npwp;
-      $customers->pkp_no = 0;
-      $customers->desc_customer = '';
-      $customers->payment_term = 0;
-      $customers->name_person = $request->company;
-      $customers->phone_person = $request->mphone;
-      $customers->email_person = $request->email;
-      $customers->fax_person = $request->fax;
-      $customers->username = $request->username;
-      $customers->password = $password;
-      $customers->entity_id = $request->entity;
-      $customers->created_at = date('Y-m-d H:i:s');
-      $customers->save();
-    }
-
-    $entitys = Entity::all();
-    $locations = Location::all();
-
-    return view('page_contact', ['entitys'=> $entitys, 'locations'=> $locations]);
-  }
+  //
+  // public function contact_add(Request $request)
+  // {
+  //   if($request->password==$request->passwordconf)
+  //   {
+  //     //enkripsi md5 password
+  //     $password=md5($request->password);
+  //     //Get last code customer
+  //     $lastcodecustomer=Customer::select('code_customer')
+  //     ->orderBy('id','desc')->limit(1)->get();
+  //     //generate code customer
+  //     $pecah=substr($lastcodecustomer, 20, 4);
+  //     $codecustomer = "R" . sprintf("%04s", $pecah+1);
+  //
+  //     $customers = new Customer;
+  //     $customers->code_customer = $codecustomer;
+  //     $customers->name_customer = $request->company;
+  //     $customers->address_invoice = $request->npwpaddress;
+  //     $customers->address = $request->address;
+  //     $customers->id_city = $request->city;
+  //     $customers->postal = $request->postal;
+  //     $customers->telp = $request->phone;
+  //     $customers->fax = $request->fax;
+  //     $customers->npwp = $request->npwp;
+  //     $customers->pkp_no = 0;
+  //     $customers->desc_customer = '';
+  //     $customers->payment_term = 0;
+  //     $customers->name_person = $request->company;
+  //     $customers->phone_person = $request->mphone;
+  //     $customers->email_person = $request->email;
+  //     $customers->fax_person = $request->fax;
+  //     $customers->username = $request->username;
+  //     $customers->password = $password;
+  //     $customers->entity_id = $request->entity;
+  //     $customers->created_at = date('Y-m-d H:i:s');
+  //     $customers->save();
+  //   }
+  //
+  //   $entitys = Entity::all();
+  //   $locations = Location::all();
+  //
+  //   return view('page_contact', ['entitys'=> $entitys, 'locations'=> $locations]);
+  // }
 
   public function tracking(){
     //check validasi resi
@@ -179,8 +179,7 @@ class FrontendController extends Controller
     //convert inputan password
     $pass=md5($request->password);
 
-    $customers = Customer::select('customer.*','location.name_city','location.province_city','entity.entity_name')
-    ->leftjoin('location','location.id','=','customer.id_city')
+    $customers = Customer::select('customer.*','entity.entity_name')
     ->leftjoin('entity','entity.id','=','customer.entity_id')
     ->where([['username','=',$request->username],['password','=',$pass ]])
     ->ORwhere([['email','=',$request->username],['password','=',$pass ]])

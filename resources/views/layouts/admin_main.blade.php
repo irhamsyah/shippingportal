@@ -460,7 +460,8 @@
       var addressinv = $(e.relatedTarget).data('addressinv');
       var address = $(e.relatedTarget).data('address');
       var namecust = $(e.relatedTarget).data('namecust');
-      var idcity = $(e.relatedTarget).data('idcity');
+      var city = $(e.relatedTarget).data('city');
+      var province = $(e.relatedTarget).data('province');
       var postal = $(e.relatedTarget).data('postal');
       var telp = $(e.relatedTarget).data('telp');
       var fax = $(e.relatedTarget).data('fax');
@@ -483,7 +484,8 @@
       $(e.currentTarget).find('input[name="inputCostumerName"]').val(namecust);
       $(e.currentTarget).find('textarea[name="inputAddressInvoice"]').val(addressinv);
       $(e.currentTarget).find('textarea[name="inputAddress"]').val(address);
-      $(e.currentTarget).find('select[name="inputIdCity"]').val(idcity);
+      $(e.currentTarget).find('input[name="inputCity"]').val(city);
+      $(e.currentTarget).find('input[name="inputProvince"]').val(province);
       $(e.currentTarget).find('input[name="inputPostal"]').val(postal);
       $(e.currentTarget).find('input[name="inputTelp"]').val(telp);
       $(e.currentTarget).find('input[name="inputFax"]').val(fax);
@@ -496,8 +498,7 @@
       $(e.currentTarget).find('input[name="inputPersonPhone"]').val(phoneperson);
       $(e.currentTarget).find('input[name="inputPersonFax"]').val(faxperson);
       $(e.currentTarget).find('input[name="inputUsername"]').val(username);
-      $(e.currentTarget).find('input[name="inputPassword"]').val(password);
-      $(e.currentTarget).find('input[name="inputConfPassword"]').val(password);
+      $(e.currentTarget).find('input[name="inputPasswordOld"]').val(password);
       $(e.currentTarget).find('select[name="inputEntity"]').val(entity);
       $(e.currentTarget).find('input[name="inputAccountName"]').val(namecust+','+entityname);
       $(e.currentTarget).find('select[name="inputStatus"]').val(status);
@@ -566,8 +567,9 @@
       var namepelayaran = $(e.relatedTarget).data('namepelayaran');
       var alias = $(e.relatedTarget).data('alias');
       var address = $(e.relatedTarget).data('address');
+      var city = $(e.relatedTarget).data('city');
+      var province = $(e.relatedTarget).data('province');
       var namecust = $(e.relatedTarget).data('namecust');
-      var idcity = $(e.relatedTarget).data('idcity');
       var postal = $(e.relatedTarget).data('postal');
       var telp = $(e.relatedTarget).data('telp');
       var fax = $(e.relatedTarget).data('fax');
@@ -585,7 +587,8 @@
       $(e.currentTarget).find('input[name="inputPelayaranName"]').val(namepelayaran);
       $(e.currentTarget).find('input[name="inputAlias"]').val(alias);
       $(e.currentTarget).find('textarea[name="inputAddress"]').val(address);
-      $(e.currentTarget).find('select[name="inputIdCity"]').val(idcity);
+      $(e.currentTarget).find('input[name="inputCity"]').val(city);
+      $(e.currentTarget).find('input[name="inputProvince"]').val(province);
       $(e.currentTarget).find('input[name="inputPostal"]').val(postal);
       $(e.currentTarget).find('input[name="inputTelp"]').val(telp);
       $(e.currentTarget).find('input[name="inputFax"]').val(fax);
@@ -602,7 +605,8 @@
     $('#modal-edit-tarif').on('show.bs.modal', function(e) {
       var id = $(e.relatedTarget).data('id');
       var pelayaranid = $(e.relatedTarget).data('pelayaranid');
-      var idcity = $(e.relatedTarget).data('idcity');
+      var city = $(e.relatedTarget).data('city');
+      var province = $(e.relatedTarget).data('province');
       var price = $(e.relatedTarget).data('price');
       var date = $(e.relatedTarget).data('date');
       var picpelayaran = $(e.relatedTarget).data('picpelayaran');
@@ -612,7 +616,8 @@
 
       $(e.currentTarget).find('input[name="inputIdTarif"]').val(id);
       $(e.currentTarget).find('select[name="inputIdPelayaran"]').val(pelayaranid);
-      $(e.currentTarget).find('select[name="inputIdCity"]').val(idcity);
+      $(e.currentTarget).find('input[name="inputCity"]').val(city);
+      $(e.currentTarget).find('input[name="inputProvince"]').val(province);
       $(e.currentTarget).find('input[name="inputPrice"]').val(price);
       $(e.currentTarget).find('input[name="inputDate2"]').val(date);
       $(e.currentTarget).find('input[name="inputPIC"]').val(picpelayaran);

@@ -47,22 +47,24 @@ class RegistercustomerController extends Controller
             'passwordconf' => 'required|same:password'
         ]);
 
-          //enkripsi md5 password   
+          //enkripsi md5 password
           $password=md5($request->password);
-  
+
           //Get last code customer
           $lastcodecustomer=Customer::select('code_customer')
           ->orderBy('id','desc')->limit(1)->get();
           //generate code customer
           $pecah=substr($lastcodecustomer, 20, 4);
           $codecustomer = "R" . sprintf("%04s", $pecah+1);
-    
+
           $user = new Customer;
           $user->code_customer = $codecustomer;
           $user->name_customer = $request->company;
           $user->address_invoice = $request->npwpaddress;
           $user->address = $request->address;
-          $user->id_city = $request->city;
+          $user->id_city = 1;
+          $user->city = $request->city;
+          $user->province = $request->province;
           $user->postal = $request->postal;
           $user->telp = $request->phone;
           $user->fax = $request->fax;
@@ -80,12 +82,12 @@ class RegistercustomerController extends Controller
           $user->entity_id = $request->entity;
           $user->created_at = date('Y-m-d H:i:s');
           $user->save();
-    
-        $entitys = Entity::all();
-        $locations = Location::all();
 
-        
-    
+        $entitys = Entity::all();
+        //$locations = Location::all();
+
+
+
         // return view('page_contact', ['entitys'=> $entitys, 'locations'=> $locations]);
         /****/
         if($user != null){
