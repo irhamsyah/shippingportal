@@ -55,6 +55,7 @@ Route::get('/adm_transaction', 'TransactionController@admin_transaction');
 Route::post('/adm_transaction', 'TransactionController@admin_transaction_add');
 Route::put('/adm_transaction', 'TransactionController@admin_transaction_edit');
 Route::delete('/adm_transaction', 'TransactionController@admin_transaction_destroy');
+Route::post('/adm_transaction_detail', 'TransactionController@admin_transaction_detail');
 
 Route::get('/adm_news', 'NewsController@admin_news');
 Route::post('/adm_news', 'NewsController@admin_news_add');

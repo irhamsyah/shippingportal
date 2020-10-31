@@ -162,4 +162,16 @@ class TransactionController extends Controller
 
       return view('admin/transaction', ['transactions'=> $transactions, 'pelayarans'=> $pelayarans]);
     }
+    public function admin_transaction_detail(Request $request)
+    {
+      $transactiondetails = TransactionDetail::select('*')->where('transaction_id',$request->inputIdTransaction)->get();
+      $transactions = Transaction::select('transaction.*','customer.code_customer','customer.name_customer',
+      'pelayaran.code_pelayaran','pelayaran.name_pelayaran','pelayaran.alias')
+      ->leftjoin('customer','customer.id','=','transaction.customer_id')
+      ->leftjoin('pelayaran','pelayaran.id','=','transaction.pelayaran_id')
+      ->where('transaction.id',$request->inputIdTransaction)
+      ->get();
+
+      return view('admin/transaction_detail', ['transactiondetails'=> $transactiondetails, 'transactions'=> $transactions]);
+    }
 }

@@ -35,13 +35,13 @@
               </thead>
               <tbody>
                 @foreach($transactions as $index => $transaction)
-                @if($transaction->status==0)
-                  @php ($status='Process')
-                @elseif($transaction->status==1)
-                  @php ($status='Success')
-                @else
-                  @php ($status='Canceled')
-                @endif
+                  @if($transaction->status==0)
+                    @php ($status='Process')
+                  @elseif($transaction->status==1)
+                    @php ($status='Success')
+                  @else
+                    @php ($status='Canceled')
+                  @endif
                 <tr>
                   <td>{{ $index+1 }}</td>
                   <td>{{ strtoupper($transaction->trans_no) }}</td>
@@ -54,6 +54,15 @@
                   <td>{{ $status }}</td>
                   <td>
                     <div class="row">
+                      <div class="col-6">
+                        <form action="/adm_transaction_detail" method="post">
+                           <button type="submit" class="btn btn-block bg-gradient-primary btn-sm">
+                              <i class="far fa-circle" aria-hidden="true" style="color:#000;"></i>
+                           </button>
+                           <input type="hidden" name="inputIdTransaction" value="{{ $transaction->id }}" class="form-control">
+                           @csrf
+                        </form>
+                      </div>
                       <div class="col-6">
                         <a href="#" class="btn btn-block bg-gradient-warning btn-sm"
                             data-toggle="modal" data-target="#modal-edit-transaction"
