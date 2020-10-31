@@ -181,8 +181,10 @@ class FrontendController extends Controller
 
     $customers = Customer::select('customer.*','entity.entity_name')
     ->leftjoin('entity','entity.id','=','customer.entity_id')
-    ->where([['username','=',$request->username],['password','=',$pass ]])
-    ->ORwhere([['email','=',$request->username],['password','=',$pass ]])
+    ->where([['username','=',$request->username],['password','=',$pass ],['is_verified','=',1 ]])
+    ->ORwhere([['username','=',$request->username],['password','=',$pass ],['status','=',1 ]])
+    ->ORwhere([['email','=',$request->username],['password','=',$pass ],['is_verified','=',1 ]])
+    ->ORwhere([['email','=',$request->username],['password','=',$pass ],['status','=',1 ]])
     ->first();
 
     //check validasi data customer
@@ -273,15 +275,15 @@ class FrontendController extends Controller
     //$locations = Location::select('location.id as loc_id','location.code_city','location.name_city','location.province_city')->orderby('location.name_city')->get();
     //$consignees = Consignee::select('consignee.*','location.name_city','location.province_city')->leftjoin('location','location.id','=','consignee.id_city')->get();
     $transactions = Transaction::select('transaction.*','customer.code_customer','customer.name_customer','agent.code_agent','agent.name_agent','vendor_truck.code_vendor','vendor_truck.name_vendor',
-    'location.code_city','location.name_city','location.province_city','pelayaran.code_pelayaran','pelayaran.name_pelayaran','pelayaran.alias')
-    ->leftjoin('location','location.id','=','transaction.location_id')
-    ->leftjoin('customer','customer.id','=','transaction.customer_id')
-    ->leftjoin('agent','agent.id','=','transaction.agent_id')
-    ->leftjoin('vendor_truck','vendor_truck.id','=','transaction.vendor_truck_id')
-    ->leftjoin('pelayaran','pelayaran.id','=','transaction.pelayaran_id')
-    ->where('transaction.customer_id',$request->customerid)->orderby('id','DESC')->get();
-    $transactionnos = Transaction::select('id','trans_no')->orderby('id','DESC')->first();
-    //dd($customers->id);
-    return view('page_trans_new', ['customers'=> $customers, 'transactions'=> $transactions, 'transactionnos'=> $transactionnos]);
+      'location.code_city','location.name_city','location.province_city','pelayaran.code_pelayaran','pelayaran.name_pelayaran','pelayaran.alias')
+      ->leftjoin('location','location.id','=','transaction.location_id')
+      ->leftjoin('customer','customer.id','=','transaction.customer_id')
+      ->leftjoin('agent','agent.id','=','transaction.agent_id')
+      ->leftjoin('vendor_truck','vendor_truck.id','=','transaction.vendor_truck_id')
+      ->leftjoin('pelayaran','pelayaran.id','=','transaction.pelayaran_id')
+      ->where('transaction.customer_id',$customers->id)->orderby('id','DESC')->get();
+      $transactionnos = Transaction::select('id','trans_no')->orderby('id','DESC')->first();
+
+      return view('page_trans_new', ['customers'=> $customers, 'transactions'=> $transactions, 'transactionnos'=> $transactionnos]);
   }
 }
