@@ -57,7 +57,7 @@
                       <div class="col-6">
                         <form action="/adm_transaction_detail" method="post">
                            <button type="submit" class="btn btn-block bg-gradient-primary btn-sm">
-                              <i class="far fa-circle" aria-hidden="true" style="color:#000;"></i>
+                              <i class="fa fa-eye" aria-hidden="true" style="color:#000;"></i>
                            </button>
                            <input type="hidden" name="inputIdTransaction" value="{{ $transaction->id }}" class="form-control">
                            @csrf
