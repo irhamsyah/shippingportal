@@ -7,6 +7,7 @@ use App\Users;
 use App\Location;
 use App\Pelayaran;
 use App\Tarif;
+use App\Logo;
 
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Builder;
@@ -43,12 +44,14 @@ class PelayaranController extends Controller
      */
     public function admin_pelayaran()
     {
+      $logos = Logo::all();
       $pelayarans = Pelayaran::all();
 
-      return view('admin/pelayaran', ['pelayarans'=> $pelayarans]);
+      return view('admin/pelayaran', ['logos'=> $logos,'pelayarans'=> $pelayarans]);
     }
     public function admin_pelayaran_add(Request $request)
     {
+      $logos = Logo::all();
       $pelayarans = new Pelayaran;
       $pelayarans->code_pelayaran = $request->inputPelayaranCode;
       $pelayarans->name_pelayaran = $request->inputPelayaranName;
@@ -72,10 +75,11 @@ class PelayaranController extends Controller
 
       $pelayarans = Pelayaran::all();
 
-      return view('admin/pelayaran', ['pelayarans'=> $pelayarans]);
+      return view('admin/pelayaran', ['logos'=> $logos,'pelayarans'=> $pelayarans]);
     }
     public function admin_pelayaran_edit(Request $request)
     {
+      $logos = Logo::all();
       //update Pelayaran
       $pelayarans = Pelayaran::find($request->inputIdPelayaran);
       $pelayarans->code_pelayaran = $request->inputPelayaranCode;
@@ -100,27 +104,30 @@ class PelayaranController extends Controller
 
       $pelayarans = Pelayaran::all();
 
-      return view('admin/pelayaran', ['pelayarans'=> $pelayarans]);
+      return view('admin/pelayaran', ['logos'=> $logos,'pelayarans'=> $pelayarans]);
     }
     //Direct to Proses DeletePelayaran
     public function admin_pelayaran_destroy(Request $request)
     {
+      $logos = Logo::all();
       $pelayarans = Pelayaran::find($request->inputIdPelayaran);
       $pelayarans->delete();
 
       $pelayarans = Pelayaran::all();
 
-      return view('admin/pelayaran', ['pelayarans'=> $pelayarans]);
+      return view('admin/pelayaran', ['logos'=> $logos,'pelayarans'=> $pelayarans]);
     }
     public function admin_tarif()
     {
+      $logos = Logo::all();
       $tarifs = Tarif::select('tarif.*','pelayaran.code_pelayaran','pelayaran.name_pelayaran')->leftjoin('pelayaran','pelayaran.id','=','tarif.pelayaran_id')->get();
       $pelayarans = Pelayaran::select('pelayaran.id as pel_id','pelayaran.code_pelayaran','pelayaran.name_pelayaran')->orderby('pelayaran.code_pelayaran')->get();
 
-      return view('admin/tarif', ['tarifs'=> $tarifs, 'pelayarans'=> $pelayarans]);
+      return view('admin/tarif', ['logos'=> $logos,'tarifs'=> $tarifs, 'pelayarans'=> $pelayarans]);
     }
     public function admin_tarif_add(Request $request)
     {
+      $logos = Logo::all();
       $tarifs = new Tarif;
       $tarifs->pelayaran_id = $request->inputIdPelayaran;
       $tarifs->city = $request->inputCity;
@@ -137,10 +144,11 @@ class PelayaranController extends Controller
       $tarifs = Tarif::select('tarif.*','pelayaran.code_pelayaran','pelayaran.name_pelayaran')->leftjoin('pelayaran','pelayaran.id','=','tarif.pelayaran_id')->get();
       $pelayarans = Pelayaran::select('pelayaran.id as pel_id','pelayaran.code_pelayaran','pelayaran.name_pelayaran')->orderby('pelayaran.code_pelayaran')->get();
 
-      return view('admin/tarif', ['tarifs'=> $tarifs, 'pelayarans'=> $pelayarans]);
+      return view('admin/tarif', ['logos'=> $logos,'tarifs'=> $tarifs, 'pelayarans'=> $pelayarans]);
     }
     public function admin_tarif_edit(Request $request)
     {
+      $logos = Logo::all();
       //update Tarif
       $tarifs = Tarif::find($request->inputIdTarif);
       $tarifs->pelayaran_id = $request->inputIdPelayaran;
@@ -161,17 +169,18 @@ class PelayaranController extends Controller
       $tarifs = Tarif::select('tarif.*','pelayaran.code_pelayaran','pelayaran.name_pelayaran')->leftjoin('pelayaran','pelayaran.id','=','tarif.pelayaran_id')->get();
       $pelayarans = Pelayaran::select('pelayaran.id as pel_id','pelayaran.code_pelayaran','pelayaran.name_pelayaran')->orderby('pelayaran.code_pelayaran')->get();
 
-      return view('admin/tarif', ['tarifs'=> $tarifs, 'pelayarans'=> $pelayarans]);
+      return view('admin/tarif', ['logos'=> $logos,'tarifs'=> $tarifs, 'pelayarans'=> $pelayarans]);
     }
     //Direct to Proses DeleteTarif
     public function admin_tarif_destroy(Request $request)
     {
+      $logos = Logo::all();
       $tarifs = Tarif::find($request->inputIdTarif);
       $tarifs->delete();
 
       $tarifs = Tarif::select('tarif.*','pelayaran.code_pelayaran','pelayaran.name_pelayaran')->leftjoin('pelayaran','pelayaran.id','=','tarif.pelayaran_id')->get();
       $pelayarans = Pelayaran::select('pelayaran.id as pel_id','pelayaran.code_pelayaran','pelayaran.name_pelayaran')->orderby('pelayaran.code_pelayaran')->get();
 
-      return view('admin/tarif', ['tarifs'=> $tarifs, 'pelayarans'=> $pelayarans]);
+      return view('admin/tarif', ['logos'=> $logos,'tarifs'=> $tarifs, 'pelayarans'=> $pelayarans]);
     }
 }

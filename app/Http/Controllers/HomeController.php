@@ -15,6 +15,7 @@ use App\Transaction;
 use App\TransactionDetail;
 use App\TruckingType;
 use App\VendorTruck;
+use App\Logo;
 
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Builder;
@@ -51,6 +52,7 @@ class HomeController extends Controller
      */
     public function admin_index()
     {
+      $logos = Logo::all();
       $transactions = Transaction::select('transaction.*','customer.code_customer','customer.name_customer','agent.code_agent','agent.name_agent','vendor_truck.code_vendor','vendor_truck.name_vendor',
       'location.code_city','location.name_city','location.province_city','pelayaran.code_pelayaran','pelayaran.name_pelayaran','pelayaran.alias')
       ->leftjoin('location','location.id','=','transaction.location_id')
@@ -68,18 +70,20 @@ class HomeController extends Controller
       $agents = Agent::all();
       $locations = Location::all();
 
-      return view('admin/transaction', ['transactions'=> $transactions, 'vendors'=> $vendors, 'pelayarans'=> $pelayarans, 'agents'=> $agents, 'locations'=> $locations]);
+      return view('admin/transaction', ['logos'=> $logos,'transactions'=> $transactions, 'vendors'=> $vendors, 'pelayarans'=> $pelayarans, 'agents'=> $agents, 'locations'=> $locations]);
     }
     //Direct to Slider page
     public function admin_slider()
     {
+      $logos = Logo::all();
       //get data Slider
       $sliders = Slider::all();
 
-      return view('admin/slider', ['sliders'=> $sliders]);
+      return view('admin/slider', ['logos'=> $logos,'sliders'=> $sliders]);
     }
     public function admin_slider_add(Request $request)
     {
+      $logos = Logo::all();
       //cek validasi image
         $this->validate($request, [
           'inputImage' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
@@ -100,10 +104,11 @@ class HomeController extends Controller
       //get data Slider
       $sliders = Slider::all();
 
-      return view('admin/slider', ['sliders'=> $sliders]);
+      return view('admin/slider', ['logos'=> $logos,'sliders'=> $sliders]);
     }
     public function admin_slider_edit(Request $request)
     {
+      $logos = Logo::all();
       if ($request->inputImage!="" OR $request->inputImage!=NULL){
         //cek validasi image
         $this->validate($request, [
@@ -131,11 +136,12 @@ class HomeController extends Controller
       //get data Slider
       $sliders = Slider::all();
 
-      return view('admin/slider', ['sliders'=> $sliders]);
+      return view('admin/slider', ['logos'=> $logos,'sliders'=> $sliders]);
     }
     //Direct to Proses Deleteslider
     public function admin_slider_destroy(Request $request)
     {
+      $logos = Logo::all();
       $sliders = Slider::find($request->inputIdSlider);
       $sliders->delete();
 
@@ -144,18 +150,20 @@ class HomeController extends Controller
 
       //get data Slider
       $sliders = Slider::all();
-      return view('admin/slider', ['sliders'=> $sliders]);
+      return view('admin/slider', ['logos'=> $logos,'sliders'=> $sliders]);
     }
     //Direct to Testimoni page
     public function admin_testimoni()
     {
+      $logos = Logo::all();
       //get data Testimoni
       $testimonis = Testimoni::all();
 
-      return view('admin/testimoni', ['testimonis'=> $testimonis]);
+      return view('admin/testimoni', ['logos'=> $logos,'testimonis'=> $testimonis]);
     }
     public function admin_testimoni_add(Request $request)
     {
+      $logos = Logo::all();
       //cek validasi image
         $this->validate($request, [
           'inputImage' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
@@ -180,10 +188,11 @@ class HomeController extends Controller
       //get data Testimoni
       $testimonis = Testimoni::all();
 
-      return view('admin/testimoni', ['testimonis'=> $testimonis]);
+      return view('admin/testimoni', ['logos'=> $logos,'testimonis'=> $testimonis]);
     }
     public function admin_testimoni_edit(Request $request)
     {
+      $logos = Logo::all();
       if ($request->inputImage!="" OR $request->inputImage!=NULL){
         //cek validasi image
         $this->validate($request, [
@@ -214,11 +223,12 @@ class HomeController extends Controller
       //get data Testimoni
       $testimonis = Testimoni::all();
 
-      return view('admin/testimoni', ['testimonis'=> $testimonis]);
+      return view('admin/testimoni', ['logos'=> $logos,'testimonis'=> $testimonis]);
     }
     //Direct to Proses Deleteslider
     public function admin_testimoni_destroy(Request $request)
     {
+      $logos = Logo::all();
       $testimonis = Testimoni::find($request->inputIdTestimoni);
       $testimonis->delete();
 
@@ -228,18 +238,20 @@ class HomeController extends Controller
       //get data Service
       $testimonis = Testimoni::all();
 
-      return view('admin/testimoni', ['testimonis'=> $testimonis]);
+      return view('admin/testimoni', ['logos'=> $logos,'testimonis'=> $testimonis]);
     }
     //Direct to Service page
     public function admin_service()
     {
+      $logos = Logo::all();
       //get data Service
       $services = Service::all();
 
-      return view('admin/service', ['services'=> $services]);
+      return view('admin/service', ['logos'=> $logos,'services'=> $services]);
     }
     public function admin_service_add(Request $request)
     {
+      $logos = Logo::all();
       //cek validasi image
         $this->validate($request, [
           'inputImage' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
@@ -264,10 +276,11 @@ class HomeController extends Controller
       //get data Service
       $services = Service::all();
 
-      return view('admin/service', ['services'=> $services]);
+      return view('admin/service', ['logos'=> $logos,'services'=> $services]);
     }
     public function admin_service_edit(Request $request)
     {
+      $logos = Logo::all();
       if ($request->inputImage!="" OR $request->inputImage!=NULL){
         //cek validasi image
         $this->validate($request, [
@@ -298,11 +311,12 @@ class HomeController extends Controller
       //get data Service
       $services = Service::all();
 
-      return view('admin/service', ['services'=> $services]);
+      return view('admin/service', ['logos'=> $logos,'services'=> $services]);
     }
     //Direct to Proses Delete service
     public function admin_service_destroy(Request $request)
     {
+      $logos = Logo::all();
       $services = Service::find($request->inputIdService);
       $services->delete();
 
@@ -312,6 +326,6 @@ class HomeController extends Controller
       //get data Service
       $services = Service::all();
 
-      return view('admin/service', ['services'=> $services]);
+      return view('admin/service', ['logos'=> $logos,'services'=> $services]);
     }
 }

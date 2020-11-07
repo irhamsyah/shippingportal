@@ -15,6 +15,7 @@ use App\Tracking;
 use App\Transaction;
 use App\TruckingType;
 use App\VendorTruck;
+use App\Logo;
 
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Builder;
@@ -52,6 +53,7 @@ class TrackingController extends Controller
 
     public function admin_tracking()
     {
+      $logos = Logo::all();
       $trackings = Tracking::select('tracking.*','transaction.trans_no','transaction.customer_id','customer.code_customer','customer.name_customer')
       ->leftjoin('transaction','transaction.id','=','transaction_id')
       ->leftjoin('customer','customer.id','=','transaction.customer_id')
@@ -64,10 +66,11 @@ class TrackingController extends Controller
       ->orderby('transaction.id','DESC')
       ->get();
 
-      return view('admin/tracking', ['trackings'=> $trackings, 'transactions'=> $transactions]);
+      return view('admin/tracking', ['logos'=> $logos,'trackings'=> $trackings, 'transactions'=> $transactions]);
     }
     public function admin_tracking_add(Request $request)
     {
+      $logos = Logo::all();
       $trackings = new Tracking;
       $trackings->transaction_id = $request->inputTransactionNo;
       $trackings->longitude = $request->inputLongitude;
@@ -89,10 +92,11 @@ class TrackingController extends Controller
       ->orderby('transaction.id','DESC')
       ->get();
 
-      return view('admin/tracking', ['trackings'=> $trackings, 'transactions'=> $transactions]);
+      return view('admin/tracking', ['logos'=> $logos,'trackings'=> $trackings, 'transactions'=> $transactions]);
     }
     public function admin_tracking_edit(Request $request)
     {
+      $logos = Logo::all();
       //update Tracking
       $trackings = Tracking::find($request->inputIdTracking);
       $trackings->transaction_id = $request->inputIdTransaction;
@@ -115,11 +119,12 @@ class TrackingController extends Controller
       ->orderby('transaction.id','DESC')
       ->get();
 
-      return view('admin/tracking', ['trackings'=> $trackings, 'transactions'=> $transactions]);
+      return view('admin/tracking', ['logos'=> $logos,'trackings'=> $trackings, 'transactions'=> $transactions]);
     }
     //Direct to Proses Delete Tracking
     public function admin_tracking_destroy(Request $request)
     {
+      $logos = Logo::all();
       $trackings = Tracking::find($request->inputIdTracking);
       $trackings->delete();
 
@@ -135,6 +140,6 @@ class TrackingController extends Controller
       ->orderby('transaction.id','DESC')
       ->get();
 
-      return view('admin/tracking', ['trackings'=> $trackings, 'transactions'=> $transactions]);
+      return view('admin/tracking', ['logos'=> $logos,'trackings'=> $trackings, 'transactions'=> $transactions]);
     }
 }

@@ -1,6 +1,8 @@
 <html>
 <head>
-  
+  @foreach($logos as $logo)
+    @php ($logo=$logo->logo_name)
+  @endforeach
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>BAHTERA SETIA</title>
@@ -33,7 +35,7 @@
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
   <!-- Logo Icon -->
-  <link rel="shortcut icon" href="{{ asset('img/logo-coba-150x108.png') }}" type="image/x-icon">
+  <link rel="shortcut icon" href="{{ 'assets/images/'.$logo }}" type="image/x-icon">
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
@@ -86,7 +88,7 @@
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="/" class="brand-link">
-      <img src="{{ asset('img/logo-coba-white-150x108.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+      <img src="{{ 'assets/images/'.$logo }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
            style="opacity: .8">
       <span class="brand-text font-weight-light">Bahtera Setia</span>
     </a>

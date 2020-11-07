@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Users;
 use App\Consignee;
 use App\Location;
+use App\Logo;
 
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Builder;
@@ -42,13 +43,15 @@ class ConsigneeController extends Controller
      */
     public function admin_consignee()
     {
+      $logos = Logo::all();
       $consignees = Consignee::select('consignee.*','location.name_city','location.province_city')->leftjoin('location','location.id','=','consignee.id_city')->get();
       $locations = Location::select('location.id as loc_id','location.code_city','location.name_city','location.province_city')->orderby('location.name_city')->get();
 
-      return view('admin/consignee', ['consignees'=> $consignees,'locations'=> $locations]);
+      return view('admin/consignee', ['logos'=> $logos,'consignees'=> $consignees,'locations'=> $locations]);
     }
     public function admin_consignee_add(Request $request)
     {
+      $logos = Logo::all();
       $consignees = new Consignee;
       $consignees->code_consignee = $request->inputConsigneeCode;
       $consignees->name_consignee = $request->inputConsigneeName;
@@ -72,10 +75,11 @@ class ConsigneeController extends Controller
       $consignees = Consignee::select('consignee.*','location.name_city','location.province_city')->leftjoin('location','location.id','=','consignee.id_city')->get();;
       $locations = Location::select('location.id as loc_id','location.code_city','location.name_city','location.province_city')->orderby('location.name_city')->get();
 
-      return view('admin/consignee', ['consignees'=> $consignees,'locations'=> $locations]);
+      return view('admin/consignee', ['logos'=> $logos,'consignees'=> $consignees,'locations'=> $locations]);
     }
     public function admin_consignee_edit(Request $request)
     {
+      $logos = Logo::all();
       //update Consignee
       $consignees = Consignee::find($request->inputIdConsignee);
       $consignees->code_consignee = $request->inputConsigneeCode;
@@ -100,17 +104,18 @@ class ConsigneeController extends Controller
       $consignees = Consignee::select('consignee.*','location.name_city','location.province_city')->leftjoin('location','location.id','=','consignee.id_city')->get();;
       $locations = Location::select('location.id as loc_id','location.code_city','location.name_city','location.province_city')->orderby('location.name_city')->get();
 
-      return view('admin/consignee', ['consignees'=> $consignees,'locations'=> $locations]);
+      return view('admin/consignee', ['logos'=> $logos,'consignees'=> $consignees,'locations'=> $locations]);
     }
     //Direct to Proses DeleteConsignee
     public function admin_consignee_destroy(Request $request)
     {
+      $logos = Logo::all();
       $consignees = Consignee::find($request->inputIdConsignee);
       $consignees->delete();
 
       $consignees = Consignee::select('consignee.*','location.name_city','location.province_city')->leftjoin('location','location.id','=','consignee.id_city')->get();;
       $locations = Location::select('location.id as loc_id','location.code_city','location.name_city','location.province_city')->orderby('location.name_city')->get();
 
-      return view('admin/consignee', ['consignees'=> $consignees,'locations'=> $locations]);
+      return view('admin/consignee', ['logos'=> $logos,'consignees'=> $consignees,'locations'=> $locations]);
     }
 }

@@ -18,6 +18,7 @@ use App\TruckingType;
 use App\VendorTruck;
 use App\Testimoni;
 use App\Slider;
+use App\Logo;
 
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Builder;
@@ -54,12 +55,14 @@ class LocationController extends Controller
      */
     public function admin_location()
     {
+      $logos = Logo::all();
       $locations = Location::all();
 
-      return view('admin/location', ['locations'=> $locations]);
+      return view('admin/location', ['logos'=> $logos,'locations'=> $locations]);
     }
     public function admin_location_add(Request $request)
     {
+      $logos = Logo::all();
       $locations = new Location;
       $locations->code_city = $request->inputCityCode;
       $locations->name_city = $request->inputCityName;
@@ -71,10 +74,11 @@ class LocationController extends Controller
 
       $locations = Location::all();
 
-      return view('admin/location', ['locations'=> $locations]);
+      return view('admin/location', ['logos'=> $logos,'locations'=> $locations]);
     }
     public function admin_location_edit(Request $request)
     {
+      $logos = Logo::all();
       //update location
       $locations = Location::find($request->inputIdLocation);
       $locations->code_city = $request->inputCityCode;
@@ -87,16 +91,17 @@ class LocationController extends Controller
 
       $locations = Location::all();
 
-      return view('admin/location', ['locations'=> $locations]);
+      return view('admin/location', ['logos'=> $logos,'locations'=> $locations]);
     }
     //Direct to Proses Delete location
     public function admin_location_destroy(Request $request)
     {
+      $logos = Logo::all();
       $locations = Location::find($request->inputIdLocation);
       $locations->delete();
 
       $locations = Location::all();
 
-      return view('admin/location', ['locations'=> $locations]);
+      return view('admin/location', ['logos'=> $logos,'locations'=> $locations]);
     }
 }

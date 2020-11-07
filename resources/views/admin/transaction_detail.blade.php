@@ -24,7 +24,7 @@
             @if($transaction->loading_date==NULL)
               @php ($loading_date='')
             @else
-              @php ($loading_date=$transaction->loading_date->format('d/m/Y'))
+              @php ($loading_date=$transaction->loading_date->format('d F Y'))
             @endif
             <div class="form-group">
               <div class="row">

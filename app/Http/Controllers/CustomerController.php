@@ -8,6 +8,7 @@ use App\BankAccount;
 use App\Customer;
 use App\Location;
 use App\Entity;
+use App\Logo;
 
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Builder;
@@ -44,6 +45,7 @@ class CustomerController extends Controller
      */
     public function admin_customer()
     {
+      $logos = Logo::all();
       $customers = Customer::select('customer.*','entity.entity_name')
       ->leftjoin('entity','entity.id','=','customer.entity_id')
       ->get();
@@ -51,10 +53,11 @@ class CustomerController extends Controller
       //$locations = Location::select('location.id as loc_id','location.code_city','location.name_city','location.province_city')->orderby('location.name_city')->get();
       $entitys = Entity::all();
 
-      return view('admin/customer', ['customers'=> $customers, 'entitys'=> $entitys]);
+      return view('admin/customer', ['logos'=> $logos,'customers'=> $customers, 'entitys'=> $entitys]);
     }
     public function admin_customer_add(Request $request)
     {
+      $logos = Logo::all();
       if($request->inputPassword==$request->inputConfPassword)
       {
         //enkripsi md5 password
@@ -92,10 +95,11 @@ class CustomerController extends Controller
       //$locations = Location::select('location.id as loc_id','location.code_city','location.name_city','location.province_city')->orderby('location.name_city')->get();
       $entitys = Entity::all();
 
-      return view('admin/customer', ['customers'=> $customers, 'entitys'=> $entitys]);
+      return view('admin/customer', ['logos'=> $logos,'customers'=> $customers, 'entitys'=> $entitys]);
     }
     public function admin_customer_edit(Request $request)
     {
+      $logos = Logo::all();
       if($request->inputPassword==$request->inputConfPassword)
       {
         if($request->inputPassword != null){
@@ -139,11 +143,12 @@ class CustomerController extends Controller
       //$locations = Location::select('location.id as loc_id','location.code_city','location.name_city','location.province_city')->orderby('location.name_city')->get();
       $entitys = Entity::all();
 
-      return view('admin/customer', ['customers'=> $customers, 'entitys'=> $entitys]);
+      return view('admin/customer', ['logos'=> $logos,'customers'=> $customers, 'entitys'=> $entitys]);
     }
     //Direct to Proses DeleteCustomer
     public function admin_customer_destroy(Request $request)
     {
+      $logos = Logo::all();
       $customers = Customer::find($request->inputIdCustomer);
       $customers->delete();
 
@@ -154,6 +159,6 @@ class CustomerController extends Controller
       //$locations = Location::select('location.id as loc_id','location.code_city','location.name_city','location.province_city')->orderby('location.name_city')->get();
       $entitys = Entity::all();
 
-      return view('admin/customer', ['customers'=> $customers, 'entitys'=> $entitys]);
+      return view('admin/customer', ['logos'=> $logos,'customers'=> $customers, 'entitys'=> $entitys]);
     }
 }
