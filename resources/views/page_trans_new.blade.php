@@ -77,7 +77,7 @@
                               </div>
                             </div>
                             <div class="dragArea row">
-                              <div class="col-md-2  form-group">
+                              <div class="col-md-3  form-group">
                                   <?php
                                   //Get last Trans No
                                   $lasttransno=$transactionnos->trans_no;
@@ -94,7 +94,7 @@
                                   <label class="form-control-label mbr-fonts-style display-7">Trans No</label>
                                   <input type="text" name="transno" required="required" readonly value="{{ $transnonew }}" class="form-control display-7" id="transno">
                               </div>
-                                <div class="col-md-2  form-group">
+                                <div class="col-md-3  form-group">
                                     <?php
                                     $resi_no = date('ym').str_pad(mt_rand(1,99999999),8,'0',STR_PAD_LEFT);
                                     ?>
@@ -109,10 +109,10 @@
                                     <label class="form-control-label mbr-fonts-style display-7">To</label>
                                     <input type="text" name="to" required="required" value="" class="form-control display-7" id="to">
                                 </div>
-                                <div class="col-md-2  form-group">
+                                <!-- <div class="col-md-2  form-group">
                                     <label class="form-control-label mbr-fonts-style display-7">Departing Date</label>
                                     <input type="date" name="departingdate" class="form-control display-7" id="departingdate">
-                                </div>
+                                </div> -->
                             </div>
                             <h4 style="background:#000; color:#FFF;"><center>Detail Transaction</center></h4>
                             <button type="button" id="add_detail" class="btn btn-form" style="background:green; color: #FFF; padding:0.5rem;">Add</button>

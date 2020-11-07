@@ -227,7 +227,7 @@ class FrontendController extends Controller
     $transactions = new Transaction;
     $transactions->trans_no = $transnonew;
     $transactions->customer_id = $request->customerid;
-    $transactions->loading_date = $request->departingdate;
+    //$transactions->loading_date = $request->departingdate;
     $transactions->location_from = $request->from;
     $transactions->location_to = $request->to;
     $transactions->resi_no = $request->resino;
