@@ -40,7 +40,6 @@ class RegistercustomerController extends Controller
         /*Proses Simpan*/
         $request->validate([
             'username' => 'required|string|max:255',
-            'npwpaddress' => 'required|string|max:255',
             'address' => 'required|string|max:255',
             'email' => 'required|email|unique:customer',
             'password' => 'required|min:8|',
@@ -60,7 +59,7 @@ class RegistercustomerController extends Controller
           $user = new Customer;
           $user->code_customer = $codecustomer;
           $user->name_customer = $request->company;
-          $user->address_invoice = $request->npwpaddress;
+          //$user->address_invoice = $request->npwpaddress;
           $user->address = $request->address;
           $user->id_city = 1;
           $user->city = $request->city;
@@ -68,7 +67,7 @@ class RegistercustomerController extends Controller
           $user->postal = $request->postal;
           $user->telp = $request->phone;
           $user->fax = $request->fax;
-          $user->npwp = $request->npwp;
+          //$user->npwp = $request->npwp;
           $user->pkp_no = 0;
           $user->desc_customer = '';
           $user->payment_term = 0;

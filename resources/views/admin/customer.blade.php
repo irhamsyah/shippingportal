@@ -38,10 +38,16 @@
                   @php ($status='Active')
                 @endif
 
+                @if($customer->entity_name=='PERORANGAN')
+                  @php ($name_customer=$customer->name_customer)
+                @else
+                  @php ($name_customer=$customer->name_customer.', '.$customer->entity_name)
+                @endif
+
                 <tr>
                   <td>{{ $index+1 }}</td>
                   <td>{{ strtoupper($customer->code_customer) }}</td>
-                  <td>{{ strtoupper($customer->name_customer.', '.$customer->entity_name) }}</td>
+                  <td>{{ strtoupper($name_customer) }}</td>
                   <td>{{ $customer->city.' - '.$customer->province }}</td>
                   <td>{{ $customer->telp }}</td>
                   <td>{{ $status }}</td>

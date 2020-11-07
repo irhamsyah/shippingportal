@@ -110,14 +110,14 @@
                             <label for="fax-form1-27" class="form-control-label mbr-fonts-style display-7">Fax</label>
                             <input type="tel" name="fax" data-form-field="fax" class="form-control display-7" id="fax-form1-27">
                         </div>
-                        <div class="col-md-4  form-group" data-for="npwp">
+                        <!-- <div class="col-md-4  form-group" data-for="npwp">
                             <label for="npwp-form1-27" class="form-control-label mbr-fonts-style display-7">NPWP</label>
                             <input type="text" name="npwp" data-form-field="npwp" class="form-control display-7" id="npwp-form1-27">
                         </div>
                         <div data-for="npwpaddress" class="col-md-8 form-group">
                             <label for="npwpaddress-form1-27" class="form-control-label mbr-fonts-style display-7">NPWP Address *</label>
                             <input type="text" name="npwpaddress" data-form-field="npwpaddress" required="required" class="form-control display-7" id="npwpaddress-form1-27">
-                        </div>
+                        </div> -->
                         <div class="col-md-12 input-group-btn align-center"><button type="submit" class="btn btn-primary btn-form display-4">SUBMIT</button></div>
                     </div>
                     @csrf
