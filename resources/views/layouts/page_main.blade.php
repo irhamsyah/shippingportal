@@ -9,7 +9,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="generator" content="Mobirise v4.12.4, mobirise.com">
   <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
-  <link rel="shortcut icon" href="{{ 'assets/images/'.$logo }}" type="image/x-icon">
+  <link rel="shortcut icon" href="{{ asset('img/logo/'.$logo) }}" type="image/x-icon">
   <meta name="description" content="">
 
 
@@ -46,7 +46,7 @@
             <div class="navbar-brand">
                 <span class="navbar-logo">
                     <a href="/">
-                        <img src="{{ 'assets/images/'.$logo }}" alt="Mobirise" title="" style="height: 3.8rem;">
+                        <img src="{{ asset('img/logo/'.$logo) }}" alt="Mobirise" title="" style="height: 3.8rem;">
                     </a>
                 </span>
                 <span class="navbar-caption-wrap"><a class="navbar-caption text-black display-5" href="/">

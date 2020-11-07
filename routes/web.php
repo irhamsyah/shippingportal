@@ -46,6 +46,9 @@ Route::get('/verify','Auth\RegisterController@verifyUser')->name('verify.user');
 Route::get('/verifyuser','RegistercustomerController@verifyUser')->name('verify.cust');
 
 //Route to admin pages
+Route::get('/adm_logo', 'HomeController@admin_logo');
+Route::put('/adm_logo', 'HomeController@admin_logo_edit');
+
 Route::get('/adm_tracking', 'TrackingController@admin_tracking');
 Route::post('/adm_tracking', 'TrackingController@admin_tracking_add');
 Route::put('/adm_tracking', 'TrackingController@admin_tracking_edit');

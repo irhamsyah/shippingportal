@@ -35,7 +35,7 @@
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
   <!-- Logo Icon -->
-  <link rel="shortcut icon" href="{{ 'assets/images/'.$logo }}" type="image/x-icon">
+  <link rel="shortcut icon" href="{{ asset('img/logo/'.$logo) }}" type="image/x-icon">
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
@@ -88,7 +88,7 @@
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="/" class="brand-link">
-      <img src="{{ 'assets/images/'.$logo }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+      <img src="{{ asset('img/logo/'.$logo) }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
            style="opacity: .8">
       <span class="brand-text font-weight-light">Bahtera Setia</span>
     </a>
@@ -271,6 +271,12 @@
               </li>
             </ul>
           </li> -->
+          <li class="nav-item has-treeview menu-close">
+            <a href="/adm_logo" class="nav-link">
+              <i class="nav-icon fa fa-file-image"></i>
+              <p>Logo</p>
+            </a>
+          </li>
           <li class="nav-item has-treeview menu-open">
             <a href="{{ route('logout') }}" class="nav-link" onclick="event.preventDefault();
                           document.getElementById('logout-form').submit();">
@@ -790,6 +796,14 @@
       $(e.currentTarget).find('input[name="inputFromCity"]').val(location_from);
       $(e.currentTarget).find('input[name="inputToCity"]').val(location_to);
       $(e.currentTarget).find('input[name="inputIdTransaction"]').val(Id);
+    });
+
+    $('#modal-edit-logonew').on('show.bs.modal', function(e) {
+      var LogoId = $(e.relatedTarget).data('id');
+      var logoName = $(e.relatedTarget).data('name');
+
+      $(e.currentTarget).find('input[name="inputLogoOld"]').val(logoName);
+      $(e.currentTarget).find('input[name="inputIdLogo"]').val(LogoId);
     });
 
 </script>

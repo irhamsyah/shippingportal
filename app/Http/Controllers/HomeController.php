@@ -328,4 +328,39 @@ class HomeController extends Controller
 
       return view('admin/service', ['logos'=> $logos,'services'=> $services]);
     }
+    //Direct to Logo page
+    public function admin_logo()
+    {
+      $logos = Logo::all();
+
+      return view('admin/logo', ['logos'=> $logos]);
+    }
+    public function admin_logo_edit(Request $request)
+    {
+      if ($request->inputImage!="" OR $request->inputImage!=NULL){
+        //cek validasi image
+        $this->validate($request, [
+            'inputImage' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+        //upload image to directory
+        if ($request->hasFile('inputImage')) {
+            $image = $request->file('inputImage');
+            $name = time().'.'.$image->getClientOriginalExtension();
+            $destinationPath = $_SERVER['DOCUMENT_ROOT'].'/img/logo';
+            $image->move($destinationPath, $name);
+            //delete file image from directory
+            unlink($_SERVER['DOCUMENT_ROOT'].'/img/logo/'.$request->inputLogoOld);
+        }
+      }else {
+        $name = $request->inputLogoOld;
+      }
+      //update Logo
+      $logonews = Logo::find($request->inputIdLogo);
+      $logonews->logo_name = $name;
+      $logonews->save();
+
+      $logos = Logo::all();
+
+      return view('admin/logo', ['logos'=> $logos]);
+    }
 }
