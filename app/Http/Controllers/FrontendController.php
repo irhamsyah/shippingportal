@@ -23,6 +23,7 @@ use App\Entity;
 use App\Transaction;
 use App\TransactionDetail;
 use App\Tracking;
+use App\Logo;
 
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Builder;
@@ -39,6 +40,8 @@ use PDF;
 class FrontendController extends Controller
 {
   public function index(){
+    $logos = Logo::all();
+
     $testimonis = Testimoni::all();
 
     $sliders = Slider::all();
@@ -55,20 +58,22 @@ class FrontendController extends Controller
     ->where('location','en')
     ->orderBy('news.id','desc')->limit(3)->get();
 
-    return view('home', ['sliders'=> $sliders,'testimonis'=> $testimonis,'newss_id'=> $newss_id,'newss_en'=> $newss_en]);
+    return view('home', ['logos'=> $logos,'sliders'=> $sliders,'testimonis'=> $testimonis,'newss_id'=> $newss_id,'newss_en'=> $newss_en]);
   }
 
   public function service(){
+    $logos = Logo::all();
     $services = Service::all();
 
-    return view('page_service', ['services'=> $services]);
+    return view('page_service', ['logos'=> $logos,'services'=> $services]);
   }
 
   public function contact(){
+    $logos = Logo::all();
     $entitys = Entity::all();
     //$locations = Location::all();
 
-    return view('page_contact', ['entitys'=> $entitys]);
+    return view('page_contact', ['logos'=> $logos,'entitys'=> $entitys]);
   }
   //
   // public function contact_add(Request $request)
@@ -115,15 +120,17 @@ class FrontendController extends Controller
   // }
 
   public function tracking(){
+    $logos = Logo::all();
     //check validasi resi
     $trackings = Tracking::select('tracking.*','transaction.resi_no')
     ->leftjoin('transaction','transaction.id','=','tracking.transaction_id')
     ->where('transaction.resi_no','=','xxx')
     ->get();
 
-    return view('page_tracking', ['trackings'=> $trackings]);
+    return view('page_tracking', ['logos'=> $logos,'trackings'=> $trackings]);
   }
   public function trackingpost(Request $request){
+    $logos = Logo::all();
     //check validasi resi
     if(!is_null($request->resi)){$resi=$request->resi;}else{$resi='xxx';}
 
@@ -132,11 +139,12 @@ class FrontendController extends Controller
     ->where('transaction.resi_no','=',$resi)
     ->get();
 
-    return view('page_tracking', ['trackings'=> $trackings]);
+    return view('page_tracking', ['logos'=> $logos,'trackings'=> $trackings]);
   }
 
   public function news()
   {
+    $logos = Logo::all();
    //get id news from url
    $newss2 = News::select('news.id as news_id','news.title','news.text','news.img_title','news.id_user','news.news_category_id','news_category.name as category_name','users.name as user_name')
    ->leftJoin('news_category', 'news_category.id', '=', 'news.news_category_id')
@@ -160,11 +168,12 @@ class FrontendController extends Controller
    ->where('location','id')
    ->orderBy('news.id','desc')->get();
    //dd($newss);
-   return view('page_news', ['newss3'=> $newss3,'newss2'=> $newss2,'newss_en'=> $newss_en,'newss_id'=> $newss_id]);
+   return view('page_news', ['logos'=> $logos,'newss3'=> $newss3,'newss2'=> $newss2,'newss_en'=> $newss_en,'newss_id'=> $newss_id]);
   }
 
   public function news_detail(Request $request)
   {
+    $logos = Logo::all();
    //get id news from url
    $newss = News::select('news.id as news_id','news.title','news.text','news.img_title','news.id_user','news.news_category_id','news_category.name as category_name','users.name as user_name')
    ->leftJoin('news_category', 'news_category.id', '=', 'news.news_category_id')
@@ -172,10 +181,11 @@ class FrontendController extends Controller
    ->where('news.id',$request->route('id'))
    ->orderBy('news.created_at','desc')->get();
    //dd($newss);
-   return view('page_news_detail', ['newss'=> $newss]);
+   return view('page_news_detail', ['logos'=> $logos,'newss'=> $newss]);
   }
 
   public function trans_new(Request $request){
+    $logos = Logo::all();
     //convert inputan password
     $pass=md5($request->password);
 
@@ -201,7 +211,7 @@ class FrontendController extends Controller
       ->where('transaction.customer_id',$customers->id)->orderby('id','DESC')->get();
       $transactionnos = Transaction::select('id','trans_no')->orderby('id','DESC')->first();
 
-      return view('page_trans_new', ['customers'=> $customers, 'transactions'=> $transactions, 'transactionnos'=> $transactionnos]);
+      return view('page_trans_new', ['logos'=> $logos,'customers'=> $customers, 'transactions'=> $transactions, 'transactionnos'=> $transactionnos]);
     }else{
       //$services = Service::all();
       return redirect()->back()->with('failed','Error Login, Please try again!');
@@ -210,6 +220,7 @@ class FrontendController extends Controller
   }
   public function trans_new_add(Request $request)
   {
+    $logos = Logo::all();
     //Get last Trans No
     $lasttransnos=Transaction::select('trans_no')->orderby('id','DESC')->first();
     $lasttransno=$lasttransnos->trans_no;
@@ -284,6 +295,6 @@ class FrontendController extends Controller
       ->where('transaction.customer_id',$customers->id)->orderby('id','DESC')->get();
       $transactionnos = Transaction::select('id','trans_no')->orderby('id','DESC')->first();
 
-      return view('page_trans_new', ['customers'=> $customers, 'transactions'=> $transactions, 'transactionnos'=> $transactionnos]);
+      return view('page_trans_new', ['logos'=> $logos,'customers'=> $customers, 'transactions'=> $transactions, 'transactionnos'=> $transactionnos]);
   }
 }

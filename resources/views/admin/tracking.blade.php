@@ -179,7 +179,7 @@
                   <select class="form-control" name="inputTransactionNo">
                     <option value="#" selected="true" disabled="disabled">--- Select Transaction ---</option>
                     @foreach($transactions as $transaction)
-                    <option value="{{ $transaction->id }}">{{ $transaction->name_customer.' - '.$transaction->trans_no.' - '.$transaction->loading_date->format('d M Y H:i:s') }}</option>
+                    <option value="{{ $transaction->id }}">{{ $transaction->name_customer.' - '.$transaction->trans_no }}</option>
                     @endforeach
                   </select>
                 </div>

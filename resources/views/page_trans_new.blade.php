@@ -176,11 +176,17 @@
                                   @php ($status='Success')
                                 @endif
 
+                                @if($transaction->loading_date==NULL)
+                                  @php ($loading_date='')
+                                @else
+                                  @php ($loading_date=$transaction->loading_date->format('d/m/Y'))
+                                @endif
+
                                 <tr>
                                   <td>{{ $index+1 }}</td>
                                   <td>{{ strtoupper($transaction->trans_no) }}</td>
                                   <td>{{ $transaction->resi_no}}</td>
-                                  <td>{{ $transaction->loading_date->format('d/m/Y')}}</td>
+                                  <td>{{ $loading_date }}</td>
                                   <td>{{ $transaction->location_from }}</td>
                                   <td>{{ $transaction->location_to }}</td>
                                   <td>{{ $transaction->name_pelayaran.' - '.$transaction->alias }}</td>

@@ -21,6 +21,11 @@
               </div>
             </div>
             @foreach($transactions as $index => $transaction)
+            @if($transaction->loading_date==NULL)
+              @php ($loading_date='')
+            @else
+              @php ($loading_date=$transaction->loading_date->format('d/m/Y'))
+            @endif
             <div class="form-group">
               <div class="row">
                 <div class="col-lg-4 col-sm-12">
@@ -33,7 +38,7 @@
                 </div>
                 <div class="col-lg-4 col-sm-12">
                   <label for="inputDate">Departing Date</label>
-                  <input type="text" name="inputDate" value="{{ $transaction->loading_date->format('d M Y') }}" readonly class="form-control">
+                  <input type="text" name="inputDate" value="{{ $loading_date }}" readonly class="form-control">
                 </div>
               </div>
               <div class="row">

@@ -42,12 +42,18 @@
                   @else
                     @php ($status='Canceled')
                   @endif
+
+                  @if($transaction->loading_date==NULL)
+                    @php ($loading_date='')
+                  @else
+                    @php ($loading_date=$transaction->loading_date->format('d/m/Y'))
+                  @endif
                 <tr>
                   <td>{{ $index+1 }}</td>
                   <td>{{ strtoupper($transaction->trans_no) }}</td>
                   <td>{{ $transaction->resi_no }}</td>
                   <td>{{ strtoupper($transaction->code_customer.' - '.$transaction->name_customer) }}</td>
-                  <td>{{ $transaction->loading_date->format('d M Y') }}</td>
+                  <td>{{ $loading_date }}</td>
                   <td>{{ $transaction->location_from }}</td>
                   <td>{{ $transaction->location_to }}</td>
                   <td>{{ $transaction->name_pelayaran.' - '.$transaction->alias }}</td>
