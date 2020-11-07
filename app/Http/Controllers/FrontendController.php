@@ -24,6 +24,9 @@ use App\Transaction;
 use App\TransactionDetail;
 use App\Tracking;
 use App\Logo;
+use App\Content;
+use App\ContentImage;
+use App\ContentFooter;
 
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Builder;
@@ -41,10 +44,18 @@ class FrontendController extends Controller
 {
   public function index(){
     $logos = Logo::all();
-
     $testimonis = Testimoni::all();
-
     $sliders = Slider::all();
+    $contentimages = ContentImage::all();
+
+    $footerlefts = ContentFooter::select('*')->where('position','left')->orderby('id','asc')->get();
+    $footerrights = ContentFooter::select('*')->where('position','right')->orderby('id','asc')->get();
+    $footermaps = ContentFooter::select('*')->where('position','bottom')->orderby('id','asc')->get();
+
+    $slogans = Content::select('*')->where('type','slogan')->orderby('id','asc')->get();
+    $servicedetails = Content::select('*')->where('type','service_detail')->orderby('id','asc')->get();
+    $ourclients = Content::select('*')->where('type','our_client')->orderby('id','asc')->get();
+    $abouts = Content::select('*')->where('type','about')->orderby('id','asc')->get();
 
     $newss_id = News::select('news.id as news_id','news.title','news.text','news.img_title','news.id_user','news.news_category_id','news_category.name as category_name','users.name as user_name')
     ->leftJoin('news_category', 'news_category.id', '=', 'news.news_category_id')
@@ -58,14 +69,18 @@ class FrontendController extends Controller
     ->where('location','en')
     ->orderBy('news.id','desc')->limit(3)->get();
 
-    return view('home', ['logos'=> $logos,'sliders'=> $sliders,'testimonis'=> $testimonis,'newss_id'=> $newss_id,'newss_en'=> $newss_en]);
+    return view('home', ['logos'=> $logos,'slogans'=> $slogans,'ourclients'=> $ourclients,'footermaps'=> $footermaps,
+    'footerlefts'=> $footerlefts,'footerrights'=> $footerrights,'servicedetails'=> $servicedetails,
+    'abouts'=> $abouts,'contentimages'=> $contentimages,'sliders'=> $sliders,'testimonis'=> $testimonis,
+    'newss_id'=> $newss_id,'newss_en'=> $newss_en]);
   }
 
   public function service(){
     $logos = Logo::all();
     $services = Service::all();
+    $servicetexts = Content::select('*')->where('type','service')->orderby('id','asc')->get();
 
-    return view('page_service', ['logos'=> $logos,'services'=> $services]);
+    return view('page_service', ['logos'=> $logos,'services'=> $services,'servicetexts'=> $servicetexts]);
   }
 
   public function contact(){

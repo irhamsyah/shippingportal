@@ -54,13 +54,13 @@ class TrackingController extends Controller
     public function admin_tracking()
     {
       $logos = Logo::all();
-      $trackings = Tracking::select('tracking.*','transaction.trans_no','transaction.customer_id','customer.code_customer','customer.name_customer')
+      $trackings = Tracking::select('tracking.*','transaction.trans_no','transaction.resi_no','transaction.customer_id','customer.code_customer','customer.name_customer')
       ->leftjoin('transaction','transaction.id','=','transaction_id')
       ->leftjoin('customer','customer.id','=','transaction.customer_id')
       ->orderby('tracking.date','DESC')
       ->get();
 
-      $transactions = Transaction::select('transaction.id','transaction.trans_no','transaction.loading_date','customer.name_customer')
+      $transactions = Transaction::select('transaction.id','transaction.trans_no','transaction.loading_date','transaction.resi_no','customer.name_customer')
       ->leftjoin('customer','customer.id','=','transaction.customer_id')
       ->orderby('customer.name_customer','ASC')
       ->orderby('transaction.id','DESC')
@@ -80,13 +80,13 @@ class TrackingController extends Controller
       $trackings->created_at = date('Y-m-d H:i:s');
       $trackings->save();
 
-      $trackings = Tracking::select('tracking.*','transaction.trans_no','transaction.customer_id','customer.code_customer','customer.name_customer')
+      $trackings = Tracking::select('tracking.*','transaction.trans_no','transaction.resi_no','transaction.customer_id','customer.code_customer','customer.name_customer')
       ->leftjoin('transaction','transaction.id','=','transaction_id')
       ->leftjoin('customer','customer.id','=','transaction.customer_id')
       ->orderby('tracking.date','DESC')
       ->get();
 
-      $transactions = Transaction::select('transaction.id','transaction.trans_no','transaction.loading_date','customer.name_customer')
+      $transactions = Transaction::select('transaction.id','transaction.trans_no','transaction.loading_date','transaction.resi_no','customer.name_customer')
       ->leftjoin('customer','customer.id','=','transaction.customer_id')
       ->orderby('customer.name_customer','ASC')
       ->orderby('transaction.id','DESC')
@@ -107,13 +107,13 @@ class TrackingController extends Controller
       $trackings->updated_at = date('Y-m-d H:i:s');
       $trackings->save();
 
-      $trackings = Tracking::select('tracking.*','transaction.trans_no','transaction.customer_id','customer.code_customer','customer.name_customer')
+      $trackings = Tracking::select('tracking.*','transaction.trans_no','transaction.resi_no','transaction.customer_id','customer.code_customer','customer.name_customer')
       ->leftjoin('transaction','transaction.id','=','transaction_id')
       ->leftjoin('customer','customer.id','=','transaction.customer_id')
       ->orderby('tracking.date','DESC')
       ->get();
 
-      $transactions = Transaction::select('transaction.id','transaction.trans_no','transaction.loading_date','customer.name_customer')
+      $transactions = Transaction::select('transaction.id','transaction.trans_no','transaction.loading_date','transaction.resi_no','customer.name_customer')
       ->leftjoin('customer','customer.id','=','transaction.customer_id')
       ->orderby('customer.name_customer','ASC')
       ->orderby('transaction.id','DESC')

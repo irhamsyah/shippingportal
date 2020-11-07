@@ -176,10 +176,10 @@
               <div class="row">
                 <div class="col-lg-12 col-sm-12">
                   <label for="inputTransactionNo">Transaction No</label>
-                  <select class="form-control" name="inputTransactionNo">
+                  <select class="form-control select2" name="inputTransactionNo">
                     <option value="#" selected="true" disabled="disabled">--- Select Transaction ---</option>
                     @foreach($transactions as $transaction)
-                    <option value="{{ $transaction->id }}">{{ $transaction->name_customer.' - '.$transaction->trans_no }}</option>
+                    <option value="{{ $transaction->id }}">{{ $transaction->name_customer.' - '.$transaction->trans_no.' - '.$transaction->resi_no }}</option>
                     @endforeach
                   </select>
                 </div>
