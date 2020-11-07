@@ -134,3 +134,14 @@ Route::get('/adm_service', 'HomeController@admin_service');
 Route::post('/adm_service', 'HomeController@admin_service_add');
 Route::put('/adm_service', 'HomeController@admin_service_edit');
 Route::delete('/adm_service', 'HomeController@admin_service_destroy');
+
+Route::get('/adm_content', 'HomeController@admin_content');
+Route::put('/adm_content', 'HomeController@admin_content_edit');
+
+Route::get('/adm_contentfooter', 'HomeController@admin_contentfooter');
+Route::put('/adm_contentfooter', 'HomeController@admin_contentfooter_edit');
+
+Route::get('/adm_contentimage', 'HomeController@admin_contentimage');
+Route::post('/adm_contentimage', 'HomeController@admin_contentimage_add');
+Route::put('/adm_contentimage', 'HomeController@admin_contentimage_edit');
+Route::delete('/adm_contentimage', 'HomeController@admin_contentimage_destroy');

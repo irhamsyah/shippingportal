@@ -9,52 +9,43 @@
       <div class="col-12">
         <div class="card">
           <div class="card-header">
-            <h3 class="card-title">List Service</h3>
+            <h3 class="card-title">List Client Images</h3>
           </div>
           <!-- /.card-header -->
           <div class="card-body">
             <div class="row" style="margin-bottom:10px;">
               <div class="col-lg-1 col-sm-2">
-                <button type="button" class="btn btn-block btn-outline-primary" data-toggle="modal" data-target="#modal-add-service">New</button>
+                <button type="button" class="btn btn-block btn-outline-primary" data-toggle="modal" data-target="#modal-add-contentimage">New</button>
               </div>
             </div>
-            <table id="example1" class="table table-bordered table-hover">
+            <table id="example2" class="table table-bordered table-hover">
               <thead>
                 <th>No</th>
-                <th>Title</th>
-                <th>Detail ID</th>
-                <th>Detail EN</th>
                 <th>Image</th>
                 <th>Action</th>
               </thead>
               <tbody>
-                @foreach($services as $index => $service)
+                @foreach($contentimages as $index => $contentimage)
                 <tr>
                   <td>{{ $index+1 }}</td>
-                  <td>{{ $service->title }}</td>
-                  <td>{!! $service->detail_id !!}</td>
-                  <td>{!! $service->detail_en !!}</td>
-                  <td><img src="{{ asset('/img/service/'.$service->img_title) }}" style="max-height:100px;"/></td>
+                  <td><img src="{{ asset('/img/content/'.$contentimage->image) }}" style="max-height:100px;"/></td>
                   <td>
                     <div class="row">
                       <div class="col-6">
                         <a href="#" class="btn btn-block bg-gradient-warning btn-sm"
-                            data-toggle="modal" data-target="#modal-edit-service"
-                            data-id="{{ $service->id }}"
-                            data-title="{{ $service->title }}"
-                            data-detailid="{{ $service->detail_id }}"
-                            data-detailen="{{ $service->detail_en }}"
-                            data-img_title="{{ $service->img_title }}">
+                            data-toggle="modal" data-target="#modal-edit-contentimage"
+                            data-id="{{ $contentimage->id }}"
+                            data-image="{{ $contentimage->image }}">
                           <i class="fas fa-pencil-alt" aria-hidden="true"></i>
                         </a>
                       </div>
                       <div class="col-6">
-                        <form action="/adm_service" method="post" onclick="return confirm('Apakah anda yakin akan menghapus data ini?')">
+                        <form action="/adm_contentimage" method="post" onclick="return confirm('Apakah anda yakin akan menghapus data ini?')">
                            <button type="submit" class="btn btn-block bg-gradient-danger btn-sm">
                               <i class="fas fa-trash" aria-hidden="true" style="color:#000;"></i>
                            </button>
-                           <input type="hidden" name="inputIdService" value="{{ $service->id }}" class="form-control">
-                           <input type="hidden" name="inputImgOld" value="{{ $service->img_title }}" class="form-control">
+                           <input type="hidden" name="inputIdContentImage" value="{{ $contentimage->id }}" class="form-control">
+                           <input type="hidden" name="inputImgOld" value="{{ $contentimage->image }}" class="form-control">
                            <input type="hidden" name="_method" value="DELETE"/>
                            @csrf
                         </form>
@@ -67,9 +58,6 @@
               <tfoot>
               <tr>
                 <th>No</th>
-                <th>Title</th>
-                <th>Detail ID</th>
-                <th>Detail EN</th>
                 <th>Image</th>
                 <th>Action</th>
               </tr>
@@ -84,12 +72,12 @@
     </div>
     <!-- /.row -->
   </div>
-  <div class="modal fade" id="modal-edit-service">
-    <div class="modal-dialog modal-xl">
-      <form action="/adm_service" method="post" enctype="multipart/form-data">
+  <div class="modal fade" id="modal-edit-contentimage">
+    <div class="modal-dialog modal-md">
+      <form action="/adm_contentimage" method="post" enctype="multipart/form-data">
         <div class="modal-content">
           <div class="modal-header">
-            <h4 class="modal-title">Edit Service</h4>
+            <h4 class="modal-title">Edit Client Image</h4>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -97,11 +85,7 @@
           <div class="modal-body">
             <div class="form-group">
               <div class="row">
-                <div class="col-lg-6 col-sm-12">
-                  <label for="inputTitle">title</label>
-                  <input type="text" name="inputTitle" class="form-control">
-                </div>
-                <div class="col-lg-6 col-sm-12">
+                <div class="col-lg-12 col-sm-12">
                   <label for="inputImage">Upload Image</label>
                   <div class="custom-file">
                     <input type="file" class="custom-file-input" name="inputImage" id="inputImage">
@@ -111,17 +95,8 @@
               </div>
             </div>
             <div class="form-group">
-              <label for="inputText1">Detail ID</label>
-              <textarea id="inputText1" name="inputText1"></textarea>
-            </div>
-            <div class="form-group">
-              <label for="inputTitle1">Detail EN</label>
-              <textarea id="inputTitle1" name="inputTitle1"></textarea>
-            </div>
-            <div class="form-group">
               <input type="hidden" name="inputImgOld" class="form-control">
-              <input type="hidden" name="inputIdService" class="form-control">
-              <input type="hidden" name="inputIdUser" value="{{ Auth::user()->id }}" class="form-control">
+              <input type="hidden" name="inputIdContentImage" class="form-control">
               <input type="hidden" name="_method" value="PUT"/>
             </div>
           </div>
@@ -136,12 +111,12 @@
     </div>
     <!-- /.modal-dialog -->
   </div>
-  <div class="modal fade" id="modal-add-service">
-    <div class="modal-dialog modal-xl">
-      <form action="/adm_service" method="post" enctype="multipart/form-data">
+  <div class="modal fade" id="modal-add-contentimage">
+    <div class="modal-dialog modal-md">
+      <form action="/adm_contentimage" method="post" enctype="multipart/form-data">
         <div class="modal-content">
           <div class="modal-header">
-            <h4 class="modal-title">Add Service</h4>
+            <h4 class="modal-title">Add Client Image</h4>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -149,29 +124,14 @@
           <div class="modal-body">
             <div class="form-group">
               <div class="row">
-                <div class="col-lg-6 col-sm-12">
-                  <label for="inputTitle">Title</label>
-                  <input type="text" name="inputTitle" class="form-control">
-                </div>
-                <div class="col-lg-6 col-sm-12">
+                <div class="col-lg-12 col-sm-12">
                   <label for="inputImage">Upload Image</label>
                   <div class="custom-file">
-                    <input type="file" class="custom-file-input" name="inputImage" id="inputImage">
+                    <input type="file" class="custom-file-input" name="inputImage" id="inputImage" required>
                     <label class="custom-file-label" for="inputImage">Choose Image</label>
                   </div>
                 </div>
               </div>
-            </div>
-            <div class="form-group">
-              <label for="inputText2">Detail ID</label>
-              <textarea id="inputText2" name="inputText2"></textarea>
-            </div>
-            <div class="form-group">
-              <label for="inputTitle2">Detail EN</label>
-              <textarea id="inputTitle2" name="inputTitle2"></textarea>
-            </div>
-            <div class="form-group">
-              <input type="hidden" name="inputIdUser" value="{{ Auth::user()->id }}" class="form-control">
             </div>
           </div>
           <div class="modal-footer justify-content-between">

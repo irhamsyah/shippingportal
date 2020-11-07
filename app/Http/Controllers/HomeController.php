@@ -16,6 +16,9 @@ use App\TransactionDetail;
 use App\TruckingType;
 use App\VendorTruck;
 use App\Logo;
+use App\Content;
+use App\ContentImage;
+use App\ContentFooter;
 
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Builder;
@@ -362,5 +365,132 @@ class HomeController extends Controller
       $logos = Logo::all();
 
       return view('admin/logo', ['logos'=> $logos]);
+    }
+    //Direct to Content page
+    public function admin_content()
+    {
+      $logos = Logo::all();
+      $contents = Content::all();
+
+      return view('admin/content', ['logos'=> $logos,'contents'=> $contents]);
+    }
+    public function admin_content_edit(Request $request)
+    {
+      $logos = Logo::all();
+      //update Content
+      $contents = Content::find($request->inputIdContent);
+      $contents->title_id = $request->inputTitleID;
+      $contents->title_en = $request->inputTitleEN;
+      $contents->description_id = $request->inputText1;
+      $contents->description_en = $request->inputTitle1;
+      if($request->inputIdContent=='8'){
+        $contents->image = $request->inputImage;
+      }
+      $contents->save();
+
+      $contents = Content::all();
+
+      return view('admin/content', ['logos'=> $logos,'contents'=> $contents]);
+    }
+    //Direct to Footer page
+    public function admin_contentfooter()
+    {
+      $logos = Logo::all();
+      $contentfooters = ContentFooter::all();
+
+      return view('admin/contentfooter', ['logos'=> $logos,'contentfooters'=> $contentfooters]);
+    }
+    public function admin_contentfooter_edit(Request $request)
+    {
+      $logos = Logo::all();
+      //update Content
+      $contentfooters = ContentFooter::find($request->inputIdContentFooter);
+      $contentfooters->title = $request->inputTitle;
+      $contentfooters->description = $request->inputText1;
+      $contentfooters->save();
+
+      $logos = Logo::all();
+      $contentfooters = ContentFooter::all();
+
+      return view('admin/contentfooter', ['logos'=> $logos,'contentfooters'=> $contentfooters]);
+    }
+    //Direct to ContentImage page
+    public function admin_contentimage()
+    {
+      $logos = Logo::all();
+      //get data Content Image
+      $contentimages = ContentImage::all();
+
+      return view('admin/contentimage', ['logos'=> $logos,'contentimages'=> $contentimages]);
+    }
+    public function admin_contentimage_add(Request $request)
+    {
+      $logos = Logo::all();
+      //cek validasi image
+        $this->validate($request, [
+          'inputImage' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+      ]);
+      //upload image to directory
+      if ($request->hasFile('inputImage')) {
+          $image = $request->file('inputImage');
+          $name = time().'.'.$image->getClientOriginalExtension();
+          $destinationPath = $_SERVER['DOCUMENT_ROOT'].'/img/content';
+          $image->move($destinationPath, $name);
+      }
+      //input new contentimage
+      $contentimages = new ContentImage;
+      $contentimages->image = $name;
+      $contentimages->save();
+
+      $logos = Logo::all();
+      //get data Content Image
+      $contentimages = ContentImage::all();
+
+      return view('admin/contentimage', ['logos'=> $logos,'contentimages'=> $contentimages]);
+    }
+    public function admin_contentimage_edit(Request $request)
+    {
+      if ($request->inputImage!="" OR $request->inputImage!=NULL){
+        //cek validasi image
+        $this->validate($request, [
+            'inputImage' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+        //upload image to directory
+        if ($request->hasFile('inputImage')) {
+            $image = $request->file('inputImage');
+            $name = time().'.'.$image->getClientOriginalExtension();
+            $destinationPath = $_SERVER['DOCUMENT_ROOT'].'/img/content';
+            $image->move($destinationPath, $name);
+            //delete file image from directory
+            unlink($_SERVER['DOCUMENT_ROOT'].'/img/content/'.$request->inputImgOld);
+        }
+      }else {
+        $name = $request->inputImgOld;
+      }
+      //update contentimages
+      $contentimages = ContentImage::find($request->inputIdContentImage);
+      $contentimages->image = $name;
+      $contentimages->save();
+
+      $logos = Logo::all();
+      //get data Content Image
+      $contentimages = ContentImage::all();
+
+      return view('admin/contentimage', ['logos'=> $logos,'contentimages'=> $contentimages]);
+    }
+    //Direct to Proses Delete contentimage
+    public function admin_contentimage_destroy(Request $request)
+    {
+      $contentimages = ContentImage::find($request->inputIdContentImage);
+      $contentimages->delete();
+
+      //delete file image from directory
+      unlink($_SERVER['DOCUMENT_ROOT'].'/img/content/'.$request->inputImgOld);
+
+      $logos = Logo::all();
+      //get data Content Image
+      $contentimages = ContentImage::all();
+
+      return view('admin/contentimage', ['logos'=> $logos,'contentimages'=> $contentimages]);
     }
 }

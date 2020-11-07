@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Oct 27, 2020 at 07:44 AM
+-- Generation Time: Nov 07, 2020 at 10:53 PM
 -- Server version: 10.1.46-MariaDB-cll-lve
 -- PHP Version: 7.3.6
 
@@ -21,8 +21,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `bahtera3_shippingportal`
 --
-CREATE DATABASE IF NOT EXISTS `bahtera3_shippingportal` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `bahtera3_shippingportal`;
 
 -- --------------------------------------------------------
 
@@ -126,6 +124,83 @@ INSERT INTO `consignee` (`id`, `code_consignee`, `name_consignee`, `address_invo
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `content`
+--
+
+CREATE TABLE `content` (
+  `id` int(11) NOT NULL,
+  `title_id` varchar(150) NOT NULL,
+  `description_id` text NOT NULL,
+  `title_en` varchar(150) NOT NULL,
+  `description_en` text NOT NULL,
+  `image` varchar(250) DEFAULT NULL,
+  `type` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `content`
+--
+
+INSERT INTO `content` (`id`, `title_id`, `description_id`, `title_en`, `description_en`, `image`, `type`) VALUES
+(1, 'Mengapa BAHTERA SETIA adalah pilihan yang TEPAT bagi Anda?', 'Kepuasan anda adalah tanggungjawab kami.', 'Why is BAHTERA SETIA the RIGHT choice for you?', 'Your satisfaction is our responsibility.', NULL, 'slogan'),
+(2, 'HARGA YANG KOMPETITIF', 'BAHTERA SETIA menawarkan harga yang kompetitif dengan layanan jasa yang beragam.', 'COMPETITIVE PRICES', 'BAHTERA SETIA offers competitive prices with a variety of services.', '8-512x600.jpg', 'service_detail'),
+(3, 'REAL TIME TRACKING', 'BAHTERA SETIA memberikan kemudahan dalam melakukan monitoring pengiriman cargo setiap saat kapanpun dan dimanapun.', 'REAL TIME TRACKING', 'BAHTERA SETIA provides convenience in monitoring cargo shipments at any time, anytime and anywhere.', '7-900x1055.jpg', 'service_detail'),
+(4, 'SERVICE EXELENT', 'BAHTERA SETIA selalu ingin melayani anda kapanpun anda butuhkan.', 'SERVICE EXELENT', 'BAHTERA SETIA always wants to serve you whenever you need.', '3-900x1055.jpg', 'service_detail'),
+(5, 'KEPASTIAN JADWAL & JARINGAN LUAS', 'BAHTERA SETIA memiliki banyak cabang dan pilihan rute yang bervariasi.', 'ASSURANCE SCHEDULE & WIDE NETWORK', 'BAHTERA SETIA has many branches and various route options.', '4-900x1055.jpg', 'service_detail'),
+(6, 'Klien Kami', 'Kami memiliki lebih dari 20 klien perusahaan', 'Our Client', 'We have more than 20 corporate clients', NULL, 'our_client'),
+(7, 'LAYANAN KAMI', 'Sebagai perusahaan shipping logistic (shiplog), BAHTERA SETIA memberika solusi layanan pengiriman logistik yang tersedia sesuai dengan kebutuhan', 'OUR SERVICE', 'As a shipping logistic company (shiplog), BAHTERA SETIA provides logistics delivery service solutions that are available according to your needs', NULL, 'service'),
+(8, 'Siapa Kami', 'PT. Bahtera Setia merupakan perusahaan yang bergerak di bidang jasa muat dan bongkar di pelabuhan Gresik untuk menunjang kegiatan perusahaan Pelayaran Nasional', 'Who Us', 'PT. Bahtera Setia is a company engaged in loading and unloading services at the Gresik port to support the activities of National Shipping companies', 'https://www.youtube.com/embed/HWhXsteYLfw?rel=0&amp;amp;showinfo=0&amp;autoplay=1&amp;loop=0', 'about');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `content_footer`
+--
+
+CREATE TABLE `content_footer` (
+  `id` int(11) NOT NULL,
+  `title` varchar(150) NOT NULL,
+  `description` text NOT NULL,
+  `position` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `content_footer`
+--
+
+INSERT INTO `content_footer` (`id`, `title`, `description`, `position`) VALUES
+(1, 'Address', 'Jl. Yos Sudarso II/10 Gresik 61114 - Jawa Timur - Indonesia', 'left'),
+(2, 'Contacts', 'Email: <br>bahtera.setia@yahoo.co.id <br>ptbahtera.setia@gmail.com<br>Phone: <br>031 - 3985549, 3984451, 3970419', 'left'),
+(3, 'Website', 'www.bahterasetiagroup.com', 'right'),
+(4, 'Feedback', 'Please send us your ideas, bug reports, suggestions! Any feedback would be appreciated.', 'right'),
+(5, 'Maps', 'https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15834.979148510152!2d112.6596961!3d-7.1554781!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x912eabca7968720d!2sPT.%20Bahtera%20Setia%20Gresik!5e0!3m2!1sid!2sid!4v1598980865702!5m2!1sid!2sid', 'bottom');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `content_image`
+--
+
+CREATE TABLE `content_image` (
+  `id` int(10) NOT NULL,
+  `image` varchar(250) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `content_image`
+--
+
+INSERT INTO `content_image` (`id`, `image`) VALUES
+(1, '1200px-cmyk-logo-01-pngs-1200x1108.png'),
+(2, 'pnm-240x92.png'),
+(3, 'pp-1600x989.png'),
+(4, 'logo-wika-1929x1563.png'),
+(5, 'jaya-beton-ok-1772x591.png'),
+(6, 'adhimix-logo-0c600d7c5e0d84881b2d1ebed01de2a83e7742bf6a6c1e9078d806264c9c1e5c-1501x777.png');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `customer`
 --
 
@@ -133,16 +208,18 @@ CREATE TABLE `customer` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `code_customer` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
   `name_customer` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `address_invoice` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `address_invoice` longtext COLLATE utf8mb4_unicode_ci,
   `address` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `id_city` int(11) NOT NULL,
+  `id_city` int(11) DEFAULT NULL,
+  `city` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `province` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL,
   `entity_id` int(11) NOT NULL,
   `postal` varchar(11) COLLATE utf8mb4_unicode_ci NOT NULL,
   `telp` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
   `fax` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `npwp` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `npwp` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `pkp_no` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `desc_customer` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `desc_customer` longtext COLLATE utf8mb4_unicode_ci,
   `payment_term` int(11) NOT NULL,
   `name_person` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `phone_person` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -163,8 +240,10 @@ CREATE TABLE `customer` (
 -- Dumping data for table `customer`
 --
 
-INSERT INTO `customer` (`id`, `code_customer`, `name_customer`, `address_invoice`, `address`, `id_city`, `entity_id`, `postal`, `telp`, `fax`, `npwp`, `pkp_no`, `desc_customer`, `payment_term`, `name_person`, `phone_person`, `email`, `fax_person`, `username`, `password`, `status`, `email_verified_at`, `verification_code`, `is_verified`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(31, 'R0001', 'siwi pandu', 'jalan jalan no 12', 'jalan jalan no 12', 2, 1, '60227', '031-7656662', '031-7656662', '454545454545', '0', '', 0, 'siwi pandu', '0812232323', 'irhamp12@gmail.com', '031-7656662', 'irham', '25d55ad283aa400af464c76d713c07ad', 0, NULL, '4f37ac5b242f8d97a9c418979615dd39d61661fb', 0, '2020-10-23 22:24:26', '2020-10-23 22:24:26', NULL);
+INSERT INTO `customer` (`id`, `code_customer`, `name_customer`, `address_invoice`, `address`, `id_city`, `city`, `province`, `entity_id`, `postal`, `telp`, `fax`, `npwp`, `pkp_no`, `desc_customer`, `payment_term`, `name_person`, `phone_person`, `email`, `fax_person`, `username`, `password`, `status`, `email_verified_at`, `verification_code`, `is_verified`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(5, 'R0002', 'Maju Jaya Sejati', 'Jalan Raya Puputan No 108 Renon', 'Jalan Raya Puputan No 108 Renon', 4, 'Denpasar', 'Bali', 1, '80234', '0361432343', '0361222333', '71212121212121', '0', 'test', 0, 'Maju jaya selalu', '08112374856', '08112374856', '0361222333', 'bastian', '57b1e933707f3db49752fef2febf8932', 0, '2020-10-26 23:42:10', '430d00cf8769e51425be2d8225fd23234ca9d3fb', 1, '2020-10-26 15:40:26', '2020-10-29 07:34:50', NULL),
+(33, 'R0002', 'Bastian Pe', 'Jalan Raya Coba 100', 'Jalan Raya Coba No 100', 1, 'Malang', 'Jawa Timur', 9, '80111', '0341432343', '0341656565', '71.923.1111.1.000', '0', '', 0, 'Bastian Pe', '08112374856', 'bbaztanzi@gmail.com', '0341656565', 'bastianp', '57b1e933707f3db49752fef2febf8932', 0, NULL, '5c0f5231ceb05808c16773668c518c848dc93a59', 0, '2020-10-31 07:15:04', '2020-10-31 07:15:04', NULL),
+(35, 'R0003', 'Permodalan Nasional Madani', NULL, 'jalan jalan no 12', 1, 'sidoarjo', 'bali', 1, '60227', '031-7656662', '031-7656662', NULL, '0', '', 0, 'Permodalan Nasional Madani', '0812232323', 'irhamp12@gmail.com', '031-7656662', 'irham', 'f23c9a5dca7aef19a3db264c5c21a2f8', 0, '2020-11-07 03:17:17', '473fd58cf7b96b6eff821a01ede790643cddac70', 1, '2020-11-06 20:09:59', '2020-11-06 20:09:59', NULL);
 
 -- --------------------------------------------------------
 
@@ -241,6 +320,24 @@ INSERT INTO `location` (`id`, `code_city`, `name_city`, `province_city`, `status
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `logo`
+--
+
+CREATE TABLE `logo` (
+  `id` int(11) NOT NULL,
+  `logo_name` varchar(250) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `logo`
+--
+
+INSERT INTO `logo` (`id`, `logo_name`) VALUES
+(1, '1604728040.png');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `migrations`
 --
 
@@ -306,7 +403,8 @@ INSERT INTO `news` (`id`, `title`, `text`, `img_title`, `news_category_id`, `loc
 (10, 'Premium Bonds issuer slashes chance of winning', '<p>National Savings and Investments (NS&I), which issues Premium Bonds, has slashed the interest rates it pays.\r\n\r\nThe dramatic cut will hit the savings of 25 million people who have invested with NS&I, which allows people to lend money to the government.\r\n\r\nIt will also reduce the chances of those who own Premium Bonds from winning any of the monthly prizes on offer, which include a £1m jackpot.\r\n\r\nSavers will soon have a one-in-34,500 chance, against one-in-24,500 now.\r\n\r\nIt is also slashing the number of £100,000 prizes from seven to four and £50,000 prizes from 14 to nine.\r\n\r\nFunding the crisis\r\nAs government spending increased to fund the response to the coronavirus crisis, so did the amount that NS&I was asked to raise for the government.\r\n\r\nIn July, its target was increased from £6bn to £35bn. In the first three months of its financial year to June, NS&I raised £14.5bn and it said demand had been \"similarly high\" in the second quarter, which finishes at the end of this month.\r\n\r\nThe savings scheme said some of its interest rates were above those offered by High Street banks, which caused a surge in demand.\r\n\r\n\"Reducing interest rates is always a difficult decision,\" said NS&I chief executive, Ian Ackerley.\r\n\r\n\"Given successive reductions in the Bank of England base rate in March, and subsequent reductions in interest rates by other providers, several of our products have become \'best buy\' and we have experienced extremely high demand as a consequence,\" he said.\r\n\r\n\"It is important that we strike a balance between the interests of savers, taxpayers and the broader financial services sector; and it is time for NS&I to return to a more normal competitive position for our products.\"\r\n\r\n\r\nMedia captionPremium Bonds numbers generator Ernie through the years\r\nThe changes to Premium Bonds will come in for the December prize draw.\r\n\r\nMeanwhile, interest rates on other products will be lower from 24 November - and they include some steep drops.\r\n\r\nNS&I\'s direct saver will offer just 0.15% interest, down from 1% before. Meanwhile, the rate on its income bonds will fall to 0.01%. It was previously 1.15%.\r\n\r\nThe rate on its investment account will also be 0.01% when the rates change, that\'s down from 0.8%. And the direct ISA will offer 0.1%, compared with the 0.9% savers get at the moment.\r\n\r\nKids will do a bit better, getting 1.5% interest from the junior ISA, although that is still well below the 3.25% they can get now.</p>', '_92168249_gettyimages-81631583.jpg', 2, 'en', 1, '2020-09-07 06:38:41', NULL, NULL),
 (11, '<p>Brexit: Hauliers&#39; meeting with Michael Gove &#39;a washout&#39;</p>', '<p>The Road Haulage Association has described its meeting with Michael Gove about post-Brexit arrangements as &quot;a washout&quot;.</p>\r\n\r\n<p>The body said there had been &quot;no clarity&quot; from the senior minister on how border checks will operate when the transition period ends after December.</p>\r\n\r\n<p>Although the UK has left the EU, it has continued following some EU rules during the transition period.</p>\r\n\r\n<p>A Cabinet Office spokesperson said the meeting had been &quot;constructive&quot;.</p>\r\n\r\n<p>After the transition period traders will need to fill in customs declaration forms, with detailed information on what is being imported and exported.</p>\r\n\r\n<p>The haulage industry has expressed concern this could lead to long tailbacks at ports and disruption to supply chains.</p>\r\n\r\n<p>In Kent&nbsp;<a href=\"https://www.bbc.co.uk/news/uk-england-kent-54158100\">a coronavirus testing centre has been closed</a>&nbsp;to make way for a lorry park to accommodate post-Brexit customs checks.</p>\r\n\r\n<p><a href=\"https://www.bbc.co.uk/news/business-54172222\">And earlier this week Logistics UK</a>&nbsp;warned that a new freight management system - designed to reduce delays at ports - will not be ready when the transition period ends.</p>\r\n\r\n<ul>\r\n	<li><a href=\"https://www.bbc.com/news/uk-england-kent-54158100\">Coronavirus test centre shut to become lorry park</a></li>\r\n	<li><a href=\"https://www.bbc.com/news/uk-54021421\">UK &#39;sleepwalking into disaster&#39; over border plans</a></li>\r\n	<li><a href=\"https://www.bbc.com/news/business-54116606\">UK and Japan in first major post-Brexit trade deal</a></li>\r\n</ul>\r\n\r\n<p>A meeting between the government and stakeholders was arranged to discuss industry concerns but Road Haulage Association chief executive Richard Burnett said that it &quot;fell far short of our expectations&quot;.</p>\r\n\r\n<p>&quot;The mutually effective co-operation we wanted to ensure seamless border crossings just didn&#39;t happen and there is still no clarity over the questions that we have raised,&quot; he said.</p>\r\n\r\n<p>&quot;Although I don&#39;t think we&#39;re quite back at square one, we&#39;re certainly not much further ahead.&quot;</p>\r\n\r\n<p>Chief executive of the Cold Chain Federation Shane Brennan who also attended the meeting said: &quot;There is no point pretending it&#39;s going to be smooth - we are heading for major delays and disruption - systems are not ready, processes are unclear, awareness of what will be required is low across industry</p>\r\n\r\n<p>&quot;We will need calm heads and a willingness from customs, food and security officials (on the U.K. and EU side) to make sensible, pragmatic, decisions, probably throughout 2021 as systems bed down and new ways of working emerge.&quot;</p>\r\n\r\n<p>A Cabinet Office spokesperson described the meeting as &quot;constructive&quot; and said government would &quot;continue to intensify engagement with industry in the weeks ahead so we can hit the ground running on 1 January 2021 and seize new opportunities&quot;.</p>\r\n\r\n<p>&quot;To help businesses prepare, we have launched a major communications campaign in the UK and EU, committed to investing &pound;705m in jobs, infrastructure and technology at the border and provided a &pound;84m support package to boost the capacity of the customs intermediary sector.&quot;</p>\r\n\r\n<p>Meanwhile informal talks aimed at agreeing a UK-EU trade deal are continuing in Brussels this week, ahead of another full-scale negotiation round later this month.</p>\r\n\r\n<p>A UK government spokesperson described the talks as &quot;useful&quot; and said &quot;some limited progress was made&quot; but added that &quot;significant gaps remain in key areas, including fisheries and subsidies&quot;.</p>\r\n\r\n<p>However the EU has warned that trade talks could be suspended unless the UK removes measures from its Internal Market Bill which could override parts of the original divorce deal.</p>', '1600738594.jpg', 5, 'en', 1, '2020-09-21 17:38:42', '2020-09-21 17:38:42', NULL),
 (12, '<p>&#39;Nearly two-thirds&#39; of workers commuting again, says ONS</p>', '<p>Nearly two in three workers are now commuting again, as some employers ask their staff to return to offices during the pandemic.</p>\r\n\r\n<p>The Office for National Statistics (ONS) said that 62% of adult workers reported travelling to work last week.</p>\r\n\r\n<p>That compares with 36% in late May, soon after the ONS began compiling the figures during lockdown.</p>\r\n\r\n<p>The government has been encouraging workers to return to offices to help revive city centres.</p>\r\n\r\n<p>While the proportion of people travelling to work has increased, the ONS said 10% of the workforce remained on furlough leave.</p>\r\n\r\n<p>It added that 20% of workers continued to do so exclusively from home.</p>\r\n\r\n<p>The commuter data includes people who may be travelling to work exclusively, or they may be doing a mixture of commuting and working from home, the ONS said.</p>', '1600738805.jpg', 5, 'en', 1, '2020-09-21 17:44:44', '2020-09-21 17:44:44', NULL),
-(13, '<h1>Khabib Nurmagomedov Timbang Badan, Ekspresinya Bikin Bertanya-tanya</h1>', '<p><strong>Abu Dhabi</strong>&nbsp;-&nbsp;</p>\r\n\r\n<p><a href=\"https://www.detik.com/tag/khabib-nurmagomedov\">Khabib Nurmagomedov</a>&nbsp;dan&nbsp;<a href=\"https://www.detik.com/tag/justin-gaethje\">Justin Gaethje&nbsp;</a>baru saja beres timbang berat badan. Ekspresi Khabib bikin pecinta&nbsp;<a href=\"https://www.detik.com/tag/ufc\">UFC&nbsp;</a>bertanya-tanya.</p>\r\n\r\n<p>UFC 254&nbsp;<a href=\"https://www.detik.com/tag/khabib-nurmagomedov-vs-justin-gaethje\">Khabib Nurmagomedov vs Justin Gaethje</a>&nbsp;bakal berlangsung pada Minggu, 25 Oktober pukul 01.00 WIB di Fight Island, Abu Dhabi yang bisa disaksikan via Live Streaming ESPN. Khabib &#39;The Eagle&#39; pemegang sabuk juara kelas ringan bakal coba mempertahankan titel itu dari Justin &#39;The Highlight&#39; selaku juara interm kelas ringannya.</p>\r\n\r\n<table>\r\n	<tbody>\r\n		<tr>\r\n			<td>\r\n			<p><strong>Baca juga:&nbsp;</strong><a href=\"https://sport.detik.com/sport-lain/d-5225536/allahu-akbar-saat-khabib-nurmagomedov-jadi-imam-salat\">Allahu Akbar, Saat Khabib Nurmagomedov Jadi Imam Salat</a></p>\r\n			</td>\r\n		</tr>\r\n	</tbody>\r\n</table>\r\n\r\n<p>Sesi weigh-in alias timbang berat badan pun baru beres digelar.&nbsp;<a href=\"https://www.detik.com/tag/khabib-nurmagomedov\">Khabib Nurmagomedov</a>&nbsp;dan&nbsp;<a href=\"https://www.detik.com/tag/justin-gaethje\">Justin Gaethje</a>&nbsp;harus memangkas berat badan mereka jadi 155 pound atau setara 70 kg.</p>', '1603523062.jpg', 6, 'id', 48, '2020-10-24 00:04:22', '2020-10-24 00:04:22', NULL);
+(14, '<p>PEMUATAN CCSP</p>', '<p>27 Oktober 2020</p>\r\n\r\n<p>PT. BAHTERA SETIA&nbsp; GROUP selaku perusahan yang bergeraak di bidang Jasa&nbsp; Bongkar Muat PBM sedang melaksanakan tugas yaitu pemuatan CORRUGATE CONCRETE SHEET PILE (CCSP)&nbsp; , yang di muat di pelabuhan GRESIK, Jumlah muatan CCSP kali ini mencapai 880 batang.&nbsp;</p>\r\n\r\n<p>PT. BAHTERA SETIA GROUP menyediakan armada TONGKANG &quot; BUR 6 &quot; dan Armada &quot; TUG BOAD &quot; untuk pengiriman CCSP dengan Tujuan BONTANG - KALIMANTAN TIMUR.</p>', '1603766961.jpeg', 5, 'id', 48, '2020-10-26 19:49:21', '2020-10-26 19:49:21', NULL),
+(15, '<h1>Utang Indonesia Naik Terus tapi Disebut Tak Efektif, Kenapa?</h1>', '<p><strong>Jakarta</strong>&nbsp;-&nbsp;</p>\r\n\r\n<p>Ekonom senior Institute for Development of Economics and Finance (Indef) Didik Rachbini menilai meningkatnya&nbsp;<a href=\"https://www.detik.com/tag/utang-pemerintah\">utang pemerintah</a>&nbsp;kurang efektif untuk mendorong aktivitas ekonomi.</p>\r\n\r\n<p>Didik menjelaskan selama beberapa tahun terakhir pemerintah mengklaim meningkatnya jumlah utang untuk membangun infrastruktur. Namun yang tercermin justru belanja modal mengalami penurunan.</p>\r\n\r\n<p>&quot;Beberapa tahun terakhir peningkatan utang diklaim dalam rangka pembangunan infrastruktur. Namun belanja modal relatif menurun proporsinya,&quot; kata dia dikutip Jumat (6/11/2020).</p>\r\n\r\n<p>Berdasarkan bahan paparan Didik, belanja modal sebesar Rp 169,474 triliun di 2016, naik jadi Rp 208,656 triliun di 2017, dan turun jadi Rp 184,127 triliun di 2018, kemudian turun jadi Rp 177,841 triliun di 2019 dan turun lagi jadi Rp 137,383 triliun dalam&nbsp;<em>outlook</em>&nbsp;2020.</p>\r\n\r\n<p>&quot;Di samping itu, belanja bantuan sosial juga ikut meningkat,&quot; sebutnya.</p>\r\n\r\n<p>Berdasarkan paparan data dari Didik, tren belanja bansos memang terus meningkat, dari Rp 49,613 triliun di 2016 menjadi Rp 112,480 triliun di 2019, dan Rp 174,517 pada&nbsp;<em>outlook</em>&nbsp;2020.</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>Trio Hamdani - detikFinance</p>\r\n\r\n<p>Jumat, 06 Nov 2020 09:41 WIB</p>', '1604631849.jpg', 1, 'id', 48, '2020-11-05 20:04:09', '2020-11-05 20:04:09', NULL);
 
 -- --------------------------------------------------------
 
@@ -381,13 +479,15 @@ CREATE TABLE `pelayaran` (
   `name_pelayaran` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `alias` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `address` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `id_city` int(11) NOT NULL,
+  `id_city` int(11) DEFAULT NULL,
+  `city` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `province` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL,
   `postal` varchar(11) COLLATE utf8mb4_unicode_ci NOT NULL,
   `telp` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
   `fax` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
   `npwp` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `pkp_no` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `desc_pelayaran` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `desc_pelayaran` longtext COLLATE utf8mb4_unicode_ci,
   `payment_term` int(11) NOT NULL,
   `name_person` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `phone_person` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -402,8 +502,8 @@ CREATE TABLE `pelayaran` (
 -- Dumping data for table `pelayaran`
 --
 
-INSERT INTO `pelayaran` (`id`, `code_pelayaran`, `name_pelayaran`, `alias`, `address`, `id_city`, `postal`, `telp`, `fax`, `npwp`, `pkp_no`, `desc_pelayaran`, `payment_term`, `name_person`, `phone_person`, `email_person`, `fax_person`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 'P0001', 'Indo Countainer Line, PT', 'ICON', 'Jalan Kesana Kemari no 098 Jakarta Selatan', 3, '80234', '0214356764', '0214356764', '71.2112.1121.1.111', '980', 'Pelayaran Desc', 14, 'Aji', '08767676744', '08767676744', '0361654433', '2020-08-01 11:44:11', '2020-08-20 23:06:29', NULL);
+INSERT INTO `pelayaran` (`id`, `code_pelayaran`, `name_pelayaran`, `alias`, `address`, `id_city`, `city`, `province`, `postal`, `telp`, `fax`, `npwp`, `pkp_no`, `desc_pelayaran`, `payment_term`, `name_person`, `phone_person`, `email_person`, `fax_person`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 'P0001', 'Indo Countainer Line, PT', 'ICON', 'Jalan Kesana Kemari no 098 Jakarta Selatan', 3, '', '', '80234', '0214356764', '0214356764', '71.2112.1121.1.111', '980', 'Pelayaran Desc', 14, 'Aji', '08767676744', '08767676744', '0361654433', '2020-08-01 11:44:11', '2020-08-20 23:06:29', NULL);
 
 -- --------------------------------------------------------
 
@@ -473,7 +573,9 @@ INSERT INTO `slider_home` (`id`, `img_title`, `created_at`, `updated_at`, `delet
 CREATE TABLE `tarif` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `pelayaran_id` int(11) NOT NULL,
-  `id_city` int(11) NOT NULL,
+  `id_city` int(11) DEFAULT NULL,
+  `city` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `province` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL,
   `price` bigint(20) NOT NULL,
   `date` datetime NOT NULL,
   `pic_pelayaran` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -489,8 +591,8 @@ CREATE TABLE `tarif` (
 -- Dumping data for table `tarif`
 --
 
-INSERT INTO `tarif` (`id`, `pelayaran_id`, `id_city`, `price`, `date`, `pic_pelayaran`, `last_price1`, `last_price2`, `last_price3`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 1, 2, 6900000, '2020-08-02 00:00:00', 'Bastian', 7000000, 6800000, 7100000, '2020-08-21 04:49:10', '2020-08-21 04:49:10', NULL);
+INSERT INTO `tarif` (`id`, `pelayaran_id`, `id_city`, `city`, `province`, `price`, `date`, `pic_pelayaran`, `last_price1`, `last_price2`, `last_price3`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 1, 2, '', '', 6900000, '2020-08-02 00:00:00', 'Bastian', 7000000, 6800000, 7100000, '2020-08-21 04:49:10', '2020-08-21 04:49:10', NULL);
 
 -- --------------------------------------------------------
 
@@ -548,7 +650,8 @@ INSERT INTO `tracking` (`id`, `transaction_id`, `longitude`, `latitude`, `descri
 (5, 11, '115.2091981', '-8.7451341', 'Posisi di Laut Makassar akan bersandar di Pelabuhan Makassar', '2020-10-24 01:51:22', '2020-10-24 05:58:47', '2020-10-24 06:02:21'),
 (6, 11, '112.650600', '-7.163132', 'pelabuhan gresik', '2020-10-25 01:07:47', '2020-10-24 06:08:25', '2020-10-24 06:08:25'),
 (7, 12, '115.209198', '-8.745134', 'Pelabuhan Gresik Jawa Timur', '2020-10-26 02:14:21', '2020-10-24 06:17:34', '2020-10-24 06:17:34'),
-(8, 12, '114.623616', '-8.020557', 'Laut Bali', '2020-10-27 01:26:31', '2020-10-24 06:28:17', '2020-10-24 06:28:17');
+(8, 12, '114.623616', '-8.020557', 'Laut Bali', '2020-10-27 01:26:31', '2020-10-24 06:28:17', '2020-10-24 06:28:17'),
+(9, 18, '112.650600', '-7.163132', 'Loading Barang', '2020-11-07 12:32:50', '2020-11-07 05:33:36', '2020-11-07 05:33:36');
 
 -- --------------------------------------------------------
 
@@ -561,10 +664,12 @@ CREATE TABLE `transaction` (
   `trans_no` varchar(20) NOT NULL,
   `customer_id` int(11) NOT NULL,
   `shipping_no` varchar(20) DEFAULT NULL,
-  `loading_date` datetime NOT NULL,
+  `loading_date` datetime DEFAULT NULL,
+  `location_from` varchar(250) NOT NULL,
+  `location_to` varchar(250) NOT NULL,
   `agent_id` int(11) DEFAULT NULL,
   `vendor_truck_id` int(11) DEFAULT NULL,
-  `location_id` int(11) NOT NULL,
+  `location_id` int(11) DEFAULT NULL,
   `pelayaran_id` int(11) DEFAULT NULL,
   `resi_no` bigint(12) NOT NULL,
   `status` int(11) NOT NULL DEFAULT '0'
@@ -574,13 +679,18 @@ CREATE TABLE `transaction` (
 -- Dumping data for table `transaction`
 --
 
-INSERT INTO `transaction` (`id`, `trans_no`, `customer_id`, `shipping_no`, `loading_date`, `agent_id`, `vendor_truck_id`, `location_id`, `pelayaran_id`, `resi_no`, `status`) VALUES
-(1, 'TR2020090001', 5, '1', '2020-09-29 20:56:51', 1, 1, 2, 1, 123456789012, 0),
-(8, 'TR2020090002', 5, '12345', '2020-09-28 00:00:00', 1, 3, 3, 1, 181292669100, 0),
-(9, 'TR2020090003', 5, NULL, '2020-09-30 00:00:00', NULL, NULL, 1, NULL, 166386482400, 0),
-(10, 'TR2020090004', 5, NULL, '2020-09-29 00:00:00', NULL, NULL, 3, NULL, 19969298400, 0),
-(11, 'TR2020100005', 31, NULL, '2020-10-24 00:00:00', NULL, NULL, 1, NULL, 158489259800, 0),
-(12, 'TR2020100006', 31, NULL, '2020-10-24 00:00:00', NULL, NULL, 1, NULL, 155858176900, 0);
+INSERT INTO `transaction` (`id`, `trans_no`, `customer_id`, `shipping_no`, `loading_date`, `location_from`, `location_to`, `agent_id`, `vendor_truck_id`, `location_id`, `pelayaran_id`, `resi_no`, `status`) VALUES
+(1, 'TR2020090001', 5, '1', '2020-09-29 20:56:51', '', '', 1, 1, 2, 1, 123456789012, 0),
+(8, 'TR2020090002', 5, '12345', '2020-09-28 00:00:00', '', '', 1, 3, 3, 1, 181292669100, 0),
+(9, 'TR2020090003', 5, NULL, '2020-09-30 00:00:00', '', '', NULL, NULL, 1, NULL, 166386482400, 0),
+(10, 'TR2020090004', 5, NULL, '2020-09-29 00:00:00', '', '', NULL, NULL, 3, NULL, 19969298400, 0),
+(11, 'TR2020100005', 31, NULL, '2020-10-24 00:00:00', '', '', NULL, NULL, 1, NULL, 158489259800, 0),
+(12, 'TR2020100006', 31, NULL, '2020-10-24 00:00:00', '', '', NULL, NULL, 1, NULL, 155858176900, 0),
+(13, 'TR2020100007', 31, NULL, '2020-10-31 00:00:00', 'Surabaya', 'Balikpapan', NULL, NULL, NULL, NULL, 201024044385, 0),
+(14, 'TR2020100008', 5, NULL, '2020-11-01 00:00:00', 'Denpasar Bali', 'Surabaya Jawa timur', NULL, NULL, NULL, NULL, 201059395981, 0),
+(15, 'TR2020110009', 35, NULL, NULL, 'Surabaya', 'Tokyo', NULL, NULL, NULL, NULL, 201131926530, 0),
+(17, 'TR2020110010', 5, NULL, NULL, 'Denpasar Bali', 'Surabaya Jawa timur', NULL, NULL, NULL, NULL, 201161966131, 0),
+(18, 'TR2020110011', 35, NULL, NULL, 'Surabaya', 'Balikpapan', NULL, NULL, NULL, NULL, 201151581018, 0);
 
 -- --------------------------------------------------------
 
@@ -591,33 +701,41 @@ INSERT INTO `transaction` (`id`, `trans_no`, `customer_id`, `shipping_no`, `load
 CREATE TABLE `transaction_detail` (
   `id` int(11) NOT NULL,
   `transaction_id` int(11) NOT NULL,
-  `consignee_id` int(11) NOT NULL,
+  `consignee_id` int(11) DEFAULT NULL,
   `comodity` varchar(100) NOT NULL,
   `weight` int(11) NOT NULL,
-  `quantity` int(11) NOT NULL,
+  `quantity` int(11) DEFAULT NULL,
   `package_unit` varchar(150) DEFAULT NULL,
-  `length` int(11) NOT NULL,
-  `width` int(11) NOT NULL,
-  `height` int(11) NOT NULL,
-  `volume` int(11) NOT NULL
+  `length` int(11) DEFAULT NULL,
+  `width` int(11) DEFAULT NULL,
+  `height` int(11) DEFAULT NULL,
+  `volume` int(11) DEFAULT NULL,
+  `consignee` varchar(250) NOT NULL,
+  `unit_weight` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `transaction_detail`
 --
 
-INSERT INTO `transaction_detail` (`id`, `transaction_id`, `consignee_id`, `comodity`, `weight`, `quantity`, `package_unit`, `length`, `width`, `height`, `volume`) VALUES
-(1, 1, 1, 'Kayu Gelondongan', 500, 100, NULL, 10, 8, 5, 400),
-(2, 1, 2, 'Furniture', 20, 500, NULL, 2, 4, 3, 24),
-(7, 8, 1, 'Kayu Balok', 100, 100, 'Kayu', 15, 2, 1, 30),
-(8, 8, 1, 'Furniture Meja', 50, 200, 'Meja', 3, 2, 1, 6),
-(9, 9, 1, 'Kayu Balok 1', 50, 100, 'Kayu', 15, 1, 1, 15),
-(10, 9, 1, 'Kayu Balok 2', 100, 100, 'Kayu', 13, 2, 2, 52),
-(11, 9, 1, 'Kayu Balok 3', 54, 41, 'Kayu', 2, 4, 1, 8),
-(12, 10, 1, 'Kayu Balok 1', 50, 100, 'Kayu', 15, 1, 1, 15),
-(13, 10, 1, 'Kayu Balok 2', 10, 200, 'Kayu', 4, 3, 2, 24),
-(14, 11, 1, 'beras', 1000, 12, 'tonas', 1, 1, 1, 1),
-(15, 12, 1, 'beras', 1000, 12, 'tonas', 1, 1, 1, 1);
+INSERT INTO `transaction_detail` (`id`, `transaction_id`, `consignee_id`, `comodity`, `weight`, `quantity`, `package_unit`, `length`, `width`, `height`, `volume`, `consignee`, `unit_weight`) VALUES
+(1, 1, 1, 'Kayu Gelondongan', 500, 100, NULL, 10, 8, 5, 400, '', ''),
+(2, 1, 2, 'Furniture', 20, 500, NULL, 2, 4, 3, 24, '', ''),
+(7, 8, 1, 'Kayu Balok', 100, 100, 'Kayu', 15, 2, 1, 30, '', ''),
+(8, 8, 1, 'Furniture Meja', 50, 200, 'Meja', 3, 2, 1, 6, '', ''),
+(9, 9, 1, 'Kayu Balok 1', 50, 100, 'Kayu', 15, 1, 1, 15, '', ''),
+(10, 9, 1, 'Kayu Balok 2', 100, 100, 'Kayu', 13, 2, 2, 52, '', ''),
+(11, 9, 1, 'Kayu Balok 3', 54, 41, 'Kayu', 2, 4, 1, 8, '', ''),
+(12, 10, 1, 'Kayu Balok 1', 50, 100, 'Kayu', 15, 1, 1, 15, '', ''),
+(13, 10, 1, 'Kayu Balok 2', 10, 200, 'Kayu', 4, 3, 2, 24, '', ''),
+(14, 11, 1, 'beras', 1000, 12, 'tonas', 1, 1, 1, 1, '', ''),
+(15, 12, 1, 'beras', 1000, 12, 'tonas', 1, 1, 1, 1, '', ''),
+(16, 13, NULL, 'beras', 1000, NULL, NULL, NULL, NULL, NULL, NULL, 'Bastian', 'ton'),
+(17, 14, NULL, 'Beras', 150, NULL, NULL, NULL, NULL, NULL, NULL, 'Bapak Margono', 'kg'),
+(18, 14, NULL, 'Meja', 100, NULL, NULL, NULL, NULL, NULL, NULL, 'Ibu Kamala', 'kubik'),
+(19, 15, NULL, 'beras', 1000, NULL, NULL, NULL, NULL, NULL, NULL, 'Bastian', 'ton'),
+(21, 17, NULL, 'Beras', 50, NULL, NULL, NULL, NULL, NULL, NULL, 'Bapak Margono Raharjo', 'kg'),
+(22, 18, NULL, 'beras', 1000, NULL, NULL, NULL, NULL, NULL, NULL, 'Bastian', 'ton');
 
 -- --------------------------------------------------------
 
@@ -668,7 +786,7 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `verification_code`, `is_verified`, `role`, `remember_token`, `created_at`, `updated_at`) VALUES
 (1, 'Bastian', 'bbaztanzi@gmail.com', '2020-07-23 05:09:52', '$2y$10$FQikHO2fLUeGkN3JS4zCyeuuuni6vcWCHYKDnPBeLTQ3ClKq159om', NULL, 0, NULL, NULL, '2020-07-23 05:07:52', '2020-07-23 05:07:52'),
 (2, 'Andy Bastian', 'andybastian90@gmail.com', '2020-09-05 15:12:34', '$2y$10$x0tIfGVY.gGYkquTKgM.sOJ2msPApRNV/iIgHax06d5pk/rzXEzMS', NULL, 0, NULL, NULL, '2020-09-05 07:46:17', '2020-09-05 15:12:34'),
-(48, 'bahtera', 'bahterasetia423@gmail.com', NULL, '$2y$10$kPva.843UX7yuhyQDRy.uOV7A1ADltRYdpVnLaQkPP1woKGmCyjs6', 'e8149b9f914c3e4638737702febbaef049cca0a6', 1, NULL, NULL, '2020-10-23 19:09:00', '2020-10-23 19:10:14'),
+(48, 'bahtera', 'bahterasetia423@gmail.com', NULL, '$2y$10$kPva.843UX7yuhyQDRy.uOV7A1ADltRYdpVnLaQkPP1woKGmCyjs6', 'e8149b9f914c3e4638737702febbaef049cca0a6', 1, NULL, 'Z0W5VffelcSGqw0MuVg6woGeGwxlDWNKGdDAKTxJfRSjMzFkbeQCLzbG0aUJ', '2020-10-23 19:09:00', '2020-10-23 19:10:14'),
 (50, 'irhamsyah', 'irhamp12@gmail.com', NULL, '$2y$10$hBkdCZXXvVBD0zniNcokE.5bRK/42Sd57DZPOa3DpoGls4bkPUbXm', '6b0abc1ef922e0693fb86aac30ced961cd6c7a9a', 1, NULL, NULL, '2020-10-23 20:35:26', '2020-10-23 20:35:58');
 
 -- --------------------------------------------------------
@@ -722,6 +840,24 @@ ALTER TABLE `consignee`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `content`
+--
+ALTER TABLE `content`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `content_footer`
+--
+ALTER TABLE `content_footer`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `content_image`
+--
+ALTER TABLE `content_image`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `customer`
 --
 ALTER TABLE `customer`
@@ -743,6 +879,12 @@ ALTER TABLE `failed_jobs`
 -- Indexes for table `location`
 --
 ALTER TABLE `location`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `logo`
+--
+ALTER TABLE `logo`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -849,10 +991,40 @@ ALTER TABLE `vendor_truck`
 --
 
 --
+-- AUTO_INCREMENT for table `agent`
+--
+ALTER TABLE `agent`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `bank_account`
+--
+ALTER TABLE `bank_account`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `content`
+--
+ALTER TABLE `content`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT for table `content_footer`
+--
+ALTER TABLE `content_footer`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `content_image`
+--
+ALTER TABLE `content_image`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
 -- AUTO_INCREMENT for table `customer`
 --
 ALTER TABLE `customer`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT for table `entity`
@@ -861,16 +1033,40 @@ ALTER TABLE `entity`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
+-- AUTO_INCREMENT for table `location`
+--
+ALTER TABLE `location`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `logo`
+--
+ALTER TABLE `logo`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `news`
 --
 ALTER TABLE `news`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `news_category`
 --
 ALTER TABLE `news_category`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `news_image`
+--
+ALTER TABLE `news_image`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `pelayaran`
+--
+ALTER TABLE `pelayaran`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `service`
@@ -885,6 +1081,12 @@ ALTER TABLE `slider_home`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
+-- AUTO_INCREMENT for table `tarif`
+--
+ALTER TABLE `tarif`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `testimoni`
 --
 ALTER TABLE `testimoni`
@@ -894,25 +1096,37 @@ ALTER TABLE `testimoni`
 -- AUTO_INCREMENT for table `tracking`
 --
 ALTER TABLE `tracking`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `transaction`
 --
 ALTER TABLE `transaction`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `transaction_detail`
 --
 ALTER TABLE `transaction_detail`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+
+--
+-- AUTO_INCREMENT for table `trucking_type`
+--
+ALTER TABLE `trucking_type`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
+
+--
+-- AUTO_INCREMENT for table `vendor_truck`
+--
+ALTER TABLE `vendor_truck`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Constraints for dumped tables

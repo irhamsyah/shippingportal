@@ -230,7 +230,7 @@
             <ul class="nav nav-treeview">
               <li class="nav-item">
                 <a href="/adm_slider" class="nav-link">
-                  <i class="fa fa-image nav-icon"></i>
+                  <i class="fa fa-square nav-icon"></i>
                   <p>Slider Home</p>
                 </a>
               </li>
@@ -244,6 +244,24 @@
                 <a href="/adm_service" class="nav-link">
                   <i class="fa fa-cog nav-icon"></i>
                   <p>Service</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/adm_content" class="nav-link">
+                  <i class="fa fa-bars nav-icon"></i>
+                  <p>Content</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/adm_contentimage" class="nav-link">
+                  <i class="fa fa-images nav-icon"></i>
+                  <p>Client Image</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/adm_contentfooter" class="nav-link">
+                  <i class="fa fa-info nav-icon"></i>
+                  <p>Footer Info</p>
                 </a>
               </li>
             </ul>
@@ -804,6 +822,44 @@
 
       $(e.currentTarget).find('input[name="inputLogoOld"]').val(logoName);
       $(e.currentTarget).find('input[name="inputIdLogo"]').val(LogoId);
+    });
+
+    $('#modal-edit-content').on('show.bs.modal', function(e) {
+      var ContentId = $(e.relatedTarget).data('id');
+      var TitleID = $(e.relatedTarget).data('titleid');
+      var TitleEN = $(e.relatedTarget).data('titleen');
+      var DescriptionID = $(e.relatedTarget).data('descriptionid');
+      var DescriptionEN = $(e.relatedTarget).data('descriptionen');
+      var Image = $(e.relatedTarget).data('image');
+
+      CKEDITOR.instances['inputText1'].setData(DescriptionID);
+      CKEDITOR.instances['inputTitle1'].setData(DescriptionEN);
+      $(e.currentTarget).find('input[name="inputTitleID"]').val(TitleID);
+      $(e.currentTarget).find('input[name="inputTitleEN"]').val(TitleEN);
+      if(ContentId=='8'){
+        $(e.currentTarget).find('input[name="inputImage"]').val(Image);
+      }else{
+        $(e.currentTarget).find('input[name="inputImage"]').val('');
+      }
+      $(e.currentTarget).find('input[name="inputIdContent"]').val(ContentId);
+    });
+
+    $('#modal-edit-contentfooter').on('show.bs.modal', function(e) {
+      var ContentFooterId = $(e.relatedTarget).data('id');
+      var Title = $(e.relatedTarget).data('title');
+      var Description = $(e.relatedTarget).data('description');
+
+      CKEDITOR.instances['inputText1'].setData(Description);
+      $(e.currentTarget).find('input[name="inputTitle"]').val(Title);
+      $(e.currentTarget).find('input[name="inputIdContentFooter"]').val(ContentFooterId);
+    });
+
+    $('#modal-edit-contentimage').on('show.bs.modal', function(e) {
+      var ContentFooterId = $(e.relatedTarget).data('id');
+      var Image = $(e.relatedTarget).data('image');
+
+      $(e.currentTarget).find('input[name="inputImgOld"]').val(Image);
+      $(e.currentTarget).find('input[name="inputIdContentImage"]').val(ContentFooterId);
     });
 
 </script>
