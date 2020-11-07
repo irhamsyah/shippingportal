@@ -403,10 +403,15 @@ class HomeController extends Controller
     public function admin_contentfooter_edit(Request $request)
     {
       $logos = Logo::all();
+      if($request->inputIdContentFooter=='5'){
+        $desc=strip_tags($request->inputText1);
+      }else{
+        $desc=$request->inputText1;
+      }
       //update Content
       $contentfooters = ContentFooter::find($request->inputIdContentFooter);
       $contentfooters->title = $request->inputTitle;
-      $contentfooters->description = $request->inputText1;
+      $contentfooters->description = $desc;
       $contentfooters->save();
 
       $logos = Logo::all();
