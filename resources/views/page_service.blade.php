@@ -1,18 +1,40 @@
 @extends('layouts.page_main')
 
 @section('content')
-<section class="features18 popup-btn-cards cid-s9mp3oMIIm" id="features18-1z">
+<section class="features18 popup-btn-cards popUpBgBast hideMeBast" id="features18-1z">
+    <div class="container">
+      <div class="flash-message">
+        @if (\Session::has('failed'))
+            <p class="alert alert-failed popUpFailBast">{!! \Session::get('failed') !!} <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a></p>
+        @endif
+      </div>
+    </div>
+</section>
+
+<!--Get Localization-->
+@php($loc=app()->getLocale())
+
+<section class="features18 popup-btn-cards cid-s9mp3oMIIm" id="features18-2z">
+  @foreach($servicetexts as $index => $servicetext)
+    @if($loc=='en')
+      @php($title_service='title_en')
+      @php($description_service='description_en')
+    @else
+      @php($title_service='title_id')
+      @php($description_service='description_id')
+    @endif
+  @endforeach
     <div class="container">
       <h2 class="mbr-section-title pb-3 align-center mbr-fonts-style display-2">
-          {{ __('service.service_title') }}</h2>
+          {{ $servicetext->$title_service }}</h2>
       <h3 class="mbr-section-subtitle display-5 align-center mbr-fonts-style mbr-light"><p>
-          {{ __('service.service_desc') }}</p></h3>
+          {{ $servicetext->$description_service }}</p></h3>
     </div>
 </section>
 <?php
   $index=0;
 ?>
-<section class="features18 popup-btn-cards cid-s9mp3oMIIm" id="features18-1z">
+<section class="features18 popup-btn-cards cid-s9mp3oMIIm" id="features18-3z">
     <div class="container">
       <div class="row">
         @foreach($services as $index => $service)
@@ -28,11 +50,13 @@
                 <div class="card-box">
                     <h4 class="card-title mbr-fonts-style display-7">{{ $service->title }}</h4>
                     <p class="mbr-text mbr-fonts-style align-left display-7">
-                      <?php
-                        $loc=app()->getLocale();
-                        //check locatization
-                        if($loc=='en'){$detail='detail_en';}else{$detail='detail_id';}
-                      ?>
+                      <!--Initialitation Lang-->
+                        @if($loc=='en')
+                          @php($detail='detail_en')
+                        @else
+                          @php($detail='detail_id')
+                        @endif
+
                         {!! $service->$detail !!}
                     </p>
                 </div>

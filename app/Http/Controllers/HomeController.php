@@ -7,6 +7,18 @@ use App\Users;
 use App\Testimoni;
 use App\Slider;
 use App\Service;
+use App\Agent;
+use App\Customer;
+use App\Location;
+use App\Pelayaran;
+use App\Transaction;
+use App\TransactionDetail;
+use App\TruckingType;
+use App\VendorTruck;
+use App\Logo;
+use App\Content;
+use App\ContentImage;
+use App\ContentFooter;
 
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Builder;
@@ -43,30 +55,47 @@ class HomeController extends Controller
      */
     public function admin_index()
     {
-      //get data Slider
-      $sliders = Slider::all();
+      $logos = Logo::all();
+      $transactions = Transaction::select('transaction.*','customer.code_customer','customer.name_customer','agent.code_agent','agent.name_agent','vendor_truck.code_vendor','vendor_truck.name_vendor',
+      'location.code_city','location.name_city','location.province_city','pelayaran.code_pelayaran','pelayaran.name_pelayaran','pelayaran.alias')
+      ->leftjoin('location','location.id','=','transaction.location_id')
+      ->leftjoin('customer','customer.id','=','transaction.customer_id')
+      ->leftjoin('agent','agent.id','=','transaction.agent_id')
+      ->leftjoin('vendor_truck','vendor_truck.id','=','transaction.vendor_truck_id')
+      ->leftjoin('pelayaran','pelayaran.id','=','transaction.pelayaran_id')
+      ->orderby('transaction.id','DESC')
+      ->get();
 
-      return view('admin/slider', ['sliders'=> $sliders]);
+      $vendors = VendorTruck::select('vendor_truck.*','name_trucking')
+      ->leftjoin('trucking_type','trucking_type.id','=','vendor_truck.trucking_type_id')->get();
+
+      $pelayarans = Pelayaran::all();
+      $agents = Agent::all();
+      $locations = Location::all();
+
+      return view('admin/transaction', ['logos'=> $logos,'transactions'=> $transactions, 'vendors'=> $vendors, 'pelayarans'=> $pelayarans, 'agents'=> $agents, 'locations'=> $locations]);
     }
     //Direct to Slider page
     public function admin_slider()
     {
+      $logos = Logo::all();
       //get data Slider
       $sliders = Slider::all();
 
-      return view('admin/slider', ['sliders'=> $sliders]);
+      return view('admin/slider', ['logos'=> $logos,'sliders'=> $sliders]);
     }
     public function admin_slider_add(Request $request)
     {
+      $logos = Logo::all();
       //cek validasi image
         $this->validate($request, [
-          'inputImage' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+          'inputImage' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:5048',
       ]);
       //upload image to directory
       if ($request->hasFile('inputImage')) {
           $image = $request->file('inputImage');
           $name = time().'.'.$image->getClientOriginalExtension();
-          $destinationPath = public_path('/img/slider');
+          $destinationPath = $_SERVER['DOCUMENT_ROOT'].'/img/slider';
           $image->move($destinationPath, $name);
       }
       //input new Slider
@@ -78,20 +107,21 @@ class HomeController extends Controller
       //get data Slider
       $sliders = Slider::all();
 
-      return view('admin/slider', ['sliders'=> $sliders]);
+      return view('admin/slider', ['logos'=> $logos,'sliders'=> $sliders]);
     }
     public function admin_slider_edit(Request $request)
     {
+      $logos = Logo::all();
       if ($request->inputImage!="" OR $request->inputImage!=NULL){
         //cek validasi image
         $this->validate($request, [
-            'inputImage' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'inputImage' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:5048',
         ]);
         //upload image to directory
         if ($request->hasFile('inputImage')) {
             $image = $request->file('inputImage');
             $name = time().'.'.$image->getClientOriginalExtension();
-            $destinationPath = public_path('/img/slider');
+            $destinationPath = $_SERVER['DOCUMENT_ROOT'].'/img/slider';
             $image->move($destinationPath, $name);
             //delete file image from directory
             unlink($_SERVER['DOCUMENT_ROOT'].'/img/slider/'.$request->inputImgOld);
@@ -109,11 +139,12 @@ class HomeController extends Controller
       //get data Slider
       $sliders = Slider::all();
 
-      return view('admin/slider', ['sliders'=> $sliders]);
+      return view('admin/slider', ['logos'=> $logos,'sliders'=> $sliders]);
     }
     //Direct to Proses Deleteslider
     public function admin_slider_destroy(Request $request)
     {
+      $logos = Logo::all();
       $sliders = Slider::find($request->inputIdSlider);
       $sliders->delete();
 
@@ -122,27 +153,29 @@ class HomeController extends Controller
 
       //get data Slider
       $sliders = Slider::all();
-      return view('admin/slider', ['sliders'=> $sliders]);
+      return view('admin/slider', ['logos'=> $logos,'sliders'=> $sliders]);
     }
     //Direct to Testimoni page
     public function admin_testimoni()
     {
+      $logos = Logo::all();
       //get data Testimoni
       $testimonis = Testimoni::all();
 
-      return view('admin/testimoni', ['testimonis'=> $testimonis]);
+      return view('admin/testimoni', ['logos'=> $logos,'testimonis'=> $testimonis]);
     }
     public function admin_testimoni_add(Request $request)
     {
+      $logos = Logo::all();
       //cek validasi image
         $this->validate($request, [
-          'inputImage' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+          'inputImage' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:5048',
       ]);
       //upload image to directory
       if ($request->hasFile('inputImage')) {
           $image = $request->file('inputImage');
           $name = time().'.'.$image->getClientOriginalExtension();
-          $destinationPath = public_path('/img/testimoni');
+          $destinationPath = $_SERVER['DOCUMENT_ROOT'].'/img/testimoni';
           $image->move($destinationPath, $name);
       }
       //input new Testimoni
@@ -158,20 +191,21 @@ class HomeController extends Controller
       //get data Testimoni
       $testimonis = Testimoni::all();
 
-      return view('admin/testimoni', ['testimonis'=> $testimonis]);
+      return view('admin/testimoni', ['logos'=> $logos,'testimonis'=> $testimonis]);
     }
     public function admin_testimoni_edit(Request $request)
     {
+      $logos = Logo::all();
       if ($request->inputImage!="" OR $request->inputImage!=NULL){
         //cek validasi image
         $this->validate($request, [
-            'inputImage' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'inputImage' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:5048',
         ]);
         //upload image to directory
         if ($request->hasFile('inputImage')) {
             $image = $request->file('inputImage');
             $name = time().'.'.$image->getClientOriginalExtension();
-            $destinationPath = public_path('/img/testimoni');
+            $destinationPath = $_SERVER['DOCUMENT_ROOT'].'/img/testimoni';
             $image->move($destinationPath, $name);
             //delete file image from directory
             unlink($_SERVER['DOCUMENT_ROOT'].'/img/testimoni/'.$request->inputImgOld);
@@ -192,11 +226,12 @@ class HomeController extends Controller
       //get data Testimoni
       $testimonis = Testimoni::all();
 
-      return view('admin/testimoni', ['testimonis'=> $testimonis]);
+      return view('admin/testimoni', ['logos'=> $logos,'testimonis'=> $testimonis]);
     }
     //Direct to Proses Deleteslider
     public function admin_testimoni_destroy(Request $request)
     {
+      $logos = Logo::all();
       $testimonis = Testimoni::find($request->inputIdTestimoni);
       $testimonis->delete();
 
@@ -206,27 +241,29 @@ class HomeController extends Controller
       //get data Service
       $testimonis = Testimoni::all();
 
-      return view('admin/testimoni', ['testimonis'=> $testimonis]);
+      return view('admin/testimoni', ['logos'=> $logos,'testimonis'=> $testimonis]);
     }
     //Direct to Service page
     public function admin_service()
     {
+      $logos = Logo::all();
       //get data Service
       $services = Service::all();
 
-      return view('admin/service', ['services'=> $services]);
+      return view('admin/service', ['logos'=> $logos,'services'=> $services]);
     }
     public function admin_service_add(Request $request)
     {
+      $logos = Logo::all();
       //cek validasi image
         $this->validate($request, [
-          'inputImage' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+          'inputImage' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:5048',
       ]);
       //upload image to directory
       if ($request->hasFile('inputImage')) {
           $image = $request->file('inputImage');
           $name = time().'.'.$image->getClientOriginalExtension();
-          $destinationPath = public_path('/img/service');
+          $destinationPath = $_SERVER['DOCUMENT_ROOT'].'/img/service';
           $image->move($destinationPath, $name);
       }
       //input new service
@@ -242,20 +279,21 @@ class HomeController extends Controller
       //get data Service
       $services = Service::all();
 
-      return view('admin/service', ['services'=> $services]);
+      return view('admin/service', ['logos'=> $logos,'services'=> $services]);
     }
     public function admin_service_edit(Request $request)
     {
+      $logos = Logo::all();
       if ($request->inputImage!="" OR $request->inputImage!=NULL){
         //cek validasi image
         $this->validate($request, [
-            'inputImage' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'inputImage' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:5048',
         ]);
         //upload image to directory
         if ($request->hasFile('inputImage')) {
             $image = $request->file('inputImage');
             $name = time().'.'.$image->getClientOriginalExtension();
-            $destinationPath = public_path('/img/service');
+            $destinationPath = $_SERVER['DOCUMENT_ROOT'].'/img/service';
             $image->move($destinationPath, $name);
             //delete file image from directory
             unlink($_SERVER['DOCUMENT_ROOT'].'/img/service/'.$request->inputImgOld);
@@ -276,11 +314,12 @@ class HomeController extends Controller
       //get data Service
       $services = Service::all();
 
-      return view('admin/service', ['services'=> $services]);
+      return view('admin/service', ['logos'=> $logos,'services'=> $services]);
     }
     //Direct to Proses Delete service
     public function admin_service_destroy(Request $request)
     {
+      $logos = Logo::all();
       $services = Service::find($request->inputIdService);
       $services->delete();
 
@@ -290,6 +329,173 @@ class HomeController extends Controller
       //get data Service
       $services = Service::all();
 
-      return view('admin/service', ['services'=> $services]);
+      return view('admin/service', ['logos'=> $logos,'services'=> $services]);
+    }
+    //Direct to Logo page
+    public function admin_logo()
+    {
+      $logos = Logo::all();
+
+      return view('admin/logo', ['logos'=> $logos]);
+    }
+    public function admin_logo_edit(Request $request)
+    {
+      if ($request->inputImage!="" OR $request->inputImage!=NULL){
+        //cek validasi image
+        $this->validate($request, [
+            'inputImage' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:5048',
+        ]);
+        //upload image to directory
+        if ($request->hasFile('inputImage')) {
+            $image = $request->file('inputImage');
+            $name = time().'.'.$image->getClientOriginalExtension();
+            $destinationPath = $_SERVER['DOCUMENT_ROOT'].'/img/logo';
+            $image->move($destinationPath, $name);
+            //delete file image from directory
+            unlink($_SERVER['DOCUMENT_ROOT'].'/img/logo/'.$request->inputLogoOld);
+        }
+      }else {
+        $name = $request->inputLogoOld;
+      }
+      //update Logo
+      $logonews = Logo::find($request->inputIdLogo);
+      $logonews->logo_name = $name;
+      $logonews->save();
+
+      $logos = Logo::all();
+
+      return view('admin/logo', ['logos'=> $logos]);
+    }
+    //Direct to Content page
+    public function admin_content()
+    {
+      $logos = Logo::all();
+      $contents = Content::all();
+
+      return view('admin/content', ['logos'=> $logos,'contents'=> $contents]);
+    }
+    public function admin_content_edit(Request $request)
+    {
+      $logos = Logo::all();
+      //update Content
+      $contents = Content::find($request->inputIdContent);
+      $contents->title_id = $request->inputTitleID;
+      $contents->title_en = $request->inputTitleEN;
+      $contents->description_id = $request->inputText1;
+      $contents->description_en = $request->inputTitle1;
+      if($request->inputIdContent=='8'){
+        $contents->image = $request->inputImage;
+      }
+      $contents->save();
+
+      $contents = Content::all();
+
+      return view('admin/content', ['logos'=> $logos,'contents'=> $contents]);
+    }
+    //Direct to Footer page
+    public function admin_contentfooter()
+    {
+      $logos = Logo::all();
+      $contentfooters = ContentFooter::all();
+
+      return view('admin/contentfooter', ['logos'=> $logos,'contentfooters'=> $contentfooters]);
+    }
+    public function admin_contentfooter_edit(Request $request)
+    {
+      $logos = Logo::all();
+      if($request->inputIdContentFooter=='5' OR $request->inputIdContentFooter=='6'){
+        $desc=strip_tags($request->inputText1);
+      }else{
+        $desc=$request->inputText1;
+      }
+      //update Content
+      $contentfooters = ContentFooter::find($request->inputIdContentFooter);
+      $contentfooters->title = $request->inputTitle;
+      $contentfooters->description = $desc;
+      $contentfooters->save();
+
+      $logos = Logo::all();
+      $contentfooters = ContentFooter::all();
+
+      return view('admin/contentfooter', ['logos'=> $logos,'contentfooters'=> $contentfooters]);
+    }
+    //Direct to ContentImage page
+    public function admin_contentimage()
+    {
+      $logos = Logo::all();
+      //get data Content Image
+      $contentimages = ContentImage::all();
+
+      return view('admin/contentimage', ['logos'=> $logos,'contentimages'=> $contentimages]);
+    }
+    public function admin_contentimage_add(Request $request)
+    {
+      $logos = Logo::all();
+      //cek validasi image
+        $this->validate($request, [
+          'inputImage' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:5048',
+      ]);
+      //upload image to directory
+      if ($request->hasFile('inputImage')) {
+          $image = $request->file('inputImage');
+          $name = time().'.'.$image->getClientOriginalExtension();
+          $destinationPath = $_SERVER['DOCUMENT_ROOT'].'/img/content';
+          $image->move($destinationPath, $name);
+      }
+      //input new contentimage
+      $contentimages = new ContentImage;
+      $contentimages->image = $name;
+      $contentimages->save();
+
+      $logos = Logo::all();
+      //get data Content Image
+      $contentimages = ContentImage::all();
+
+      return view('admin/contentimage', ['logos'=> $logos,'contentimages'=> $contentimages]);
+    }
+    public function admin_contentimage_edit(Request $request)
+    {
+      if ($request->inputImage!="" OR $request->inputImage!=NULL){
+        //cek validasi image
+        $this->validate($request, [
+            'inputImage' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:5048',
+        ]);
+        //upload image to directory
+        if ($request->hasFile('inputImage')) {
+            $image = $request->file('inputImage');
+            $name = time().'.'.$image->getClientOriginalExtension();
+            $destinationPath = $_SERVER['DOCUMENT_ROOT'].'/img/content';
+            $image->move($destinationPath, $name);
+            //delete file image from directory
+            unlink($_SERVER['DOCUMENT_ROOT'].'/img/content/'.$request->inputImgOld);
+        }
+      }else {
+        $name = $request->inputImgOld;
+      }
+      //update contentimages
+      $contentimages = ContentImage::find($request->inputIdContentImage);
+      $contentimages->image = $name;
+      $contentimages->save();
+
+      $logos = Logo::all();
+      //get data Content Image
+      $contentimages = ContentImage::all();
+
+      return view('admin/contentimage', ['logos'=> $logos,'contentimages'=> $contentimages]);
+    }
+    //Direct to Proses Delete contentimage
+    public function admin_contentimage_destroy(Request $request)
+    {
+      $contentimages = ContentImage::find($request->inputIdContentImage);
+      $contentimages->delete();
+
+      //delete file image from directory
+      unlink($_SERVER['DOCUMENT_ROOT'].'/img/content/'.$request->inputImgOld);
+
+      $logos = Logo::all();
+      //get data Content Image
+      $contentimages = ContentImage::all();
+
+      return view('admin/contentimage', ['logos'=> $logos,'contentimages'=> $contentimages]);
     }
 }

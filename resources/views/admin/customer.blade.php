@@ -38,11 +38,17 @@
                   @php ($status='Active')
                 @endif
 
+                @if($customer->entity_name=='PERORANGAN')
+                  @php ($name_customer=$customer->name_customer)
+                @else
+                  @php ($name_customer=$customer->name_customer.', '.$customer->entity_name)
+                @endif
+
                 <tr>
                   <td>{{ $index+1 }}</td>
                   <td>{{ strtoupper($customer->code_customer) }}</td>
-                  <td>{{ strtoupper($customer->name_customer.', '.$customer->entity_name) }}</td>
-                  <td>{{ $customer->name_city.' - '.$customer->province_city }}</td>
+                  <td>{{ strtoupper($name_customer) }}</td>
+                  <td>{{ $customer->city.' - '.$customer->province }}</td>
                   <td>{{ $customer->telp }}</td>
                   <td>{{ $status }}</td>
                   <td>
@@ -55,7 +61,8 @@
                             data-namecust="{{ $customer->name_customer }}"
                             data-addressinv="{{ $customer->address_invoice }}"
                             data-address="{{ $customer->address }}"
-                            data-idcity="{{ $customer->id_city }}"
+                            data-city="{{ $customer->city }}"
+                            data-province="{{ $customer->province }}"
                             data-postal="{{ $customer->postal }}"
                             data-telp="{{ $customer->telp }}"
                             data-fax="{{ $customer->fax }}"
@@ -178,20 +185,19 @@
             </div>
             <div class="form-group">
               <div class="row">
-                <div class="col-lg-4 col-sm-12">
-                  <label for="inputIdCity">Select City</label>
-                  <select class="form-control" name="inputIdCity">
-                    <option value="#" selected="true" disabled="disabled">--- Select City ---</option>
-                    @foreach($locations as $location)
-                    <option value="{{ $location->loc_id }}">{{ $location->code_city }} - {{ $location->name_city }}</option>
-                    @endforeach
-                  </select>
+                <div class="col-lg-3 col-sm-12">
+                  <label for="inputCity">City</label>
+                  <input type="text" name="inputCity" class="form-control">
                 </div>
-                <div class="col-lg-4 col-sm-12">
+                <div class="col-lg-3 col-sm-12">
+                  <label for="inputProvince">Province</label>
+                  <input type="text" name="inputProvince" class="form-control">
+                </div>
+                <div class="col-lg-3 col-sm-12">
                   <label for="inputPostal">Postal Code</label>
                   <input type="text" name="inputPostal" class="form-control">
                 </div>
-                <div class="col-lg-4 col-sm-12">
+                <div class="col-lg-3 col-sm-12">
                   <label for="inputTelp">Telp</label>
                   <input type="text" name="inputTelp" class="form-control">
                 </div>
@@ -255,6 +261,7 @@
             </div>
             <div class="form-group">
               <input type="hidden" name="inputIdCustomer" class="form-control">
+              <input type="hidden" name="inputPasswordOld" class="form-control">
               <input type="hidden" name="_method" value="PUT"/>
             </div>
           </div>
@@ -336,20 +343,19 @@
             </div>
             <div class="form-group">
               <div class="row">
-                <div class="col-lg-4 col-sm-12">
-                  <label for="inputIdCity">Select City</label>
-                  <select class="form-control" name="inputIdCity">
-                    <option value="#" selected="true" disabled="disabled">--- Select City ---</option>
-                    @foreach($locations as $location)
-                    <option value="{{ $location->loc_id }}">{{ $location->code_city }} - {{ $location->name_city }}</option>
-                    @endforeach
-                  </select>
+                <div class="col-lg-3 col-sm-12">
+                  <label for="inputCity">City</label>
+                  <input type="text" name="inputCity" class="form-control">
                 </div>
-                <div class="col-lg-4 col-sm-12">
+                <div class="col-lg-3 col-sm-12">
+                  <label for="inputProvince">Province</label>
+                  <input type="text" name="inputProvince" class="form-control">
+                </div>
+                <div class="col-lg-3 col-sm-12">
                   <label for="inputPostal">Postal Code</label>
                   <input type="text" name="inputPostal" class="form-control">
                 </div>
-                <div class="col-lg-4 col-sm-12">
+                <div class="col-lg-3 col-sm-12">
                   <label for="inputTelp">Telp</label>
                   <input type="text" name="inputTelp" class="form-control">
                 </div>

@@ -1,5 +1,8 @@
 <html>
 <head>
+  @foreach($logos as $logo)
+    @php ($logo=$logo->logo_name)
+  @endforeach
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>BAHTERA SETIA</title>
@@ -32,7 +35,7 @@
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
   <!-- Logo Icon -->
-  <link rel="shortcut icon" href="{{ asset('img/logo-coba-150x108.png') }}" type="image/x-icon">
+  <link rel="shortcut icon" href="{{ asset('img/logo/'.$logo) }}" type="image/x-icon">
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
@@ -85,7 +88,7 @@
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="/" class="brand-link">
-      <img src="{{ asset('img/logo-coba-white-150x108.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+      <img src="{{ asset('img/logo/'.$logo) }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
            style="opacity: .8">
       <span class="brand-text font-weight-light">Bahtera Setia</span>
     </a>
@@ -99,12 +102,25 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item has-treeview menu-close">
-            <a href="/adm_tracking" class="nav-link">
-              <i class="nav-icon fa fa-ship"></i>
-              <p>
-                List Tracking
-              </p>
+            <a href="#" class="nav-link">
+              <i class="nav-icon fa fa-share"></i>
+              <p>Transaction</p>
+              <i class="right fas fa-angle-left"></i>
             </a>
+            <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="/adm_transaction" class="nav-link">
+                <i class="fa fa-bars nav-icon"></i>
+                <p>List Transaction</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="/adm_tracking" class="nav-link">
+                <i class="fa fa-ship nav-icon"></i>
+                <p>Tracking</p>
+              </a>
+            </li>
+            </ul>
           </li>
           <li class="nav-item has-treeview menu-close">
             <a href="#" class="nav-link">
@@ -121,6 +137,7 @@
                 <p>Customer</p>
               </a>
             </li>
+            <!--
               <li class="nav-item">
                 <a href="/adm_agent" class="nav-link">
                   <i class="fa fa-male nav-icon"></i>
@@ -133,6 +150,7 @@
                   <p>Bank Account</p>
                 </a>
               </li>
+            -->
               <li class="nav-item">
                 <a href="/adm_pelayaran" class="nav-link">
                   <i class="fa fa-paper-plane nav-icon"></i>
@@ -145,6 +163,7 @@
                   <p>Tarif</p>
                 </a>
               </li>
+              <!--
               <li class="nav-item" style="border-bottom:1px solid">
                 <a href="/adm_consignee" class="nav-link">
                   <i class="fa fa-female nav-icon"></i>
@@ -168,6 +187,7 @@
                   <p>Location</p>
                 </a>
               </li>
+            -->
             </ul>
           </li>
           <li class="nav-item has-treeview menu-close">
@@ -210,7 +230,7 @@
             <ul class="nav nav-treeview">
               <li class="nav-item">
                 <a href="/adm_slider" class="nav-link">
-                  <i class="fa fa-image nav-icon"></i>
+                  <i class="fa fa-square nav-icon"></i>
                   <p>Slider Home</p>
                 </a>
               </li>
@@ -224,6 +244,24 @@
                 <a href="/adm_service" class="nav-link">
                   <i class="fa fa-cog nav-icon"></i>
                   <p>Service</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/adm_content" class="nav-link">
+                  <i class="fa fa-bars nav-icon"></i>
+                  <p>Content</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/adm_contentimage" class="nav-link">
+                  <i class="fa fa-images nav-icon"></i>
+                  <p>Client Image</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/adm_contentfooter" class="nav-link">
+                  <i class="fa fa-info nav-icon"></i>
+                  <p>Footer Info</p>
                 </a>
               </li>
             </ul>
@@ -251,6 +289,12 @@
               </li>
             </ul>
           </li> -->
+          <li class="nav-item has-treeview menu-close">
+            <a href="/adm_logo" class="nav-link">
+              <i class="nav-icon fa fa-file-image"></i>
+              <p>Logo</p>
+            </a>
+          </li>
           <li class="nav-item has-treeview menu-open">
             <a href="{{ route('logout') }}" class="nav-link" onclick="event.preventDefault();
                           document.getElementById('logout-form').submit();">
@@ -355,12 +399,19 @@
     //Initialize Select2 Elements
     $('.select2').select2()
 
-    //Date range picker
+    //Date picker
     $('#inputDate1').datetimepicker({
         format: 'Y-MM-DD'
     });
     $('#inputDate2').datetimepicker({
         format: 'Y-MM-DD'
+    });
+    //Date picker tgl-jam
+    $('#inputDate3').datetimepicker({
+        format: 'Y-MM-DD hh:mm:ss'
+    });
+    $('#inputDate4').datetimepicker({
+        format: 'Y-MM-DD hh:mm:ss'
     });
 
     //set ckeditor
@@ -436,7 +487,8 @@
       var addressinv = $(e.relatedTarget).data('addressinv');
       var address = $(e.relatedTarget).data('address');
       var namecust = $(e.relatedTarget).data('namecust');
-      var idcity = $(e.relatedTarget).data('idcity');
+      var city = $(e.relatedTarget).data('city');
+      var province = $(e.relatedTarget).data('province');
       var postal = $(e.relatedTarget).data('postal');
       var telp = $(e.relatedTarget).data('telp');
       var fax = $(e.relatedTarget).data('fax');
@@ -459,7 +511,8 @@
       $(e.currentTarget).find('input[name="inputCostumerName"]').val(namecust);
       $(e.currentTarget).find('textarea[name="inputAddressInvoice"]').val(addressinv);
       $(e.currentTarget).find('textarea[name="inputAddress"]').val(address);
-      $(e.currentTarget).find('select[name="inputIdCity"]').val(idcity);
+      $(e.currentTarget).find('input[name="inputCity"]').val(city);
+      $(e.currentTarget).find('input[name="inputProvince"]').val(province);
       $(e.currentTarget).find('input[name="inputPostal"]').val(postal);
       $(e.currentTarget).find('input[name="inputTelp"]').val(telp);
       $(e.currentTarget).find('input[name="inputFax"]').val(fax);
@@ -472,8 +525,7 @@
       $(e.currentTarget).find('input[name="inputPersonPhone"]').val(phoneperson);
       $(e.currentTarget).find('input[name="inputPersonFax"]').val(faxperson);
       $(e.currentTarget).find('input[name="inputUsername"]').val(username);
-      $(e.currentTarget).find('input[name="inputPassword"]').val(password);
-      $(e.currentTarget).find('input[name="inputConfPassword"]').val(password);
+      $(e.currentTarget).find('input[name="inputPasswordOld"]').val(password);
       $(e.currentTarget).find('select[name="inputEntity"]').val(entity);
       $(e.currentTarget).find('input[name="inputAccountName"]').val(namecust+','+entityname);
       $(e.currentTarget).find('select[name="inputStatus"]').val(status);
@@ -542,8 +594,9 @@
       var namepelayaran = $(e.relatedTarget).data('namepelayaran');
       var alias = $(e.relatedTarget).data('alias');
       var address = $(e.relatedTarget).data('address');
+      var city = $(e.relatedTarget).data('city');
+      var province = $(e.relatedTarget).data('province');
       var namecust = $(e.relatedTarget).data('namecust');
-      var idcity = $(e.relatedTarget).data('idcity');
       var postal = $(e.relatedTarget).data('postal');
       var telp = $(e.relatedTarget).data('telp');
       var fax = $(e.relatedTarget).data('fax');
@@ -561,7 +614,8 @@
       $(e.currentTarget).find('input[name="inputPelayaranName"]').val(namepelayaran);
       $(e.currentTarget).find('input[name="inputAlias"]').val(alias);
       $(e.currentTarget).find('textarea[name="inputAddress"]').val(address);
-      $(e.currentTarget).find('select[name="inputIdCity"]').val(idcity);
+      $(e.currentTarget).find('input[name="inputCity"]').val(city);
+      $(e.currentTarget).find('input[name="inputProvince"]').val(province);
       $(e.currentTarget).find('input[name="inputPostal"]').val(postal);
       $(e.currentTarget).find('input[name="inputTelp"]').val(telp);
       $(e.currentTarget).find('input[name="inputFax"]').val(fax);
@@ -578,7 +632,8 @@
     $('#modal-edit-tarif').on('show.bs.modal', function(e) {
       var id = $(e.relatedTarget).data('id');
       var pelayaranid = $(e.relatedTarget).data('pelayaranid');
-      var idcity = $(e.relatedTarget).data('idcity');
+      var city = $(e.relatedTarget).data('city');
+      var province = $(e.relatedTarget).data('province');
       var price = $(e.relatedTarget).data('price');
       var date = $(e.relatedTarget).data('date');
       var picpelayaran = $(e.relatedTarget).data('picpelayaran');
@@ -588,7 +643,8 @@
 
       $(e.currentTarget).find('input[name="inputIdTarif"]').val(id);
       $(e.currentTarget).find('select[name="inputIdPelayaran"]').val(pelayaranid);
-      $(e.currentTarget).find('select[name="inputIdCity"]').val(idcity);
+      $(e.currentTarget).find('input[name="inputCity"]').val(city);
+      $(e.currentTarget).find('input[name="inputProvince"]').val(province);
       $(e.currentTarget).find('input[name="inputPrice"]').val(price);
       $(e.currentTarget).find('input[name="inputDate2"]').val(date);
       $(e.currentTarget).find('input[name="inputPIC"]').val(picpelayaran);
@@ -715,6 +771,95 @@
       $(e.currentTarget).find('input[name="inputTitle"]').val(title);
       $(e.currentTarget).find('input[name="inputImgOld"]').val(img_title);
       $(e.currentTarget).find('input[name="inputIdService"]').val(ServiceId);
+    });
+
+    $('#modal-edit-tracking').on('show.bs.modal', function(e) {
+      var Id = $(e.relatedTarget).data('id');
+      var longitude = $(e.relatedTarget).data('longitude');
+      var latitude = $(e.relatedTarget).data('latitude');
+      var description = $(e.relatedTarget).data('description');
+      var date = $(e.relatedTarget).data('date');
+      var customer_id = $(e.relatedTarget).data('customer_id');
+      var name_customer = $(e.relatedTarget).data('name_customer');
+      var trans_no = $(e.relatedTarget).data('trans_no');
+      var transaction_id = $(e.relatedTarget).data('transaction_id');
+
+      $(e.currentTarget).find('input[name="inputTransactionNo"]').val(trans_no);
+      $(e.currentTarget).find('input[name="inputCustomerName"]').val(name_customer);
+      $(e.currentTarget).find('input[name="inputDate3"]').val(date);
+      $(e.currentTarget).find('input[name="inputLatitude"]').val(latitude);
+      $(e.currentTarget).find('input[name="inputLongitude"]').val(longitude);
+      $(e.currentTarget).find('textarea[name="inputDesc"]').text(description);
+      $(e.currentTarget).find('input[name="inputIdTracking"]').val(Id);
+      $(e.currentTarget).find('input[name="inputIdTransaction"]').val(transaction_id);
+    });
+
+    $('#modal-edit-transaction').on('show.bs.modal', function(e) {
+      var Id = $(e.relatedTarget).data('id');
+      var trans_no = $(e.relatedTarget).data('trans_no');
+      var name_customer = $(e.relatedTarget).data('name_customer');
+      var loading_date = $(e.relatedTarget).data('loading_date');
+      var pelayaran_id = $(e.relatedTarget).data('pelayaran_id');
+      var location_from = $(e.relatedTarget).data('location_from');
+      var location_to = $(e.relatedTarget).data('location_to');
+      var resi_no = $(e.relatedTarget).data('resi_no');
+      var status = $(e.relatedTarget).data('status');
+
+      $(e.currentTarget).find('input[name="inputTransactionNo"]').val(trans_no);
+      $(e.currentTarget).find('input[name="inputCustomerName"]').val(name_customer);
+      $(e.currentTarget).find('input[name="inputDate3"]').val(loading_date);
+      $(e.currentTarget).find('input[name="inputResi"]').val(resi_no);
+      $(e.currentTarget).find('select[name="inputPelayaran"]').val(pelayaran_id);
+      $(e.currentTarget).find('select[name="inputStatus"]').val(status);
+      $(e.currentTarget).find('input[name="inputFromCity"]').val(location_from);
+      $(e.currentTarget).find('input[name="inputToCity"]').val(location_to);
+      $(e.currentTarget).find('input[name="inputIdTransaction"]').val(Id);
+    });
+
+    $('#modal-edit-logonew').on('show.bs.modal', function(e) {
+      var LogoId = $(e.relatedTarget).data('id');
+      var logoName = $(e.relatedTarget).data('name');
+
+      $(e.currentTarget).find('input[name="inputLogoOld"]').val(logoName);
+      $(e.currentTarget).find('input[name="inputIdLogo"]').val(LogoId);
+    });
+
+    $('#modal-edit-content').on('show.bs.modal', function(e) {
+      var ContentId = $(e.relatedTarget).data('id');
+      var TitleID = $(e.relatedTarget).data('titleid');
+      var TitleEN = $(e.relatedTarget).data('titleen');
+      var DescriptionID = $(e.relatedTarget).data('descriptionid');
+      var DescriptionEN = $(e.relatedTarget).data('descriptionen');
+      var Image = $(e.relatedTarget).data('image');
+
+      CKEDITOR.instances['inputText1'].setData(DescriptionID);
+      CKEDITOR.instances['inputTitle1'].setData(DescriptionEN);
+      $(e.currentTarget).find('input[name="inputTitleID"]').val(TitleID);
+      $(e.currentTarget).find('input[name="inputTitleEN"]').val(TitleEN);
+      if(ContentId=='8'){
+        $(e.currentTarget).find('input[name="inputImage"]').val(Image);
+      }else{
+        $(e.currentTarget).find('input[name="inputImage"]').val('');
+      }
+      $(e.currentTarget).find('input[name="inputIdContent"]').val(ContentId);
+    });
+
+    $('#modal-edit-contentfooter').on('show.bs.modal', function(e) {
+      var ContentFooterId = $(e.relatedTarget).data('id');
+      var Title = $(e.relatedTarget).data('title');
+      var Description = $(e.relatedTarget).data('description');
+
+      CKEDITOR.instances['inputText1'].setData(Description);
+      $(e.currentTarget).find('input[name="inputTitle"]').val(Title);
+      $(e.currentTarget).find('input[name="inputIdContentFooter"]').val(ContentFooterId);
+    });
+
+    $('#modal-edit-contentimage').on('show.bs.modal', function(e) {
+      var ContentFooterId = $(e.relatedTarget).data('id');
+      var Image = $(e.relatedTarget).data('image');
+
+      $(e.currentTarget).find('input[name="inputImgOld"]').val(Image);
+      $(e.currentTarget).find('input[name="inputIdContentImage"]').val(ContentFooterId);
     });
 
 </script>

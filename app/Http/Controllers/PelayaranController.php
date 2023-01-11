@@ -7,6 +7,7 @@ use App\Users;
 use App\Location;
 use App\Pelayaran;
 use App\Tarif;
+use App\Logo;
 
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Builder;
@@ -43,19 +44,21 @@ class PelayaranController extends Controller
      */
     public function admin_pelayaran()
     {
-      $pelayarans = Pelayaran::select('pelayaran.*','location.name_city','location.province_city')->leftjoin('location','location.id','=','pelayaran.id_city')->get();
-      $locations = Location::select('location.id as loc_id','location.code_city','location.name_city','location.province_city')->orderby('location.name_city')->get();
+      $logos = Logo::all();
+      $pelayarans = Pelayaran::all();
 
-      return view('admin/pelayaran', ['pelayarans'=> $pelayarans,'locations'=> $locations]);
+      return view('admin/pelayaran', ['logos'=> $logos,'pelayarans'=> $pelayarans]);
     }
     public function admin_pelayaran_add(Request $request)
     {
+      $logos = Logo::all();
       $pelayarans = new Pelayaran;
       $pelayarans->code_pelayaran = $request->inputPelayaranCode;
       $pelayarans->name_pelayaran = $request->inputPelayaranName;
       $pelayarans->alias = $request->inputAlias;
       $pelayarans->address = $request->inputAddress;
-      $pelayarans->id_city = $request->inputIdCity;
+      $pelayarans->city = $request->inputCity;
+      $pelayarans->province = $request->inputProvince;
       $pelayarans->postal = $request->inputPostal;
       $pelayarans->telp = $request->inputTelp;
       $pelayarans->fax = $request->inputFax;
@@ -70,20 +73,21 @@ class PelayaranController extends Controller
       $pelayarans->created_at = date('Y-m-d H:i:s');
       $pelayarans->save();
 
-      $pelayarans = Pelayaran::select('pelayaran.*','location.name_city','location.province_city')->leftjoin('location','location.id','=','pelayaran.id_city')->get();
-      $locations = Location::select('location.id as loc_id','location.code_city','location.name_city','location.province_city')->orderby('location.name_city')->get();
+      $pelayarans = Pelayaran::all();
 
-      return view('admin/pelayaran', ['pelayarans'=> $pelayarans,'locations'=> $locations]);
+      return view('admin/pelayaran', ['logos'=> $logos,'pelayarans'=> $pelayarans]);
     }
     public function admin_pelayaran_edit(Request $request)
     {
+      $logos = Logo::all();
       //update Pelayaran
       $pelayarans = Pelayaran::find($request->inputIdPelayaran);
       $pelayarans->code_pelayaran = $request->inputPelayaranCode;
       $pelayarans->name_pelayaran = $request->inputPelayaranName;
       $pelayarans->alias = $request->inputAlias;
       $pelayarans->address = $request->inputAddress;
-      $pelayarans->id_city = $request->inputIdCity;
+      $pelayarans->city = $request->inputCity;
+      $pelayarans->province = $request->inputProvince;
       $pelayarans->postal = $request->inputPostal;
       $pelayarans->telp = $request->inputTelp;
       $pelayarans->fax = $request->inputFax;
@@ -98,35 +102,36 @@ class PelayaranController extends Controller
       $pelayarans->updated_at = date('Y-m-d H:i:s');
       $pelayarans->save();
 
-      $pelayarans = Pelayaran::select('pelayaran.*','location.name_city','location.province_city')->leftjoin('location','location.id','=','pelayaran.id_city')->get();
-      $locations = Location::select('location.id as loc_id','location.code_city','location.name_city','location.province_city')->orderby('location.name_city')->get();
+      $pelayarans = Pelayaran::all();
 
-      return view('admin/pelayaran', ['pelayarans'=> $pelayarans,'locations'=> $locations]);
+      return view('admin/pelayaran', ['logos'=> $logos,'pelayarans'=> $pelayarans]);
     }
     //Direct to Proses DeletePelayaran
     public function admin_pelayaran_destroy(Request $request)
     {
+      $logos = Logo::all();
       $pelayarans = Pelayaran::find($request->inputIdPelayaran);
       $pelayarans->delete();
 
-      $pelayarans = Pelayaran::select('pelayaran.*','location.name_city','location.province_city')->leftjoin('location','location.id','=','pelayaran.id_city')->get();
-      $locations = Location::select('location.id as loc_id','location.code_city','location.name_city','location.province_city')->orderby('location.name_city')->get();
+      $pelayarans = Pelayaran::all();
 
-      return view('admin/pelayaran', ['pelayarans'=> $pelayarans,'locations'=> $locations]);
+      return view('admin/pelayaran', ['logos'=> $logos,'pelayarans'=> $pelayarans]);
     }
     public function admin_tarif()
     {
-      $tarifs = Tarif::select('tarif.*','location.name_city','location.province_city','pelayaran.code_pelayaran','pelayaran.name_pelayaran')->leftjoin('location','location.id','=','tarif.id_city')->leftjoin('pelayaran','pelayaran.id','=','tarif.pelayaran_id')->get();
-      $locations = Location::select('location.id as loc_id','location.code_city','location.name_city','location.province_city')->orderby('location.name_city')->get();
+      $logos = Logo::all();
+      $tarifs = Tarif::select('tarif.*','pelayaran.code_pelayaran','pelayaran.name_pelayaran')->leftjoin('pelayaran','pelayaran.id','=','tarif.pelayaran_id')->get();
       $pelayarans = Pelayaran::select('pelayaran.id as pel_id','pelayaran.code_pelayaran','pelayaran.name_pelayaran')->orderby('pelayaran.code_pelayaran')->get();
 
-      return view('admin/tarif', ['tarifs'=> $tarifs, 'pelayarans'=> $pelayarans, 'locations'=> $locations]);
+      return view('admin/tarif', ['logos'=> $logos,'tarifs'=> $tarifs, 'pelayarans'=> $pelayarans]);
     }
     public function admin_tarif_add(Request $request)
     {
+      $logos = Logo::all();
       $tarifs = new Tarif;
       $tarifs->pelayaran_id = $request->inputIdPelayaran;
-      $tarifs->id_city = $request->inputIdCity;
+      $tarifs->city = $request->inputCity;
+      $tarifs->province = $request->inputProvince;
       $tarifs->price = $request->inputPrice;
       $tarifs->date = $request->inputDate1;
       $tarifs->pic_pelayaran = $request->inputPIC;
@@ -136,18 +141,19 @@ class PelayaranController extends Controller
       $tarifs->created_at = date('Y-m-d H:i:s');
       $tarifs->save();
 
-      $tarifs = Tarif::select('tarif.*','location.name_city','location.province_city','pelayaran.code_pelayaran','pelayaran.name_pelayaran')->leftjoin('location','location.id','=','tarif.id_city')->leftjoin('pelayaran','pelayaran.id','=','tarif.pelayaran_id')->get();
-      $locations = Location::select('location.id as loc_id','location.code_city','location.name_city','location.province_city')->orderby('location.name_city')->get();
+      $tarifs = Tarif::select('tarif.*','pelayaran.code_pelayaran','pelayaran.name_pelayaran')->leftjoin('pelayaran','pelayaran.id','=','tarif.pelayaran_id')->get();
       $pelayarans = Pelayaran::select('pelayaran.id as pel_id','pelayaran.code_pelayaran','pelayaran.name_pelayaran')->orderby('pelayaran.code_pelayaran')->get();
 
-      return view('admin/tarif', ['tarifs'=> $tarifs, 'pelayarans'=> $pelayarans, 'locations'=> $locations]);
+      return view('admin/tarif', ['logos'=> $logos,'tarifs'=> $tarifs, 'pelayarans'=> $pelayarans]);
     }
     public function admin_tarif_edit(Request $request)
     {
+      $logos = Logo::all();
       //update Tarif
       $tarifs = Tarif::find($request->inputIdTarif);
       $tarifs->pelayaran_id = $request->inputIdPelayaran;
-      $tarifs->id_city = $request->inputIdCity;
+      $tarifs->city = $request->inputCity;
+      $tarifs->province = $request->inputProvince;
       $tarifs->price = $request->inputPrice;
       $tarifs->date = $request->inputDate2;
       $tarifs->pic_pelayaran = $request->inputPIC;
@@ -160,22 +166,21 @@ class PelayaranController extends Controller
       $tarifs->created_at = date('Y-m-d H:i:s');
       $tarifs->save();
 
-      $tarifs = Tarif::select('tarif.*','location.name_city','location.province_city','pelayaran.code_pelayaran','pelayaran.name_pelayaran')->leftjoin('location','location.id','=','tarif.id_city')->leftjoin('pelayaran','pelayaran.id','=','tarif.pelayaran_id')->get();
-      $locations = Location::select('location.id as loc_id','location.code_city','location.name_city','location.province_city')->orderby('location.name_city')->get();
+      $tarifs = Tarif::select('tarif.*','pelayaran.code_pelayaran','pelayaran.name_pelayaran')->leftjoin('pelayaran','pelayaran.id','=','tarif.pelayaran_id')->get();
       $pelayarans = Pelayaran::select('pelayaran.id as pel_id','pelayaran.code_pelayaran','pelayaran.name_pelayaran')->orderby('pelayaran.code_pelayaran')->get();
 
-      return view('admin/tarif', ['tarifs'=> $tarifs, 'pelayarans'=> $pelayarans, 'locations'=> $locations]);
+      return view('admin/tarif', ['logos'=> $logos,'tarifs'=> $tarifs, 'pelayarans'=> $pelayarans]);
     }
     //Direct to Proses DeleteTarif
     public function admin_tarif_destroy(Request $request)
     {
+      $logos = Logo::all();
       $tarifs = Tarif::find($request->inputIdTarif);
       $tarifs->delete();
 
-      $tarifs = Tarif::select('tarif.*','location.name_city','location.province_city','pelayaran.code_pelayaran','pelayaran.name_pelayaran')->leftjoin('location','location.id','=','tarif.id_city')->leftjoin('pelayaran','pelayaran.id','=','tarif.pelayaran_id')->get();
-      $locations = Location::select('location.id as loc_id','location.code_city','location.name_city','location.province_city')->orderby('location.name_city')->get();
+      $tarifs = Tarif::select('tarif.*','pelayaran.code_pelayaran','pelayaran.name_pelayaran')->leftjoin('pelayaran','pelayaran.id','=','tarif.pelayaran_id')->get();
       $pelayarans = Pelayaran::select('pelayaran.id as pel_id','pelayaran.code_pelayaran','pelayaran.name_pelayaran')->orderby('pelayaran.code_pelayaran')->get();
 
-      return view('admin/tarif', ['tarifs'=> $tarifs, 'pelayarans'=> $pelayarans, 'locations'=> $locations]);
+      return view('admin/tarif', ['logos'=> $logos,'tarifs'=> $tarifs, 'pelayarans'=> $pelayarans]);
     }
 }

@@ -15,7 +15,7 @@
           <div class="card-body">
             <div class="row" style="margin-bottom:10px;">
               <div class="col-lg-1 col-sm-2">
-                <button type="button" class="btn btn-block btn-outline-primary" data-toggle="modal" data-target="#modal-add-testimoni">New</button>
+                <button type="button" class="btn btn-block btn-outline-primary" data-toggle="modal" data-target="#modal-add-service">New</button>
               </div>
             </div>
             <table id="example1" class="table table-bordered table-hover">
@@ -102,7 +102,7 @@
                   <input type="text" name="inputTitle" class="form-control">
                 </div>
                 <div class="col-lg-6 col-sm-12">
-                  <label for="inputImage">Upload Image</label>
+                  <label for="inputImage">Upload Image <span style="color:red;">(maks : 3Mb)</span></label>
                   <div class="custom-file">
                     <input type="file" class="custom-file-input" name="inputImage" id="inputImage">
                     <label class="custom-file-label" for="inputImage">Choose Image</label>
@@ -136,7 +136,7 @@
     </div>
     <!-- /.modal-dialog -->
   </div>
-  <div class="modal fade" id="modal-add-testimoni">
+  <div class="modal fade" id="modal-add-service">
     <div class="modal-dialog modal-xl">
       <form action="/adm_service" method="post" enctype="multipart/form-data">
         <div class="modal-content">
@@ -154,7 +154,7 @@
                   <input type="text" name="inputTitle" class="form-control">
                 </div>
                 <div class="col-lg-6 col-sm-12">
-                  <label for="inputImage">Upload Image</label>
+                  <label for="inputImage">Upload Image <span style="color:red;">(maks : 3Mb)</span></label>
                   <div class="custom-file">
                     <input type="file" class="custom-file-input" name="inputImage" id="inputImage">
                     <label class="custom-file-label" for="inputImage">Choose Image</label>

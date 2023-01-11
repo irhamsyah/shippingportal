@@ -1,12 +1,16 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
+
+  @foreach($logos as $logo)
+    @php ($logo=$logo->logo_name)
+  @endforeach
   <!-- Site made with Mobirise Website Builder v4.12.4, https://mobirise.com -->
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="generator" content="Mobirise v4.12.4, mobirise.com">
   <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
-  <link rel="shortcut icon" href="{{ 'assets/images/bs2-102x107.png' }}" type="image/x-icon">
+  <link rel="shortcut icon" href="{{ asset('img/logo/'.$logo) }}" type="image/x-icon">
   <meta name="description" content="">
 
 
@@ -42,7 +46,7 @@
             <div class="navbar-brand">
                 <span class="navbar-logo">
                     <a href="/">
-                        <img src="{{'assets/images/bs2-102x107.png'}}" alt="Mobirise" title="" style="height: 3.8rem;">
+                        <img src="{{ asset('img/logo/'.$logo) }}" alt="Mobirise" title="" style="height: 3.8rem;">
                     </a>
                 </span>
                 <span class="navbar-caption-wrap"><a class="navbar-caption text-black display-5" href="/">
@@ -70,7 +74,10 @@
                 </div>
               </li>
             </ul>
-            <div class="navbar-buttons mbr-section-btn"><a class="btn btn-sm btn-primary display-4" href="https://wa.me/6281333110886"><span class="socicon socicon-whatsapp mbr-iconfont mbr-iconfont-btn"></span>Live Chat</a></div>
+            @foreach($footertops as $index => $footertop)
+                @php ($whatsapp=$footertop->description)
+            @endforeach
+            <div class="navbar-buttons mbr-section-btn"><a class="btn btn-sm btn-primary display-4" href="https://wa.me/{{ $whatsapp }}"><span class="socicon socicon-whatsapp mbr-iconfont mbr-iconfont-btn"></span>Live Chat</a></div>
         </div>
     </nav>
 </section>
@@ -83,7 +90,7 @@
                 $index=0;
             ?>
           @foreach($sliders as $index => $slider)
-          <div class="carousel-item slider-fullscreen-image @if($slider->id == 1) {{ 'active' }} @endif" data-bg-video-slide="false" style="background-image: url({{ asset('img/slider/'.$slider->img_title) }});">
+          <div class="carousel-item slider-fullscreen-image {{$index == 0 ? 'active' : '' }}" data-bg-video-slide="false" style="background-image: url({{ asset('img/slider/'.$slider->img_title) }});">
             <div class="container container-slide">
               <div class="image_wrapper">
                 <img src="{{ asset('img/slider/'.$slider->img_title) }}" alt="" title="">
@@ -112,22 +119,33 @@
     </div>
 
 </section>
+  <!--Get Localization-->
+  @php($loc=app()->getLocale())
 
+    @foreach($abouts as $index => $about)
+      @if($loc=='en')
+        @php($title_about='title_en')
+        @php($description_about='description_en')
+      @else
+        @php($title_about='title_id')
+        @php($description_about='description_id')
+      @endif
+    @endforeach
 <section class="header7 cid-s9lWkXbnx3" id="header7-1u">
 <div class="container">
         <div class="media-container-row">
 
             <div class="media-content align-right">
                 <h1 class="mbr-section-title mbr-white pb-3 mbr-fonts-style display-1">
-                    {{ __('home.about_title') }}</h1>
+                    {{ $about->$title_about }}</h1>
                 <div class="mbr-section-text mbr-white pb-3">
                     <p class="mbr-text mbr-fonts-style display-5">
-                      {{ __('home.about_desc') }}</p>
+                      {!! strip_tags($about->$description_about) !!}</p>
                 </div>
 
             </div>
 
-            <div class="mbr-figure" style="width: 100%;"><iframe class="mbr-embedded-video" src="https://www.youtube.com/embed/HWhXsteYLfw?rel=0&amp;amp;showinfo=0&amp;autoplay=1&amp;loop=0" width="1280" height="720" frameborder="0" allowfullscreen></iframe></div>
+            <div class="mbr-figure" style="width: 100%;"><iframe class="mbr-embedded-video" src="{{ $about->image }}" width="1280" height="720" frameborder="0" allowfullscreen></iframe></div>
 
         </div>
     </div>
@@ -136,11 +154,12 @@
 <section class="features2 cid-s9lXoGMl5l" id="features2-1v">
     <div class="container">
         <div class="media-container-row">
-          <?php
-            $loc=app()->getLocale();
-            //check locatization
-            if($loc=='en'){$newss=$newss_en;}else{$newss=$newss_id;}
-          ?>
+          <!--Initialitation Lang-->
+            @if($loc=='en')
+              @php($newss=$newss_en)
+            @else
+              @php($newss=$newss_id)
+            @endif
 
           @foreach($newss as $index => $news)
             <div class="card p-3 col-12 col-md-6 col-lg-4">
@@ -176,73 +195,47 @@
 </section>
 
 <section class="features15 cid-s9lXIX2lfZ" id="features15-1w">
-
+  @foreach($slogans as $index => $slogan)
+    @if($loc=='en')
+      @php($title_slogan='title_en')
+      @php($description_slogan='description_en')
+    @else
+      @php($title_slogan='title_id')
+      @php($description_slogan='description_id')
+    @endif
+  @endforeach
     <div class="container">
-        <h2 class="mbr-section-title pb-3 align-center mbr-fonts-style display-2">{{ __('home.service_title') }}</h2>
+        <h2 class="mbr-section-title pb-3 align-center mbr-fonts-style display-2">{{ $slogan->$title_slogan }}</h2>
         <h3 class="mbr-section-subtitle display-5 align-center mbr-fonts-style">
-            {{ __('home.service_slogan') }}
+            {!! $slogan->$description_slogan !!}
         </h3>
 
         <div class="media-container-row container pt-5 mt-2">
-
+          @foreach($servicedetails as $index => $servicedetail)
+            @if($loc=='en')
+              @php($title_sdetail='title_en')
+              @php($description_sdetail='description_en')
+            @else
+              @php($title_sdetail='title_id')
+              @php($description_sdetail='description_id')
+            @endif
             <div class="col-12 col-md-6 mb-4 col-lg-3">
                 <div class="card flip-card p-5 align-center">
                     <div class="card-front card_cont">
-                        <img src="assets/images/8-512x600.jpg" alt="Mobirise" title="">
+                        <img src="{{ asset('assets/images/'.$servicedetail->image) }}" alt="Mobirise" title="">
                     </div>
                     <div class="card_back card_cont">
-                        <h4 class="card-title display-5 py-2 mbr-fonts-style">{{ __('home.service_detail_title1') }}</h4>
+                        <h4 class="card-title display-5 py-2 mbr-fonts-style">
+                          {{ $servicedetail->$title_sdetail }}</h4>
                         <p class="mbr-text mbr-fonts-style display-7">
-                            {{ __('home.service_detail_desc1') }}</p>
+                          {!! $servicedetail->$description_sdetail !!}</p>
                     </div>
                 </div>
             </div>
-
-            <div class="col-12 col-md-6 mb-4 col-lg-3">
-
-                <div class="card flip-card p-5 align-center">
-                    <div class="card-front card_cont">
-                        <img src="assets/images/7-900x1055.jpg" alt="Mobirise" title="">
-                    </div>
-                    <div class="card_back card_cont">
-                        <h4 class="card-title py-2 mbr-fonts-style display-5">
-                            {{ __('home.service_detail_title2') }}</h4>
-                        <p class="mbr-text mbr-fonts-style display-7">
-                            {{ __('home.service_detail_desc2') }}</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-12 col-md-6 mb-4 col-lg-3">
-                <div class="card flip-card p-5 align-center">
-                    <div class="card-front card_cont">
-                        <img src="assets/images/3-900x1055.jpg" alt="Mobirise" title="">
-                    </div>
-                    <div class="card_back card_cont">
-                        <h4 class="card-title py-2 mbr-fonts-style display-5">
-                            {{ __('home.service_detail_title3') }}</h4>
-                        <p class="mbr-text mbr-fonts-style display-7">
-                            {{ __('home.service_detail_desc3') }}
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-12 col-md-6 mb-4 col-lg-3">
-                <div class="card flip-card p-5 align-center">
-                    <div class="card-front card_cont">
-                        <img src="assets/images/4-900x1055.jpg" alt="Mobirise" title="">
-                    </div>
-                    <div class="card_back card_cont">
-                        <h4 class="card-title py-2 mbr-fonts-style display-5">
-                            {{ __('home.service_detail_title4') }}</h4>
-                        <p class="mbr-text mbr-fonts-style display-7">
-                          {{ __('home.service_detail_desc4') }}</p>
-                    </div>
-                </div>
-            </div>
+            @endforeach
         </div>
-</div></section>
+  </div>
+</section>
 
 <section class="carousel slide testimonials-slider cid-s4moDU74iK" data-interval="false" id="testimonials-slider1-k">
     <div class="container text-center">
@@ -282,16 +275,23 @@
 </section>
 
 <section class="clients cid-s4m6BDZgye mbr-parallax-background" data-interval="false" id="clients-9">
-
-
+  @foreach($ourclients as $index => $ourclient)
+    @if($loc=='en')
+      @php($title_ourclient='title_en')
+      @php($description_ourclient='description_en')
+    @else
+      @php($title_ourclient='title_id')
+      @php($description_ourclient='description_id')
+    @endif
+  @endforeach
     <div class="mbr-overlay" style="opacity: 0.7; background-color: rgb(255, 255, 255);">
     </div>
         <div class="container mb-5">
             <div class="media-container-row">
                 <div class="col-12 align-center">
                     <h2 class="mbr-section-title pb-3 mbr-fonts-style display-2">
-                        {{ __('home.klien_title') }}</h2>
-                    <h3 class="mbr-section-subtitle mbr-light mbr-fonts-style display-5">{{ __('home.klien_info') }}</h3>
+                        {{ $ourclient->$title_ourclient }}</h2>
+                    <h3 class="mbr-section-subtitle mbr-light mbr-fonts-style display-5">{!! $ourclient->$description_ourclient !!}</h3>
                 </div>
             </div>
         </div>
@@ -299,55 +299,18 @@
     <div class="container">
         <div class="carousel slide" role="listbox" data-pause="true" data-keyboard="false" data-ride="carousel" data-interval="3000">
             <div class="carousel-inner" data-visible="6">
-            <div class="carousel-item ">
-                    <div class="media-container-row">
-                        <div class="col-md-12">
-                            <div class="wrap-img ">
-                                <img src="assets/images/1200px-cmyk-logo-01-pngs-1200x1108.png" class="img-responsive clients-img" alt="" title="">
-                            </div>
-                        </div>
-                    </div>
-                </div><div class="carousel-item ">
-                    <div class="media-container-row">
-                        <div class="col-md-12">
-                            <div class="wrap-img ">
-                                <img src="assets/images/pnm-240x92.png" class="img-responsive clients-img" alt="" title="">
-                            </div>
-                        </div>
-                    </div>
-                </div><div class="carousel-item ">
-                    <div class="media-container-row">
-                        <div class="col-md-12">
-                            <div class="wrap-img ">
-                                <img src="assets/images/pp-1600x989.png" class="img-responsive clients-img" alt="" title="">
-                            </div>
-                        </div>
-                    </div>
-                </div><div class="carousel-item ">
-                    <div class="media-container-row">
-                        <div class="col-md-12">
-                            <div class="wrap-img ">
-                                <img src="assets/images/logo-wika-1929x1563.png" class="img-responsive clients-img" alt="" title="">
-                            </div>
-                        </div>
-                    </div>
-                </div><div class="carousel-item ">
-                    <div class="media-container-row">
-                        <div class="col-md-12">
-                            <div class="wrap-img ">
-                                <img src="assets/images/jaya-beton-ok-1772x591.png" class="img-responsive clients-img" alt="" title="">
-                            </div>
-                        </div>
-                    </div>
-                </div><div class="carousel-item ">
-                    <div class="media-container-row">
-                        <div class="col-md-12">
-                            <div class="wrap-img ">
-                                <img src="assets/images/adhimix-logo-0c600d7c5e0d84881b2d1ebed01de2a83e7742bf6a6c1e9078d806264c9c1e5c-1501x777.png" class="img-responsive clients-img" alt="" title="">
-                            </div>
-                        </div>
-                    </div>
-                </div></div>
+              @foreach($contentimages as $index => $contentimage)
+              <div class="carousel-item ">
+                  <div class="media-container-row">
+                      <div class="col-md-12">
+                          <div class="wrap-img ">
+                              <img src="{{ asset('img/content/'.$contentimage->image) }}" class="img-responsive clients-img" alt="" title="">
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              @endforeach
+            </div>
             <div class="carousel-controls">
                 <a data-app-prevent-settings="" class="carousel-control carousel-control-prev" role="button" data-slide="prev">
                     <span aria-hidden="true" class="mbri-left mbr-iconfont"></span>
@@ -366,28 +329,33 @@
     <div class="container">
         <div class="media-container-row content mbr-white">
             <div class="col-12 col-md-3 mbr-fonts-style display-7">
-                <p class="mbr-text">
-                    <strong>Address</strong>
-                    <br>
-                    <br>Jl. Yos Sudarso Blok II/10, Pulopancikan, Kebungson, Kec. Gresik, Kabupaten Gresik, Jawa Timur 61114<br>
-                    <br>
-                    <br><strong>Contacts</strong>
-                    <br>
-                    <br>Email: support@ptxxxxx.com
-                    <br>Phone: +62 1234567 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;<br>Fax: +62 31 9876543</p>
+                <div class="row">
+                  @foreach($footerlefts as $index => $footerleft)
+                  <div class="col-lg-12">
+                    <strong>{{ $footerleft->title }}</strong>
+                    <p class="mbr-text">
+                      {!! $footerleft->description !!}
+                    </p>
+                  </div>
+                  @endforeach
+                </div>
             </div>
             <div class="col-12 col-md-3 mbr-fonts-style display-7">
-                <p class="mbr-text">
-                    <strong>Links</strong>
-                    <br>
-                    <br>Gallery<br>Catalog<br><br>
-                    <br><strong>Feedback</strong>
-                    <br>
-                    <br>Please send us your ideas, bug reports, suggestions! Any feedback would be appreciated.
-                </p>
+              <div class="row">
+                @foreach($footerrights as $index => $footerright)
+                <div class="col-lg-12">
+                  <strong>{{ $footerright->title }}</strong>
+                  <p class="mbr-text">
+                    {!! $footerright->description !!}
+                  </p>
+                </div>
+                @endforeach
+              </div>
             </div>
             <div class="col-12 col-md-6">
-                <div class="google-map"><iframe frameborder="0" style="border:0" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15834.979148510152!2d112.6596961!3d-7.1554781!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x912eabca7968720d!2sPT.%20Bahtera%20Setia%20Gresik!5e0!3m2!1sid!2sid!4v1598980865702!5m2!1sid!2sid" allowfullscreen=""></iframe></div>
+              @foreach($footermaps as $index => $footermap)
+                <div class="google-map"><iframe frameborder="0" style="border:0" src="{{ $footermap->description }}" allowfullscreen=""></iframe></div>
+              @endforeach
             </div>
         </div>
 
@@ -399,11 +367,19 @@
         <div class="media-container-row align-center mbr-white">
             <div class="row row-links">
                 <ul class="foot-menu">
-                <li class="foot-menu-item mbr-fonts-style display-7">
-                        About us
-                    </li><li class="foot-menu-item mbr-fonts-style display-7">
-                        Services
-                    </li><li class="foot-menu-item mbr-fonts-style display-7">Tracking</li></ul>
+                  <li class="foot-menu-item mbr-fonts-style display-7">
+                    <a class="nav-link link text-white display-4" href="/#header7-1u">{{ __('home.menu_tentang') }}</a>
+                  </li>
+                  <li class="foot-menu-item mbr-fonts-style display-7">
+                    <a class="nav-link link text-white display-4" href="/service">{{ __('home.menu_layanan') }}</a>
+                  </li>
+                  <li class="foot-menu-item mbr-fonts-style display-7">
+                    <a class="nav-link link text-white display-4" href="/tracking">{{ __('home.menu_lacak') }}</a>
+                  </li>
+                  <li class="foot-menu-item mbr-fonts-style display-7">
+                    <a class="nav-link link text-white display-4" href="/news">{{ __('home.menu_berita') }}</a>
+                  </li>
+                </ul>
             </div>
             <div class="row social-row">
                 <div class="social-list align-right pb-2">

@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
+  @foreach($logos as $logo)
+    @php ($logo=$logo->logo_name)
+  @endforeach
   <!-- Site made with Mobirise Website Builder v4.12.4, https://mobirise.com -->
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="generator" content="Mobirise v4.12.4, mobirise.com">
   <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
-  <link rel="shortcut icon" href="{{ 'assets/images/bs2-102x107.png' }}" type="image/x-icon">
+  <link rel="shortcut icon" href="{{ asset('img/logo/'.$logo) }}" type="image/x-icon">
   <meta name="description" content="">
 
 
@@ -23,6 +26,7 @@
   <link rel="stylesheet" href="{{'assets/theme/css/style.css'}}">
   <link rel="preload" as="style" href="{{'assets/mobirise/css/mbr-additional.css'}}">
   <link rel="stylesheet" href="{{'assets/mobirise/css/mbr-additional.css'}}" type="text/css">
+  <link rel="stylesheet" href="{{'css/bast.css'}}">
 
 
 
@@ -42,7 +46,7 @@
             <div class="navbar-brand">
                 <span class="navbar-logo">
                     <a href="/">
-                        <img src="{{'assets/images/bs2-102x107.png'}}" alt="Mobirise" title="" style="height: 3.8rem;">
+                        <img src="{{ asset('img/logo/'.$logo) }}" alt="Mobirise" title="" style="height: 3.8rem;">
                     </a>
                 </span>
                 <span class="navbar-caption-wrap"><a class="navbar-caption text-black display-5" href="/">
@@ -63,14 +67,22 @@
               <li class="nav-item">
                 <a class="nav-link link text-black display-4" href="/news"><span class="mbri-paper-plane mbr-iconfont mbr-iconfont-btn"></span>{{ __('home.menu_berita') }}</a>
               </li>
+
+              <?php //check apakah merupakan trans_new page untuk menghilangkan fungsi localization
+              if(Request::segment(1)!='trans_new'){?>
               <li class="nav-item">
                 <div class="nav-link link display-4" style="display: inline-flex;">
                   <a class="{{ app()->getLocale() == 'en' ? 'active' : '' }}" href="{{ route('localization.switch', 'en') }}">EN</a>
                   <a class="{{ app()->getLocale() == 'id' ? 'active' : '' }}" href="{{ route('localization.switch', 'id') }}">ID</a>
                 </div>
               </li>
+            <?php }?>
             </ul>
-            <div class="navbar-buttons mbr-section-btn"><a class="btn btn-sm btn-primary display-4" href="https://wa.me/6281333110886"><span class="socicon socicon-whatsapp mbr-iconfont mbr-iconfont-btn"></span>Live Chat</a></div>
+            
+            @foreach($footertops as $index => $footertop)
+                @php ($whatsapp=$footertop->description)
+            @endforeach
+            <div class="navbar-buttons mbr-section-btn"><a class="btn btn-sm btn-primary display-4" href="https://wa.me/{{ $whatsapp }}"><span class="socicon socicon-whatsapp mbr-iconfont mbr-iconfont-btn"></span>Live Chat</a></div>
         </div>
     </nav>
 </section>
@@ -82,11 +94,19 @@
           <div class="media-container-row align-center mbr-white">
               <div class="row row-links">
                   <ul class="foot-menu">
-                  <li class="foot-menu-item mbr-fonts-style display-7">
-                          About us
-                      </li><li class="foot-menu-item mbr-fonts-style display-7">
-                          Services
-                      </li><li class="foot-menu-item mbr-fonts-style display-7">Tracking</li></ul>
+                    <li class="foot-menu-item mbr-fonts-style display-7">
+                      <a class="nav-link link text-white display-4" href="/#header7-1u">{{ __('home.menu_tentang') }}</a>
+                    </li>
+                    <li class="foot-menu-item mbr-fonts-style display-7">
+                      <a class="nav-link link text-white display-4" href="/service">{{ __('home.menu_layanan') }}</a>
+                    </li>
+                    <li class="foot-menu-item mbr-fonts-style display-7">
+                      <a class="nav-link link text-white display-4" href="/tracking">{{ __('home.menu_lacak') }}</a>
+                    </li>
+                    <li class="foot-menu-item mbr-fonts-style display-7">
+                      <a class="nav-link link text-white display-4" href="/news">{{ __('home.menu_berita') }}</a>
+                    </li>
+                  </ul>
               </div>
               <div class="row social-row">
                   <div class="social-list align-right pb-2">

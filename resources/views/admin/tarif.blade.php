@@ -39,7 +39,7 @@
                   <td>{{ $index+1 }}</td>
                   <td>{{ strtoupper($tarif->code_pelayaran).' - '.$tarif->name_pelayaran }}</td>
                   <td>{{ date('d F Y', strtotime($tarif->date)) }}</td>
-                  <td>{{ $tarif->name_city.' - '.$tarif->province_city }}</td>
+                  <td>{{ $tarif->city.' - '.$tarif->province }}</td>
                   <td>{{ $tarif->price }}</td>
                   <td>{{ $tarif->pic_pelayaran }}</td>
                   <td>{{ $tarif->last_price1 }}</td>
@@ -52,7 +52,8 @@
                             data-toggle="modal" data-target="#modal-edit-tarif"
                             data-id="{{ $tarif->id }}"
                             data-pelayaranid="{{ $tarif->pelayaran_id }}"
-                            data-idcity="{{ $tarif->id_city }}"
+                            data-city="{{ $tarif->city }}"
+                            data-province="{{ $tarif->province }}"
                             data-price="{{ $tarif->price }}"
                             data-date="{{ date('Y-m-d', strtotime($tarif->date)) }}"
                             data-picpelayaran="{{ $tarif->pic_pelayaran }}"
@@ -114,7 +115,7 @@
           <div class="modal-body">
             <div class="form-group">
               <div class="row">
-                <div class="col-lg-6 col-sm-12">
+                <div class="col-lg-4 col-sm-12">
                   <label for="inputIdPelayaran">Select Pelayaran</label>
                   <select class="form-control" name="inputIdPelayaran">
                     <option value="#" selected="true" disabled="disabled">--- Select Pelayaran ---</option>
@@ -123,14 +124,13 @@
                     @endforeach
                   </select>
                 </div>
-                <div class="col-lg-6 col-sm-12">
-                  <label for="inputIdCity">Select City</label>
-                  <select class="form-control" name="inputIdCity">
-                    <option value="#" selected="true" disabled="disabled">--- Select City ---</option>
-                    @foreach($locations as $location)
-                    <option value="{{ $location->loc_id }}">{{ $location->code_city }} - {{ $location->name_city }}</option>
-                    @endforeach
-                  </select>
+                <div class="col-lg-4 col-sm-12">
+                  <label for="inputCity">City</label>
+                  <input type="text" name="inputCity" class="form-control">
+                </div>
+                <div class="col-lg-4 col-sm-12">
+                  <label for="inputProvince">Province</label>
+                  <input type="text" name="inputProvince" class="form-control">
                 </div>
               </div>
             </div>
@@ -203,7 +203,7 @@
           <div class="modal-body">
             <div class="form-group">
               <div class="row">
-                <div class="col-lg-6 col-sm-12">
+                <div class="col-lg-4 col-sm-12">
                   <label for="inputIdPelayaran">Select Pelayaran</label>
                   <select class="form-control" name="inputIdPelayaran">
                     <option value="#" selected="true" disabled="disabled">--- Select Pelayaran ---</option>
@@ -212,14 +212,13 @@
                     @endforeach
                   </select>
                 </div>
-                <div class="col-lg-6 col-sm-12">
-                  <label for="inputIdCity">Select City</label>
-                  <select class="form-control" name="inputIdCity">
-                    <option value="#" selected="true" disabled="disabled">--- Select City ---</option>
-                    @foreach($locations as $location)
-                    <option value="{{ $location->loc_id }}">{{ $location->code_city }} - {{ $location->name_city }}</option>
-                    @endforeach
-                  </select>
+                <div class="col-lg-4 col-sm-12">
+                  <label for="inputCity">City</label>
+                  <input type="text" name="inputCity" class="form-control">
+                </div>
+                <div class="col-lg-4 col-sm-12">
+                  <label for="inputProvince">Province</label>
+                  <input type="text" name="inputProvince" class="form-control">
                 </div>
               </div>
             </div>

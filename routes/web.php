@@ -14,12 +14,21 @@ use Illuminate\Support\Facades\Route;
 |
 */
 //Frontend Page
+Auth::routes();
+// Route::get('tes',function(){
+//     return view('auth.register');
+// });
+
+// Route::get('/verify','Auth\RegisterController@verifyUser')->name('verify.user');
+
 Route::get('/', 'FrontendController@index');
 Route::get('/tracking', 'FrontendController@tracking');
 Route::post('/tracking', 'FrontendController@trackingpost');
-Route::get('/service', 'FrontendController@service');
+Route::get('/service', 'FrontendController@service')->name('service.get');
 Route::get('/contact', 'FrontendController@contact');
-Route::post('/contact', 'FrontendController@contact_add');
+Route::post('/contact', 'RegistercustomerController@contact_add');
+// Route::post('/contact', 'FrontendController@contact_add');
+
 Route::post('/trans_new', 'FrontendController@trans_new');
 Route::put('/trans_new', 'FrontendController@trans_new_add');
 Route::get('/news', 'FrontendController@news');
@@ -29,12 +38,30 @@ Route::get('/news_detail/{id}', 'FrontendController@news_detail');
 Route::get('lang/{language}', 'LocalizationController@switch')->name('localization.switch');
 
 //Admin Page
-Auth::routes(['verify'=>true]);
+Auth::routes([
+    'register'=>false
+    ]);
 
 Route::get('/home', 'HomeController@admin_index')->name('home')->middleware('verified');
+Route::get('/verify','Auth\RegisterController@verifyUser')->name('verify.user');
+
+/* Verifiy CUstomer User*/
+Route::get('/verifyuser','RegistercustomerController@verifyUser')->name('verify.cust');
 
 //Route to admin pages
+Route::get('/adm_logo', 'HomeController@admin_logo');
+Route::put('/adm_logo', 'HomeController@admin_logo_edit');
+
 Route::get('/adm_tracking', 'TrackingController@admin_tracking');
+Route::post('/adm_tracking', 'TrackingController@admin_tracking_add');
+Route::put('/adm_tracking', 'TrackingController@admin_tracking_edit');
+Route::delete('/adm_tracking', 'TrackingController@admin_tracking_destroy');
+
+Route::get('/adm_transaction', 'TransactionController@admin_transaction');
+Route::post('/adm_transaction', 'TransactionController@admin_transaction_add');
+Route::put('/adm_transaction', 'TransactionController@admin_transaction_edit');
+Route::delete('/adm_transaction', 'TransactionController@admin_transaction_destroy');
+Route::post('/adm_transaction_detail', 'TransactionController@admin_transaction_detail');
 
 Route::get('/adm_news', 'NewsController@admin_news');
 Route::post('/adm_news', 'NewsController@admin_news_add');
@@ -110,3 +137,14 @@ Route::get('/adm_service', 'HomeController@admin_service');
 Route::post('/adm_service', 'HomeController@admin_service_add');
 Route::put('/adm_service', 'HomeController@admin_service_edit');
 Route::delete('/adm_service', 'HomeController@admin_service_destroy');
+
+Route::get('/adm_content', 'HomeController@admin_content');
+Route::put('/adm_content', 'HomeController@admin_content_edit');
+
+Route::get('/adm_contentfooter', 'HomeController@admin_contentfooter');
+Route::put('/adm_contentfooter', 'HomeController@admin_contentfooter_edit');
+
+Route::get('/adm_contentimage', 'HomeController@admin_contentimage');
+Route::post('/adm_contentimage', 'HomeController@admin_contentimage_add');
+Route::put('/adm_contentimage', 'HomeController@admin_contentimage_edit');
+Route::delete('/adm_contentimage', 'HomeController@admin_contentimage_destroy');

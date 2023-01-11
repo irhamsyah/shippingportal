@@ -7,6 +7,7 @@ use App\Users;
 use App\News;
 use App\NewsCategory;
 use App\NewsImage;
+use App\Logo;
 
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Builder;
@@ -43,6 +44,7 @@ class NewsController extends Controller
      */
      public function news_detail_view(Request $request)
      {
+       $logos = Logo::all();
        //get id news from url
        $newss = News::select('news.id as news_id','news.title','news.text','news.img_title','news.id_user','news.news_category_id','news_category.name as category_name','users.name as user_name')
        ->leftJoin('news_category', 'news_category.id', '=', 'news.news_category_id')
@@ -50,11 +52,12 @@ class NewsController extends Controller
        ->where('id','=',$request->route('id'))
        ->orderBy('news.created_at','desc')->get();
 
-       return view('news_detail.html', ['newss'=> $newss]);
+       return view('news_detail.html', ['logos'=> $logos,'newss'=> $newss]);
      }
 
     public function admin_news()
     {
+      $logos = Logo::all();
       $newss = News::select('news.id as news_id','news.title','news.text','news.img_title','news.location','news.id_user','news.news_category_id','news_category.name as category_name','users.name as user_name')
       ->leftJoin('news_category', 'news_category.id', '=', 'news.news_category_id')
       ->leftjoin('users', 'users.id', '=', 'news.id_user')
@@ -63,10 +66,11 @@ class NewsController extends Controller
       //get data newscategory
       $news_categorys = NewsCategory::select('news_category.id','news_category.name')->get();
 
-      return view('admin/news', ['newss'=> $newss,'news_categorys'=> $news_categorys]);
+      return view('admin/news', ['logos'=> $logos,'newss'=> $newss,'news_categorys'=> $news_categorys]);
     }
     public function admin_news_add(Request $request)
     {
+      $logos = Logo::all();
       //cek validasi image
         $this->validate($request, [
           'inputImage' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
@@ -75,7 +79,7 @@ class NewsController extends Controller
       if ($request->hasFile('inputImage')) {
           $image = $request->file('inputImage');
           $name = time().'.'.$image->getClientOriginalExtension();
-          $destinationPath = public_path('/img/news');
+          $destinationPath = $_SERVER['DOCUMENT_ROOT'].'/img/news';
           $image->move($destinationPath, $name);
       }
       //input new news
@@ -97,10 +101,11 @@ class NewsController extends Controller
       //get data newscategory
       $news_categorys = NewsCategory::select('news_category.id','news_category.name')->get();
 
-      return view('admin/news', ['newss'=> $newss,'news_categorys'=> $news_categorys]);
+      return view('admin/news', ['logos'=> $logos,'newss'=> $newss,'news_categorys'=> $news_categorys]);
     }
     public function admin_news_edit(Request $request)
     {
+      $logos = Logo::all();
       if ($request->inputImage!="" OR $request->inputImage!=NULL){
         //cek validasi image
         $this->validate($request, [
@@ -110,7 +115,7 @@ class NewsController extends Controller
         if ($request->hasFile('inputImage')) {
             $image = $request->file('inputImage');
             $name = time().'.'.$image->getClientOriginalExtension();
-            $destinationPath = public_path('/img/news');
+            $destinationPath = $_SERVER['DOCUMENT_ROOT'].'/img/news';
             $image->move($destinationPath, $name);
             //delete file image from directory
             unlink($_SERVER['DOCUMENT_ROOT'].'/img/news/'.$request->inputImgOld);
@@ -137,11 +142,12 @@ class NewsController extends Controller
 
       //get data newscategory
       $news_categorys = NewsCategory::select('news_category.id','news_category.name')->get();
-      return view('admin/news', ['newss'=> $newss,'news_categorys'=> $news_categorys]);
+      return view('admin/news', ['logos'=> $logos,'newss'=> $newss,'news_categorys'=> $news_categorys]);
     }
     //Direct to Proses DeleteNews
     public function admin_news_destroy(Request $request)
     {
+      $logos = Logo::all();
       $newss = News::find($request->inputIdNews);
       $newss->delete();
 
@@ -154,17 +160,19 @@ class NewsController extends Controller
       ->orderBy('news.created_at','desc')->get();
 
       $news_categorys = NewsCategory::select('news_category.id','news_category.name')->get();
-      return view('admin/news', ['newss'=> $newss,'news_categorys'=> $news_categorys]);
+      return view('admin/news', ['logos'=> $logos,'newss'=> $newss,'news_categorys'=> $news_categorys]);
     }
     public function admin_news_category()
     {
+      $logos = Logo::all();
       $news_categorys = NewsCategory::select('news_category.id','news_category.name','users.name as user_name')
       ->leftjoin('users','users.id','=','news_category.id_user')->get();
       //dd($news_categorys);
-      return view('admin/news_category', ['news_categorys'=> $news_categorys]);
+      return view('admin/news_category', ['logos'=> $logos,'news_categorys'=> $news_categorys]);
     }
     public function admin_news_category_add(Request $request)
     {
+      $logos = Logo::all();
       //input new news category
       $newscategory = new NewsCategory;
       $newscategory->name = $request->inputNewsCategory;
@@ -175,10 +183,11 @@ class NewsController extends Controller
       $news_categorys = NewsCategory::select('news_category.id','news_category.name','users.name as user_name')
       ->leftjoin('users','users.id','=','news_category.id_user')->get();
 
-      return view('admin/news_category', ['news_categorys'=> $news_categorys]);
+      return view('admin/news_category', ['logos'=> $logos,'news_categorys'=> $news_categorys]);
     }
     public function admin_news_category_edit(Request $request)
     {
+      $logos = Logo::all();
       //update news category
       $newscategory = NewsCategory::find($request->inputIdCategory);
       $newscategory->name = $request->inputNewsCategory;
@@ -189,11 +198,12 @@ class NewsController extends Controller
       $news_categorys = NewsCategory::select('news_category.id','news_category.name','users.name as user_name')
       ->leftjoin('users','users.id','=','news_category.id_user')->get();
 
-      return view('admin/news_category', ['news_categorys'=> $news_categorys]);
+      return view('admin/news_category', ['logos'=> $logos,'news_categorys'=> $news_categorys]);
     }
     //Direct to Proses DeleteNewsCategory
     public function admin_news_category_destroy(Request $request)
     {
+      $logos = Logo::all();
       //dd($request->inputIdCategory);
       $newscategory = NewsCategory::find($request->inputIdCategory);
       $newscategory->delete();
@@ -201,20 +211,22 @@ class NewsController extends Controller
       $news_categorys = NewsCategory::select('news_category.id','news_category.name','users.name as user_name')
       ->leftjoin('users','users.id','=','news_category.id_user')->get();
 
-      return view('admin/news_category', ['news_categorys'=> $news_categorys]);
+      return view('admin/news_category', ['logos'=> $logos,'news_categorys'=> $news_categorys]);
     }
     public function admin_news_image()
     {
+      $logos = Logo::all();
       $news_images = NewsImage::select('news_image.id as id_image','news_image.img','news_image.news_id','news.title','users.name as user_name')
       ->leftjoin('news','news.id','=','news_image.news_id')
       ->leftjoin('users','users.id','=','news_image.id_user')->get();
 
       $newss = News::select('news.id as news_id','news.title')->orderby('news.title')->get();
 
-      return view('admin/news_image', ['news_images'=> $news_images, 'newss'=> $newss]);
+      return view('admin/news_image', ['logos'=> $logos,'news_images'=> $news_images, 'newss'=> $newss]);
     }
     public function admin_news_image_add(Request $request)
     {
+      $logos = Logo::all();
       //cek validasi image
         $this->validate($request, [
           'inputImage' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
@@ -223,7 +235,7 @@ class NewsController extends Controller
       if ($request->hasFile('inputImage')) {
           $image = $request->file('inputImage');
           $name = time().'.'.$image->getClientOriginalExtension();
-          $destinationPath = public_path('/img/news');
+          $destinationPath = $_SERVER['DOCUMENT_ROOT'].'/img/news';
           $image->move($destinationPath, $name);
       }
       //input new news image
@@ -240,10 +252,11 @@ class NewsController extends Controller
 
       $newss = News::select('news.id as news_id','news.title')->orderby('news.title')->get();
 
-      return view('admin/news_image', ['news_images'=> $news_images, 'newss'=> $newss]);
+      return view('admin/news_image', ['logos'=> $logos,'news_images'=> $news_images, 'newss'=> $newss]);
     }
     public function admin_news_image_edit(Request $request)
     {
+      $logos = Logo::all();
       if ($request->inputImage!="" OR $request->inputImage!=NULL){
         //cek validasi image
         $this->validate($request, [
@@ -253,7 +266,7 @@ class NewsController extends Controller
         if ($request->hasFile('inputImage')) {
             $image = $request->file('inputImage');
             $name = time().'.'.$image->getClientOriginalExtension();
-            $destinationPath = public_path('/img/news');
+            $destinationPath = $_SERVER['DOCUMENT_ROOT'].'/img/news';
             $image->move($destinationPath, $name);
             //delete file image from directory
             unlink($_SERVER['DOCUMENT_ROOT'].'/img/news/'.$request->inputImgOld);
@@ -275,11 +288,12 @@ class NewsController extends Controller
 
       $newss = News::select('news.id as news_id','news.title')->orderby('news.title')->get();
 
-      return view('admin/news_image', ['news_images'=> $news_images, 'newss'=> $newss]);
+      return view('admin/news_image', ['logos'=> $logos,'news_images'=> $news_images, 'newss'=> $newss]);
     }
     //Direct to Proses DeleteNews
     public function admin_news_image_destroy(Request $request)
     {
+      $logos = Logo::all();
       $news_images = NewsImage::find($request->inputIdNewsImg);
       $news_images->delete();
 
@@ -292,6 +306,6 @@ class NewsController extends Controller
 
       $newss = News::select('news.id as news_id','news.title')->orderby('news.title')->get();
 
-      return view('admin/news_image', ['news_images'=> $news_images, 'newss'=> $newss]);
+      return view('admin/news_image', ['logos'=> $logos,'news_images'=> $news_images, 'newss'=> $newss]);
     }
 }

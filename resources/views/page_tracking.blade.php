@@ -11,9 +11,9 @@
       <div class="row justify-content-center">
           <div class="title col-12 col-lg-8">
               <h2 class="align-center pb-2 mbr-fonts-style display-2">
-                  Tracking</h2>
+                  {{ __('tracking.tracking_title') }}</h2>
               <h3 class="mbr-section-subtitle align-center pb-5 mbr-light mbr-fonts-style display-5">
-                  Silahkan masukkan 12 Digit Resi Pengiriman Kargo</h3>
+                  {{ __('tracking.tracking_desc') }}</h3>
           </div>
       </div>
 
@@ -23,9 +23,9 @@
               <form action="/tracking" method="POST" class="mbr-form form-with-styler" data-form-title="Mobirise Form"><input type="hidden" name="email" data-form-email="true" value="Nv1fkQ6x2Pwh8s5TNa3no9uaA2JXsyKVF+U4MlmDH7ivYoP6SA4YD6pi6q0HTFyeykpx/ZBPwNxtQ+1QNhJT08RsJU96IlTka7nBqVQ/jfA9+7QTofoHzlrXr5Fvf16J">
                   <div class="dragArea row">
                       <div class="form-group col" data-for="resi">
-                          <input type="resi" name="resi" placeholder="Masukkan 12 Digit Resi" data-form-field="resi" required="required" class="form-control display-7" id="resi-form3-15">
+                          <input type="resi" name="resi" placeholder="{{ __('tracking.tracking_kolom') }}" data-form-field="resi" required="required" class="form-control display-7" id="resi-form3-15">
                       </div>
-                      <div class="col-auto input-group-btn"><button type="submit" class="btn btn-primary display-4" href="page1.html#timeline1-16"><span class="mbri-search mbr-iconfont mbr-iconfont-btn"></span>Lacak</button></div>
+                      <div class="col-auto input-group-btn"><button type="submit" class="btn btn-primary display-4" href="page1.html#timeline1-16"><span class="mbri-search mbr-iconfont mbr-iconfont-btn"></span>{{ __('tracking.tracking_tombol') }}</button></div>
                   </div>
                   @csrf
               </form><!---Formbuilder Form--->
@@ -53,7 +53,7 @@
           <span class="iconBackground"></span>
           <div class="col-xs-12 col-md-6 align-right">
             <div class="timeline-text-content">
-              <h4 class="mbr-timeline-title pb-3 mbr-fonts-style display-7">{{ $tracking->created_at->format('d M Y H:i:s') }}</h4>
+              <h4 class="mbr-timeline-title pb-3 mbr-fonts-style display-7">{!! $tracking->date->format('d M Y H:i:s') !!}</h4>
               <p class="mbr-timeline-text mbr-fonts-style display-7"><a href="http://maps.google.com/maps?q={{ $tracking->latitude.','.$tracking->longitude }}" target="_blank">{{ '['.$tracking->latitude.','.$tracking->longitude.']' }}</a></p>
            </div>
           </div>
